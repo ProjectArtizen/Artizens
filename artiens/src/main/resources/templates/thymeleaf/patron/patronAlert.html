@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>patron alert</title>
+<script th:inline="javascript">
+	[# th:if="${alertActive} == complete"]
+	alert('등록을 완료 했습니다.');
+	location.href = "/artizen/patron";
+	[/]
+	
+	[# th:if="${alertActive} == fail"]
+	alert('등록을 실패 했습니다.');
+	location.href = "/artizen/patron/register";
+	[/]
+
+	[# th:if="${alertActive} == registerDenial"]
+	alert('후원을 등록할 권한이 없습니다.');
+	location.href = "/artizen/patron";
+	[/]
+	
+	[# th:if="${alertActive} == noUser"]
+	alert('로그인을 하세요.');
+	location.href = "/artizen/login"+[[${redirectURL}]];
+	[/]
+		
+	[# th:if="${alertActive} == noCreator"]
+	alert('크리에이터 등록을 하세요.');
+	location.href = "/artizen/patron";
+	[/]
+	
+	[# th:if="${alertActive} == alreadyPatorn"]
+	alert('이미 후원등록을 완료하신 상태입니다.');
+	location.href = "/artizen/patron";
+	[/]
+</script>
+</head>
+<body>
+</body>
+</html>

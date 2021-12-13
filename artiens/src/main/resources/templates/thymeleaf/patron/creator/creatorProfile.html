@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- Form-->
+<div class="entry col-lg-4 col-md-6 pf-uielements" th:fragment="profile">
+    <div class="grid-inner shadow-sm card rounded-5">
+        <div class="entry-image mb-0">
+            <div class="fslider" data-arrows="false" data-lightbox="gallery">
+                <div class="flexslider">
+                    <div class="slider-wrap">
+                        <div class="slide"><a th:href="@{/images/patron/creator}" data-lightbox="gallery-item"
+                                              th:style="'background: url(/images/patron/creator/items/iu1.jpg) no-repeat center bottom; background-size: cover; height: 200px;'"></a>
+                        </div>
+                        <div class="slide"><a th:href="@{/images/patron/creator}" data-lightbox="gallery-item"
+                                              th:style="'background: url(/images/patron/creator/items/iu3.jpg) no-repeat center bottom; background-size: cover; height: 200px;'"></a>
+                        </div>
+                        <div class="slide"><a th:href="@{/images/patron/creator}" data-lightbox="gallery-item"
+                                              th:style="'background: url(/images/patron/creator/items/iu4.jpg) no-repeat center bottom; background-size: cover; height: 200px;'"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="p-4">
+            <div class="entry-title mb-3">
+                <h5 class="fw-medium text-primary mb-3">Work</h5>
+                <h3 class="nott ls0 h5"><a href="blog-single.html">Blog card with Slider</a></h3>
+            </div>
+            <div class="entry-content mt-4">
+                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, voluptatem, dolorem
+                    animi nisi autem reiciendis et explicabo tenetur!</p>
+            </div>
+            <hr class="my-4">
+            <div class="d-flex align-items-center">
+                <img th:src="@{/images/patron/creator/author/1.jpg}" alt="Author" class="rounded-circle me-3" width="48"
+                     height="48">
+                <div class="entry-meta mt-0">
+                    <div>
+                        <h6 class="mb-1 h6">Author</h6>
+                        <ul class="my-0">
+                            <li class="mb-0"><i class="icon-calendar3"></i> 10th Feb 2021</li>
+                            <li class="mb-0"><a href="blog-single.html#comments"><i class="icon-comments"></i> 13</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Form end -->

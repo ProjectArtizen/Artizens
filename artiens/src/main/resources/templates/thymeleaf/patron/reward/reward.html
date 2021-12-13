@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html th:replace="~{thymeleaf/patron/fregment/patronLayout :: patronLayout(~{::title}, ~{::link}, ~{::script}, ~{::section}, ~{::style})}"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Artizen 리워드</title>
+    <!--link 태그 없으면 빈값으로 남겨야됨.-->
+    <link/>
+    <script></script>
+    <style>
+
+        .block-expand-categories h1,
+        .block-expand-categories h2,
+        .block-expand-categories h3 {
+            font-family: Playfair Display, serif !important;
+        }
+
+        .block-expand-categories .expand-category {
+            --height: 50vh;
+            --responsive-height: 60px;
+            --hover-flex: 10;
+
+            position: relative;
+            background-position: center center;
+            background-size: cover;
+            border-radius: 20px;
+            margin: 10px 0;
+            min-height: var(--responsive-height);
+            cursor: pointer;
+        }
+
+        .block-expand-categories .expand-category h4 {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            text-align: center;
+            margin: 0;
+            transform: translateY(-50%);
+        }
+
+        /* Larger Device */
+        @media (min-width: 992px) {
+
+            .block-expand-categories .expand-category {
+                height: var(--height);
+                flex: 1;
+                margin: 0 10px;
+                transition: flex 1s ease;
+                -webkit-backface-visibility: hidden;
+                transform: translate3d(0, 0, 0);
+            }
+
+            .block-expand-categories:not(.on-click) .expand-category:hover,
+            .block-expand-categories.on-click .expand-category.active {
+                flex: var(--hover-flex);
+            }
+
+            .block-expand-categories .expand-category h4 {
+                opacity: 1;
+                top: auto;
+                bottom: 10px;
+                transform: none;
+                transition: opacity .4s ease;
+            }
+
+            .block-expand-categories:hover .expand-category:not(.active):not(:hover) h4,
+            .block-expand-categories.on-click .expand-category:not(.active) h4 {
+                opacity: 0;
+            }
+
+        }
+
+
+    </style>
+</head>
+<body>
+<!-- Page Title
+		============================================= -->
+<section id="page-title">
+
+    <div class="container clearfix">
+        <h1>리워드</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page"><a th:href="@{/artizen/patron}">후원이란</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a th:href="@{/artizen/patron/creator}">크리에이터</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a th:href="@{/artizen/patron/reward}">리워드</a></li>
+        </ol>
+    </div>
+
+</section><!-- #page-title end -->
+<!-- Content
+		============================================= -->
+<section id="content">
+    <div class="content-wrap pb-0">
+        <div class="container clearfix">
+            <div class="fancy-title title-border title-center">
+                <h3>Category</h3>
+            </div>
+            <div id="oc-portfolio" class="owl-carousel portfolio-carousel carousel-widget" data-pagi="false"
+                 data-items-xs="1" data-items-sm="2" data-items-md="3" data-items-lg="4">
+                <div th:replace="thymeleaf/patron/reward/rewardCarouselForm::rewaordCarousel(itemsName = 'Calendar', itemFileName = 'calendar')"></div>
+                <div th:replace="thymeleaf/patron/reward/rewardCarouselForm::rewaordCarousel(itemsName = 'Cup', itemFileName = 'cup')"></div>
+                <div th:replace="thymeleaf/patron/reward/rewardCarouselForm::rewaordCarousel(itemsName = 'Frame', itemFileName = 'frame')"></div>
+                <div th:replace="thymeleaf/patron/reward/rewardCarouselForm::rewaordCarousel(itemsName = 'Note', itemFileName = 'note')"></div>
+                <div th:replace="thymeleaf/patron/reward/rewardCarouselForm::rewaordCarousel(itemsName = 'Poster', itemFileName = 'poster')"></div>
+                <div th:replace="thymeleaf/patron/reward/rewardCarouselForm::rewaordCarousel(itemsName = 'Sticker', itemFileName = 'sticker')"></div>
+                <div th:replace="thymeleaf/patron/reward/rewardCarouselForm::rewaordCarousel(itemsName = 'Tumbler', itemFileName = 'tumbler')"></div>
+            </div>
+<!--            <div class="line" style="margin: 1rem 0"></div>-->
+            <div class="fancy-title title-border title-center" style="margin: 3rem 0">
+                <h3>Calendar</h3>
+            </div>
+            <div class="line" style="margin: 1rem 0"></div>
+            <div id="portfolio" class="portfolio row grid-container gutter-10 desc-sm" data-layout="fitRows">
+                <article th:replace="thymeleaf/patron/reward/rewardItemForm::rewardItem(itemFileName='item2.jpg', itemName='아이템 이름1',price='10,000',author='작가1')"></article>
+                <article th:replace="thymeleaf/patron/reward/rewardItemForm::rewardItem(itemFileName='item2.jpg', itemName='아이템 이름1',price='10,000',author='작가1')"></article>
+                <article th:replace="thymeleaf/patron/reward/rewardItemForm::rewardItem(itemFileName='item3.jpg', itemName='아이템 이름1',price='10,000',author='작가1')"></article>
+                <article th:replace="thymeleaf/patron/reward/rewardItemForm::rewardItem(itemFileName='item4.jpg', itemName='아이템 이름1',price='10,000',author='작가1')"></article>
+                <article th:replace="thymeleaf/patron/reward/rewardItemForm::rewardItem(itemFileName='item5.jpg', itemName='아이템 이름1',price='10,000',author='작가1')"></article>
+                <article th:replace="thymeleaf/patron/reward/rewardItemForm::rewardItem(itemFileName='item1.jpg', itemName='아이템 이름1',price='10,000',author='작가1')"></article>
+                <article th:replace="thymeleaf/patron/reward/rewardItemForm::rewardItem(itemFileName='item2.jpg', itemName='아이템 이름1',price='10,000',author='작가1')"></article>
+                <article th:replace="thymeleaf/patron/reward/rewardItemForm::rewardItem(itemFileName='item3.jpg', itemName='아이템 이름1',price='10,000',author='작가1')"></article>
+                <article th:replace="thymeleaf/patron/reward/rewardItemForm::rewardItem(itemFileName='item4.jpg', itemName='아이템 이름1',price='10,000',author='작가1')"></article>
+                <article th:replace="thymeleaf/patron/reward/rewardItemForm::rewardItem(itemFileName='item5.jpg', itemName='아이템 이름1',price='10,000',author='작가1')"></article>
+                <article th:replace="thymeleaf/patron/reward/rewardItemForm::rewardItem(itemFileName='item1.jpg', itemName='아이템 이름1',price='10,000',author='작가1')"></article>
+                <article th:replace="thymeleaf/patron/reward/rewardItemForm::rewardItem(itemFileName='item2.jpg', itemName='아이템 이름1',price='10,000',author='작가1')"></article>
+                <article th:replace="thymeleaf/patron/reward/rewardItemForm::rewardItem(itemFileName='item3.jpg', itemName='아이템 이름1',price='10,000',author='작가1')"></article>
+                <article th:replace="thymeleaf/patron/reward/rewardItemForm::rewardItem(itemFileName='item4.jpg', itemName='아이템 이름1',price='10,000',author='작가1')"></article>
+                <article th:replace="thymeleaf/patron/reward/rewardItemForm::rewardItem(itemFileName='item5.jpg', itemName='아이템 이름1',price='10,000',author='작가1')"></article>
+            </div>
+            <!-- Pagination
+					============================================= -->
+            <ul class="pagination mt-5 pagination-circle justify-content-center">
+                <li class="page-item disabled"><a class="page-link" href="#"><i class="icon-angle-left"></i></a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                <li class="page-item"><a class="page-link" href="#"><i class="icon-angle-right"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+</body>
+</html>

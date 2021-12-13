@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html th:replace="~{fregment/layoutMain :: layout(~{::title}, ~{::link}, ~{::script}, ~{::section})}"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Artizen 디폴트</title>
+    <!--link 태그 없으면 빈값으로 남겨야됨.-->
+    <link/>
+    <script></script>
+</head>
+<body>
+<section>
+    <div class="content-wrap">
+        <div class="container clearfix">
+
+            <div class="row gutter-40 col-mb-80">
+                <!-- Post Content
+                ============================================= -->
+                <div class="postcontent col-lg-9">
+
+                    <h3>Native Style</h3>
+
+                    <div class="style-msg successmsg">
+                        <div class="sb-msg"><i class="icon-thumbs-up"></i>
+                            이미 있는 정보입니다.
+                        </div>
+                    </div>
+
+                    <div class="style-msg errormsg">
+                        <div class="sb-msg"><i class="icon-remove"></i><strong>Oh snap!</strong> Change a few things
+                            up and try submitting again.
+                        </div>
+                    </div>
+
+                    <div class="style-msg infomsg">
+                        <div class="sb-msg"><i class="icon-info-sign"></i><strong>Heads up!</strong> This alert
+                            needs your attention, but it's not super important.
+                        </div>
+                    </div>
+
+                    <div class="style-msg alertmsg">
+                        <div class="sb-msg"><i class="icon-warning-sign"></i><strong>Warning!</strong> Better check
+                            yourself, you're not looking too good.
+                        </div>
+                    </div>
+
+                    <div class="style-msg" style="background-color: #EEE;">
+                        <div class="sb-msg"><i class="icon-question-sign"></i>This is a <strong>Blank
+                            Notification</strong> Box.
+                        </div>
+                    </div>
+
+                    <div class="style-msg style-msg-light" style="background-color: #333;">
+                        <div class="sb-msg"><i class="icon-question-sign"></i>This is a <strong>Blank
+                            Notification</strong> Box.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

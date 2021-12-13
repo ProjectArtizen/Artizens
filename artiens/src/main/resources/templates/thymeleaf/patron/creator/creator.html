@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html th:replace="~{thymeleaf/patron/fregment/patronLayout :: patronLayout(~{::title}, ~{::link}, ~{::script}, ~{::section}, ~{::style})}">
+<head>
+    <title>Artizen 크리에이터</title>
+    <!--link 태그 없으면 빈값으로 남겨야됨.-->
+    <link/>
+    <script></script>
+    <style></style>
+</head>
+<body>
+<!-- Page Title
+		============================================= -->
+<section id="page-title">
+
+    <div class="container clearfix">
+        <h1>크리에이터</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page"><a th:href="@{/artizen/patron}">후원이란</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a th:href="@{/artizen/patron/creator}">크리에이터</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a th:href="@{/artizen/patron/reward}">리워드</a></li>
+        </ol>
+    </div>
+
+</section><!-- #page-title end -->
+
+<div class="line">
+    <!-- Content
+            ============================================= -->
+    <section id="content">
+        <div th:replace="thymeleaf/patron/creator/creatorNav::filter"></div>
+        <div class="container clearfix">
+            <div class="post-grid row col-mb-30">
+                <div th:replace="thymeleaf/patron/creator/creatorProfile::profile"></div>
+                <div th:replace="thymeleaf/patron/creator/creatorProfile::profile"></div>
+                <div th:replace="thymeleaf/patron/creator/creatorProfile::profile"></div>
+                <div th:replace="thymeleaf/patron/creator/creatorProfile::profile"></div>
+                <div th:replace="thymeleaf/patron/creator/creatorProfile::profile"></div>
+                <div th:replace="thymeleaf/patron/creator/creatorProfile::profile"></div>
+                <div th:replace="thymeleaf/patron/creator/creatorProfile::profile"></div>
+                <div th:replace="thymeleaf/patron/creator/creatorProfile::profile"></div>
+                <div th:replace="thymeleaf/patron/creator/creatorProfile::profile"></div>
+                <div th:replace="thymeleaf/patron/creator/creatorProfile::profile"></div>
+            </div>
+        </div>
+        <!-- Pagination
+					============================================= -->
+        <ul class="pagination mt-5 pagination-circle justify-content-center">
+            <li class="page-item disabled"><a class="page-link" href="#"><i class="icon-angle-left"></i></a></li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+            <li class="page-item"><a class="page-link" href="#"><i class="icon-angle-right"></i></a></li>
+        </ul>
+    </section><!-- #content end -->
+</div>
+</body>
+</html>
