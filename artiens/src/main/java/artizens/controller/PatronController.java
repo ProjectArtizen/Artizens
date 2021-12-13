@@ -32,36 +32,43 @@ public class PatronController {
 	@Autowired CreatorService creatorService;
 	
 	@GetMapping
-    public String patronMain(Model model){
-        model.addAttribute("menuBar_active", "main");
+    public String patronMain(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user, Model model){
+		LOGGER.info("user={}",user);
+        model.addAttribute("member",user); // 세션 유무에 따른 헤더 세팅
         return "thymeleaf/patron/patronMain/patronForm";
     }
 
     @GetMapping("/creator")
-    public String patronCreator(Model model){
+    public String patronCreator(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user, Model model){
         model.addAttribute("menuBar_active", "creator");
+        model.addAttribute("member",user); // 세션 유무에 따른 헤더 세팅
         return "thymeleaf/patron/creator/creator";
     }
 
     @GetMapping("/reward")
-    public String patronReward(Model model){
+    public String patronReward(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user, Model model){
         model.addAttribute("menuBar_active", "reward");
+        model.addAttribute("member",user); // 세션 유무에 따른 헤더 세팅
         return "thymeleaf/patron/reward/reward";
     }
 
     @GetMapping("/register")
     public String patronRegisterForm(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user, Model model){
+    	// 세션 없을때 
     	if (user == null) {
     		//이거 로그인 화면으로 바꿔야됨.
     		model.addAttribute("alertActive","noUser");
     		model.addAttribute("redirectURL", "?redirectURL=/patron/register");
     		return "thymeleaf/patron/patronAlert";
     	}
+    	// 유저가 patron에 등록할 조건을 체크
+    	model.addAttribute("member",user); // 세션 유무에 따른 헤더 세팅
     	String patronAuthority = patronService.patronRegisterCondition(user.getId());
     	if (patronAuthority.equals("noCreator") || patronAuthority.equals("alreadyPatorn")) {
     		model.addAttribute("alertActive",patronAuthority);
     		return "thymeleaf/patron/patronAlert";
     	}
+    	// creator에 등록이 된 유저이지 체크
     	List<Creator> creator = creatorService.findCreatorByuserProfileId(user.getId());
     	model.addAttribute("creatorId", creator.get(0).getId());
     	model.addAttribute("creatorName", creator.get(0).getNickName());
