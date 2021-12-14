@@ -16,6 +16,8 @@ import artizens.domain.QCreator;
 import artizens.domain.QReward;
 import artizens.domain.Reward;
 
+import static artizens.domain.QCreator.creator;
+
 @Transactional
 @SpringBootTest(classes = ArtiensApplication.class)
 class ArtiensApplicationTests {
@@ -26,7 +28,6 @@ class ArtiensApplicationTests {
 	@Test
 	void contextLoads() {
 		Reward reward = new Reward();
-		em.persist(reward);
 
 		JPAQueryFactory query = new JPAQueryFactory(em);
 		QReward reward2 = new QReward("h");
@@ -34,7 +35,7 @@ class ArtiensApplicationTests {
 		Reward result = query
 				.selectFrom(reward2)
 				.fetchOne();
-
+		
 		Assertions.assertThat(result).isEqualTo(reward);
 		Assertions.assertThat(result.getId()).isEqualTo(reward.getId());
 	}

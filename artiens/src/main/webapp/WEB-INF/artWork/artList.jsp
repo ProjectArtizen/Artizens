@@ -253,7 +253,7 @@
 <!-- Footer
 ============================================= -->
 <footer id="footer" class="dark">
-    <%@include file="include/footer.jsp" %>
+    <%@include file="../include/footer.jsp" %>
 </footer>
 
 </div><!-- #wrapper end-->
