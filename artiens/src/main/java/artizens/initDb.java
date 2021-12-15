@@ -45,47 +45,59 @@ public class initDb {
 
 		public void dbInit1() {
 			// 최초 생성 user(admin) (creator 등록 완료, patron 등록 완료)
-			UserProfile admin = UserProfile.createUser("user@gmail.com", "1234", "dlwngus");
+			UserProfile admin = UserProfile.createUser("user@gmail.com", "1234", "고흐");
 			em.persist(admin);
-			
+
 			// admin creator
-			UploadFile creatorImage = UploadFile.createUploadFile("admin.JPG",
-					"https://sunminki.s3.ap-northeast-2.amazonaws.com/066c7fb6-9a8c-462c-a4f1-c72a4cc74d8e.JPG");
-			Creator creator = Creator.createCreator("배그의 고수", creatorImage, "otherUri", admin);
+			UploadFile creatorImage = UploadFile.createUploadFile("고흐.jpg",
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/1d741251-946f-43cf-a640-c92442a697f7.jpg");
+			Creator creator = Creator.createCreator("고흐", creatorImage, "otherUri", admin);
 			em.persist(creator);
-			
+
 			// admin patron(후원등록 creator)
 			List<UploadFile> patronImages = new ArrayList<UploadFile>();
-			patronImages.add(UploadFile.createUploadFile("patron1.JPG",
-					"https://sunminki.s3.ap-northeast-2.amazonaws.com/89c55243-3157-4e11-8dd5-b993b90bc635.JPG"));
-			patronImages.add(UploadFile.createUploadFile("patron2.JPG",
-					"https://sunminki.s3.ap-northeast-2.amazonaws.com/5d31e33d-3be5-4027-82fe-6459904df315.JPG"));
-			patronImages.add(UploadFile.createUploadFile("patron3.jpg",
-					"https://sunminki.s3.ap-northeast-2.amazonaws.com/2a823132-b250-4435-9823-66a9978daac6.jpg"));
-			
-			Patron patron = Patron.createPatron("이것은 patron 제목입니다.", "이것은 내용이 들어갈 예정입니다.", creator, patronImages);
+			patronImages.add(UploadFile.createUploadFile("별이빛나는밤에.JPG",
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/2fb61b17-7dcb-43ab-8a33-7bfb7ff83611.JPG"));
+			patronImages.add(UploadFile.createUploadFile("카페.JPG",
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/d6d96ab0-d8f0-413e-b683-aaea23a89e2e.JPG"));
+			patronImages.add(UploadFile.createUploadFile("침대.JPG",
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/b3b5addc-9b57-4639-a043-e4b455679bbd.JPG"));
+				
+			Patron patron = Patron.createPatron("나는 고흐다. 배고프다...", "저는 고흐입니다. 저에게 투자하시면 나중에 빛을 보실껍니다. 저는 이 돈으로 압생트를 사먹을 겁니다.", creator, patronImages);
 			em.persist(patron);
+			
 			
 			
 			
 			// user(user1) (creator 등록, patron 미등록)
 			UserProfile user1 = UserProfile.createUser("user1@gmail.com", "1234", "dlwngus");
 			em.persist(user1);
-			
+
 			// user1 creator
 			UploadFile creatorImage1 = UploadFile.createUploadFile("user1.JPG",
 					"https://sunminki.s3.ap-northeast-2.amazonaws.com/a173df44-0776-470b-9322-d8d4dc22b25c.JPG");
 			Creator creator1 = Creator.createCreator("조커", creatorImage1, "otherUri", user1);
 			em.persist(creator1);
-			
-			
-			
-			
+
 			// user(user1) (creator 미등록, patron 미등록)
 			UserProfile user2 = UserProfile.createUser("user2@gmail.com", "1234", "dlwngus");
 			em.persist(user2);
 			
-			
+			// user3 ~ 50 (creator 등록, patron 미등록)
+			for (int i = 3; i <= 50; i++) {
+				String userString = "user" + String.valueOf(i);
+				UserProfile userProfile = UserProfile.createUser(userString + "@gmail.com", "1234", userString);
+				em.persist(userProfile);
+				
+				UploadFile creatorImageDefault = UploadFile.createUploadFile("크리에이터.JPG",
+						"https://sunminki.s3.ap-northeast-2.amazonaws.com/aef04562-61c7-4a8b-9bb5-851490cbff34.JPG");
+				Creator creators = Creator.createCreator("제작자"+String.valueOf(i), creatorImageDefault, "www.naver.com", userProfile);
+				em.persist(creators);
+				
+			}
+
+			em.flush();
+			em.clear();
 		}
 
 	}
