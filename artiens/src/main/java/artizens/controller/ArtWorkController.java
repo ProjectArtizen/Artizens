@@ -41,21 +41,6 @@ public class ArtWorkController {
 	@Autowired
 	ArtWorkService artWorkService;
 
-	@GetMapping("/artworkcrud")
-	public String insertCRUD(Model model) {
-		model.addAttribute("insertdto", new InsertDto());
-		return "artWork/artWorkCRUD";
-	}
-
-	@PostMapping("/artworkcrud")
-	public String viewCRUD(@ModelAttribute InsertDto insertDto, Model model) {
-		ArtWork artWork = artWorkService.insertArtWotk(insertDto.getTitle(), insertDto.getContent());
-		LOGGER.info("artWork={}", artWork.getId());
-		LOGGER.info("insertDto={}", insertDto.toString());
-		model.addAttribute("testModel", artWork);
-		return "artWork/artWorkView";
-	}
-
 	/*
 	 * @GetMapping("/artWorkMain") public String artworkMain() {
 	 * List<ArtWorkMainDto> result = artWorkMapper.findArtWorkMainAll(); for

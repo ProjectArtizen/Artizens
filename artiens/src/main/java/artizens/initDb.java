@@ -53,6 +53,8 @@ public class initDb {
 					"https://sunminki.s3.ap-northeast-2.amazonaws.com/1d741251-946f-43cf-a640-c92442a697f7.jpg");
 			Creator creator = Creator.createCreator("고흐", creatorImage, "otherUri", admin);
 			em.persist(creator);
+			
+			
 
 			// admin patron(후원등록 creator)
 			List<UploadFile> patronImages = new ArrayList<UploadFile>();
@@ -65,9 +67,6 @@ public class initDb {
 				
 			Patron patron = Patron.createPatron("나는 고흐다. 배고프다...", "저는 고흐입니다. 저에게 투자하시면 나중에 빛을 보실껍니다. 저는 이 돈으로 압생트를 사먹을 겁니다.", creator, patronImages);
 			em.persist(patron);
-			
-			
-			
 			
 			// user(user1) (creator 등록, patron 미등록)
 			UserProfile user1 = UserProfile.createUser("user1@gmail.com", "1234", "dlwngus");

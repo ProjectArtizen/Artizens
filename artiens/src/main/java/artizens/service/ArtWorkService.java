@@ -20,12 +20,6 @@ public class ArtWorkService {
 	@Autowired ArtWorkMapper artWorkMapper;
 	@Autowired ArtWorkImagesMapper artWorkImagesMapper; 
 	
-	public ArtWork insertArtWotk(String title, String content) {
-		ArtWork artWork = ArtWork.createArtWork1(title, content);
-		artWorkMapper.insertArtWork(artWork.getTitle(), artWork.getContent());
-		return artWork;
-	}
-	
 	public List<ArtWorkMainDto> selectAll(){
 		List<ArtWorkMainDto> result = artWorkMapper.findArtWorkMainAll();
 		return result; 

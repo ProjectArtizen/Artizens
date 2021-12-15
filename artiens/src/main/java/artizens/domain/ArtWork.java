@@ -66,12 +66,12 @@ public class ArtWork {
 		return artWorkImages;
 	}
 	
-	public static ArtWork createArtWork1(String title, String content) {
-		ArtWork artwork = new ArtWork();
-		artwork.title = title;
-		artwork.content = content;
-		 return artwork;
-	}
+//	public static ArtWork createArtWork1(String title, String content) {
+//		ArtWork artwork = new ArtWork();
+//		artwork.title = title;
+//		artwork.content = content;
+//		 return artwork;
+//	}
 
 	public static ArtWork createArtWork(String title, String content, List<ArtWorkImages> artWorkImages) {
 		ArtWork artwork = new ArtWork();
