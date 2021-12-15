@@ -1,5 +1,7 @@
 package artizens.domain;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,64 +21,67 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "artwork")
 public class ArtWork {
-	
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "artwork_id")
 	private Long id;
-	
+
 	@Column(name = "artwork_title", length = 45)
 	private String title;
-	
+
 	@Column(name = "artwork_content", length = 1000000)
 	private String content;
 
 	@Column(name = "artwork_inquiry_num")
 	private int inquiryNum;
-	
+
 	@Column(name = "artwork_sympathy_num")
 	private int sympathyNum;
-	
+
 	@Column(name = "artwork_register_date")
-	private Date registerDate;
-	
+	private LocalDateTime registerDate;
+
 	@Column(name = "artwork_category_name", length = 45)
 	private String categoryName;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "creator_id")
 	private Creator creator;
-	
+
 	@OneToMany(mappedBy = "artWork", cascade = CascadeType.ALL)
 	private List<ArtWorkComment> artWorkComment;
-	
+
 	@OneToMany(mappedBy = "artWork", cascade = CascadeType.ALL)
 	private List<ArtWorkArtWorkTag> artWorkArtWorkTag;
-	
+
 	@OneToMany(mappedBy = "artWork", cascade = CascadeType.ALL)
 	private List<ArtWorkImages> artWorkImages;
-	
+
 	public ArtWork() {
 	}
-	
-	// 외래키 artWork 만 주입하고 다시 return
-	public List<ArtWorkImages> updateArtWorkImage(List<ArtWorkImages> artWorkImages) {
-		for (ArtWorkImages images : artWorkImages) {
-			images.setArtWork(this);
-		}
-		return artWorkImages;
-	}
-	
-//	public static ArtWork createArtWork1(String title, String content) {
-//		ArtWork artwork = new ArtWork();
-//		artwork.title = title;
-//		artwork.content = content;
-//		 return artwork;
-//	}
 
-	public static ArtWork createArtWork(String title, String content, List<ArtWorkImages> artWorkImages) {
+	// 외래키 artWork 만 주입하고 다시 return
+	public List<ArtWorkImages> updateArtWorkImage(List<UploadFile> artWorkImages) {
+		List<ArtWorkImages> artWorkImageList = new ArrayList<ArtWorkImages>();
+		if (artWorkImages.size() > 0) {
+			for (UploadFile image : artWorkImages) {
+				artWorkImageList.add(ArtWorkImages.createArtWorkImage(image, this));
+			}
+		}
+		return artWorkImageList;
+	}
+
+	public static ArtWork createArtWork(String title, String content, ArtWorkCategory categoryName, Creator creator,
+			List<UploadFile> artWorkImages) {
 		ArtWork artwork = new ArtWork();
 		artwork.title = title;
 		artwork.content = content;
+		artwork.inquiryNum = 0;
+		artwork.sympathyNum = 0;
+		artwork.registerDate = LocalDateTime.now();
+		artwork.categoryName = categoryName.toString();
+		artwork.creator = creator;
 		artwork.artWorkImages = artwork.updateArtWorkImage(artWorkImages);
 		return artwork;
 	}
@@ -101,7 +106,7 @@ public class ArtWork {
 		return sympathyNum;
 	}
 
-	public Date getRegisterDate() {
+	public LocalDateTime getRegisterDate() {
 		return registerDate;
 	}
 

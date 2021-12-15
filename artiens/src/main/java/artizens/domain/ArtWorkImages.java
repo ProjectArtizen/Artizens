@@ -36,11 +36,7 @@ public class ArtWorkImages {
 	public ArtWorkImages() {
 	}
 
-	public void setArtWork(ArtWork artWork) {
-		this.artWork = artWork;
-	}
-
-	public static ArtWorkImages ArtWorkImage(UploadFile uploadFile, ArtWork artWork) {
+	public static ArtWorkImages createArtWorkImage(UploadFile uploadFile, ArtWork artWork) {
 		ArtWorkImages artWorkImages = new ArtWorkImages();
 		artWorkImages.uploadFile = uploadFile;
 		artWorkImages.artWork = artWork;
