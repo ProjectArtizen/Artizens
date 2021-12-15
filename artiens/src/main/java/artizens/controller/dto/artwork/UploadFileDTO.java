@@ -7,8 +7,11 @@ public class UploadFileDTO {
 	/**
 	 * 아이디
 	 */
-	private Long id;
-	
+	private Long artworkId;
+	/**
+	 * 프로필 아이디값
+	 */
+	private Long userProfileId;
 	/**
 	 * 작품 제목
 	 */
@@ -38,26 +41,52 @@ public class UploadFileDTO {
 	 * 작가의 말
 	 */
 	private String talk;
+	
+	/**
+	 * 크리에이터 아이디
+	 */
+	private Long creatorId;
+	
+	
 
-	
-	
-	
 	@Override
 	public String toString() {
-		return "UploadFileDTO [id=" + id + ", title=" + title + ", nickname=" + nickname + ", file=" + file
-				+ ", tagbox=" + tagbox + ", subject=" + subject + ", talk=" + talk + "]";
+		return "UploadFileDTO [artworkId=" + artworkId + ", userProfileId=" + userProfileId + ", title=" + title
+				+ ", nickname=" + nickname + ", file=" + file + ", tagbox=" + tagbox + ", subject=" + subject
+				+ ", talk=" + talk + ", creatorId=" + creatorId + "]";
 	}
 
 
 
-	public Long getId() {
-		return id;
+	public Long getUserProfileId() {
+		return userProfileId;
 	}
 
 
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setUserProfileId(Long userProfileId) {
+		this.userProfileId = userProfileId;
+	}
+
+
+
+	public Long getCreatorId() {
+		return creatorId;
+	}
+
+
+
+	public void setCreatorId(Long creatorId) {
+		this.creatorId = creatorId;
+	}
+	
+
+	public Long getArtworkId() {
+		return artworkId;
+	}
+
+	public void setArtworkId(Long artworkId) {
+		this.artworkId = artworkId;
 	}
 
 

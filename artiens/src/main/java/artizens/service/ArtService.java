@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 
 import artizens.controller.dto.artwork.StoreFileDTO;
 import artizens.controller.dto.artwork.UploadFileDTO;
+import artizens.domain.UploadFile;
 import artizens.mapper.ArtMapper;
 import artizens.mapper.ArtWorkImagesMapper;
+import artizens.web.aws.FileUploadService;
 
 @Service
 public class ArtService {
@@ -19,18 +21,26 @@ public class ArtService {
 	
 	@Autowired ArtMapper artMapper;
 	@Autowired ArtWorkImagesMapper artWorkImagesMapper;
+	@Autowired FileUploadService fileUploadService;
 	
-	public UploadFileDTO insertText( String title, String nickname, String subject ) {
-		UploadFileDTO uploadfiledto = new UploadFileDTO();
-		uploadfiledto.setTitle(title);
-		uploadfiledto.setNickname(nickname);
-		uploadfiledto.setSubject(subject);
-		artMapper.insertText( uploadfiledto );
-		return uploadfiledto;
-	}
-	
-	public void insertImageURL( String storeFileName,String uploadFileName, Long id) {
-		artWorkImagesMapper.insertArtWork(storeFileName, uploadFileName, id);
+	public String insertImageUpload( UploadFileDTO uploadfiledto ) {
+		
+		UploadFileDTO upload = new UploadFileDTO();
+		upload.setNickname(uploadfiledto.getNickname());
+		upload.setUserProfileId(uploadfiledto.getUserProfileId());
+		artMapper.insertCreatorNickname( upload );
+		
+		upload.setTalk(uploadfiledto.getTalk());
+		upload.setSubject(uploadfiledto.getSubject());
+		upload.setTitle(uploadfiledto.getTitle());
+		upload.setCreatorId(upload.getCreatorId());
+		Long artworkId = artMapper.insertArtWork( upload );
+		
+		upload.setFile( uploadfiledto.getFile() );
+		UploadFile uploadFile = fileUploadService.uploadImage( upload.getFile() );
+		artWorkImagesMapper.insertArtWork( uploadFile.getStoreFileName(), uploadFile.getUploadFileName(), artworkId);
+		
+		return "이미지 업로드 성공";
 	}
 	
 	public List<StoreFileDTO> findByImageURL() {

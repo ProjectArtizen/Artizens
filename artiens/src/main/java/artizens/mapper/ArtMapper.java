@@ -30,17 +30,23 @@ public interface ArtMapper {
 	@Insert("Insert into artwork(artwork_category_name, artwork_content, artwork_register_date, artwork_title) values(#{subject},#{talk},now(),#{title})")
 	void InsertUploadImg(String subject, String talk, String title);
 	
-	@Insert("Insert into artWork(artwork_id, artwork_title, artwork_content) values((select * from (select max(next_val)+1 from hibernate_sequence) next), #{title}, #{content})")
-	void insertArtWork(String title, String content);
+	@Insert("Insert into artWork(artwork_id, "
+			+ "					 artwork_category_name,"
+			+ "					 artwork_content, "
+			+ "					 artwork_register_date, "
+			+ "					 artwork_title, "
+			+ "					 creator_id )"
+		  + " values(null, "
+		  + "		#{subject}, "
+		  + "		#{talk}, "
+		  + "		now(), "
+		  + "		#{title}, "
+		  + "		${creatorId})")
+	@Options(useGeneratedKeys = true, keyColumn = "artwork_id", keyProperty="artworkId")
+	Long insertArtWork( UploadFileDTO upload );
 	
-	@Insert(" Insert into artwork(artwork_id,artwork_category_name, artwork_content, artwork_register_date,artwork_title) "
-			+ "values(null,"
-			+ "		#{subject},"
-			+ "		#{talk}, "
-			+ "		now(), "
-			+ "		#{title})")
-	@Options(useGeneratedKeys = true, keyColumn = "artwork_id", keyProperty="id")
-	Long insertText( UploadFileDTO uploadfiledto );
-	
-		
+	@Insert("Insert into creator(creator_id,creator_nickname,user_profile_id) values(null,#{nickname},${userProfileId})")
+	@Options(useGeneratedKeys = true, keyColumn = "creator_id", keyProperty="creatorId")
+	Long insertCreatorNickname( UploadFileDTO upload );
+			
 }
