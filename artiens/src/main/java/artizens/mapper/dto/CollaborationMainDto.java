@@ -5,11 +5,10 @@ public class CollaborationMainDto {
 	private Long id;
 	private String title;
 	private String registerDate;
-	private String deadlineDate;
-	private String[] deadlineDateAry = deadlineDate.split("-"); 
-	private String createrNickname;
+	private String deadlineDate; 
+	private String creatorNickname;
 	private String collaborationImgName;
-	private String createrImgName;
+	private String creatorImgName;
 	private Integer artworkCount;
 	private Integer commentCount;
 	
@@ -50,23 +49,16 @@ public class CollaborationMainDto {
 	}
 
 	public void setDeadlineDate(String deadlineDate) {
+		deadlineDate.split(".");
 		this.deadlineDate = deadlineDate;
 	}
-	
-	public String[] getDeadlineDateAry() {
-		return deadlineDateAry;
+
+	public String getCreatorNickname() {
+		return creatorNickname;
 	}
 
-	public void setDeadlineDateAry(String[] deadlineDateAry) {
-		this.deadlineDateAry = deadlineDateAry;
-	}
-
-	public String getCreaterNickname() {
-		return createrNickname;
-	}
-
-	public void setCreaterNickname(String createrNickname) {
-		this.createrNickname = createrNickname;
+	public void setCreatorNickname(String creatorNickname) {
+		this.creatorNickname = creatorNickname;
 	}
 
 	public String getCollaborationImgName() {
@@ -77,12 +69,12 @@ public class CollaborationMainDto {
 		this.collaborationImgName = collaborationImgName;
 	}
 
-	public String getCreaterImgName() {
-		return createrImgName;
+	public String getCreatorImgName() {
+		return creatorImgName;
 	}
 
-	public void setCreaterImgName(String createrImgName) {
-		this.createrImgName = createrImgName;
+	public void setCreatorImgName(String creatorImgName) {
+		this.creatorImgName = creatorImgName;
 	}
 
 	public Integer getArtworkCount() {

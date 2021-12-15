@@ -5,18 +5,25 @@
 <head>
 <!-- Stylesheets
 	============================================= -->
-<script type="text/javascript" nonce="a4f84d226a5b4b17b010d07a1b5" src="//local.adguard.org?ts=1635669619739&amp;type=content-script&amp;dmn=themes.semicolonweb.com&amp;app=msedge.exe&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=0"></script>
-<script type="text/javascript" nonce="a4f84d226a5b4b17b010d07a1b5" src="//local.adguard.org?ts=1635669619739&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;type=user-script"></script>
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap" rel="stylesheet" type="text/css" />
+<script type="text/javascript" nonce="a4f84d226a5b4b17b010d07a1b5"
+	src="//local.adguard.org?ts=1635669619739&amp;type=content-script&amp;dmn=themes.semicolonweb.com&amp;app=msedge.exe&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=0"></script>
+<script type="text/javascript" nonce="a4f84d226a5b4b17b010d07a1b5"
+	src="//local.adguard.org?ts=1635669619739&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;type=user-script"></script>
+<link
+	href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap"
+	rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="/css/bootstrap.css" type="text/css" />
 <link rel="stylesheet" href="/style.css" type="text/css" />
 <link rel="stylesheet" href="/css/dark.css" type="text/css" />
 <link rel="stylesheet" href="/css/font-icons.css" type="text/css" />
 <link rel="stylesheet" href="/css/animate.css" type="text/css" />
 <link rel="stylesheet" href="/css/magnific-popup.css" type="text/css" />
-<link rel="stylesheet" href="/css/components/datepicker.css" type="text/css" />
-<link rel="stylesheet" href="/css/components/timepicker.css" type="text/css" />
-<link rel="stylesheet" href="/css/components/daterangepicker.css" type="text/css" />
+<link rel="stylesheet" href="/css/components/datepicker.css"
+	type="text/css" />
+<link rel="stylesheet" href="/css/components/timepicker.css"
+	type="text/css" />
+<link rel="stylesheet" href="/css/components/daterangepicker.css"
+	type="text/css" />
 <link rel="stylesheet" href="/css/custom.css" type="text/css" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -43,8 +50,11 @@
 			<div class="content-wrap py-0">
 				<div
 					class="d-flex align-items-center justify-content-center min-vh-100">
-					<a href="#block-modal-request" data-lightbox="inline" data-target="#block-modal-request">
-						<button	style="float: right; border-color: #00d084; border-radius: 25px; width: 190px; Height: 50px; color: #00d084; background-color: #ffffff">콜라보레이션 기획</button>
+					<a href="#block-modal-request" data-lightbox="inline"
+						data-target="#block-modal-request">
+						<button
+							style="float: right; border-color: #00d084; border-radius: 25px; width: 190px; Height: 50px; color: #00d084; background-color: #ffffff">콜라보레이션
+							기획</button>
 					</a>
 				</div>
 
@@ -104,8 +114,7 @@
 												data-target-input="nearest" data-target=".datetimepicker">
 												<input type="text"
 													class="form-control datetimepicker-input datetimepicker"
-													data-target=".datetimepicker"
-													placeholder="MM/DD/YYYY 00:00 AM/PM" />
+													data-target=".datetimepicker" placeholder="MM/DD/YYYY" />
 												<div class="input-group-text" data-target=".datetimepicker"
 													data-toggle="datetimepicker">
 													<i class="icon-calendar"></i>
