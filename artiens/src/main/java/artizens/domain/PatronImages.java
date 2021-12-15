@@ -41,4 +41,17 @@ public class PatronImages {
 		patronImages.patron = patron;
 		return patronImages;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public UploadFile getUploadFile() {
+		return uploadFile;
+	}
+
+	public Patron getPatron() {
+		return patron;
+	}	
+	
 }

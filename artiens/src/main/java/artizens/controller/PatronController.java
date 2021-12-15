@@ -18,6 +18,7 @@ import artizens.controller.dto.patron.PatronRegisterDto;
 import artizens.domain.Creator;
 import artizens.domain.Patron;
 import artizens.domain.UserProfile;
+import artizens.repository.querydsl.patron.PatronCreatorDto;
 import artizens.service.CreatorService;
 import artizens.service.PatronService;
 import artizens.web.session.SessionConst;
@@ -42,6 +43,9 @@ public class PatronController {
     public String patronCreator(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user, Model model){
         model.addAttribute("menuBar_active", "creator");
         model.addAttribute("member",user); // 세션 유무에 따른 헤더 세팅
+        model.addAttribute("results",patronService.totalPatronView());
+        List<PatronCreatorDto> p = patronService.totalPatronView();
+        System.out.println(p.toString());
         return "thymeleaf/patron/creator/creator";
     }
 
@@ -68,7 +72,7 @@ public class PatronController {
     		model.addAttribute("alertActive",patronAuthority);
     		return "thymeleaf/patron/patronAlert";
     	}
-    	// creator에 등록이 된 유저이지 체크
+    	// creator에 등록이 된 유저인지 체크
     	List<Creator> creator = creatorService.findCreatorByuserProfileId(user.getId());
     	model.addAttribute("creatorId", creator.get(0).getId());
     	model.addAttribute("creatorName", creator.get(0).getNickName());

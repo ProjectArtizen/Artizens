@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html th:replace="~{thymeleaf/patron/fregment/patronLayout :: patronLayout(~{::title}, ~{::link}, ~{::script}, ~{::section}, ~{::style})}">
+<html th:replace="~{thymeleaf/patron/fregment/patronLayout :: patronLayout(~{::title}, ~{::link}, ~{::script}, ~{::section}, ~{::style})}" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Artizen 크리에이터</title>
     <!--link 태그 없으면 빈값으로 남겨야됨.-->
@@ -29,21 +29,13 @@
     <section id="content">
         <div th:replace="thymeleaf/patron/creator/creatorNav::filter"></div>
         <div class="container clearfix">
-            <div class="post-grid row col-mb-30">
-                <div th:replace="thymeleaf/patron/creator/creatorProfile::profile"></div>
-                <div th:replace="thymeleaf/patron/creator/creatorProfile::profile"></div>
-                <div th:replace="thymeleaf/patron/creator/creatorProfile::profile"></div>
-                <div th:replace="thymeleaf/patron/creator/creatorProfile::profile"></div>
-                <div th:replace="thymeleaf/patron/creator/creatorProfile::profile"></div>
-                <div th:replace="thymeleaf/patron/creator/creatorProfile::profile"></div>
-                <div th:replace="thymeleaf/patron/creator/creatorProfile::profile"></div>
-                <div th:replace="thymeleaf/patron/creator/creatorProfile::profile"></div>
-                <div th:replace="thymeleaf/patron/creator/creatorProfile::profile"></div>
-                <div th:replace="thymeleaf/patron/creator/creatorProfile::profile"></div>
+            <div class="post-grid row col-mb-30" >
+            	<div class="entry col-lg-4 col-md-6 pf-uielements" th:each="patronForm : ${results}">
+        			<div th:replace="thymeleaf/patron/creator/creatorProfile::profile(${patronForm})"></div>
+            	</div>
             </div>
         </div>
-        <!-- Pagination
-					============================================= -->
+        <!-- Pagination ============================================= -->
         <ul class="pagination mt-5 pagination-circle justify-content-center">
             <li class="page-item disabled"><a class="page-link" href="#"><i class="icon-angle-left"></i></a></li>
             <li class="page-item active"><a class="page-link" href="#">1</a></li>

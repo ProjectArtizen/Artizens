@@ -23,6 +23,7 @@ import artizens.repository.CreatorRepository;
 import artizens.repository.PatronRepository;
 import artizens.repository.RewardRepository;
 import artizens.repository.UserProfileRepository;
+import artizens.repository.querydsl.patron.PatronCreatorDto;
 import artizens.web.aws.FileUploadService;
 
 @Service
@@ -110,6 +111,10 @@ public class PatronService {
 		LOGGER.info("reward={}",reward.toString());
 		LOGGER.info("reward={}",reward.getRewardImages().toArray());
 		return "complete";
+	}
+	
+	public List<PatronCreatorDto> totalPatronView(){
+		return patronRepository.findAllPatronWithSort();
 	}
 	
 }

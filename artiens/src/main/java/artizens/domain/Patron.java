@@ -58,6 +58,28 @@ public class Patron extends BaseTimeEntity{
 		}
 		return patronImagesList;
 	}
+	
+	
+
+	public Long getId() {
+		return id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public Creator getCreator() {
+		return creator;
+	}
+
+	public List<PatronImages> getPatronImages() {
+		return patronImages;
+	}
 
 	@Override
 	public String toString() {

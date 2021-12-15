@@ -5,5 +5,5 @@ import java.util.List;
 import artizens.domain.Patron;
 
 public interface PatronRepositoryQueryDsl {
-	List<Patron> findAllPatronWithSort();
+	List<PatronCreatorDto> findAllPatronWithSort();
 }
