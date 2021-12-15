@@ -64,7 +64,7 @@ public class UserProfileController {
         //세션이 있는 경우, 세션 변환, 아닐 시 신규 세션 생성
         HttpSession session = request.getSession();
         session.setAttribute(SessionConst.LOGIN_USER, loginUser);
-        session.setMaxInactiveInterval(120);
+        session.setMaxInactiveInterval(3600);
         System.out.println("is null?" + redirectURL);
         if (redirectURL.equals("null")){
         	return "redirect:/artizen";
