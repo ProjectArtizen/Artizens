@@ -8,9 +8,13 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import artizens.domain.Creator;
 import artizens.domain.UserProfile;
+import artizens.repository.querydsl.patron.PatronCreatorDto;
+import artizens.repository.querydsl.patron.PatronImagesDto;
 
 @Transactional
 @SpringBootTest
@@ -39,6 +43,18 @@ class PatronServiceTest {
 		String accept = patronService.patronRegisterCondition(userProfile.getId());
 		
 		Assertions.assertThat(accept).isEqualTo("accept");
+	}
+	
+	@Test 
+	void patron뷰_확인() {
+		PageRequest pageRequest = PageRequest.of(0, 5);
+		Page<PatronCreatorDto> result = patronService.totalPatronView(pageRequest);
+		for (PatronCreatorDto patronCreatorDto : result) {
+			System.out.println(patronCreatorDto.toString());
+			for (String patronfile : patronCreatorDto.getPatronStoredFiles()) {
+				System.out.println(patronfile);
+			}
+		}
 	}
 
 }

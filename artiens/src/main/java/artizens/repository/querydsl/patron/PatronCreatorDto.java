@@ -3,10 +3,7 @@ package artizens.repository.querydsl.patron;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-
-import artizens.domain.PatronImages;
 
 public class PatronCreatorDto {
 	private Long patronId;
@@ -18,25 +15,27 @@ public class PatronCreatorDto {
 	private String creatorStoredFiles;
 	
 	public PatronCreatorDto(
-			Long patronId,
+			Long patronId, 
 			String patronTitle, 
 			String patronContenet, 
 			LocalDateTime patronRegisterDate,
-			List<PatronImages> patronImages,
 			String creatorNickName, 
 			String creatorStoredFiles) {
 		this.patronId = patronId;
-		this.patronTitle = cutContentLength(patronTitle);
-		this.patronContenet = cutContentLength(patronContenet);
+		this.patronTitle = patronTitle;
+		this.patronContenet = patronContenet;
 		this.patronRegisterDate = patronRegisterDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		this.patronStoredFiles = 
-				patronImages
-				.stream()
-				.map(patronimages->patronimages.getUploadFile().getStoreFileName())
-				.collect(Collectors.toList());
 		this.creatorNickName = creatorNickName;
 		this.creatorStoredFiles = creatorStoredFiles;
 	}
+	
+	
+	// PatronImagesDto의 patronUploadFileName만 추출
+	public void setPatronStoredFiles(List<PatronImagesDto> patronStoredFiles) {
+		this.patronStoredFiles = patronStoredFiles.stream().map(file -> file.patronUploadFileName).collect(Collectors.toList());
+	}
+
+
 
 	public Long getPatronId() {
 		return patronId;
@@ -59,12 +58,7 @@ public class PatronCreatorDto {
 	public String getCreatorStoredFiles() {
 		return creatorStoredFiles;
 	}
-	public String cutContentLength(String content) {
-//		if (content.length() > 10) {
-//			return content.substring(0, 10) + "...";
-//		}
-		return content;
-	}
+	
 	@Override
 	public String toString() {
 		return "PatronCreatorDto [patronId=" + patronId + ", patronTitle=" + patronTitle + ", patronContenet="

@@ -6,6 +6,11 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+
+import com.querydsl.core.QueryResults;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -17,30 +22,40 @@ import static artizens.domain.QPatron.patron;
 import static artizens.domain.QPatronImages.patronImages;; 
 
 public class PatronRepositoryImpl implements PatronRepositoryQueryDsl{
-
+	
+	private final EntityManager entityManager;
 	private final JPAQueryFactory queryFactory;
 	
 	public PatronRepositoryImpl(EntityManager em) {
-		this.queryFactory = new JPAQueryFactory(em);
+		this.entityManager = em;
+		this.queryFactory = new JPAQueryFactory(entityManager);
 	}
 	
 	@Override
-	public List<PatronCreatorDto> findAllPatronWithSort() {
-		List<Patron> patrons = queryFactory.
-		selectFrom(patron)
-		.leftJoin(patron.creator, creator).fetchJoin()
-		.fetch();
-		
-		List<PatronCreatorDto> result = patrons.stream().map(
-				maps -> new PatronCreatorDto(
-						maps.getId(),
-						maps.getTitle(), 
-						maps.getContent(),
-						maps.getCreatedDate(),
-						maps.getPatronImages(),
-						maps.getCreator().getNickName(),
-						maps.getCreator().getUploadFile().getStoreFileName())).collect(Collectors.toList());
-
-		return result;
+	public List<PatronCreatorDto> findAllPatornWithCreator(Pageable pageable){
+		return queryFactory.
+				select(Projections.constructor(PatronCreatorDto.class,
+						patron.id,
+						patron.title,
+						patron.content,
+						patron.createdDate,
+						creator.nickName,
+						creator.uploadFile.storeFileName))
+				.from(patron)
+				.leftJoin(patron.creator, creator)
+				.offset(pageable.getOffset())
+				.limit(pageable.getPageSize())
+				.fetch();
 	}
+	
+	@Override
+	public List<PatronImagesDto> findAllPatronImagesInPatron(List<Long> patronIds){
+		return queryFactory.select(Projections.constructor(PatronImagesDto.class, 
+				patronImages.patron.id,
+				patronImages.uploadFile.storeFileName))
+		.from(patronImages)
+		.where(patronImages.patron.id.in(patronIds))
+		.fetch();
+	}
+	
 }

@@ -2,12 +2,17 @@ package artizens.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,6 +29,7 @@ import artizens.repository.PatronRepository;
 import artizens.repository.RewardRepository;
 import artizens.repository.UserProfileRepository;
 import artizens.repository.querydsl.patron.PatronCreatorDto;
+import artizens.repository.querydsl.patron.PatronImagesDto;
 import artizens.web.aws.FileUploadService;
 
 @Service
@@ -113,8 +119,21 @@ public class PatronService {
 		return "complete";
 	}
 	
-	public List<PatronCreatorDto> totalPatronView(){
-		return patronRepository.findAllPatronWithSort();
+	public Page<PatronCreatorDto> totalPatronView(Pageable pageable){
+		// paging 적용 patron join creator 전체 
+		List<PatronCreatorDto> patronResult = patronRepository.findAllPatornWithCreator(pageable);
+		
+		// patronResult의 id만 추출
+		List<Long> patronIds = patronResult.stream().map(patronResults -> patronResults.getPatronId()).collect(Collectors.toList());
+		
+		// id 순서대로 image 추출 -> patronId 별로 grouping
+		List<PatronImagesDto> patronImages = patronRepository.findAllPatronImagesInPatron(patronIds);
+		Map<Long, List<PatronImagesDto>> patronImagesMap = patronImages.stream().collect(Collectors.groupingBy(PatronImagesDto::getPatronId));
+		
+		// PatronCreatorDto에 List<patronImage> 세팅
+		patronResult.forEach(p -> p.setPatronStoredFiles((patronImagesMap.get(p.getPatronId()))));
+		
+		return new PageImpl<PatronCreatorDto>(patronResult, pageable, patronResult.size());
 	}
 	
 }

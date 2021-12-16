@@ -6,12 +6,16 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import artizens.controller.dto.patron.PatronRegisterDto;
@@ -33,24 +37,33 @@ public class PatronController {
 	@Autowired CreatorService creatorService;
 	
 	@GetMapping
-    public String patronMain(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user, Model model){
+    public String patronMain(
+    		@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user, 
+    		Model model){
 		LOGGER.info("user={}",user);
         model.addAttribute("member",user); // 세션 유무에 따른 헤더 세팅
         return "thymeleaf/patron/patronMain/patronForm";
     }
 
     @GetMapping("/creator")
-    public String patronCreator(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user, Model model){
-        model.addAttribute("menuBar_active", "creator");
+    public String patronCreator(
+    		@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user, 
+    		Model model, 
+    		@PageableDefault(size = 15) Pageable pageable){
+    	
         model.addAttribute("member",user); // 세션 유무에 따른 헤더 세팅
-        model.addAttribute("results",patronService.totalPatronView());
-        List<PatronCreatorDto> p = patronService.totalPatronView();
-        System.out.println(p.toString());
+        
+        // 페이징 쿼리 -> Dto
+        Page<PatronCreatorDto> pageResult = patronService.totalPatronView(pageable);
+        model.addAttribute("results",pageResult);
+        
         return "thymeleaf/patron/creator/creator";
     }
 
     @GetMapping("/reward")
-    public String patronReward(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user, Model model){
+    public String patronReward(
+    		@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user, 
+    		Model model){
         model.addAttribute("menuBar_active", "reward");
         model.addAttribute("member",user); // 세션 유무에 따른 헤더 세팅
         return "thymeleaf/patron/reward/reward";
