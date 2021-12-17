@@ -35,6 +35,12 @@ public class Creator {
 	@Embedded
 	private UploadFile uploadFile;
 
+	@Column(name = "creator_one_intro", length = 45)
+	private String oneIntro;
+	
+	@Column(name = "creator_detail_intro", length = 5000)
+	private String detailIntro;
+	
 	@Column(name = "creator_other_uri", length = 200)
 	private String otherUri;
 	
@@ -98,4 +104,13 @@ public class Creator {
 		return userProfile;
 	}
 
+	public String getOneIntro() {
+		return oneIntro;
+	}
+
+	public String getDetailIntro() {
+		return detailIntro;
+	}
+	
+	
 }

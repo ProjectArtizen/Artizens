@@ -33,12 +33,6 @@ public class UserProfile {
 	@Column(name = "user_profile_register_date", nullable = false)
 	private Date registerDate;
 	
-	@Column(name = "user_profile_one_intro", length = 45)
-	private String oneIntro;
-	
-	@Column(name = "user_profile_detail_intro", length = 255)
-	private String detailIntro;
-	
 	@OneToOne(mappedBy = "userProfile", cascade = CascadeType.ALL)
 	private Creator creator;
 	
@@ -55,12 +49,6 @@ public class UserProfile {
 		userProfile.name = name;
 		userProfile.registerDate = new Date();
 		return userProfile;
-	}
-	
-	public UserProfile createUserProfile(String oneIntro, String detailIntro) {
-		this.oneIntro = oneIntro;
-		this.detailIntro = detailIntro;
-		return this;
 	}
 	
 	public void addCreatorInUserProfile(Creator creator) {
@@ -85,14 +73,6 @@ public class UserProfile {
 
 	public Date getRegisterDate() {
 		return registerDate;
-	}
-
-	public String getOneIntro() {
-		return oneIntro;
-	}
-
-	public String getDetailIntro() {
-		return detailIntro;
 	}
 
 	public Creator getCreator() {

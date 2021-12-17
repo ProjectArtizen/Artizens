@@ -56,7 +56,11 @@ public class PatronController {
         // 페이징 쿼리 -> Dto
         Page<PatronCreatorDto> pageResult = patronService.totalPatronView(pageable);
         model.addAttribute("results",pageResult);
-        
+        LOGGER.info("getTotalPages={}",pageResult.getTotalPages());
+        LOGGER.info("getTotalElements={}",pageResult.getTotalElements());
+        LOGGER.info("getSize={}",pageResult.getSize());
+        LOGGER.info("hasNext={}",pageResult.hasNext());
+        LOGGER.info("getNumber={}", pageResult.getNumber());
         return "thymeleaf/patron/creator/creator";
     }
 

@@ -133,7 +133,7 @@ public class PatronService {
 		// PatronCreatorDto에 List<patronImage> 세팅
 		patronResult.forEach(p -> p.setPatronStoredFiles((patronImagesMap.get(p.getPatronId()))));
 		
-		return new PageImpl<PatronCreatorDto>(patronResult, pageable, patronResult.size());
+		return new PageImpl<PatronCreatorDto>(patronResult, pageable, patronRepository.count());
 	}
 	
 }

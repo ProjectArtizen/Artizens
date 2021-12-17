@@ -115,7 +115,7 @@ public class initDb {
 			
 			
 			// user3 ~ 50 (creator 등록, patron 미등록)
-			for (int i = 3; i <= 50; i++) {
+			for (int i = 3; i <= 100; i++) {
 				String userString = "user" + String.valueOf(i);
 				UserProfile userProfile = UserProfile.createUser(userString + "@gmail.com", "1234", userString);
 				em.persist(userProfile);
