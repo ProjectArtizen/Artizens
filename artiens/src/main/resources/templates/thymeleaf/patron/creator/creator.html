@@ -42,10 +42,6 @@
     
 <script>
     function pageAlgo(totalPageSize, bottomSize, cursor){
-/* 
-        let firstBottomNumber = cursor - cursor % bottomSize + 1;  //하단 최초 숫자
-        let lastBottomNumber = cursor - cursor % bottomSize + bottomSize;  //하단 마지막 숫자
-        if(lastBottomNumber > totalPageSize) lastBottomNumber = totalPageSize  //총 갯수보다 큰 경우 방지 */
        	
         let pageNumList = []
         for (let i = cursor - (bottomSize - 1) ; i <= cursor + (bottomSize - 1); i++ ){
@@ -58,14 +54,12 @@
         if (pageNumList.length > bottomSize){
         	let modifyPageNumList = []; 
         	let cursorIndex = pageNumList.indexOf(cursor);
-        	console.log(cursorIndex);
         	
         	modifyPageNumList.push(pageNumList[cursorIndex]);
         	let front = cursorIndex - 1;
         	let end = cursorIndex + 1;
         	
         	while (modifyPageNumList.length != bottomSize){
-        		console.log(front, end);
         		if (front >= 0){
         			modifyPageNumList.push(pageNumList[front]);
         		} 
@@ -75,40 +69,25 @@
           		front -= 1;
           		end += 1;
         	}
+        	pageNumList = modifyPageNumList.sort();
         }
+
+        console.log(pageNumList.toString());
         
+        var pageNumForm = document.querySelector('#pagingNumbers');
         
+        if (cursor > 1) pageNumForm.innerHTML += '<li class="page-item"><a class="page-link" href="creator?page='+ (cursor - 2) +'" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>';	
         
-        let firstBottomNumber = cursor - (bottomSize - 1) ;  //하단 최초 숫자
-        if(firstBottomNumber < 1) firstBottomNumber = 1;    // 하단 최초 숫자가 1보다 작은 경우  1로 셋팅
-        let lastBottomNumber = cursor + (bottomSize - 1);  //하단 마지막 숫자
-        if(lastBottomNumber > totalPageSize) lastBottomNumber = totalPageSize;  //총 갯수보다 큰 경우 방지
-        
-        // 하단 마지막 숫자 - 하단 최초 숫자 > bottomSize를 넘을때 
-        if ((lastBottomNumber - firstBottomNumber) > (bottomSize - 1)) {
-        	
-        	let firstNum = cursor - Math.ceil((bottomSize-1) / 2);
-        	let lastNum = cursor + Math.ceil((bottomSize-1) / 2)
-        	
-        	firstBottomNumber = (firstNum >= firstBottomNumber) ?  firstNum : firstBottomNumber;
-        	lastBottomNumber = (lastNum <= lastBottomNumber) ? lastNum : lastBottomNumber;
-        }
-        
-        console.log(totalPageSize, bottomSize, cursor, firstBottomNumber, lastBottomNumber);
-        
-        var pageNum = document.querySelector('#pagingNumbers');
-        
-        if (cursor > 1) pageNum.innerHTML += '<li class="page-item"><a class="page-link" href="creator?page='+ (cursor - 2) +'" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>';	
-        
-        for (let i = firstBottomNumber ; i <= lastBottomNumber; i ++){
-        	if (i == cursor){
-        		pageNum.innerHTML += '<li class="page-item active"><a class="page-link" href="creator?page=' + (i-1) +'">'+ i +'</a></li>';
+        for (let i = 0 ; i < pageNumList.length; i++){
+        	let pageNumber =  pageNumList[i];
+        	if (pageNumber == cursor){
+        		pageNumForm.innerHTML += '<li class="page-item active"><a class="page-link" href="creator?page=' + (pageNumber-1) +'">'+ pageNumber +'</a></li>';
         	} else{
-        		pageNum.innerHTML += '<li class="page-item"><a class="page-link" href="creator?page=' + (i-1) +'">'+ i + '</a></li>';
+        		pageNumForm.innerHTML += '<li class="page-item"><a class="page-link" href="creator?page=' + (pageNumber - 1) +'">'+ pageNumber + '</a></li>';
         	}
         }
         
-        if (cursor < lastBottomNumber) pageNum.innerHTML += '<li class="page-item"><a class="page-link" href="creator?page=' + cursor + '" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';	
+        if (cursor < totalPageSize) pageNumForm.innerHTML += '<li class="page-item"><a class="page-link" href="creator?page=' + cursor + '" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';	
         
     }
     const totalPageSize = [[${results.totalPages}]]
