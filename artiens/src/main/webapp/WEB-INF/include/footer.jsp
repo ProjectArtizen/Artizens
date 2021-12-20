@@ -7,7 +7,7 @@
     <div class="container">
       <div class="row justify-content-between col-mb-30">
         <div class="col-12 col-lg-auto text-center text-lg-start order-last order-lg-first">
-          <img src="../images/logo_new/logo_D.png" alt="Image" class="mb-4"><br>
+          <img src="/images/logo_new/logo_D.png" alt="Image" class="mb-4"><br>
           Copyrights &copy; 2021 All Rights Reserved by Artizen.
         </div>
 

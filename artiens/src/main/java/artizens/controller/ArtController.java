@@ -21,6 +21,7 @@ import artizens.domain.UploadFile;
 import artizens.domain.UserProfile;
 import artizens.mapper.UserMapper;
 import artizens.service.ArtService;
+import artizens.service.ArtWorkService;
 import artizens.web.aws.FileUploadService;
 import artizens.web.session.SessionConst;
 
@@ -33,39 +34,51 @@ public class ArtController {
 	@Autowired FileUploadService fileUploadService;
 	@Autowired UserMapper userMapper;
 	@Autowired ArtService artService;
+	@Autowired ArtWorkService artWorkService;
 	
-	@GetMapping("/blog/{nickname}")
-	public String userBlog( @PathVariable String nickname, RedirectAttributes redirectAttribute,
+	@GetMapping("/blog/{blogURL}")
+	public String userBlog( @PathVariable String blogURL, RedirectAttributes redirectAttribute,
 							@SessionAttribute(name = SessionConst.LOGIN_USER, required = false ) UserProfile user,
 							Model model) throws Exception {
-		
-		if ( user != null && user.getCreator().getNickName() != null ) {
+			
+			Long id = artWorkService.findByUserId(user);
+			Long cid = artWorkService.findByCreatorId(id);
+			
 			// 현재 로그인한 사람이 크리에이터라면 자신의 블로그로 이동.
-			LoginUser loginUser = new LoginUser( user.getId(), user.getName() );
-			// URL
-			String[] email = user.getEmail().split("@");
-			nickname = email[0];
-			// 로그인한 유저의 크리에이터 이름
-			String creatorId = user.getCreator().getNickName(); 
-			model.addAttribute( "nickname", nickname ); 
-			model.addAttribute( "creatorId", creatorId ); 
-		}else if( user == null ) {
-			model.addAttribute("member" , null);
-			model.addAttribute("nickname" , null);
-			return "redirect:/artizen/artwork/main";
-		}
-		List<StoreFileDTO> store = artService.findByImageURL();
-		model.addAttribute("store",store);
-		for( StoreFileDTO storeFileDTO : store) {
-			LOGGER.info("storeFile={}",storeFileDTO.getStoreFileName());
-		}
+			if ( cid > 0 ) {
+				String email = user.getEmail();
+				String[] username = email.split("@");
+				blogURL = username[0];
+				model.addAttribute("blogURL", blogURL );
+				
+				// 해당 크리에이터의 이미지 뿌림
+				List<StoreFileDTO> store = artService.findByAll( cid );
+				model.addAttribute("store",store);
+				
+				// 해당 크리에이터의 프로필 정보
+				List<StoreFileDTO> profile = artService.findByProfile( cid );
+				
+				String nickname = "";
+				String profileImage = "";
+				
+				for( StoreFileDTO creator : profile ) {
+					nickname = creator.getNickname();
+					profileImage = creator.getProfileImage();
+				}
+				
+				if ( profileImage == null || profileImage.isEmpty() ) model.addAttribute("profileimage", "");
+				
+				model.addAttribute("profileimage",profileImage);
+				model.addAttribute("nickname",nickname);
+			}
+		
 		return "artWork/blog";
 	}
 	
 	
 	@GetMapping("/upload")
-	public String FileUpload(	@SessionAttribute(name = SessionConst.LOGIN_USER, required = false ) UserProfile user,
-								Model model) {
+	public String FileUpload(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false ) UserProfile user,
+							 Model model) {
 		
 			model.addAttribute("userid",user.getId());
 		

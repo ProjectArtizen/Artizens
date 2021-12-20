@@ -9,7 +9,7 @@
           <!-- Logo
           ============================================= -->
           <div id="logo">
-            <a href="/artizen/artwork/main" class="standard-logo" data-dark-logo="/images/logo_new/logo_D.png" style="height: 50px;">
+            <a href="art" class="standard-logo" data-dark-logo="/images/logo_new/logo_D.png" style="height: 50px;">
               <img src="/images/logo_new/logo_D.png" alt="Artizen Logo">
             </a>
           </div><!-- #logo end -->
@@ -24,49 +24,11 @@
               </a>
             </div><!-- #top-search end -->
 
-            <!-- 유저 정보-->
-            <div id="top-login" class="header-misc-icon d-none d-sm-block">
-              <div class="primary-menu">
-              	 <ul class="menu-container">
-              	 	<li class="menu-item">
-                		<a class="menu-link" style="font-size: larger;" href="work.jsp">
-                  			<i class="icon-user"></i>
-               	 		</a>
-               	 		<ul class="sub-menu-container bg-light" >
-               	 			<li class="menu-item">
-               	 				<a class="menu-link" href="javascript:fn_Upload();">
-                      				<div>
-										작품 업로드
-									</div>
-                    			</a>
-               	 			</li>
-               	 			<li class="menu-item">
-               	 				<c:choose>
-               	 					<c:when test="${email ne null }">
-               	 						<a class="menu-link" href="/artizen/blog/${email }">내 블로그</a>
-               	 					</c:when>
-               	 					<c:when test="${email eq null }">
-	               	 					<a class="menu-link" href="/artizen/artwork/main">내 블로그</a>
-               	 					</c:when>
-               	 				</c:choose>
-               	 			</li>
-               	 			<li class="menu-item">
-               	 				<a class="menu-link" href="artList.jsp">
-                      				<div>마이페이지</div>
-                    			</a>
-               	 			</li>
-           	 			</ul>
-              		</li>
-              	 </ul>
-              </div>
-       	      
-            </div>
-
             <!-- 유저 로그아웃 정보-->
-            <form name="logout" action="/artizen/logout" method="POST"></form>
-            <div id="top-login-out" class="header-misc-icon d-none d-sm-block">
-              <a href="javascript:document.logout.submit();">
-                <i class="icon-line-log-out">	
+            <div id="top-login-in" class="header-misc-icon d-none d-sm-block">
+              <a href="/artizen/login">
+                <i class="icon-line-log-in">
+					
                 </i>
               </a>
             </div>
@@ -91,7 +53,7 @@
                 </a>
               </li>
               <li class="menu-item">
-                <a class="menu-link" style="font-size: larger;" href="/artizen/artwork/main">
+                <a class="menu-link" style="font-size: larger;" href="artWorkMain">
                   <div>작 품</div>
                 </a>
                 <ul class="sub-menu-container bg-light" >
