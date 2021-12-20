@@ -1,6 +1,9 @@
 package artizens.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,10 +43,10 @@ public class ArtWorkService {
 		return UserId;
 	}
 	
-	public Long findByCreatorId( Long userId ) {
+	public Long findByCreatorId( String name ) {
 		
 		Long creatorId = 0L;
-		List<Creator> creator = artWorkMapper.findByCreatorId( userId );
+		List<Creator> creator = artWorkMapper.findByCreatorName( name );
 		for( Creator info : creator ) {
 			creatorId = info.getId();
 		}
@@ -52,9 +55,28 @@ public class ArtWorkService {
 		return creatorId;
 	}
 	
-	public List<CreatorDTO> findByAll( Long creatorId ) {
+	public Long findByCreator( Long userid ) {
+		
+		Long creatorId = 0L;
+		List<Creator> creator = artWorkMapper.findByCreatorId( userid );
+		for( Creator info : creator ) {
+			creatorId = info.getId();
+		}
+		LOGGER.info("creatorId={}",creatorId);
+		
+		return creatorId;
+	}
+	
+	public String findByAll( Long creatorId ) {
 		List<CreatorDTO> creator = artWorkMapper.findByCreator( creatorId );
-		return creator;
+		String nickname = "";
+		Long creatorid = creator.get(0).getCreatorid();
+		for ( CreatorDTO infomation : creator ) {
+			nickname = infomation.getNickname();
+			creatorid = infomation.getCreatorid();
+		}
+		String result = nickname + "/" + creatorid;
+		return result;
 	}
 	
 }

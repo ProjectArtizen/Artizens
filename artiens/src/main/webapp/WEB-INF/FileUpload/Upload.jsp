@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +36,16 @@
 			</tr>
 			<tr>
 				<th>닉네임<small>*</small></th>
-				<th><input type="text" name="nickname" value="${nickname }" class="form-control" placeholder="첫 등록이시라면  닉네임을 작성해 주세요!"></th>
+				<th>
+				<c:choose>
+					<c:when test="${Nickname ne null }">					
+						<input type="text" name="nickname" value="${Nickname }" class="form-control" readonly>
+					</c:when>
+					<c:when test="${Nickname eq null }">
+						<input type="text" name="nickname" class="form-control" placeholder="첫 등록이시라면  닉네임을 작성해 주세요!">
+					</c:when>
+				</c:choose>
+				</th>
 			</tr>
 			<tr>	
 				<th>파일첨부<small>*</small></th>

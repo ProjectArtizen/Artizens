@@ -11,7 +11,7 @@
 			location.href="/artizen/artwork/main";
 		</c:when>
 		<c:when test="${ message == 'ok'}">
-			alert("이미지 등록에 성공하였습니다.");
+			alert("크리에이터 등록 및 작품 등록에 성공하였습니다.");
 			opener.location.reload();
 			window.close();
 		</c:when>

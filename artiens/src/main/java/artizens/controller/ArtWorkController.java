@@ -1,6 +1,9 @@
 package artizens.controller;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,31 +63,41 @@ public class ArtWorkController {
 		
 		
 		if (user == null) { // 비회원일 경우
+			List<ArtWorkMainDto> result = artWorkService.selectAll();
+			model.addAttribute("result", result);
 			return "artWork/artWorkMain";
 		}else if( user != null ) { // 로그인 상태일 경우,
 			// 현재 로그인 된 유저의 유저 아이디값
 			Long id = artWorkService.findByUserId(user);
 			model.addAttribute("userid",id);
-			
 			// 현재 로그인 된 유저의 크리에이터 아이디값
-			Long creator = artWorkService.findByCreatorId(id);
+			Long creator = artWorkService.findByCreator(id);
 			
-			if ( creator == 0 ) { // 크리에이터 아이디가 없는 경우,
+			List<ArtWorkMainDto> result2 = artWorkService.selectAll();
+			model.addAttribute("result", result2);
+			
+			if ( creator == 0 || creator == null ) { // 크리에이터 아이디가 없는 경우,
 				model.addAttribute("creator", null);
-			}else if( creator != 0 ){ // 크리에이터 아이디가 있는 경우,
-				// 크리에이터
-				CreatorDTO box = new CreatorDTO();
-				List<CreatorDTO> creater = artWorkService.findByAll(creator);
-				// 아이디 값
-				model.addAttribute("creator",null);
-				// 닉네임 값
-				model.addAttribute("nickname",null);
+			}else if( creator > 0 || creator != null ){ // 크리에이터 아이디가 있는 경우,
 				
+				// 크리에이터
+				String info = artWorkService.findByAll( creator );
+				String nick = info.split("/")[0];
+				String cid = info.split("/")[1];
+				
+				// 아이디 값
+				model.addAttribute("creatorId",cid);
+				model.addAttribute("creator",creator);
+				// 닉네임 값
+				model.addAttribute("nickname",nick);
+				
+				// 모든 작품들 
+				List<ArtWorkMainDto> result = artWorkService.selectAll();
+				model.addAttribute("result", result);
 			}
 		}
 
-		List<ArtWorkMainDto> result = artWorkService.selectAll();
-		model.addAttribute("result", result);
+		
 		
 		return "artWork/artWorkMain";
 	}
