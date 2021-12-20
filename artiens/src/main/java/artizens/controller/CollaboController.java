@@ -74,5 +74,10 @@ public class CollaboController {
 	public String colplanningModify() {
 		return "col/col_planningModify";
 	}
+	
+	@RequestMapping("/colDetailEnd")
+	public String colDetailEnd() {
+		return "col/col_DetailEnd";
+	}
 
 }

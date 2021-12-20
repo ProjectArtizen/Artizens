@@ -309,8 +309,8 @@
 										<div class="flexslider">
 											<div class="slider-wrap">
 												<div>
-													<a href="col_detail_end.html"><img
-														src="/images/collaboration/col/planning3.jpg"></a>
+													<img src="/images/collaboration/col/planning3.jpg"
+														 onclick="location.href='colDetailEnd'">
 												</div>
 											</div>
 										</div>
