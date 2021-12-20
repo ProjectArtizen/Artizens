@@ -51,8 +51,7 @@ public class PatronRepositoryImpl implements PatronRepositoryQueryDsl{
 				patronImages.patron.id,
 				patronImages.uploadFile.storeFileName))
 		.from(patronImages)
-		.groupBy(patronImages.patron.id)
-		.having(patronImages.patron.id.in(patronIds))
+		.where(patronImages.patron.id.in(patronIds))
 		.fetch();
 	}
 	

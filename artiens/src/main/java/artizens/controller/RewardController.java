@@ -4,6 +4,8 @@ import org.apache.commons.lang3.EnumUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import artizens.domain.RewardCategory;
 import artizens.domain.UserProfile;
+import artizens.repository.querydsl.reward.RewardCreatorDto;
 import artizens.service.RewardService;
 import artizens.web.session.SessionConst;
 
@@ -27,9 +30,14 @@ public class RewardController {
 
 	@GetMapping
 	public String patronReward(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user,
-			Model model) {
+			Model model, Pageable pageable) {
 		model.addAttribute("member", user); // 세션 유무에 따른 헤더 세팅
-		model.addAttribute("itemName", "Calendar");
+		
+		Page<RewardCreatorDto> rewardResult = rewardService.totalRewardView(pageable);
+		
+		model.addAttribute("itemName", "ALL");
+		model.addAttribute("results", rewardResult);
+		
 		return "thymeleaf/patron/reward/reward";
 	}
 

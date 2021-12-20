@@ -68,7 +68,8 @@ public class RewardRepositoryImpl implements RewardRepositoryQueryDsl{
 						rewardImages.reward.id,
 						rewardImages.uploadFile.storeFileName))
 				.from(rewardImages)
-				.where(rewardImages.reward.id.in(rewardIds))
+				.groupBy(rewardImages.reward.id)
+				.having(rewardImages.reward.id.in(rewardIds))
 				.fetch();
 	}
 }

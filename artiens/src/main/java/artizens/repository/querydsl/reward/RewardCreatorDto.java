@@ -1,5 +1,7 @@
 package artizens.repository.querydsl.reward;
 
+import java.util.List;
+
 public class RewardCreatorDto {
 	private Long rewardId;
 	private Long patronId;
@@ -65,8 +67,10 @@ public class RewardCreatorDto {
 		this.rewardPrice = rewardPrice;
 	}
 
-	public void setRewardFileName(String rewardFileName) {
-		this.rewardFileName = rewardFileName;
+	public void setRewardFileName(List<RewardImageDto> rewardFileName) {
+		if (rewardFileName.size() > 0) {
+			this.rewardFileName = rewardFileName.get(0).getRewardFileName();
+		}
 	}
 
 	public void setCreatorName(String creatorName) {
