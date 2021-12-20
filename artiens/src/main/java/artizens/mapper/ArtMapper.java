@@ -24,8 +24,15 @@ public interface ArtMapper {
 	@Select("Select * from artwork where artwork_images_id = ${artwork_images_id}")
 	List<ArtWork> findArtWork();
 	
-	@Select("Select artwork_images_storefilename as storefilename from artwork_images;")
-	List<StoreFileDTO> findByImageURL();
+	@Select("select b.artwork_images_storefilename as storefilename "
+			+ " from artwork a, artwork_images b "
+			+ " where a.artwork_id = b.art_work_id and a.creator_id = ${creator}")
+	List<StoreFileDTO> findByImageURL(Long creator);
+	
+	@Select("select creator_profile_storefilename as profileImage, "
+			+ "		creator_nickname as nickname	"
+			+ "from creator where creator_id = ${creaotr}")
+	List<StoreFileDTO> findByCreatorImage(Long creator ); 
 	
 	@Insert("Insert into artwork(artwork_category_name, artwork_content, artwork_register_date, artwork_title) values(#{subject},#{talk},now(),#{title})")
 	void InsertUploadImg(String subject, String talk, String title);

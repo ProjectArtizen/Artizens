@@ -8,6 +8,8 @@ import org.apache.ibatis.annotations.Select;
 
 import artizens.domain.ArtWork;
 import artizens.domain.ArtWorkImages;
+import artizens.domain.Creator;
+import artizens.domain.UserProfile;
 import artizens.mapper.dto.AbstractDto;
 import artizens.mapper.dto.ArtWorkMainDto;
 import artizens.mapper.dto.ColoringDto;
@@ -25,6 +27,12 @@ public interface ArtWorkMapper {
 	
 	@Select("Select * from artwork where artwork_images_id = ${artwork_images_id}")
 	List<ArtWork> findArtWork();
+	
+	@Select("Select user_profile_id as id from user_profile where user_profile_email=#{email}")
+	List<UserProfile> findByUserId(UserProfile loginUser);
+	
+	@Select("Select creator_id as id from creator where user_profile_id = ${userId}")
+	List<Creator> findByCreatorId(Long userId);
 	
 	@Insert("Insert into artwork(artwork_category_name, artwork_content, artwork_register_date, artwork_title) values(#{subject},#{talk},now(),#{title})")
 	void InsertUploadImg(String subject, String talk, String title);

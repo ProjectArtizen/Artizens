@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import artizens.domain.ArtWork;
+import artizens.domain.Creator;
+import artizens.domain.UserProfile;
 import artizens.mapper.ArtWorkImagesMapper;
 import artizens.mapper.ArtWorkMapper;
 import artizens.mapper.dto.ArtWorkMainDto;
@@ -23,6 +25,30 @@ public class ArtWorkService {
 	public List<ArtWorkMainDto> selectAll(){
 		List<ArtWorkMainDto> result = artWorkMapper.findArtWorkMainAll();
 		return result; 
+	}
+	
+	public Long findByUserId( UserProfile user ) {
+		
+		Long UserId = user.getId();
+		List<UserProfile> result = artWorkMapper.findByUserId( user );
+		if ( result == null ) UserId = 0L;
+		for( UserProfile id : result ) {
+			UserId = id.getId();
+		}
+		LOGGER.info("userId={}",UserId);
+		return UserId;
+	}
+	
+	public Long findByCreatorId( Long userId ) {
+		
+		Long creatorId = 0L;
+		List<Creator> creator = artWorkMapper.findByCreatorId( userId );
+		for( Creator info : creator ) {
+			creatorId = info.getId();
+		}
+		LOGGER.info("creatorId={}",creatorId);
+		
+		return creatorId;
 	}
 	
 }

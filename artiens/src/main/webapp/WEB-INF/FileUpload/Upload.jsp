@@ -22,6 +22,7 @@
 <div>
 	
 	<form name="frm" id="frm" action="/artizen/upload" method="POST" enctype="multipart/form-data">
+		<input type="hidden" value="${userid }" name="userProfileId">
 		<table class="table text-center caption-top" style="width:1200px;'">
 			<caption class="text-center fs-3 fw-bold" ><img id="logo" src="/images/logo_new/logo_D.png" alt="Artizen Logo"></caption>
 			<colgroup>
@@ -34,7 +35,7 @@
 			</tr>
 			<tr>
 				<th>닉네임<small>*</small></th>
-				<th><input type="text" name="nickname" class="form-control" placeholder="첫 등록이시라면  닉네임을 작성해 주세요!"></th>
+				<th><input type="text" name="nickname" value="${Creator }" class="form-control" placeholder="첫 등록이시라면  닉네임을 작성해 주세요!"></th>
 			</tr>
 			<tr>	
 				<th>파일첨부<small>*</small></th>

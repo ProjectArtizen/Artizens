@@ -50,17 +50,29 @@ public class ArtWorkController {
 	 */
 
 	// 작품 메인 페이지
-	@GetMapping("/artWorkMain")
+	@GetMapping("/artwork/main")
 	public String artworkMain(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user,
 			Model model) {
-
+		
 		if (user != null) {
+			Long id = artWorkService.findByUserId(user);
+			String[] mail = user.getEmail().split("@");
+			String email = mail[0];
+			Long cid = artWorkService.findByCreatorId(id);
+			
+			if ( cid > 0 ) {
+				model.addAttribute("email",email);
+			}else if( cid < 0 ) {
+				model.addAttribute("email",null);
+			}
+			
 			LoginUser loginUser = new LoginUser(user.getId(), user.getName());
 			model.addAttribute("userid", loginUser.getId());
 		}
 
 		List<ArtWorkMainDto> result = artWorkService.selectAll();
 		model.addAttribute("result", result);
+		
 		return "artWork/artWorkMain";
 	}
 

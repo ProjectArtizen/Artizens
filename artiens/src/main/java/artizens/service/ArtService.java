@@ -1,6 +1,7 @@
 package artizens.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,22 +35,29 @@ public class ArtService {
 		upload.setSubject(uploadfiledto.getSubject());
 		upload.setTitle(uploadfiledto.getTitle());
 		upload.setCreatorId(upload.getCreatorId());
-		Long artworkId = artMapper.insertArtWork( upload );
+		artMapper.insertArtWork( upload );
 		
 		upload.setFile( uploadfiledto.getFile() );
 		UploadFile uploadFile = fileUploadService.uploadImage( upload.getFile() );
-		artWorkImagesMapper.insertArtWork( uploadFile.getStoreFileName(), uploadFile.getUploadFileName(), artworkId);
+		artWorkImagesMapper.insertArtWork( uploadFile.getStoreFileName(), uploadFile.getUploadFileName(), upload.getArtworkId());
 		
 		return "이미지 업로드 성공";
 	}
 	
-	public List<StoreFileDTO> findByImageURL() {
+	public List<StoreFileDTO> findByAll( Long creator) {
 		
-		List<StoreFileDTO> storeFileName = artMapper.findByImageURL();
+		List<StoreFileDTO> storeFileName = artMapper.findByImageURL( creator );
 		
 		LOGGER.info("storeFileName={}",storeFileName.toString());
 		
 		return storeFileName;
 	}
-
+	
+	public List<StoreFileDTO> findByProfile( Long creator ) {
+		
+		List<StoreFileDTO> store = artMapper.findByCreatorImage( creator );
+		
+		return store;
+	}
+	
 }

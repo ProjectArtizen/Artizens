@@ -14,19 +14,19 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
 	  rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-<link rel="stylesheet" href="../style.css" type="text/css" />
-<link rel="stylesheet" href="../css/swiper.css" type="text/css" />
-<link rel="stylesheet" href="../css/dark.css" type="text/css" />
-<link rel="stylesheet" href="../css/font-icons.css" type="text/css" />
-<link rel="stylesheet" href="../css/animate.css" type="text/css" />
-<link rel="stylesheet" href="../css/magnific-popup.css" type="text/css" />
-<link rel="stylesheet" href="../css/linkAnimation.css" type="text/css" />
-<link rel="stylesheet" href="../css/button.css" type="text/css" />
-<link rel="stylesheet" href="../css/sticky.css" type="text/css" />
-<link rel="stylesheet" href="../css/custom.css" type="text/css" />
+<link rel="stylesheet" href="/style.css" type="text/css" />
+<link rel="stylesheet" href="/css/swiper.css" type="text/css" />
+<link rel="stylesheet" href="/css/dark.css" type="text/css" />
+<link rel="stylesheet" href="/css/font-icons.css" type="text/css" />
+<link rel="stylesheet" href="/css/animate.css" type="text/css" />
+<link rel="stylesheet" href="/css/magnific-popup.css" type="text/css" />
+<link rel="stylesheet" href="/css/linkAnimation.css" type="text/css" />
+<link rel="stylesheet" href="/css/button.css" type="text/css" />
+<link rel="stylesheet" href="/css/sticky.css" type="text/css" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>::: ARTIZEN | User님의 블로그 :::</title>
+<title>::: ARTIZEN | ${nickname }님의 블로그 :::</title>
 
 <style>
 	
@@ -56,7 +56,7 @@
 				<div class="fslider" data-pagi="false" data-animation="fade">
 					<div class="flexslider">
 						<div class="slider-wrap">
-							<div style="background: url('../images/artwork/3.jpg')no-repeat center center/cover; height: 500px;"></div>
+							<div style="background: url('/images/artwork/3.jpg')no-repeat center center/cover; height: 500px;"></div>
 						</div>
 					</div>
 				</div>		
@@ -120,30 +120,6 @@
 															<img class="img-fluid mb-4 h-op-07 op-ts cursor-hover" src="${imageURL.storeFileName }" alt="Image"/>
 														</a>
 														</c:forEach>
-														<a href="../images/artwork/2.jpg" data-lightbox="gallery-item">
-															<img class="img-fluid mb-4 h-op-07 op-ts cursor-hover" src="../images/artwork/2.jpg" alt="Image">
-														</a>
-														<a href="../images/artwork/3.jpg" data-lightbox="gallery-item">
-															<img class="img-fluid mb-4 h-op-07 op-ts cursor-hover" src="../images/artwork/3.jpg" alt="Image">
-														</a>
-														<a href="../images/artwork/4.jpg" data-lightbox="gallery-item">
-															<img class="img-fluid mb-4 h-op-07 op-ts cursor-hover" src="../images/artwork/4.jpg" alt="Image">
-														</a>
-														<a href="../images/artwork/5.jpg" data-lightbox="gallery-item">
-															<img class="img-fluid mb-4 h-op-07 op-ts cursor-hover" src="../images/artwork/5.jpg" alt="Image">
-														</a>
-														<a href="../images/artwork/6.jpg" data-lightbox="gallery-item">
-															<img class="img-fluid mb-4 h-op-07 op-ts cursor-hover" src="../images/artwork/6.jpg" alt="Image">
-														</a>
-														<a href="../images/artwork/7.jpg" data-lightbox="gallery-item">
-															<img class="img-fluid mb-4 h-op-07 op-ts cursor-hover" src="../images/artwork/7.jpg" alt="Image">
-														</a>
-														<a href="../images/artwork/8.jpg" data-lightbox="gallery-item">
-															<img class="img-fluid mb-4 h-op-07 op-ts cursor-hover" src="../images/artwork/8.jpg" alt="Image">
-														</a>
-														<a href="../images/artwork/9.jpg" data-lightbox="gallery-item">
-															<img class="img-fluid mb-4 h-op-07 op-ts cursor-hover" src="../images/artwork/9.jpg" alt="Image">
-														</a>
 													</div>
 													<!-- Grid row -->
 												</div>
@@ -153,23 +129,23 @@
 											<div class="tab-content clearfix" id="tabs-4">
 												<div class="posts-sm row col-mb-30">
 													<div class="card-columns" data-lightbox="gallery">
-														<a href="../images/artwork/9.jpg" data-lightbox="gallery-item">
-															<img class="img-fluid mb-4 h-op-07 op-ts" src="../images/artwork/9.jpg" alt="Image"/>
+														<a href="/images/artwork/9.jpg" data-lightbox="gallery-item">
+															<img class="img-fluid mb-4 h-op-07 op-ts" src="/images/artwork/9.jpg" alt="Image"/>
 														</a>
-														<a href="../images/artwork/10.jpg" data-lightbox="gallery-item">
-															<img class="img-fluid mb-4 h-op-07 op-ts" src="../images/artwork/10.jpg" alt="Image">
+														<a href="/images/artwork/10.jpg" data-lightbox="gallery-item">
+															<img class="img-fluid mb-4 h-op-07 op-ts" src="/images/artwork/10.jpg" alt="Image">
 														</a>
-														<a href="../images/artwork/11.jpg" data-lightbox="gallery-item">
-															<img class="img-fluid mb-4 h-op-07 op-ts" src="../images/artwork/11.jpg" alt="Image">
+														<a href="/images/artwork/11.jpg" data-lightbox="gallery-item">
+															<img class="img-fluid mb-4 h-op-07 op-ts" src="/images/artwork/11.jpg" alt="Image">
 														</a>
-														<a href="../images/artwork/12.jpg" data-lightbox="gallery-item">
-															<img class="img-fluid mb-4 h-op-07 op-ts" src="../images/artwork/12.jpg" alt="Image">
+														<a href="/images/artwork/12.jpg" data-lightbox="gallery-item">
+															<img class="img-fluid mb-4 h-op-07 op-ts" src="/images/artwork/12.jpg" alt="Image">
 														</a>
-														<a href="../images/artwork/13.jpg" data-lightbox="gallery-item">
-															<img class="img-fluid mb-4 h-op-07 op-ts" src="../images/artwork/13.jpg" alt="Image">
+														<a href="/images/artwork/13.jpg" data-lightbox="gallery-item">
+															<img class="img-fluid mb-4 h-op-07 op-ts" src="/images/artwork/13.jpg" alt="Image">
 														</a>
-														<a href="../images/artwork/14.jpg" data-lightbox="gallery-item">
-															<img class="img-fluid mb-4 h-op-07 op-ts" src="../images/artwork/14.jpg" alt="Image">
+														<a href="/images/artwork/14.jpg" data-lightbox="gallery-item">
+															<img class="img-fluid mb-4 h-op-07 op-ts" src="/images/artwork/14.jpg" alt="Image">
 														</a>
 													</div>
 												<!-- Grid row -->
@@ -196,10 +172,10 @@
 									<div class="d-flex mt-3">
 										<a href="#">
 											<img class="rounded-circle m-2" style="width: 100px; height: 100px;"
-												 src="../images/artwork/profile/1.jpg" alt="Image">
+												 src="${profileimage }" alt="Image">
 										 </a>
 										<div class="m-3">
-											<div>Art Kim's</div> 
+											<div>${nickname }</div> 
 											<div>팔로워 49.2만명</div> 
 											<div>팔로잉 40명</div>
 										</div>
@@ -240,7 +216,7 @@
 														<div class="grid-inner row g-0">
 															<div class="col-auto">
 																<div class="entry-image">
-																	<a href="#"><img src="../images/artwork/1.jpg" alt="Image"></a>
+																	<a href="#"><img src="/images/artwork/1.jpg" alt="Image"></a>
 																</div>
 															</div>
 															<div class="col ps-3">
@@ -263,7 +239,7 @@
 														<div class="grid-inner row g-0">
 															<div class="col-auto">
 																<div class="entry-image">
-																	<a href="#"><img src="../images/artwork/3.jpg" alt="Image"></a>
+																	<a href="#"><img src="/images/artwork/3.jpg" alt="Image"></a>
 																</div>
 															</div>
 															<div class="col ps-3">
@@ -286,7 +262,7 @@
 															<div class="col-auto">
 																<div class="entry-image">
 																	<a href="#">
-																		<img src="../images/artwork/5.jpg" alt="Image"></a>
+																		<img src="/images/artwork/5.jpg" alt="Image"></a>
 																</div>
 															</div>
 															<div class="col ps-3">
@@ -313,7 +289,7 @@
 															<div class="col-auto">
 																<div class="entry-image">
 																	<a href="#"><img class="rounded-circle"
-																		src="../images/artwork/9.jpg" alt="Image"></a>
+																		src="/images/artwork/9.jpg" alt="Image"></a>
 																</div>
 															</div>
 															<div class="col ps-3">
@@ -337,7 +313,7 @@
 															<div class="col-auto">
 																<div class="entry-image">
 																	<a href="#"><img class="rounded-circle"
-																		src="../images/artwork/10.jpg" alt="Image"></a>
+																		src="/images/artwork/10.jpg" alt="Image"></a>
 																</div>
 															</div>
 															<div class="col ps-3">
@@ -360,7 +336,7 @@
 															<div class="col-auto">
 																<div class="entry-image">
 																	<a href="#"><img class="rounded-circle"
-																		src="../images/artwork/11.jpg" alt="Image"></a>
+																		src="/images/artwork/11.jpg" alt="Image"></a>
 																</div>
 															</div>
 															<div class="col ps-3">
@@ -410,12 +386,12 @@
 
 	<!-- JavaScripts
 	============================================= -->
-	<script src="../js/jquery.js"></script>
-	<script src="../js/plugins.min.js"></script>	
+	<script src="/js/jquery.js"></script>
+	<script src="/js/plugins.min.js"></script>	
 
 	<!-- Footer Scripts
 	============================================= -->
-	<script src="../js/functions.js"></script>
+	<script src="/js/functions.js"></script>
 
 </body>
 </html>
