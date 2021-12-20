@@ -36,41 +36,40 @@ public class ArtController {
 	@Autowired ArtService artService;
 	@Autowired ArtWorkService artWorkService;
 	
-	@GetMapping("/blog/{blogURL}")
-	public String userBlog( @PathVariable String blogURL, RedirectAttributes redirectAttribute,
+	@GetMapping("/blog/my/{blogURL}")
+	public String userBlog( @PathVariable Long blogURL, RedirectAttributes redirectAttribute,
 							@SessionAttribute(name = SessionConst.LOGIN_USER, required = false ) UserProfile user,
+							String createId,
 							Model model) throws Exception {
 			
-			Long id = artWorkService.findByUserId(user);
-			Long cid = artWorkService.findByCreatorId(id);
+		if ( user == null ) {
+			return "redirect:/artizen/artwork/main";
+		}else {
 			
-			// 현재 로그인한 사람이 크리에이터라면 자신의 블로그로 이동.
-			if ( cid > 0 ) {
-				String email = user.getEmail();
-				String[] username = email.split("@");
-				blogURL = username[0];
-				model.addAttribute("blogURL", blogURL );
-				
-				// 해당 크리에이터의 이미지 뿌림
-				List<StoreFileDTO> store = artService.findByAll( cid );
+			// 로그인 유저의 아이디값,
+			Long id = artWorkService.findByUserId(user);
+			// 해당 아이디값을 가진 사람의 크리에이터 아이디값
+			Long create_id = artWorkService.findByCreatorId(id);
+			// 현재 페이지의 크리에이터 아이디
+			Long creator = artWorkService.findByCreatorId(blogURL);
+			
+			if ( create_id == creator ) {
+				List<StoreFileDTO> store = artService.findByAll( creator );
 				model.addAttribute("store",store);
-				
-				// 해당 크리에이터의 프로필 정보
-				List<StoreFileDTO> profile = artService.findByProfile( cid );
-				
+				List<StoreFileDTO> profile = artService.findByProfile( creator );
 				String nickname = "";
 				String profileImage = "";
-				
-				for( StoreFileDTO creator : profile ) {
-					nickname = creator.getNickname();
-					profileImage = creator.getProfileImage();
+				for( StoreFileDTO a : profile ) {
+					nickname = a.getNickname();
+					profileImage = a.getProfileImage();
 				}
-				
-				if ( profileImage == null || profileImage.isEmpty() ) model.addAttribute("profileimage", "");
-				
 				model.addAttribute("profileimage",profileImage);
 				model.addAttribute("nickname",nickname);
+				return "artWork/blog";
+			}else if ( create_id != creator ) {
+				return "redirect:/artizen/artwork/main";
 			}
+		}
 		
 		return "artWork/blog";
 	}

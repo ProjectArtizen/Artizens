@@ -56,14 +56,13 @@ public class ArtWorkController {
 		
 		if (user != null) {
 			Long id = artWorkService.findByUserId(user);
-			String[] mail = user.getEmail().split("@");
-			String email = mail[0];
-			Long cid = artWorkService.findByCreatorId(id);
+			Long creator = artWorkService.findByCreatorId(id);
+			LOGGER.info("creator={}",creator);
 			
-			if ( cid > 0 ) {
-				model.addAttribute("email",email);
-			}else if( cid < 0 ) {
-				model.addAttribute("email",null);
+			if ( creator == 0 ) {
+				model.addAttribute("creator", null);
+			}else if( creator != 0 ){
+				model.addAttribute("creator",id);
 			}
 			
 			LoginUser loginUser = new LoginUser(user.getId(), user.getName());
