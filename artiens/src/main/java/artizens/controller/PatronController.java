@@ -55,29 +55,16 @@ public class PatronController {
         
         // 페이징 쿼리 -> Dto
         Page<PatronCreatorDto> pageResult = patronService.totalPatronView(pageable);
+        LOGGER.info("msg={}", pageResult.getContent());
         model.addAttribute("results",pageResult);
-        LOGGER.info("getTotalPages={}",pageResult.getTotalPages());
-        LOGGER.info("getTotalElements={}",pageResult.getTotalElements());
-        LOGGER.info("getSize={}",pageResult.getSize());
-        LOGGER.info("hasNext={}",pageResult.hasNext());
-        LOGGER.info("getNumber={}", pageResult.getNumber());
         return "thymeleaf/patron/creator/creator";
-    }
-
-    @GetMapping("/reward")
-    public String patronReward(
-    		@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user, 
-    		Model model){
-        model.addAttribute("menuBar_active", "reward");
-        model.addAttribute("member",user); // 세션 유무에 따른 헤더 세팅
-        return "thymeleaf/patron/reward/reward";
     }
 
     @GetMapping("/register")
     public String patronRegisterForm(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user, Model model){
     	// 세션 없을때 
     	if (user == null) {
-    		//이거 로그인 화면으로 바꿔야됨.
+    		// 로그인안했을때 로그인페이지 -> register로 이동
     		model.addAttribute("alertActive","noUser");
     		model.addAttribute("redirectURL", "?redirectURL=/patron/register");
     		return "thymeleaf/patron/patronAlert";
@@ -102,11 +89,4 @@ public class PatronController {
     	model.addAttribute("alertActive", saved);
     	return "thymeleaf/patron/patronAlert";
     }
-    
-    @GetMapping("/register/reward")
-    public String patronRewardRegister(Model model){
-        return "thymeleaf/patron/patronRegister/rewardRegisterForm";
-    }
-    
-    
 }

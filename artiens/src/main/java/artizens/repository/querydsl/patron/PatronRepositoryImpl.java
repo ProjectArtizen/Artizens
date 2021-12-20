@@ -6,16 +6,11 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
+
 import org.springframework.data.domain.Pageable;
 
-import com.querydsl.core.QueryResults;
 import com.querydsl.core.types.Projections;
-import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-
-import artizens.domain.Patron;
 
 import static artizens.domain.QCreator.creator;
 import static artizens.domain.QPatron.patron; 
@@ -31,6 +26,7 @@ public class PatronRepositoryImpl implements PatronRepositoryQueryDsl{
 		this.queryFactory = new JPAQueryFactory(entityManager);
 	}
 	
+	// patron 생성 일시 순으로 생성
 	@Override
 	public List<PatronCreatorDto> findAllPatornWithCreator(Pageable pageable){
 		return queryFactory.
@@ -45,6 +41,7 @@ public class PatronRepositoryImpl implements PatronRepositoryQueryDsl{
 				.leftJoin(patron.creator, creator)
 				.offset(pageable.getOffset())
 				.limit(pageable.getPageSize())
+				.orderBy(patron.createdDate.asc())
 				.fetch();
 	}
 	
@@ -54,7 +51,8 @@ public class PatronRepositoryImpl implements PatronRepositoryQueryDsl{
 				patronImages.patron.id,
 				patronImages.uploadFile.storeFileName))
 		.from(patronImages)
-		.where(patronImages.patron.id.in(patronIds))
+		.groupBy(patronImages.patron.id)
+		.having(patronImages.patron.id.in(patronIds))
 		.fetch();
 	}
 	

@@ -14,6 +14,8 @@ import artizens.domain.ArtWorkCategory;
 import artizens.domain.Creator;
 import artizens.domain.Patron;
 import artizens.domain.PatronImages;
+import artizens.domain.Reward;
+import artizens.domain.RewardCategory;
 import artizens.domain.UploadFile;
 import artizens.domain.UserProfile;
 
@@ -111,8 +113,7 @@ public class initDb {
 			UserProfile user2 = UserProfile.createUser("user2@gmail.com", "1234", "dlwngus");
 			em.persist(user2);
 			
-			
-			
+			RewardCategory[] rewardCategory = RewardCategory.values();
 			
 			// user3 ~ 50 (creator 등록, patron 미등록)
 			for (int i = 3; i <= 100; i++) {
@@ -121,8 +122,8 @@ public class initDb {
 				em.persist(userProfile);
 				
 				// 참쉽죠 아저씨 이미지 
-				UploadFile creatorImageDefault = UploadFile.createUploadFile("크리에이터.JPG",
-						"https://sunminki.s3.ap-northeast-2.amazonaws.com/aef04562-61c7-4a8b-9bb5-851490cbff34.JPG");
+				UploadFile creatorImageDefault = UploadFile.createUploadFile("김기현.JPG",
+						"https://sunminki.s3.ap-northeast-2.amazonaws.com/0081e4f3-3cec-46b6-a34d-3b0139c4635d.jpg");
 				Creator creators = Creator.createCreator("제작자"+String.valueOf(i), creatorImageDefault, "www.naver.com", userProfile);
 				em.persist(creators);
 				
@@ -139,6 +140,25 @@ public class initDb {
 				Patron bobPatron = Patron.createPatron("저는 그림이 쉬운 밥로스입니다.", "저는 밥로스입니다. 이렇게 그리면 됩니다. 참쉽죠?", creators, bobImages);
 				em.persist(bobPatron);
 				
+				// admin reward(후원등록 creator)
+				List<UploadFile> rewardImages = new ArrayList<UploadFile>();
+				String itemName = rewardCategory[i % rewardCategory.length].toString();
+				
+				if (itemName.equals(RewardCategory.calendar.toString())) {
+					rewardImages.add(UploadFile.createUploadFile("calendar.JPG", "https://sunminki.s3.ap-northeast-2.amazonaws.com/17c51c8c-ccbf-4f80-b29b-204659fefd6c.JPG"));
+					rewardImages.add(UploadFile.createUploadFile("calendar2.JPG", "https://sunminki.s3.ap-northeast-2.amazonaws.com/d5cb43ed-86c8-477c-9294-aea7b05996b8.JPG"));
+				}
+				else if (itemName.equals(RewardCategory.cup.toString())) {
+					rewardImages.add(UploadFile.createUploadFile("cup.JPG", "https://sunminki.s3.ap-northeast-2.amazonaws.com/3dd96fb8-5112-4b28-9a1a-4ce85cb91f74.JPG"));
+					rewardImages.add(UploadFile.createUploadFile("cup2.JPG", "https://sunminki.s3.ap-northeast-2.amazonaws.com/950b49d1-da98-4be9-bd5e-408d98484ca3.JPG"));
+				}
+				else if(itemName.equals(RewardCategory.note.toString())) {
+					rewardImages.add(UploadFile.createUploadFile("note.JPG", "https://sunminki.s3.ap-northeast-2.amazonaws.com/6b4247b3-a10e-4ec7-995b-e0bb11d4afd8.JPG"));
+					rewardImages.add(UploadFile.createUploadFile("note2.JPG", "https://sunminki.s3.ap-northeast-2.amazonaws.com/79c5f226-2d24-4ba1-a1d3-8f6be0702c87.JPG"));
+				}
+				
+				Reward reward = Reward.createReward("리워드"+ String.valueOf(i), "내용"+String.valueOf(i), i*10000, itemName, bobPatron , rewardImages);
+				em.persist(reward);
 			}
 
 			

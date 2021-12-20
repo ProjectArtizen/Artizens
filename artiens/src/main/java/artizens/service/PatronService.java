@@ -95,6 +95,8 @@ public class PatronService {
 		
 		// reward 이미지 aws s3 반환
 		List<UploadFile> rewardImages = new ArrayList<UploadFile>();
+		
+		// 이미지가 없는 경우 default 이미지 input
 		if (patronRegisterDto.getRewardFiles().get(0).getSize() > 0) {
 			rewardImages = fileUploadService.uploadImages(patronRegisterDto.getRewardFiles());
 		}
@@ -113,9 +115,6 @@ public class PatronService {
 				patronRegisterDto.getRewardCategory(),
 				patron,
 				rewardImages);
-		
-		LOGGER.info("reward={}",reward.toString());
-		LOGGER.info("reward={}",reward.getRewardImages().toArray());
 		return "complete";
 	}
 	
