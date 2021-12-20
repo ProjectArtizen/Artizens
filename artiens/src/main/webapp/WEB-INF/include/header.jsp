@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- Header
 ============================================= -->
+
   <div id="header-wrap">
     <div class="container">
       <div class="header-row">
@@ -42,11 +43,11 @@
                	 			</li>
                	 			<li class="menu-item">
                	 				<c:choose>
-               	 					<c:when test="${email ne null }">
-               	 						<a class="menu-link" href="/artizen/blog/${email }">내 블로그</a>
+               	 					<c:when test="${creator == null || creator == 0 }">
+               	 						<a class="menu-link" href="javascript:fn_blog()">내 블로그</a>
                	 					</c:when>
-               	 					<c:when test="${email eq null }">
-	               	 					<a class="menu-link" href="/artizen/artwork/main">내 블로그</a>
+               	 					<c:when test="${creator != 0 }">
+               	 						<a class="menu-link" href="/artizen/blog/my/${creator }">내 블로그</a>
                	 					</c:when>
                	 				</c:choose>
                	 			</li>
@@ -170,6 +171,10 @@
     </div>
   </div>
 <script>
+	function fn_blog() {
+		alert("첫 작품을 게시하고 크리에이터 등록을 해주세요.");
+		window.open("/artizen/upload","fileUpload","width=1250,height=700");
+	}
 	jQuery(document).ready( function(){
 	
 		var element = $(".custom-file");
