@@ -9,6 +9,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
@@ -38,20 +40,21 @@ public class PatronRepositoryImplTest {
 	public void before() {
 		queryFactory = new JPAQueryFactory(em);
 		List<UploadFile> uploadFile = new ArrayList<>();
-		UserProfile user = UserProfile.createUser("email.com", "1234", "dlwngus");
-		Creator creator = Creator.createCreator("nickname", "uri", user);
-		Patron patron = Patron.createPatron("title", "content", creator, uploadFile);
+//		UserProfile user = UserProfile.createUser("email.com", "1234", "dlwngus");
+//		Creator creator = Creator.createCreator("nickname", "uri", user);
+//		Patron patron = Patron.createPatron("title", "content", creator, uploadFile);
 	}
 	
 	@Test
 	public void patronRepositoryTest() {
 		
-		List<PatronCreatorDto> result = patronRepository.findAllPatronWithSort();
-		for (PatronCreatorDto patronCreatorDto : result) {
-			System.out.println(patronCreatorDto.toString());
-			for (String patronfile : patronCreatorDto.getPatronStoredFiles()) {
-				System.out.println(patronfile);
-			}
-		}
+//		PageRequest pageRequest = PageRequest.of(0,6);
+//		Page<PatronCreatorDto> result = patronRepository.findAllPatronWithSort(pageRequest);
+//		for (PatronCreatorDto patronCreatorDto : result) {
+//			System.out.println(patronCreatorDto.toString());
+//			for (String patronfile : patronCreatorDto.getPatronStoredFiles()) {
+//				System.out.println(patronfile);
+//			}
+//		}
 	}
 }

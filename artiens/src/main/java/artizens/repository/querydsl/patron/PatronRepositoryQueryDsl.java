@@ -2,8 +2,12 @@ package artizens.repository.querydsl.patron;
 
 import java.util.List;
 
-import artizens.domain.Patron;
+import org.springframework.data.domain.Pageable;
 
 public interface PatronRepositoryQueryDsl {
-	List<PatronCreatorDto> findAllPatronWithSort();
+	
+	List<PatronCreatorDto> findAllPatornWithCreator(Pageable pageable);
+	
+	List<PatronImagesDto> findAllPatronImagesInPatron(List<Long> patronIds);
+	
 }

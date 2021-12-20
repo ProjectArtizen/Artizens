@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import artizens.mapper.CollaborateMapper;
 import artizens.mapper.UserMapper;
+import artizens.mapper.dto.CollaborationDetailDto;
 import artizens.mapper.dto.CollaborationMainDto;
 
 @Service
@@ -19,6 +20,11 @@ public class CollaborateService {
 
 	public List<CollaborationMainDto> selectAll() {
 		List<CollaborationMainDto> result = collaborationmapper.findcollaborationMainAll();
+		return result;
+	}
+
+	public List<CollaborationDetailDto>selectDetail(Long collaborationId) {
+		List<CollaborationDetailDto> result = collaborationmapper.findcollaborationDetailAll(collaborationId);
 		return result;
 	}
 }

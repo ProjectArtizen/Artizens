@@ -34,6 +34,12 @@ public class HomeController {
         model.addAttribute("creationTime", simpleDateFormat.format(request.getSession().getCreationTime()));
         return "thymeleaf/loginMain";
     }
+	
+	@GetMapping("/artizen/developing")
+    public String developing(Model model){
+    	model.addAttribute("alertActive", "developing");
+    	return "thymeleaf/alert";
+    }
 }
 
 class LoginUser {

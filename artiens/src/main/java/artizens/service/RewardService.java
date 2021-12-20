@@ -17,6 +17,7 @@ public class RewardService {
 
 	@Autowired RewardRepository rewardRepository;
 	
+	@Transactional
 	public Reward registerReward(
 			String title, 
 			String content,
@@ -26,4 +27,7 @@ public class RewardService {
 			List<UploadFile> rewardImages) {
 		return rewardRepository.save(Reward.createReward(title, content, price, subject, patron, rewardImages));
 	}
+	
+	
+	
 }

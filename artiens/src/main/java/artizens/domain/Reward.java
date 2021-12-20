@@ -45,7 +45,12 @@ public class Reward extends BaseTimeEntity{
 	public Reward() {
 	}
 
-	public static Reward createReward(String title, String content, int price, String subject, Patron patron,
+	public static Reward createReward(
+			String title, 
+			String content, 
+			int price, 
+			String subject, 
+			Patron patron,
 			List<UploadFile> rewardImages) {
 		Reward reward = new Reward();
 		reward.title = title;

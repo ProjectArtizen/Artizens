@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import artizens.mapper.dto.CollaborationDetailDto;
 import artizens.mapper.dto.CollaborationMainDto;
 import artizens.service.CollaborateService;
 
@@ -25,6 +27,13 @@ public class CollaboController {
 		List<CollaborationMainDto> result = collaborationservice.selectAll();
 		model.addAttribute("result", result);
 		return "col/col_Main";
+	}
+	
+	@GetMapping("/colDetail/{collaborationId}")
+	public String collaborationDetail(@PathVariable Long collaborationId, Model model) {
+		List<CollaborationDetailDto> result = collaborationservice.selectDetail(collaborationId);
+		model.addAttribute("result",result);
+		return "col/col_Detail";
 	}
 	
 	@RequestMapping("/colDetail")

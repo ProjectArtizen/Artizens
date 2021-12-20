@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html th:replace="~{thymeleaf/patron/fregment/patronLayout :: patronLayout(~{::title}, ~{::link}, ~{::script}, ~{::section}, ~{::style})}" xmlns:th="http://www.thymeleaf.org">
+<html th:replace="~{thymeleaf/patron/fregment/patronLayoutBackScript :: patronLayout(~{::title}, ~{::link}, ~{::section}, ~{::style}, ~{::script})}" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Artizen 크리에이터</title>
     <!--link 태그 없으면 빈값으로 남겨야됨.-->
     <link/>
-    <script></script>
     <style></style>
 </head>
 <body>
 <!-- Page Title
 		============================================= -->
 <section id="page-title">
-
+	
     <div class="container clearfix">
         <h1>크리에이터</h1>
         <ol class="breadcrumb">
@@ -36,16 +35,69 @@
             </div>
         </div>
         <!-- Pagination ============================================= -->
-        <ul class="pagination mt-5 pagination-circle justify-content-center">
-            <li class="page-item disabled"><a class="page-link" href="#"><i class="icon-angle-left"></i></a></li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-            <li class="page-item"><a class="page-link" href="#">5</a></li>
-            <li class="page-item"><a class="page-link" href="#"><i class="icon-angle-right"></i></a></li>
-        </ul>
-    </section><!-- #content end -->
+        
+        
+        <ul class="pagination mt-5 pagination-circle pagination-lg justify-content-center" id="pagingNumbers"></ul>
+    </section>
+    
+<script>
+    function pageAlgo(totalPageSize, bottomSize, cursor){
+       	
+        let pageNumList = []
+        for (let i = cursor - (bottomSize - 1) ; i <= cursor + (bottomSize - 1); i++ ){
+        	if (i >= 1 && i <= totalPageSize){
+        		pageNumList.push(i);
+        	}
+        }
+        console.log(pageNumList.toString());
+        
+        if (pageNumList.length > bottomSize){
+        	let modifyPageNumList = []; 
+        	let cursorIndex = pageNumList.indexOf(cursor);
+        	
+        	modifyPageNumList.push(pageNumList[cursorIndex]);
+        	let front = cursorIndex - 1;
+        	let end = cursorIndex + 1;
+        	
+        	while (modifyPageNumList.length != bottomSize){
+        		if (front >= 0){
+        			modifyPageNumList.push(pageNumList[front]);
+        		} 
+				if (end < pageNumList.length){
+            		modifyPageNumList.push(pageNumList[end]);
+				}	
+          		front -= 1;
+          		end += 1;
+        	}
+        	pageNumList = modifyPageNumList.sort();
+        }
+
+        console.log(pageNumList.toString());
+        
+        var pageNumForm = document.querySelector('#pagingNumbers');
+        
+        if (cursor > 1) pageNumForm.innerHTML += '<li class="page-item"><a class="page-link" href="creator?page='+ (cursor - 2) +'" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>';	
+        
+        for (let i = 0 ; i < pageNumList.length; i++){
+        	let pageNumber =  pageNumList[i];
+        	if (pageNumber == cursor){
+        		pageNumForm.innerHTML += '<li class="page-item active"><a class="page-link" href="creator?page=' + (pageNumber-1) +'">'+ pageNumber +'</a></li>';
+        	} else{
+        		pageNumForm.innerHTML += '<li class="page-item"><a class="page-link" href="creator?page=' + (pageNumber - 1) +'">'+ pageNumber + '</a></li>';
+        	}
+        }
+        
+        if (cursor < totalPageSize) pageNumForm.innerHTML += '<li class="page-item"><a class="page-link" href="creator?page=' + cursor + '" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';	
+        
+    }
+    const totalPageSize = [[${results.totalPages}]]
+    // 하단크기
+    const bottomSize = 5
+    //  현재 나의 페이지
+    const cursor = [[${results.number}]] + 1
+    
+    pageAlgo(totalPageSize, bottomSize, cursor)
+</script>
 </div>
 </body>
 </html>
