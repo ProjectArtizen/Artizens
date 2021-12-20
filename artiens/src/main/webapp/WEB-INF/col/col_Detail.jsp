@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
@@ -51,10 +52,21 @@
 
 		<!-- 타이틀
 		============================================= -->
-		<section id="page-title" class="page-title-center"
-			style="background-color: white; border: none; padding-bottom: 0px;">
-
+		<section id="page-title" 
+				 class="page-title-center"
+				 style="background-color: white; 
+				 		border: none; 
+				 		padding-bottom: 0px;">
 			<div class="container clearfix" style="background-color: white;">
+			<%-- <c:if test="">
+				<span class="fw-bold"
+					  style="font-size:1.8em;
+					  		 width:7em;
+					  		 background-color:gray; 
+					  		 color:white; 
+					  		 margin-bottom:1em;">당선작 발표
+				</span>
+			</c:if>	 --%>
 				<h1>콜라보레이션 타이틀</h1>
 				<span style="margin-top: 20px;">
 					<div class="d-flex align-items-center"

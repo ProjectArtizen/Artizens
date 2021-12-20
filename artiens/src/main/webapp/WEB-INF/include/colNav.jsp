@@ -1,22 +1,44 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
-<div style="width: 1600px; margin-left: -125px;">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<!-- 서브메뉴============================================= -->
 	
-		<ul class="menu-container" style="margin-Left: 150px;">
+	
+<%-- <c:choose>
+	<c:when test="">
+
+			<ul class="menu-container" style="margin-Left: 150px;">
 			<li class="menu-item"><a class="menu-link"
 				href="../artizen/colDetail"><div
 						style="font-size: 20px; font-weight: normal;">콜라보레이션 소개</div></a></li>
 			<li class="menu-item"><a class="menu-link"
 				href="../artizen/colArtList"><div
-						style="font-size: 20px; font-weight: normal;">참여작품</div></a></li>
+						style="font-size: 20px; font-weight: normal;">당선작품</div></a></li>
+			<div style="margin-left: 750px;">
+				<a href="#block-modal-request" data-lightbox="inline" data-target="#block-modal-request">
+					<button class="button m-3 button-dark" disabled>접수마감</button>
+				</a>			
+			</div>
+		</ul>
+		
+	</c:when>
+	<c:when test=""> --%>
+		<ul class="menu-container" style="margin-Left: 150px;">
+			<li class="menu-item">
+				<a class="menu-link" href="../artizen/colDetail">
+					<div style="font-size: 20px; font-weight: normal;">콜라보레이션 소개</div>
+				</a>
+			</li>
+			<li class="menu-item">
+				<a class="menu-link" href="../artizen/colArtList">
+					<div style="font-size: 20px; font-weight: normal;">참여작품</div>
+				</a>
+			</li>
 			<div style="margin-left: 750px;">
 				<a href="#block-modal-request" data-lightbox="inline" data-target="#block-modal-request">
 					<button class="button m-3">접수하기</button>
 				</a>			
 			</div>
 		</ul>
-		
-		
 		
 		<!-- Modal -->
 				<div class="modal1 mfp-hide container clearfix" id="block-modal-request">
@@ -84,7 +106,9 @@
 						</div>
 					</div>
 				</div>
+<%-- 	
+	</c:when>
 
 
 	<!-- 서브메뉴 끝 -->
-</div>
+</c:choose> --%>
