@@ -58,7 +58,7 @@
 				 		border: none; 
 				 		padding-bottom: 0px;">
 			<div class="container clearfix" style="background-color: white;">
-		
+			<%-- <c:if test="">
 				<span class="fw-bold"
 					  style="font-size:1.8em;
 					  		 width:7em;
@@ -66,7 +66,7 @@
 					  		 color:white; 
 					  		 margin-bottom:1em;">당선작 발표
 				</span>
-			
+			</c:if>	 --%>
 				<h1>콜라보레이션 타이틀</h1>
 				<span style="margin-top: 20px;">
 					<div class="d-flex align-items-center"
@@ -77,7 +77,7 @@
 							<div class="entry-meta"
 								style="margin-bottom: 10px; padding-left: 10px;">
 								<ul>
-									<li><a href="#">Author</a></li>
+									<li><a href="/blog/{blogURL}">Author</a></li>
 									<li><i class="icon-calendar3"></i>2021.11.21</li>
 								</ul>
 							</div>

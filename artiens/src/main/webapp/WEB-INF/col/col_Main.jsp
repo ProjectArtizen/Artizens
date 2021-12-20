@@ -166,8 +166,8 @@
 					</div>
 					<!-- modal -->
 					<hr>
-					<c:choose>
-					<c:when test="">
+<%-- 					<c:choose>
+					<c:when test=""> --%>
 					<div class="post-grid row col-mb-30">
 						<!-- 콘텐츠 나열해주는 감싸기-->
 
@@ -180,8 +180,9 @@
 										<div class="flexslider">
 											<div class="slider-wrap">
 												<div>
-													<a href="../artizen/colDetail"><img
-														src="/images/collaboration/col/planning1.jpg"></a>
+													<a href="colDetail">
+														<img src="/images/collaboration/col/planning1.jpg">
+													</a>
 												</div>
 											</div>
 										</div>
@@ -189,7 +190,7 @@
 								</div>
 								<div class="p-4">
 									<h3 class="center" style="margin-bottom: 40px;">
-										<a href="#">콜라보레이션 타이틀</a>
+										<a href="colDetail">콜라보레이션 타이틀</a>
 									</h3>
 
 									<div class="container clearfix m-2">
@@ -210,7 +211,7 @@
 
 									<hr class="my-4">
 									<div class="d-flex align-items-center">
-										<a href="#"><img src="/images/collaboration/author.jpg"
+										<a href="/blog/{blogURL}"><img src="/images/collaboration/author.jpg"
 											alt="Author" class="rounded-circle" width="38" height="38"></a>
 										<div class="entry-meta mt-0">
 											<div class="entry-meta"
@@ -238,8 +239,8 @@
 										<div class="flexslider">
 											<div class="slider-wrap">
 												<div>
-													<a href="col_detail.html"><img
-														src="/images/collaboration/col/planning2.jpg"></a>
+													<img src="/images/collaboration/col/planning2.jpg"
+														 onclick="location='colDetail'">
 												</div>
 											</div>
 										</div>
@@ -288,7 +289,7 @@
 						<!-- 콘텐츠 2 끝-->
 
 					</div>
-					</c:when>
+<%-- 					</c:when> --%>
 					
 
 				</div>
@@ -313,7 +314,7 @@
 											<div class="slider-wrap">
 												<div>
 													<img src="/images/collaboration/col/planning3.jpg"
-														 onclick="location.href='colDetailEnd'">
+														 onclick="location.href='colDetail'">
 												</div>
 											</div>
 										</div>
@@ -371,8 +372,8 @@
 										<div class="flexslider">
 											<div class="slider-wrap">
 												<div>
-													<a href="col_detail.html"><img
-														src="/images/collaboration/col/planning4.jpg"></a>
+													<img src="/images/collaboration/col/planning4.jpg"
+														 onclick="location.href='colDetail'">
 												</div>
 											</div>
 										</div>
@@ -430,8 +431,8 @@
 										<div class="flexslider">
 											<div class="slider-wrap">
 												<div>
-													<a href="col_detail_end.html"><img
-														src="/images/collaboration/col/planning5.jpg"></a>
+													<img src="/images/collaboration/col/planning5.jpg"
+														 onclick="location.href='colDetail'">
 												</div>
 											</div>
 										</div>
@@ -489,8 +490,8 @@
 										<div class="flexslider">
 											<div class="slider-wrap">
 												<div>
-													<a href="col_detail.html"><img
-														src="/images/collaboration/col/planning6.jpg"></a>
+													<img src="/images/collaboration/col/planning6.jpg"
+														 onclick="location.href='colDetail'">
 												</div>
 											</div>
 										</div>
@@ -548,8 +549,8 @@
 										<div class="flexslider">
 											<div class="slider-wrap">
 												<div>
-													<a href="col_detail.html"><img
-														src="/images/collaboration/col/planning8.jpg"></a>
+													<img src="/images/collaboration/col/planning8.jpg"
+														 onclick="location.href='colDetail'">
 												</div>
 											</div>
 										</div>
@@ -607,8 +608,8 @@
 										<div class="flexslider">
 											<div class="slider-wrap">
 												<div>
-													<a href="col_detail.html"><img
-														src="/images/collaboration/col/planning7.jpg"></a>
+													<img src="/images/collaboration/col/planning7.jpg"
+														 onclick="location.href='colDetail'">
 												</div>
 											</div>
 										</div>
@@ -666,8 +667,8 @@
 										<div class="flexslider">
 											<div class="slider-wrap">
 												<div>
-													<a href="col_detail.html"><img
-														src="/images/collaboration/col/planning1.jpg"></a>
+													<img src="/images/collaboration/col/planning1.jpg"
+														 onclick="location.href='colDetail'">
 												</div>
 											</div>
 										</div>
@@ -719,7 +720,7 @@
 					</div>
 
 				</div>
-				</c:choose>
+		<%-- 		</c:choose> --%>
 				
 				
 			</div>
