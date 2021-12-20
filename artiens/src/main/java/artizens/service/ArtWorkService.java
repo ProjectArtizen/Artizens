@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import artizens.controller.dto.artwork.CreatorDTO;
 import artizens.domain.ArtWork;
 import artizens.domain.Creator;
 import artizens.domain.UserProfile;
@@ -49,6 +50,11 @@ public class ArtWorkService {
 		LOGGER.info("creatorId={}",creatorId);
 		
 		return creatorId;
+	}
+	
+	public List<CreatorDTO> findByAll( Long creatorId ) {
+		List<CreatorDTO> creator = artWorkMapper.findByCreator( creatorId );
+		return creator;
 	}
 	
 }

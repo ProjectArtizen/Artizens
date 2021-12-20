@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -54,8 +55,10 @@ public class ArtController {
 			Long creator = artWorkService.findByCreatorId(blogURL);
 			
 			if ( create_id == creator ) {
+				
 				List<StoreFileDTO> store = artService.findByAll( creator );
 				model.addAttribute("store",store);
+				
 				List<StoreFileDTO> profile = artService.findByProfile( creator );
 				String nickname = "";
 				String profileImage = "";
@@ -74,6 +77,14 @@ public class ArtController {
 		return "artWork/blog";
 	}
 	
+	@GetMapping("/blog/{id}")
+	public String otherBlog(@PathVariable Long id ) throws Exception {
+		
+		Long Creator = artWorkService.findByCreatorId(id);
+		
+		
+		return "/artWork/blog";
+	}
 	
 	@GetMapping("/upload")
 	public String FileUpload(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false ) UserProfile user,
@@ -93,13 +104,16 @@ public class ArtController {
 	@PostMapping("/upload")
 	public String FileSave( @ModelAttribute UploadFileDTO uploadfiledto, Model model ) throws Exception {
 		
-		String result = artService.insertImageUpload( uploadfiledto );
-		if ( result.equals("success") ) {
-			model.addAttribute("redirectURL","upload");
-			return "redirect:include/Alert";
-		}
-		return "FileUpload/Upload";
+		String result = artService.noneCreatorUpload(uploadfiledto);
+		String message = "ok";
 		
+		if ( result.equals("success") ) {	
+			message = "ok";
+			model.addAttribute("message",message);
+			return "include/Alert";
+		}
+		
+		return "FileUpload/Upload";
 	}
 }
 	

@@ -41,22 +41,38 @@ public class ArtService {
 		UploadFile uploadFile = fileUploadService.uploadImage( upload.getFile() );
 		artWorkImagesMapper.insertArtWork( uploadFile.getStoreFileName(), uploadFile.getUploadFileName(), upload.getArtworkId());
 		
-		return "이미지 업로드 성공";
+		return "success";
 	}
 	
-	public List<StoreFileDTO> findByAll( Long creator) {
+	public String noneCreatorUpload( UploadFileDTO uploadfiledto ) {
+		
+		UploadFileDTO upload = new UploadFileDTO();
+		upload.setNickname(uploadfiledto.getNickname());
+		upload.setUserProfileId(uploadfiledto.getUserProfileId());
+		artMapper.insertCreatorNickname( upload );
+		
+		upload.setTalk(uploadfiledto.getTalk());
+		upload.setSubject(uploadfiledto.getSubject());
+		upload.setTitle(uploadfiledto.getTitle());
+		upload.setCreatorId(upload.getCreatorId());
+		artMapper.insertArtWork( upload );
+		
+		upload.setFile( uploadfiledto.getFile() );
+		UploadFile uploadFile = fileUploadService.uploadImage( upload.getFile() );
+		artWorkImagesMapper.insertArtWork( uploadFile.getStoreFileName(), uploadFile.getUploadFileName(), upload.getArtworkId());
+		
+		return "success";
+	}
+	
+	public List<StoreFileDTO> findByAll( Long creator ) {
 		
 		List<StoreFileDTO> storeFileName = artMapper.findByImageURL( creator );
-		
 		LOGGER.info("storeFileName={}",storeFileName.toString());
-		
 		return storeFileName;
 	}
 	
 	public List<StoreFileDTO> findByProfile( Long creator ) {
-		
 		List<StoreFileDTO> store = artMapper.findByCreatorImage( creator );
-		
 		return store;
 	}
 	

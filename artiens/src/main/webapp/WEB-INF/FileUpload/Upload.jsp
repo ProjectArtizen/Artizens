@@ -35,7 +35,7 @@
 			</tr>
 			<tr>
 				<th>닉네임<small>*</small></th>
-				<th><input type="text" name="nickname" value="${Creator }" class="form-control" placeholder="첫 등록이시라면  닉네임을 작성해 주세요!"></th>
+				<th><input type="text" name="nickname" value="${nickname }" class="form-control" placeholder="첫 등록이시라면  닉네임을 작성해 주세요!"></th>
 			</tr>
 			<tr>	
 				<th>파일첨부<small>*</small></th>
@@ -101,7 +101,7 @@
 			</tr>
 			<tr class="border-borderless">
 				<td colspan="2">
-					<button type="submit" class="btn btn-primary m-3">작품 등록</button>
+					<button type="submit" name="submit" id="submit" class="btn btn-primary m-3">작품 등록</button>
 					<button type="button" onclick="window.close();" class="btn btn-primary ms-3">취소</button>
 				</td>
 			</tr>
@@ -110,7 +110,9 @@
 		</div>
 	</form>
 </div>
+
 <script>
+	
 	$(document).change(function(){
 		if($('#tag1 option:selected').text() != "태그를 선택하세요") {
 			$('#tag2').css('display','block');
@@ -131,9 +133,23 @@
 				})
 			}
 			var tagbox = document.getElementById("tagBox");
-			tagbox.value = result;			
+			tagbox.value = result;
+			
 	 	}
+		
+
 	});
+	
+	$(function(){
+		$('#submit').click(function(){
+			if( confirm("이미지를 등록하시겠습니까?") == true ) {
+				document.frm.method = "post"; 
+				theForm.action = "/artizen/upload";
+				document.frm.submit();
+			}
+		})
+	})
+	
 </script>
 </body>
 </html>

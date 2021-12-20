@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import artizens.controller.dto.UploadImageDTO;
+import artizens.controller.dto.artwork.CreatorDTO;
 import artizens.controller.dto.artwork.InsertDto;
 import artizens.domain.ArtWork;
 import artizens.domain.UploadFile;
@@ -22,6 +23,7 @@ import artizens.domain.UserProfile;
 import artizens.mapper.ArtWorkMapper;
 import artizens.mapper.UserMapper;
 import artizens.mapper.dto.ArtWorkMainDto;
+import artizens.service.ArtService;
 import artizens.service.ArtWorkService;
 import artizens.web.aws.FileUploadService;
 import artizens.web.session.SessionConst;
@@ -40,6 +42,8 @@ public class ArtWorkController {
 	ArtWorkMapper artWorkMapper;
 	@Autowired
 	ArtWorkService artWorkService;
+	@Autowired
+	ArtService artService;
 
 	/*
 	 * @GetMapping("/artWorkMain") public String artworkMain() {
@@ -54,19 +58,29 @@ public class ArtWorkController {
 	public String artworkMain(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user,
 			Model model) {
 		
-		if (user != null) {
+		
+		if (user == null) { // 비회원일 경우
+			return "artWork/artWorkMain";
+		}else if( user != null ) { // 로그인 상태일 경우,
+			// 현재 로그인 된 유저의 유저 아이디값
 			Long id = artWorkService.findByUserId(user);
+			model.addAttribute("userid",id);
+			
+			// 현재 로그인 된 유저의 크리에이터 아이디값
 			Long creator = artWorkService.findByCreatorId(id);
-			LOGGER.info("creator={}",creator);
 			
-			if ( creator == 0 ) {
+			if ( creator == 0 ) { // 크리에이터 아이디가 없는 경우,
 				model.addAttribute("creator", null);
-			}else if( creator != 0 ){
-				model.addAttribute("creator",id);
+			}else if( creator != 0 ){ // 크리에이터 아이디가 있는 경우,
+				// 크리에이터
+				CreatorDTO box = new CreatorDTO();
+				List<CreatorDTO> creater = artWorkService.findByAll(creator);
+				// 아이디 값
+				model.addAttribute("creator",null);
+				// 닉네임 값
+				model.addAttribute("nickname",null);
+				
 			}
-			
-			LoginUser loginUser = new LoginUser(user.getId(), user.getName());
-			model.addAttribute("userid", loginUser.getId());
 		}
 
 		List<ArtWorkMainDto> result = artWorkService.selectAll();

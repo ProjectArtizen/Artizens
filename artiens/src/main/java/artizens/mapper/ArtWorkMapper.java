@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import artizens.controller.dto.artwork.CreatorDTO;
 import artizens.domain.ArtWork;
 import artizens.domain.ArtWorkImages;
 import artizens.domain.Creator;
@@ -21,6 +22,15 @@ import artizens.mapper.dto.StillDto;
 
 @Mapper
 public interface ArtWorkMapper {
+	
+	@Select("Select creator_id as creatorId, "
+			+ "		creator_nickname as nickname, "
+			+ "		creator_one_intro as intro, "
+			+ "     creator_other_uri as otheruri, "
+			+ "		creator_profile_storefilename as storefile, "
+			+ "		user_profile_id as userid "
+			+ "from creator where creator_id = ${creatorId} ")
+	List<CreatorDTO> findByCreator( Long creatorId );
 	
 	@Select("Select * from artwork")
 	List<ArtWork> findArtWorkAll();
