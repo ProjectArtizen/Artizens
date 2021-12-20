@@ -35,6 +35,36 @@
 	display: none !important;
 }
 </style>
+<script>
+<!-- ajax를 통한 전송완료 확인하는 함수 -->
+$( function() {
+  $("#btn_save").click(function(){
+	  
+	  var formdata = $("#frm").serialize();
+	  $.ajax({
+		  type : "POST",
+		  url  : "colPlanningSave",
+		  data : formdata,
+		  
+		  //text형태로 전달받기
+		  datatype : "text",
+		  success  : function(data) {  // 성공시 OK 전달하기
+			  if( data == "ok") {
+				  alert("저장완료");
+				  location="anboardList.do";
+			  } else {
+				  alert("저장실패");
+				  console.log(data);
+			  }
+		  },
+		  error	   : function() {
+			  alert("오류발생");
+		  }
+	  });
+  });
+  
+});
+</script>
 </head>
 
 <body class="stretched">
@@ -83,9 +113,7 @@
 
 									<div class="form-result"></div>
 
-									<form class="mb-0" id="template-contactform"
-										name="template-contactform" action="" method="post">
-
+									<form class="mb-0" id="frm" name="frm" method="post">
 										<div class="form-process">
 											<div class="css3-spinner">
 												<div class="css3-spinner-scaler"></div>
@@ -96,8 +124,8 @@
 											<div class="col-md-6 form-group w-100">
 												<label class="nott ls0 fw-medium"
 													for="template-contactform-name">Title <small>*</small></label>
-												<input type="text" id="template-contactform-name"
-													name="template-contactform-name" value=""
+												<input type="text" id="title"
+													name="title" value=""
 													class="form-control required" />
 											</div>
 
@@ -110,24 +138,13 @@
 														2048 KB.)</small></label>
 												<div class="form-file">
 													<input type="file" class="form-control"
-														id="template-contactform-upload">
+														id="fileName" name="fileName">
 												</div>
 											</div>
 
-											<div class="col-md-6 form-group bottommargin-sm row">
-												<label class="nott ls0 fw-medium"
-													for="template-contactform-subject">기간</label>
-												<div class="input-group text-start"
-													data-target-input="nearest" data-target=".datetimepicker">
-													<input type="text"
-														class="form-control datetimepicker-input datetimepicker"
-														data-target=".datetimepicker"
-														placeholder="MM/DD/YYYY 00:00 AM/PM" />
-													<div class="input-group-text" data-target=".datetimepicker"
-														data-toggle="datetimepicker">
-														<i class="icon-calendar"></i>
-													</div>
-												</div>
+											<div class="col-md-6 bottommargin-sm">
+												<label for="" class="nott ls0 fw-medium">기간</label>
+												<input type="text" id="deadlineDate" name="deadlineDate"class="form-control text-start component-datepicker default" placeholder="YYYY/MM/DD">
 											</div>
 
 											<div class="w-100"></div>
@@ -137,7 +154,7 @@
 													for="template-contactform-message">Content <small>*</small></label>
 												<textarea style="height: 700px;"
 													class="required form-control"
-													id="template-contactform-message"
+													id="content"
 													name="template-contactform-message" rows="5" cols="30"></textarea>
 											</div>
 
@@ -150,8 +167,8 @@
 											<div class="col-12 d-flex justify-content-end">
 												<button
 													class="button ls0 nott px-5 py-3 rounded-pill bg-primary ms-2"
-													type="submit" id="template-contactform-submit"
-													name="template-contactform-submit" value="submit">Upload</button>
+													type="submit" id="btn_save"
+													name="template-contactform-submit" >Upload</button>
 											</div>
 										</div>
 
@@ -180,9 +197,8 @@
 										<div class="flexslider">
 											<div class="slider-wrap">
 												<div>
-													<a href="colDetail">
-														<img src="/images/collaboration/col/planning1.jpg">
-													</a>
+													<a href="colDetail"></a>
+													<img src="/images/collaboration/col/planning1.jpg">
 												</div>
 											</div>
 										</div>
@@ -211,7 +227,7 @@
 
 									<hr class="my-4">
 									<div class="d-flex align-items-center">
-										<a href="/blog/{blogURL}"><img src="/images/collaboration/author.jpg"
+										<a href="#"><img src="/images/collaboration/author.jpg"
 											alt="Author" class="rounded-circle" width="38" height="38"></a>
 										<div class="entry-meta mt-0">
 											<div class="entry-meta"
@@ -740,9 +756,8 @@
 	<script src="/js/components/moment.js"></script>
 	<script src="/js/components/timepicker.js"></script>
 	<script src="/js/components/datepicker.js"></script>
+	
 
-	<!-- Include Date Range Picker -->
-	<script src="/js/components/daterangepicker.js"></script>
 		<!-- Footer Scripts
    ============================================= -->
 		<script src="/js/functions.js"></script>
@@ -777,6 +792,17 @@
 				});
 
 			});
+			
+			$(function() {
+				
+				$('.component-datepicker.default').datepicker({					
+					autoclose: true,
+					startDate: "today",
+					format: "yyyy-mm-dd"
+				});
+
+			});
+
 		</script>
 
 		<!-- Footer
