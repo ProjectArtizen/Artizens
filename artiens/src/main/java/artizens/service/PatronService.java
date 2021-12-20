@@ -29,7 +29,10 @@ import artizens.repository.PatronRepository;
 import artizens.repository.RewardRepository;
 import artizens.repository.UserProfileRepository;
 import artizens.repository.querydsl.patron.PatronCreatorDto;
+import artizens.repository.querydsl.patron.PatronCreatorRewardDto;
 import artizens.repository.querydsl.patron.PatronImagesDto;
+import artizens.repository.querydsl.patron.RewardDto;
+import artizens.repository.querydsl.patron.RewardImagesDto;
 import artizens.web.aws.FileUploadService;
 
 @Service
@@ -77,8 +80,8 @@ public class PatronService {
 		else {
 			patronImages.add(
 					UploadFile.createUploadFile(
-					"patrondefault.jpg", 
-					"https://sunminki.s3.ap-northeast-2.amazonaws.com/03f17cb9-0a54-4051-979b-4afdf3fc4769.jpg"
+					"patronDefaultIm.JPG", 
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/0a334861-0a36-4df9-9b1a-9cb7a1118c17.JPG"
 					));
 		}
 		
@@ -103,8 +106,8 @@ public class PatronService {
 		else {
 			rewardImages.add(
 					UploadFile.createUploadFile(
-					"reward.jpg", 
-					"https://sunminki.s3.ap-northeast-2.amazonaws.com/2c55e43e-bb32-4d4b-819b-4be4eb254b64.JPG"
+					"rewardDefault.JPG", 
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/c04a08bd-8ae3-44d8-9405-268e449eacdc.JPG"
 					));
 		}
 		
@@ -133,6 +136,24 @@ public class PatronService {
 		patronResult.forEach(p -> p.setPatronStoredFiles((patronImagesMap.get(p.getPatronId()))));
 		
 		return new PageImpl<PatronCreatorDto>(patronResult, pageable, patronRepository.count());
+	}
+	
+	public List<PatronCreatorRewardDto> personalPatronView(Long patronId){
+		List<PatronCreatorRewardDto> patronResult = patronRepository.findPersonalPatron(patronId);
+		List<Long> patronIds = patronResult.stream().map(result -> result.getPatronId()).collect(Collectors.toList());
+		List<PatronImagesDto> patronImages = patronRepository.findAllPatronImagesInPatron(patronIds);
+		Map<Long, List<PatronImagesDto>> patronImagesMap = patronImages.stream().collect(Collectors.groupingBy(PatronImagesDto::getPatronId));
+		patronResult.forEach(p -> p.setPatronImages(patronImagesMap.get(p.getPatronId())));
+		
+		List<RewardDto> rewardResult = patronRepository.findRewardByPatron(patronId);
+		List<Long> rewardIds = rewardResult.stream().map(result -> result.getRewardId()).collect(Collectors.toList());
+		List<RewardImagesDto> rewardImages = patronRepository.findAllRewardImagesInPatron(rewardIds);
+		Map<Long, List<RewardImagesDto>> rewardImagesMap = rewardImages.stream().collect(Collectors.groupingBy(RewardImagesDto::getRewardId));
+		rewardResult.forEach(r -> r.setRewardImages(rewardImagesMap.get(r.getRewardId())));
+		
+		patronResult.forEach(p -> p.setRewards(rewardResult));
+		
+		return patronResult;
 	}
 	
 }

@@ -155,6 +155,8 @@ public class initDb {
 				else if(itemName.equals(RewardCategory.note.toString())) {
 					rewardImages.add(UploadFile.createUploadFile("note.JPG", "https://sunminki.s3.ap-northeast-2.amazonaws.com/6b4247b3-a10e-4ec7-995b-e0bb11d4afd8.JPG"));
 					rewardImages.add(UploadFile.createUploadFile("note2.JPG", "https://sunminki.s3.ap-northeast-2.amazonaws.com/79c5f226-2d24-4ba1-a1d3-8f6be0702c87.JPG"));
+				}else {
+					rewardImages.add(UploadFile.createUploadFile("rewardDefault.JPG","https://sunminki.s3.ap-northeast-2.amazonaws.com/c04a08bd-8ae3-44d8-9405-268e449eacdc.JPG"));
 				}
 				
 				Reward reward = Reward.createReward("리워드"+ String.valueOf(i), "내용"+String.valueOf(i), i*10000, itemName, bobPatron , rewardImages);

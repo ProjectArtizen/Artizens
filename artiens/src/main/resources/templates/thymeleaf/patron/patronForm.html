@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html th:replace="~{thymeleaf/patron/fregment/patronLayout :: patronLayout(~{::title}, ~{::link}, ~{::script}, ~{::section}, ~{::style})}"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Artizen Patron</title>
+    <!--link 태그 없으면 빈값으로 남겨야됨.-->
+    <link/>
+    <script></script>
+    <style></style>
+</head>
+<body>
+<!-- Page Title
+		============================================= -->
+  <section id="page-title">
+
+    <div class="container clearfix">
+      <h1 th:text="|${result.creatorNickName} 님을 후원해주세요. |">Patron</h1>
+    </div>
+
+  </section><!-- #page-title end -->
+  <!-- Content
+  ============================================= -->
+  <section id="content">
+    <div class="content-wrap">
+      <div class="container clearfix">
+
+        <div class="row col-mb-50 mb-0">
+          <!-- Portfolio Single Gallery
+          ============================================= -->
+          <div class="col-md-7 col-lg-8 portfolio-single-image">
+            <div class="fslider" data-arrows="false" data-thumbs="true" data-animation="fade">
+              <div class="flexslider">
+                <div class="slider-wrap">
+                  <div th:each="patronImage : ${result.patronImages}">
+                  	<div class="slide" data-thumb="${patronImage}"><a href="#"><img src="${patronImage}" alt="Image"></a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!-- .portfolio-single-image end -->
+
+          <!-- Portfolio Single Content
+          ============================================= -->
+          <div class="col-md-5 col-lg-4 portfolio-single-content">
+            <!-- Portfolio Single - Description
+            ============================================= -->
+            <div class="fancy-title title-bottom-border">
+              <h2 th:text="${result.patronTitle}">Project Info:</h2>
+            </div>
+            <p th:text="${result.patronContent}"></p>
+            <!-- Portfolio Single - Description End -->
+
+
+            <div class="line"></div>
+
+            <!-- Portfolio Single - Meta
+            ============================================= -->
+            <ul class="portfolio-meta bottommargin">
+              <li th:text="${result.creatorNickName}"><span><i class="icon-user"></i>Created by:</span> John Doe</li>
+              <li><span><i class="icon-calendar3"></i>Completed on:</span> 17th March 2021</li>
+            </ul>
+            <!-- Portfolio Single - Meta End -->
+
+            <!-- Portfolio Single - Share
+            ============================================= -->
+            <div class="si-share d-flex justify-content-between align-items-center">
+              <span>Share:</span>
+              <div>
+                <a href="#" class="social-icon si-borderless si-facebook">
+                  <i class="icon-facebook"></i>
+                  <i class="icon-facebook"></i>
+                </a>
+                <a href="#" class="social-icon si-borderless si-twitter">
+                  <i class="icon-twitter"></i>
+                  <i class="icon-twitter"></i>
+                </a>
+                <a href="#" class="social-icon si-borderless si-pinterest">
+                  <i class="icon-pinterest"></i>
+                  <i class="icon-pinterest"></i>
+                </a>
+                <a href="#" class="social-icon si-borderless si-gplus">
+                  <i class="icon-gplus"></i>
+                  <i class="icon-gplus"></i>
+                </a>
+                <a href="#" class="social-icon si-borderless si-rss">
+                  <i class="icon-rss"></i>
+                  <i class="icon-rss"></i>
+                </a>
+                <a href="#" class="social-icon si-borderless si-email3">
+                  <i class="icon-email3"></i>
+                  <i class="icon-email3"></i>
+                </a>
+              </div>
+            </div>
+            <!-- Portfolio Single - Share End -->
+          </div><!-- .portfolio-single-content end -->
+        </div>
+
+        <div class="divider divider-center"><i class="icon-circle"></i></div>
+
+        <!-- Related Portfolio Items
+        ============================================= -->
+        <h4>Rewards:</h4>
+
+        <div id="related-portfolio" class="owl-carousel portfolio-carousel carousel-widget" data-margin="30" data-nav="false" data-autoplay="5000" data-items-xs="1" data-items-sm="2" data-items-md="3" data-items-xl="4">
+			
+          <div class="oc-item" th:each="rewardResult : ${result.rewards}">
+          	<div th:replace="thymeleaf/patron/rewardForm::rewardForm(${rewardResult})"></div>
+          </div>  
+        </div><!-- .portfolio-carousel end -->
+
+      </div>
+    </div>
+  </section><!-- #content end -->
+</body>
+</html>

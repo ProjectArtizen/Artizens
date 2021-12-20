@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div class="portfolio-item" th:fragment="rewardForm(rewardResult)">
+  <div class="portfolio-image">
+    <a href="#">
+      <!-- <img th:src="${rewardResult.rewardImages}" alt="Morning Dew"> -->
+    </a>
+    <div class="bg-overlay" data-lightbox="gallery">
+      <div class="bg-overlay-content dark" data-hover-animate="fadeIn">
+        <a href="#" class="overlay-trigger-icon bg-light text-dark" data-hover-animate="fadeInDownSmall" data-hover-animate-out="fadeOutUpSmall" data-hover-speed="350" data-lightbox="gallery-item"><i class="icon-line-stack-2"></i></a>
+        <a href="#" class="d-none" data-lightbox="gallery-item"></a>
+        <a href="#" class="overlay-trigger-icon bg-light text-dark" data-hover-animate="fadeInDownSmall" data-hover-animate-out="fadeOutUpSmall" data-hover-speed="350"><i class="icon-line-ellipsis"></i></a>
+      </div>
+      <div class="bg-overlay-bg dark" data-hover-animate="fadeIn"></div>
+    </div>
+  </div>
+  <div class="portfolio-desc">
+    <h3 th:text="${rewardResult.rewardTitle}"><a href="#">Morning Dew</a></h3>
+    <span><a href="#" th:text="${rewardResult.rewardSubject}">Icons</a></span>
+  </div>
+</div>

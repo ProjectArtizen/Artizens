@@ -33,13 +33,13 @@ public class RewardRepositoryImpl implements RewardRepositoryQueryDsl{
 						patron.id,
 						reward.title,
 						reward.price,
-						reward.rewardImages,
 						creator.nickName))
 				.from(reward)
-				.leftJoin(patron)
-				.leftJoin(creator)
+				.leftJoin(reward.patron, patron)
+				.leftJoin(patron.creator, creator)
 				.offset(pageable.getOffset())
 				.limit(pageable.getPageSize())
+				.orderBy(reward.createdDate.desc())
 				.fetch();
 	}
 	
@@ -54,10 +54,11 @@ public class RewardRepositoryImpl implements RewardRepositoryQueryDsl{
 						creator.nickName))
 				.from(reward)
 				.where(reward.subject.eq(itemName))
-				.leftJoin(patron)
-				.leftJoin(creator)
+				.leftJoin(reward.patron, patron)
+				.leftJoin(patron.creator, creator)
 				.offset(pageable.getOffset())
 				.limit(pageable.getPageSize())
+				.orderBy(reward.createdDate.desc())
 				.fetch();
 	}
 	

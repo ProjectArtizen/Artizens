@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,6 +24,7 @@ import artizens.domain.Creator;
 import artizens.domain.Patron;
 import artizens.domain.UserProfile;
 import artizens.repository.querydsl.patron.PatronCreatorDto;
+import artizens.repository.querydsl.patron.PatronCreatorRewardDto;
 import artizens.service.CreatorService;
 import artizens.service.PatronService;
 import artizens.web.session.SessionConst;
@@ -88,5 +90,16 @@ public class PatronController {
     	String saved = patronService.registerPatronAndReward(patronRegisterDto);
     	model.addAttribute("alertActive", saved);
     	return "thymeleaf/patron/patronAlert";
+    }
+    
+ // patron 개인 폼
+    @GetMapping("/{patronId}")
+    public String patronForm(
+    		@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user,
+    		@PathVariable("patronId") Long patronId,
+    		Model model) {
+    	List<PatronCreatorRewardDto> result = patronService.personalPatronView(patronId);
+    	model.addAttribute("result", result);
+    	return "thymeleaf/patron/patronForm";
     }
 }

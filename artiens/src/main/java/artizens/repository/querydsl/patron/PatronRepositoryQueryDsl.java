@@ -10,4 +10,9 @@ public interface PatronRepositoryQueryDsl {
 	
 	List<PatronImagesDto> findAllPatronImagesInPatron(List<Long> patronIds);
 	
+	List<PatronCreatorRewardDto> findPersonalPatron(Long patronId);
+	
+	List<RewardDto> findRewardByPatron(Long patronId);
+	
+	List<RewardImagesDto> findAllRewardImagesInPatron(List<Long> rewardIds);
 }

@@ -1,10 +1,8 @@
 package artizens.repository.querydsl.patron;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 
 import org.springframework.data.domain.Pageable;
@@ -14,7 +12,10 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import static artizens.domain.QCreator.creator;
 import static artizens.domain.QPatron.patron; 
-import static artizens.domain.QPatronImages.patronImages;; 
+import static artizens.domain.QReward.reward; 
+import static artizens.domain.QPatronImages.patronImages;
+import static artizens.domain.QRewardImages.rewardImages;
+
 
 public class PatronRepositoryImpl implements PatronRepositoryQueryDsl{
 	
@@ -41,7 +42,7 @@ public class PatronRepositoryImpl implements PatronRepositoryQueryDsl{
 				.leftJoin(patron.creator, creator)
 				.offset(pageable.getOffset())
 				.limit(pageable.getPageSize())
-				.orderBy(patron.createdDate.asc())
+				.orderBy(patron.createdDate.desc())
 				.fetch();
 	}
 	
@@ -55,4 +56,38 @@ public class PatronRepositoryImpl implements PatronRepositoryQueryDsl{
 		.fetch();
 	}
 	
+	@Override
+	public List<PatronCreatorRewardDto> findPersonalPatron(Long patronId) {
+		return queryFactory.select(Projections.constructor(PatronCreatorRewardDto.class, 
+				patron.id,
+				patron.title,
+				patron.content,
+				creator.nickName))
+				.from(patron)
+				.where(patron.id.eq(patronId))
+				.leftJoin(patron.creator, creator)
+				.fetch();
+	}
+	
+	@Override
+	public List<RewardDto> findRewardByPatron(Long patronId) {
+		return queryFactory.select(Projections.constructor(RewardDto.class, 
+				reward.id,
+				reward.title,
+				reward.content,
+				reward.subject))
+				.from(reward)
+				.where(reward.patron.id.eq(patronId))
+				.fetch();
+	}
+	
+	@Override
+	public List<RewardImagesDto> findAllRewardImagesInPatron(List<Long> rewardIds) {
+		return queryFactory.select(Projections.constructor(RewardImagesDto.class, 
+				rewardImages.reward.id,
+				rewardImages.uploadFile.storeFileName))
+				.from(rewardImages)
+				.where(rewardImages.reward.id.in(rewardIds))
+				.fetch();
+	}
 }

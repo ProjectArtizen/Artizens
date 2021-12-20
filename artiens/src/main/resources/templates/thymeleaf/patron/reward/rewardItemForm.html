@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<article class="portfolio-item col-xl-2 col-md-3 col-sm-6 col-12" th:fragment="rewardItem"
-         th:with="itemFileName=${itemFileName}, itemName=${itemName} ,price=${price}, author=${author}">
-    <div class="grid-inner">
-        <div class="portfolio-image">
-            <a th:href="@{|/artizen/patron/reward/${itemFileName}|}">
-                <img th:src="@{|/images/patron/reward/rewardItems/item/${itemFileName}|}" alt="Open Imagination">
-            </a>
-            <div class="bg-overlay">
-                <div class="bg-overlay-content dark" data-hover-animate="fadeIn">
-                    <a th:href="@{|/artizen/patron/reward/${itemFileName}|}"><h2 th:text="more"></h2></a>
-                </div>
-                <div class="bg-overlay-bg dark" data-hover-animate="fadeIn"></div>
-            </div>
-        </div>
-        <div class="portfolio-desc">
-            <h3><a th:href="@{|/artizen/patron/reward/${itemFileName}|}" th:text="|${itemName}|">item Name</a></h3>
-            <div th:text="${price}"></div>
-            <span><a th:href="@{#}" th:text="|by ${author}|"></a></span>
-        </div>
-    </div>
-</article>
+
+<div class="grid-inner" th:fragment="rewardItem(rewardResult)">
+	<div class="portfolio-image">
+		<a th:href="@{|/artizen/patron/${rewardResult.patronId}|}"> 
+		<img th:src="${rewardResult.rewardFileName}" alt="Open Imagination">
+		</a>
+		<div class="bg-overlay">
+			<div class="bg-overlay-content dark" data-hover-animate="fadeIn">
+				<a th:href="@{|/artizen/patron/${rewardResult.patronId}|}"><h2>more</h2></a>
+			</div>
+			<div class="bg-overlay-bg dark" data-hover-animate="fadeIn"></div>
+		</div>
+	</div>
+	<div class="portfolio-desc">
+		<h3>
+			<a th:href="@{|/artizen/patron/${rewardResult.patronId}|}"
+				th:text="|${rewardResult.rewardTitle}|">item Name</a>
+		</h3>
+		<div th:text="${rewardResult.rewardPrice}"></div>
+		<span><a th:href="@{#}"
+			th:text="|by ${rewardResult.creatorName}|"></a></span>
+	</div>
+</div>

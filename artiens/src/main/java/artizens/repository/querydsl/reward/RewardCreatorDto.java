@@ -22,10 +22,6 @@ public class RewardCreatorDto {
 		this.rewardPrice = rewardPrice;
 		this.creatorName = creatorName;
 	}
-//	
-//	public void setRewardFileName(List<>) {
-//		
-//	}
 	
 	public Long getRewardId() {
 		return rewardId;
@@ -68,7 +64,7 @@ public class RewardCreatorDto {
 	}
 
 	public void setRewardFileName(List<RewardImageDto> rewardFileName) {
-		if (rewardFileName.size() > 0) {
+		if (rewardFileName != null && rewardFileName.size()>0) {
 			this.rewardFileName = rewardFileName.get(0).getRewardFileName();
 		}
 	}

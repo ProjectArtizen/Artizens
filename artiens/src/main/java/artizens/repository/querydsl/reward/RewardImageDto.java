@@ -22,4 +22,9 @@ public class RewardImageDto {
 	public void setRewardFileName(String rewardFileName) {
 		this.rewardFileName = rewardFileName;
 	}
+	@Override
+	public String toString() {
+		return "RewardImageDto [rewardId=" + rewardId + ", rewardFileName=" + rewardFileName + "]";
+	}
+	
 }

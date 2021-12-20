@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,13 +31,13 @@ public class RewardController {
 
 	@GetMapping
 	public String patronReward(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user,
-			Model model, Pageable pageable) {
+			Model model, @PageableDefault(size=30) Pageable pageable) {
 		model.addAttribute("member", user); // 세션 유무에 따른 헤더 세팅
-		
 		Page<RewardCreatorDto> rewardResult = rewardService.totalRewardView(pageable);
 		
 		model.addAttribute("itemName", "ALL");
 		model.addAttribute("results", rewardResult);
+		
 		
 		return "thymeleaf/patron/reward/reward";
 	}
@@ -48,14 +49,19 @@ public class RewardController {
 
 	// reward 별로 출력
 	@GetMapping("/{rewardItem}")
-	public String rewardItem(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user,
-			@PathVariable(name = "rewardItem") String rewardItem, Model model) {
+	public String rewardItem(
+			@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user,
+			@PathVariable(name = "rewardItem") String rewardItem, 
+			Model model,
+			@PageableDefault(size=30) Pageable pageable) {
 		if (!EnumUtils.isValidEnumIgnoreCase(RewardCategory.class, rewardItem)) {
 			return "redirect:/artizen/patron/reward";
 		}
 		model.addAttribute("member", user); // 세션 유무에 따른 헤더 세팅
+		
+		Page<RewardCreatorDto> rewardResult = rewardService.RewardViewByItemName(pageable, rewardItem);
 		model.addAttribute("itemName", rewardItem);
-		LOGGER.info("msg={}", rewardItem);
+		model.addAttribute("results", rewardResult);
 		
 		return "thymeleaf/patron/reward/reward";
 	}
