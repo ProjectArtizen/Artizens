@@ -166,7 +166,8 @@
 					</div>
 					<!-- modal -->
 					<hr>
-
+					<c:choose>
+					<c:when test="">
 					<div class="post-grid row col-mb-30">
 						<!-- 콘텐츠 나열해주는 감싸기-->
 
@@ -287,6 +288,8 @@
 						<!-- 콘텐츠 2 끝-->
 
 					</div>
+					</c:when>
+					
 
 				</div>
 
@@ -716,6 +719,9 @@
 					</div>
 
 				</div>
+				</c:choose>
+				
+				
 			</div>
 		</section>
 		<!--Content End-->
