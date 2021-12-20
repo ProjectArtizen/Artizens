@@ -159,7 +159,7 @@
 					</div>
 
 					<div class="line" style="margin-bottom: 45px;"></div>
-					<h2 class="text-center">Category</h2>
+					<h2 class="text-center">ArtWork</h2>
 
 					<!-- Posts
 				============================================= -->
