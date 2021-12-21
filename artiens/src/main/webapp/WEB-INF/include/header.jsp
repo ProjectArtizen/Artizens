@@ -47,7 +47,7 @@
                	 						<a class="menu-link" href="javascript:fn_blog()">내 블로그</a>
                	 					</c:when>
                	 					<c:when test="${creator ne null }">
-               	 						<a class="menu-link" href="/artizen/blog/my/${nickname }">내 블로그</a>
+               	 						<a class="menu-link" href="/artizen/blog/my/${userid }">내 블로그</a>
                	 					</c:when>
                	 				</c:choose>
                	 			</li>

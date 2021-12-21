@@ -10,7 +10,21 @@
 			alert("크리에이터를 등록해 주세요.");
 			location.href="/artizen/artwork/main";
 		</c:when>
-		<c:when test="${ message == 'ok'}">
+		<c:when test="${ message == '크리에이터 아이디가 다름'}">
+			alert("크리에이터 아이디가 다릅니다.");
+			location.href="/artizen/artwork/main";
+		</c:when>
+		<c:when test="${ message == 'Success image upload' }">
+			alert("이미지 업로드가 완료되었습니다.");
+			opener.location.reload();
+			window.close();
+		</c:when>
+		<c:when test="${ message == 'fail' }">
+			alert("이미지 업로드에 실패하였습니다.");
+			opener.location.reload();
+			window.close();
+		</c:when>
+		<c:when test="${ message == 'Success insert creator' }">
 			alert("크리에이터 등록 및 작품 등록에 성공하였습니다.");
 			opener.location.reload();
 			window.close();

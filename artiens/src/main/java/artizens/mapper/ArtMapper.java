@@ -24,6 +24,9 @@ public interface ArtMapper {
 	@Select("Select * from artwork where artwork_images_id = ${artwork_images_id}")
 	List<ArtWork> findArtWork();
 	
+	@Select("select creator_id as creatorId from creator where creator_nickname = #{nickname} ")
+	Long findByCreator(String nickname);
+	
 	@Select("select b.artwork_images_storefilename as storefilename "
 			+ " from artwork a, artwork_images b "
 			+ " where a.artwork_id = b.art_work_id and a.creator_id = ${creator}")
@@ -37,12 +40,12 @@ public interface ArtMapper {
 	@Insert("Insert into artwork(artwork_category_name, artwork_content, artwork_register_date, artwork_title) values(#{subject},#{talk},now(),#{title})")
 	void InsertUploadImg(String subject, String talk, String title);
 	
-	@Insert("Insert into artWork(artwork_id, "
-			+ "					 artwork_category_name,"
+	@Insert("Insert into artwork(artwork_id, "
+			+ "					 artwork_category_name, "
 			+ "					 artwork_content, "
 			+ "					 artwork_register_date, "
 			+ "					 artwork_title, "
-			+ "					 creator_id )"
+			+ "					 creator_id ) "
 		  + " values(null, "
 		  + "		#{subject}, "
 		  + "		#{talk}, "

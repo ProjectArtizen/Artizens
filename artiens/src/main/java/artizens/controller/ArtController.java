@@ -37,8 +37,8 @@ public class ArtController {
 	@Autowired ArtService artService;
 	@Autowired ArtWorkService artWorkService;
 	
-	@GetMapping("/blog/my/{creatorname}")
-	public String userBlog( @PathVariable String creatorname, RedirectAttributes redirectAttribute,
+	@GetMapping("/blog/my/{userid}")
+	public String userBlog( @PathVariable Long userid, RedirectAttributes redirectAttribute,
 							@SessionAttribute(name = SessionConst.LOGIN_USER, required = false ) UserProfile user,
 							String createId,
 							Model model) throws Exception {
@@ -52,7 +52,7 @@ public class ArtController {
 			// 해당 아이디값을 가진 사람의 크리에이터 아이디값
 			Long create_id = artWorkService.findByCreator(id);
 			// 현재 페이지의 크리에이터 아이디
-			Long creator = artWorkService.findByCreatorId( creatorname );
+			Long creator = artWorkService.findByCreator(userid);
 			
 			if ( create_id == creator ) {
 				
@@ -72,9 +72,11 @@ public class ArtController {
 				}
 				model.addAttribute("profileimage",profileImage);
 				model.addAttribute("nickname",nickname);
+				model.addAttribute("creator",creator);
 				return "artWork/blog";
 			}else if ( create_id != creator ) {
-				return "redirect:/artizen/artwork/main";
+				model.addAttribute("message","크리에이터 아이디가 다름");
+				return "include/Alert";
 			}
 		}
 		
@@ -98,16 +100,16 @@ public class ArtController {
 		
 		model.addAttribute("userid", id);
 	
-		if ( create_id == 0 ) {
+		if ( create_id == 0 || create_id == null ) {
 			model.addAttribute("creatorNickname",null);
 		}else {
-			List<StoreFileDTO> profile = artService.findByProfile( create_id );
 			String nickname = "";
+			List<StoreFileDTO> profile = artService.findByProfile( create_id );
+			for( StoreFileDTO a : profile ) nickname = a.getNickname();
 			
-			for( StoreFileDTO a : profile ) {
-				nickname = a.getNickname();
-			}
 			model.addAttribute("Nickname",nickname);
+			model.addAttribute("creator",create_id);
+			LOGGER.info("크리에이터아이디값좀 주세요={}",create_id);
 		}
 		
 		return "FileUpload/Upload";
@@ -116,15 +118,40 @@ public class ArtController {
 	@PostMapping("/upload")
 	public String FileSave( @ModelAttribute UploadFileDTO uploadfiledto, Model model ) throws Exception {
 		
-		LOGGER.info("UserProfileId={}",uploadfiledto.getUserProfileId());
-		String result = artService.noneCreatorUpload(uploadfiledto);
 		String message = "";
-		if ( result.equals("success") ) {
-			message = "ok";
-			model.addAttribute("message",message);
-			return "include/Alert";
-		}
 		
+		Long creatorId = artService.findByCreator( uploadfiledto.getNickname() );
+		if ( creatorId == null ) creatorId = 0L;
+		
+		// 새로운 크리에이터 등록 및 작품 등록
+		if ( creatorId == 0 ) {
+			
+			String upload = artService.noneCreatorUpload(uploadfiledto);
+			if ( upload.equals("success") ) {
+				message = "Success insert creator";
+				model.addAttribute("message",message);
+				return "include/Alert";
+			}else { 
+				message = "fail";
+				model.addAttribute("message",message);
+				return "include/Alert";
+			}
+		// 기존 크리에이터 값은 존재하며 작품 등록	
+		}else if( creatorId != 0 ) {
+			
+			String upload = artService.insertImageUpload(uploadfiledto);
+			
+			if (upload.equals("success")) {
+				message = "Success image upload";
+				model.addAttribute("message",message);
+				return "include/Alert";
+			}else {
+				model.addAttribute("message","fail");
+				return "include/Alert";
+			}
+			
+		}
+			
 		return "FileUpload/Upload";
 	}
 }

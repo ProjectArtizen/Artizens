@@ -28,14 +28,13 @@ public class ArtService {
 	public String insertImageUpload( UploadFileDTO uploadfiledto ) {
 		
 		UploadFileDTO upload = new UploadFileDTO();
-		upload.setNickname(uploadfiledto.getNickname());
-		upload.setUserProfileId(uploadfiledto.getUserProfileId());
-		artMapper.insertCreatorNickname( upload );
+		Long creator_id = artMapper.findByCreator(uploadfiledto.getNickname());		
 		
+		LOGGER.info("크리에이터아이디입니다={}",creator_id);
 		upload.setTalk(uploadfiledto.getTalk());
 		upload.setSubject(uploadfiledto.getSubject());
 		upload.setTitle(uploadfiledto.getTitle());
-		upload.setCreatorId(upload.getCreatorId());
+		upload.setCreatorId(creator_id);
 		artMapper.insertArtWork( upload );
 		
 		upload.setFile( uploadfiledto.getFile() );
@@ -77,6 +76,11 @@ public class ArtService {
 	public List<StoreFileDTO> findByProfile( Long creator ) {
 		List<StoreFileDTO> store = artMapper.findByCreatorImage( creator );
 		return store;
+	}
+	
+	public Long findByCreator(String nickname) {
+		Long creatorId = artMapper.findByCreator(nickname);
+		return creatorId;
 	}
 	
 }
