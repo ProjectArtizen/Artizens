@@ -21,7 +21,7 @@
 	#logo {filter: brightness(0%)}
 </style>
 <script>
-<!-- ajax를 통한 전송완료 확인하는 함수 -->
+/* <!-- ajax를 통한 전송완료 확인하는 함수 -->
 $( function() {
   $("#submit").click(function(){
 	  
@@ -48,15 +48,15 @@ $( function() {
 	  });
   });
   
-});
+}); */
 </script>
 <body>
 <!-- Document Wrapper
   ============================================= -->
 	<div id="wrapper" class="clearfix">
 	
-	<form name="frm" id="frm" action="/artizen/upload" method="POST" enctype="multipart/form-data">
-		<input type="hidden" value="${userid }" name="userProfileId">
+	<form name="frm" id="frm" action="/artizen/collaboration/planning" method="POST" enctype="multipart/form-data">
+		<%-- <input type="hidden" value="${userid }" name="userProfileId"> --%>
 		<table class="table text-center caption-top container-sm">
 			<caption class="text-center fs-3 fw-bold" ><img id="logo" src="/images/logo_new/logo_D.png" alt="Artizen Logo"></caption>
 			<colgroup>
@@ -69,7 +69,7 @@ $( function() {
 			</tr>
 			<tr>
 				<th>기간<small>*</small></th>
-				<td><input type="text" name="deadlineDate" id="deadlineDate" class="form-control text-start component-datepicker default" placeholder="YYYY-MM-DD"></td>
+				<td><input type="text" name="deadLineDate" id="deadLineDate" class="form-control text-start component-datepicker default" placeholder="YYYY-MM-DD"></td>
 			</tr>
 			<tr>	
 				<th>파일첨부<small>*</small></th>
