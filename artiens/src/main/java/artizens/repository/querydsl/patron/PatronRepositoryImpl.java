@@ -57,7 +57,17 @@ public class PatronRepositoryImpl implements PatronRepositoryQueryDsl{
 	}
 	
 	@Override
-	public List<PatronCreatorRewardDto> findPersonalPatron(Long patronId) {
+	public List<PatronImagesDto> findPatronImagesInPatron(Long patronId) {
+		return queryFactory.select(Projections.constructor(PatronImagesDto.class, 
+				patronImages.patron.id,
+				patronImages.uploadFile.storeFileName))
+		.from(patronImages)
+		.where(patronImages.patron.id.eq(patronId))
+		.fetch();
+	}
+	
+	@Override
+	public PatronCreatorRewardDto findPersonalPatron(Long patronId) {
 		return queryFactory.select(Projections.constructor(PatronCreatorRewardDto.class, 
 				patron.id,
 				patron.title,
@@ -66,7 +76,7 @@ public class PatronRepositoryImpl implements PatronRepositoryQueryDsl{
 				.from(patron)
 				.where(patron.id.eq(patronId))
 				.leftJoin(patron.creator, creator)
-				.fetch();
+				.fetchOne();
 	}
 	
 	@Override

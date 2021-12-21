@@ -98,7 +98,12 @@ public class PatronController {
     		@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user,
     		@PathVariable("patronId") Long patronId,
     		Model model) {
-    	List<PatronCreatorRewardDto> result = patronService.personalPatronView(patronId);
+    	PatronCreatorRewardDto result = patronService.personalPatronView(patronId);
+    	if (result == null) {
+    		model.addAttribute("alertActive", "noExistPatron");
+    		return "thymeleaf/patron/patronAlert";
+    	}
+    	LOGGER.info("msg={}",result.toString());
     	model.addAttribute("result", result);
     	return "thymeleaf/patron/patronForm";
     }

@@ -14,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import artizens.domain.Creator;
 import artizens.domain.UserProfile;
 import artizens.repository.querydsl.patron.PatronCreatorDto;
+import artizens.repository.querydsl.patron.PatronCreatorRewardDto;
 import artizens.repository.querydsl.patron.PatronImagesDto;
 
 @Transactional
@@ -32,7 +33,7 @@ class PatronServiceTest {
 		return Creator.createCreator("creatorNamd", "otherUri", userProfile);
 	}
 	
-	@Test
+//	@Test
 	void patronRegister권한확인() throws Exception {
 		
 		UserProfile userProfile = createUserTest();
@@ -45,8 +46,8 @@ class PatronServiceTest {
 		Assertions.assertThat(accept).isEqualTo("accept");
 	}
 	
-	@Test 
-	void patron뷰_확인() {
+//	@Test 
+	void patron전체_뷰_확인() {
 		PageRequest pageRequest = PageRequest.of(0, 5);
 		Page<PatronCreatorDto> result = patronService.totalPatronView(pageRequest);
 		for (PatronCreatorDto patronCreatorDto : result) {
@@ -56,5 +57,14 @@ class PatronServiceTest {
 			}
 		}
 	}
+	
+	@Test
+	void patron_개인_뷰_확인() {
+		PatronCreatorRewardDto result = patronService.personalPatronView(100L);
+		Assertions.assertThat(result).isEqualTo(null);
+	}
+	
+	
+	
 
 }

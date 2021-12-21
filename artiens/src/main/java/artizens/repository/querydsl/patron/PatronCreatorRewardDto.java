@@ -46,27 +46,22 @@ public class PatronCreatorRewardDto {
 		return rewards;
 	}
 
-	public void setPatronId(Long patronId) {
-		this.patronId = patronId;
-	}
-
-	public void setPatronTitle(String patronTitle) {
-		this.patronTitle = patronTitle;
-	}
-
-	public void setPatronContent(String patronContent) {
-		this.patronContent = patronContent;
-	}
-
 	public void setPatronImages(List<PatronImagesDto> patronImages) {
-		this.patronImages = patronImages.stream().map(p -> p.patronUploadFileName).collect(Collectors.toList());;
+		this.patronImages = patronImages.stream().map(p -> p.getPatronUploadFileName()).collect(Collectors.toList());;
 	}
-
-	public void setCreatorNickName(String creatorNickName) {
-		this.creatorNickName = creatorNickName;
-	}
-
+	
 	public void setRewards(List<RewardDto> rewards) {
 		this.rewards = rewards;
 	}
+
+	@Override
+	public String toString() {
+		return "PatronCreatorRewardDto [patronId=" + patronId + ", patronTitle=" + patronTitle + ", patronContent="
+				+ patronContent + ", patronImages=" + patronImages + ", creatorNickName=" + creatorNickName
+				+ ", rewards=" + rewards + "]";
+	}
+
+	
+	
+	
 }	

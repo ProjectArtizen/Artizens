@@ -32,7 +32,7 @@ public class PatronCreatorDto {
 	
 	// PatronImagesDto의 patronUploadFileName만 추출
 	public void setPatronStoredFiles(List<PatronImagesDto> patronStoredFiles) {
-		this.patronStoredFiles = patronStoredFiles.stream().map(file -> file.patronUploadFileName).collect(Collectors.toList());
+		this.patronStoredFiles = patronStoredFiles.stream().map(file -> file.getPatronUploadFileName()).collect(Collectors.toList());
 	}
 
 

@@ -34,6 +34,10 @@
 	location.href = "/artizen/patron";
 	[/]
 	
+	[# th:if="${alertActive} == noExistPatron"]
+	alert('유효하지 않은 요청입니다.');
+	location.href = "/artizen/patron";
+	[/]
 </script>
 </head>
 <body>

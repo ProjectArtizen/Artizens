@@ -138,12 +138,13 @@ public class PatronService {
 		return new PageImpl<PatronCreatorDto>(patronResult, pageable, patronRepository.count());
 	}
 	
-	public List<PatronCreatorRewardDto> personalPatronView(Long patronId){
-		List<PatronCreatorRewardDto> patronResult = patronRepository.findPersonalPatron(patronId);
-		List<Long> patronIds = patronResult.stream().map(result -> result.getPatronId()).collect(Collectors.toList());
-		List<PatronImagesDto> patronImages = patronRepository.findAllPatronImagesInPatron(patronIds);
-		Map<Long, List<PatronImagesDto>> patronImagesMap = patronImages.stream().collect(Collectors.groupingBy(PatronImagesDto::getPatronId));
-		patronResult.forEach(p -> p.setPatronImages(patronImagesMap.get(p.getPatronId())));
+	public PatronCreatorRewardDto personalPatronView(Long patronId){
+		PatronCreatorRewardDto patronResult = patronRepository.findPersonalPatron(patronId);
+		if (patronResult == null) {
+			return null;
+		}
+		List<PatronImagesDto> patronImages = patronRepository.findPatronImagesInPatron(patronResult.getPatronId());
+		patronResult.setPatronImages(patronImages);
 		
 		List<RewardDto> rewardResult = patronRepository.findRewardByPatron(patronId);
 		List<Long> rewardIds = rewardResult.stream().map(result -> result.getRewardId()).collect(Collectors.toList());
@@ -151,7 +152,7 @@ public class PatronService {
 		Map<Long, List<RewardImagesDto>> rewardImagesMap = rewardImages.stream().collect(Collectors.groupingBy(RewardImagesDto::getRewardId));
 		rewardResult.forEach(r -> r.setRewardImages(rewardImagesMap.get(r.getRewardId())));
 		
-		patronResult.forEach(p -> p.setRewards(rewardResult));
+		patronResult.setRewards(rewardResult);
 		
 		return patronResult;
 	}
