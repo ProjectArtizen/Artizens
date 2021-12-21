@@ -9,7 +9,7 @@
           <!-- Logo
           ============================================= -->
           <div id="logo">
-            <a href="art" class="standard-logo" data-dark-logo="/images/logo_new/logo_D.png" style="height: 50px;">
+            <a href="/artizen/artwork/main" class="standard-logo" data-dark-logo="/images/logo_new/logo_D.png" style="height: 50px;">
               <img src="/images/logo_new/logo_D.png" alt="Artizen Logo">
             </a>
           </div><!-- #logo end -->
@@ -100,7 +100,7 @@
                 </a>
               </li>
               <li class="menu-item">
-                <a class="menu-link" style="font-size: larger;" href="work.jsp">
+                <a class="menu-link" style="font-size: larger;" href="/artizen/patron/reward">
                   <div>후원하기</div>
                 </a>
                 <ul class="sub-menu-container bg-light">

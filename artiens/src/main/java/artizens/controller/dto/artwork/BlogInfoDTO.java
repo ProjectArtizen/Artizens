@@ -24,7 +24,7 @@ public class BlogInfoDTO {
 	/**
 	 *  Image_storefilename
 	 */
-	private String image_url;
+	private String images;
 	
 	/**
 	 * ArtWork register_day
@@ -74,11 +74,17 @@ public class BlogInfoDTO {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	public String getImage_url() {
-		return image_url;
+	public String getImages() {
+		return images;
 	}
-	public void setImage_url(String image_url) {
-		this.image_url = image_url;
+	public void setImages(String images) {
+		this.images = images;
+	}
+	public Long getImageId() {
+		return imageId;
+	}
+	public void setImageId(Long imageId) {
+		this.imageId = imageId;
 	}
 	public String getDate() {
 		return date;

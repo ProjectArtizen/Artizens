@@ -44,7 +44,7 @@ public interface ArtMapper {
 			+ "from creator where creator_id = ${creaotr}")
 	List<StoreFileDTO> findByCreatorImage(Long creator ); 
 	
-	@Select("select image.artwork_images_storefilename as image_url, "
+	@Select("select image.artwork_images_storefilename as images, "
 			+ "art.artwork_title as title, "
 			+ "image.artwork_images_id as imageId "
 			+ "from artwork_images as image left join artwork as art "

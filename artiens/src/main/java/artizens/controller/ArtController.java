@@ -85,7 +85,15 @@ public class ArtController {
 	}
 	
 	@GetMapping("/blog/{creatorid}")
-	public String otherBlog(@PathVariable Long creatorid,Model model ) throws Exception {
+	public String otherBlog(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user,
+							@PathVariable Long creatorid,Model model ) throws Exception {
+		
+		if ( user == null ) {
+			model.addAttribute("userid",0);
+		}else {
+			Long id = artWorkService.findByUserId(user);
+			model.addAttribute("userid",id);
+		}
 		
 		String nickname = artService.findByCreatorName(creatorid);
 		String profileImage = artService.findByCreatorImage(creatorid);
@@ -115,7 +123,6 @@ public class ArtController {
 			
 			model.addAttribute("Nickname",nickname);
 			model.addAttribute("creator",create_id);
-			LOGGER.info("크리에이터아이디값좀 주세요={}",create_id);
 		}
 		
 		return "FileUpload/Upload";
@@ -125,13 +132,10 @@ public class ArtController {
 	public String FileSave( @ModelAttribute UploadFileDTO uploadfiledto, Model model ) throws Exception {
 		
 		String message = "";
-		
 		Long creatorId = artService.findByCreator( uploadfiledto.getNickname() );
 		if ( creatorId == null ) creatorId = 0L;
-		
 		// 새로운 크리에이터 등록 및 작품 등록
 		if ( creatorId == 0 ) {
-			
 			String upload = artService.noneCreatorUpload(uploadfiledto);
 			if ( upload.equals("success") ) {
 				message = "Success insert creator";
@@ -144,7 +148,6 @@ public class ArtController {
 			}
 		// 기존 크리에이터 값은 존재하며 작품 등록	
 		}else if( creatorId != 0 ) {
-			
 			String upload = artService.insertImageUpload(uploadfiledto);
 			
 			if (upload.equals("success")) {
@@ -155,9 +158,7 @@ public class ArtController {
 				model.addAttribute("message","fail");
 				return "include/Alert";
 			}
-			
 		}
-			
 		return "FileUpload/Upload";
 	}
 }

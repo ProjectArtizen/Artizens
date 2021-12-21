@@ -139,12 +139,12 @@
                 </a>
               </li>
               <li class="menu-item">
-                <a class="menu-link" style="font-size: larger;" href="work.jsp">
+                <a class="menu-link" style="font-size: larger;" href="/artizen/patron/reward">
                   <div>후원하기</div>
                 </a>
                 <ul class="sub-menu-container bg-light">
                   <li class="menu-item">
-                    <a class="menu-link" href="#">
+                    <a class="menu-link" href="/artizen/patron/reward">
                       <div>후원이란</div>
                     </a>
                   </li>

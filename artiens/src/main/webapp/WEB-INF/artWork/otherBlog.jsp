@@ -43,7 +43,14 @@
 ============================================= -->
 		<header id="header"
 			class="full-header transparent-header semi-transparent dark">
-			<jsp:include page="../include/header.jsp"></jsp:include>
+			<c:choose>
+				<c:when test="${userid == 0 }">
+					<c:import url="../include/noneLoginHeader.jsp"/>
+				</c:when>
+				<c:when test="${userid ne 0 }">
+					<c:import url="../include/header.jsp"/>
+				</c:when>
+			</c:choose>
 		</header>
 
 		<!-- Page Title
@@ -116,8 +123,8 @@
 												<div class="posts-sm row col-mb-30">										
 													<div class="card-columns" data-lightbox="gallery">
 														<c:forEach var="imageURL" items="${creatorinfo}">
-														<a href="${imageURL.image_url }" data-lightbox="gallery-item">
-															<img class="img-fluid mb-4 h-op-07 op-ts cursor-hover" src="${imageURL.image_url }" alt="Image"/>
+														<a href="${imageURL.images }" data-lightbox="gallery-item">
+															<img class="img-fluid mb-4 h-op-07 op-ts cursor-hover" src="${imageURL.images }" alt="Image"/>
 														</a>
 														</c:forEach>
 													</div>

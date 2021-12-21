@@ -64,7 +64,7 @@ public class ArtWorkController {
 		if (user == null) { // 비회원일 경우
 			List<ArtWorkMainDto> result = artWorkService.selectAll();
 			model.addAttribute("result", result);
-			return "artWork/artWorkMain";
+			return "artWork/main";
 		}else if( user != null ) { // 로그인 상태일 경우,
 			// 현재 로그인 된 유저의 유저 아이디값
 			Long id = artWorkService.findByUserId(user);
@@ -95,7 +95,7 @@ public class ArtWorkController {
 				model.addAttribute("result", result);
 			}
 		}
-		return "artWork/artWorkMain";
+		return "artWork/main";
 	}
 
 	// 수묵화 상세 페이지
