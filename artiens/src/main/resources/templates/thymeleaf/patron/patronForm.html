@@ -97,7 +97,7 @@
 
 										<div class="tab-content clearfix" id="tab-feeds">
 
-											<p th:text="${result.patronContent}"></p>
+											<p id="patronContents"></p>
 
 											<div
 												class="masonry-thumbs grid-container grid-1 grid-md-2 grid-lg-3 block-gallery-9 masonry-gap-lg">
@@ -133,6 +133,9 @@
 		jQuery("#tabs-profile").on("tabsactivate", function(event, ui) {
 			jQuery('.flexslider .slide').resize();
 		});
+		
+		var content = document.querySelector('#patronContents');
+		content.innerHTML += [[${result.patronContent}]];
 	</script>
 </body>
 </html>
