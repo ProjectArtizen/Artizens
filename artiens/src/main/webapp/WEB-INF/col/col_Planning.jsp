@@ -9,7 +9,6 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
   <link rel="stylesheet" href="/css/components/datepicker.css"type="text/css" />
@@ -21,6 +20,36 @@
 	}
 	#logo {filter: brightness(0%)}
 </style>
+<script>
+<!-- ajax를 통한 전송완료 확인하는 함수 -->
+$( function() {
+  $("#submit").click(function(){
+	  
+	  var formdata = $("#frm").serialize();
+	  $.ajax({
+		  type : "POST",
+		  url  : "colPlanningSave",
+		  data : formdata,
+		  
+		  //text형태로 전달받기
+		  datatype : "text",
+		  success  : function(data) {  // 성공시 OK 전달하기
+			  if( data == "ok") {
+				  alert("저장완료");
+				  location="colMain";
+			  } else {
+				  alert("저장실패");
+				  console.log(data);
+			  }
+		  },
+		  error	   : function() {
+			  alert("오류발생");
+		  }
+	  });
+  });
+  
+});
+</script>
 <body>
 <!-- Document Wrapper
   ============================================= -->
@@ -48,7 +77,7 @@
 			</tr>
 			<tr>
 				<th>기획내용<small>*</small></th>
-				<td><textarea name="talk" id="talk" class="form-control" style="height:200px;" placeholder="최대 10000자까지 등록 가능합니다."></textarea></td>
+				<td><textarea name="content" id="content" class="form-control" style="height:200px;" placeholder="최대 10000자까지 등록 가능합니다."></textarea></td>
 			</tr>
 			<tr class="border-borderless">
 				<td colspan="2">
@@ -68,33 +97,6 @@
 	<script src="/js/components/datepicker.js"></script>
 
 <script>
-	
-	$(document).change(function(){
-		if($('#tag1 option:selected').text() != "태그를 선택하세요") {
-			$('#tag2').css('display','block');
-		} 
-		if($('#tag2 option:selected').text() != "태그를 선택하세요" ) {
-			$('#tag3').css('display','block');
-		}
-		var hideTagBox = document.getElementById('hideTagBox');
-		if( $('#tag3 option:selected').text() != "태그를 선택하세요" ) {
-			hideTagBox.value += $('#tag3 option:selected').val()+" ";
-			var tagArray = hideTagBox.value.split(" ");
-			if ( tagArray.length >= 1 ) {
-				var result = [];
-				$.each(tagArray,function(index,element){
-					if($.inArray(element,result) == -1 ){
-						result.push(element);
-					}
-				})
-			}
-			var tagbox = document.getElementById("tagBox");
-			tagbox.value = result;
-			
-	 	}
-		
-
-	});
 	
 	$(function(){
 		$('#submit').click(function(){
