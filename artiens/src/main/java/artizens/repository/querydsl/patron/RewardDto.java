@@ -8,17 +8,20 @@ public class RewardDto {
 	private String rewardTitle;
 	private String rewardContent;
 	private String rewardSubject;
+	private int rewardPrice;
 	private List<String> rewardImages;
 	
 	public RewardDto(
 			Long rewardId, 
 			String rewardTitle, 
 			String rewardContent,
-			String rewardSubject) {
+			String rewardSubject,
+			int rewardPrice) {
 		this.rewardId = rewardId;
 		this.rewardTitle = rewardTitle;
 		this.rewardContent = rewardContent;
 		this.rewardSubject = rewardSubject;
+		this.rewardPrice = rewardPrice;
 	}
 
 	public Long getRewardId() {
@@ -36,11 +39,15 @@ public class RewardDto {
 	public String getRewardSubject() {
 		return rewardSubject;
 	}
-
+	
 	public List<String> getRewardImages() {
 		return rewardImages;
 	}
-
+	
+	public int getRewardPrice() {
+		return rewardPrice;
+	}
+	
 	public void setRewardImages(List<RewardImagesDto> rewardImages) {
 		this.rewardImages = rewardImages.stream().map(r -> r.getRewardUploadFileName()).collect(Collectors.toList());
 	}

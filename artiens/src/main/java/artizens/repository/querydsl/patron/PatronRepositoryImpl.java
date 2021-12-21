@@ -72,7 +72,9 @@ public class PatronRepositoryImpl implements PatronRepositoryQueryDsl{
 				patron.id,
 				patron.title,
 				patron.content,
-				creator.nickName))
+				creator.nickName,
+				patron.createdDate,
+				creator.uploadFile.storeFileName))
 				.from(patron)
 				.where(patron.id.eq(patronId))
 				.leftJoin(patron.creator, creator)
@@ -85,7 +87,8 @@ public class PatronRepositoryImpl implements PatronRepositoryQueryDsl{
 				reward.id,
 				reward.title,
 				reward.content,
-				reward.subject))
+				reward.subject,
+				reward.price))
 				.from(reward)
 				.where(reward.patron.id.eq(patronId))
 				.fetch();

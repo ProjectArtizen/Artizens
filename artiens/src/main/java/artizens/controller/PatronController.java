@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
@@ -106,5 +107,19 @@ public class PatronController {
     	LOGGER.info("msg={}",result.toString());
     	model.addAttribute("result", result);
     	return "thymeleaf/patron/patronForm";
+    }
+    
+    @GetMapping("/ok")
+    public String patronOk(
+    		@RequestParam(name="patron") String condition,
+    		@RequestParam(name="id") String patronId,
+    		Model model) {
+    	if(condition.equals("ok")) {
+    		model.addAttribute("alertActive", "patronOK");
+    		model.addAttribute("patronId", patronId);
+        	return "thymeleaf/patron/patronAlert";
+    	}
+    	model.addAttribute("alertActive", "noExistPatron");
+    	return "thymeleaf/patron/patronAlert";
     }
 }
