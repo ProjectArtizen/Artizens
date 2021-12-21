@@ -91,7 +91,7 @@ $( function() {
 					<div style="height: 50px;">
 						<h3 style="display: inline-block;">진행중인
 							콜라보레이션</h3>
-						<a href="#block-modal-request" data-lightbox="inline" data-target="#block-modal-request">
+						<a href="colPlanning">
 							<button
 								style="float: right; border-color: #00d084; border-radius: 25px; width: 190px; Height: 50px; color: #00d084; background-color: #ffffff">콜라보레이션
 								기획</button>
