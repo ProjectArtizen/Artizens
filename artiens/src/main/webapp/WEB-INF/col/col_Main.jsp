@@ -17,12 +17,6 @@
 <link rel="stylesheet" href="/css/font-icons.css" type="text/css" />
 <link rel="stylesheet" href="/css/animate.css" type="text/css" />
 <link rel="stylesheet" href="/css/magnific-popup.css" type="text/css" />
-<link rel="stylesheet" href="/css/components/datepicker.css"
-	type="text/css" />
-<link rel="stylesheet" href="/css/components/timepicker.css"
-	type="text/css" />
-<link rel="stylesheet" href="/css/components/daterangepicker.css"
-	type="text/css" />
 <link rel="stylesheet" href="/css/custom.css" type="text/css" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
