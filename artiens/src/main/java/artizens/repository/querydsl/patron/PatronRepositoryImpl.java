@@ -87,7 +87,8 @@ public class PatronRepositoryImpl implements PatronRepositoryQueryDsl{
 				reward.id,
 				reward.title,
 				reward.content,
-				reward.subject))
+				reward.subject,
+				reward.price))
 				.from(reward)
 				.where(reward.patron.id.eq(patronId))
 				.fetch();
