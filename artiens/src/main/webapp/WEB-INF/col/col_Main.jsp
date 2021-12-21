@@ -19,10 +19,6 @@
 <link rel="stylesheet" href="/css/magnific-popup.css" type="text/css" />
 <link rel="stylesheet" href="/css/components/datepicker.css"
 	type="text/css" />
-<link rel="stylesheet" href="/css/components/timepicker.css"
-	type="text/css" />
-<link rel="stylesheet" href="/css/components/daterangepicker.css"
-	type="text/css" />
 <link rel="stylesheet" href="/css/custom.css" type="text/css" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -35,36 +31,7 @@
 	display: none !important;
 }
 </style>
-<script>
-<!-- ajax를 통한 전송완료 확인하는 함수 -->
-$( function() {
-  $("#btn_save").click(function(){
-	  
-	  var formdata = $("#frm").serialize();
-	  $.ajax({
-		  type : "POST",
-		  url  : "colPlanningSave",
-		  data : formdata,
-		  
-		  //text형태로 전달받기
-		  datatype : "text",
-		  success  : function(data) {  // 성공시 OK 전달하기
-			  if( data == "ok") {
-				  alert("저장완료");
-				  location="anboardList.do";
-			  } else {
-				  alert("저장실패");
-				  console.log(data);
-			  }
-		  },
-		  error	   : function() {
-			  alert("오류발생");
-		  }
-	  });
-  });
-  
-});
-</script>
+
 </head>
 
 <body class="stretched">
@@ -89,7 +56,7 @@ $( function() {
 					<div style="height: 50px;">
 						<h3 style="display: inline-block;">진행중인
 							콜라보레이션</h3>
-						<a href="#block-modal-request" data-lightbox="inline" data-target="#block-modal-request">
+						<a href="colPlanning" >
 							<button
 								style="float: right; border-color: #00d084; border-radius: 25px; width: 190px; Height: 50px; color: #00d084; background-color: #ffffff">콜라보레이션
 								기획</button>
