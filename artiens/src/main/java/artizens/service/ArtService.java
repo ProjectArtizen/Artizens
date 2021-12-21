@@ -23,6 +23,7 @@ public class ArtService {
 	@Autowired ArtMapper artMapper;
 	@Autowired ArtWorkImagesMapper artWorkImagesMapper;
 	@Autowired FileUploadService fileUploadService;
+	@Autowired ArtService artService;
 	
 	public String insertImageUpload( UploadFileDTO uploadfiledto ) {
 		
@@ -47,6 +48,7 @@ public class ArtService {
 	public String noneCreatorUpload( UploadFileDTO uploadfiledto ) {
 		
 		UploadFileDTO upload = new UploadFileDTO();
+		
 		upload.setNickname(uploadfiledto.getNickname());
 		upload.setUserProfileId(uploadfiledto.getUserProfileId());
 		artMapper.insertCreatorNickname( upload );
@@ -59,6 +61,7 @@ public class ArtService {
 		
 		upload.setFile( uploadfiledto.getFile() );
 		UploadFile uploadFile = fileUploadService.uploadImage( upload.getFile() );
+		LOGGER.info("업로드이미지파일={}",uploadFile.getStoreFileName());
 		artWorkImagesMapper.insertArtWork( uploadFile.getStoreFileName(), uploadFile.getUploadFileName(), upload.getArtworkId());
 		
 		return "success";

@@ -37,8 +37,8 @@ public class ArtController {
 	@Autowired ArtService artService;
 	@Autowired ArtWorkService artWorkService;
 	
-	@GetMapping("/blog/my/{blogURL}")
-	public String userBlog( @PathVariable Long blogURL, RedirectAttributes redirectAttribute,
+	@GetMapping("/blog/my/{creatorname}")
+	public String userBlog( @PathVariable String creatorname, RedirectAttributes redirectAttribute,
 							@SessionAttribute(name = SessionConst.LOGIN_USER, required = false ) UserProfile user,
 							String createId,
 							Model model) throws Exception {
@@ -50,13 +50,14 @@ public class ArtController {
 			// 로그인 유저의 아이디값,
 			Long id = artWorkService.findByUserId(user);
 			// 해당 아이디값을 가진 사람의 크리에이터 아이디값
-			Long create_id = artWorkService.findByCreatorId(id);
+			Long create_id = artWorkService.findByCreator(id);
 			// 현재 페이지의 크리에이터 아이디
-			Long creator = artWorkService.findByCreatorId(blogURL);
+			Long creator = artWorkService.findByCreatorId( creatorname );
 			
 			if ( create_id == creator ) {
 				
 				List<StoreFileDTO> store = artService.findByAll( creator );
+				LOGGER.info("스토어이미지={}",store);
 				model.addAttribute("store",store);
 				
 				List<StoreFileDTO> profile = artService.findByProfile( creator );
@@ -65,6 +66,9 @@ public class ArtController {
 				for( StoreFileDTO a : profile ) {
 					nickname = a.getNickname();
 					profileImage = a.getProfileImage();
+				}
+				if ( profileImage == null || profileImage.equals("") ) {
+					profileImage = "https://sunminki.s3.ap-northeast-2.amazonaws.com/b07b91a8-3a31-4ceb-a505-06a68d3ecf47.png";
 				}
 				model.addAttribute("profileimage",profileImage);
 				model.addAttribute("nickname",nickname);
@@ -80,8 +84,7 @@ public class ArtController {
 	@GetMapping("/blog/{id}")
 	public String otherBlog(@PathVariable Long id ) throws Exception {
 		
-		Long Creator = artWorkService.findByCreatorId(id);
-		
+		Long Creator = artWorkService.findByCreator(id);
 		
 		return "/artWork/blog";
 	}
@@ -90,13 +93,22 @@ public class ArtController {
 	public String FileUpload(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false ) UserProfile user,
 							 Model model) {
 		
-			model.addAttribute("userid",user.getId());
+		Long id = artWorkService.findByUserId(user);
+		Long create_id = artWorkService.findByCreator(id);
 		
-			if ( user.getCreator() == null ) {
-				model.addAttribute("Creator",null);
-			}else {
-				model.addAttribute("Creator",user.getCreator().getNickName());
+		model.addAttribute("userid", id);
+	
+		if ( create_id == 0 ) {
+			model.addAttribute("creatorNickname",null);
+		}else {
+			List<StoreFileDTO> profile = artService.findByProfile( create_id );
+			String nickname = "";
+			
+			for( StoreFileDTO a : profile ) {
+				nickname = a.getNickname();
 			}
+			model.addAttribute("Nickname",nickname);
+		}
 		
 		return "FileUpload/Upload";
 	}
@@ -104,10 +116,10 @@ public class ArtController {
 	@PostMapping("/upload")
 	public String FileSave( @ModelAttribute UploadFileDTO uploadfiledto, Model model ) throws Exception {
 		
+		LOGGER.info("UserProfileId={}",uploadfiledto.getUserProfileId());
 		String result = artService.noneCreatorUpload(uploadfiledto);
-		String message = "ok";
-		
-		if ( result.equals("success") ) {	
+		String message = "";
+		if ( result.equals("success") ) {
 			message = "ok";
 			model.addAttribute("message",message);
 			return "include/Alert";

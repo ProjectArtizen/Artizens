@@ -101,7 +101,7 @@
 			</c:choose>
 		</header>
 		<!-- #header end -->
-
+		
 		<!-- 상세내용
 		============================================= -->
 		<section id="content">
@@ -165,7 +165,7 @@
 				============================================= -->
 					<div id="posts" class="post-grid grid-container row gutter-40 mx-3">
 						<c:forEach var="content" items="${result }">
-						
+					
 						<div class="entry col-lg-3 col-md-4 col-sm-6 col-12">
 							<div class="grid-inner">
 								<div class="entry-image">

@@ -8,7 +8,6 @@ import org.apache.ibatis.annotations.Select;
 
 import artizens.controller.dto.artwork.CreatorDTO;
 import artizens.domain.ArtWork;
-import artizens.domain.ArtWorkImages;
 import artizens.domain.Creator;
 import artizens.domain.UserProfile;
 import artizens.mapper.dto.AbstractDto;
@@ -29,7 +28,7 @@ public interface ArtWorkMapper {
 			+ "     creator_other_uri as otheruri, "
 			+ "		creator_profile_storefilename as storefile, "
 			+ "		user_profile_id as userid "
-			+ "from creator where creator_id = ${creatorId} ")
+			+ "		from creator where creator_id = ${creatorId} ")
 	List<CreatorDTO> findByCreator( Long creatorId );
 	
 	@Select("Select * from artwork")
@@ -41,8 +40,11 @@ public interface ArtWorkMapper {
 	@Select("Select user_profile_id as id from user_profile where user_profile_email=#{email}")
 	List<UserProfile> findByUserId(UserProfile loginUser);
 	
-	@Select("Select creator_id as id from creator where user_profile_id = ${userId}")
-	List<Creator> findByCreatorId(Long userId);
+	@Select("Select creator_id as id from creator where creator_nickname = #{nickname}")
+	List<Creator> findByCreatorName(String nickname);
+	
+	@Select("Select creator_id as id from creator where user_profile_id = ${userid}")
+	List<Creator> findByCreatorId(Long userid);
 	
 	@Insert("Insert into artwork(artwork_category_name, artwork_content, artwork_register_date, artwork_title) values(#{subject},#{talk},now(),#{title})")
 	void InsertUploadImg(String subject, String talk, String title);

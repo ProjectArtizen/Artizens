@@ -43,11 +43,11 @@
                	 			</li>
                	 			<li class="menu-item">
                	 				<c:choose>
-               	 					<c:when test="${creator == null || creator == 0 }">
+               	 					<c:when test="${creator eq null }">
                	 						<a class="menu-link" href="javascript:fn_blog()">내 블로그</a>
                	 					</c:when>
-               	 					<c:when test="${creator != 0 }">
-               	 						<a class="menu-link" href="/artizen/blog/my/${creator }">내 블로그</a>
+               	 					<c:when test="${creator ne null }">
+               	 						<a class="menu-link" href="/artizen/blog/my/${nickname }">내 블로그</a>
                	 					</c:when>
                	 				</c:choose>
                	 			</li>
