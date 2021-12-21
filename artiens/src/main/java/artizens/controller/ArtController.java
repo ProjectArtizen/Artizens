@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import artizens.controller.dto.artwork.BlogInfoDTO;
 import artizens.controller.dto.artwork.StoreFileDTO;
 import artizens.controller.dto.artwork.UploadFileDTO;
 import artizens.domain.UploadFile;
@@ -83,12 +84,17 @@ public class ArtController {
 		return "artWork/blog";
 	}
 	
-	@GetMapping("/blog/{id}")
-	public String otherBlog(@PathVariable Long id ) throws Exception {
+	@GetMapping("/blog/{creatorid}")
+	public String otherBlog(@PathVariable Long creatorid,Model model ) throws Exception {
 		
-		Long Creator = artWorkService.findByCreator(id);
+		String nickname = artService.findByCreatorName(creatorid);
+		String profileImage = artService.findByCreatorImage(creatorid);
+		model.addAttribute("nickname",nickname);
+		model.addAttribute("profileImage",profileImage);
 		
-		return "/artWork/blog";
+		List<BlogInfoDTO> creatorinfo = artService.findByCreatorForBlogAll( creatorid );
+		model.addAttribute("creatorinfo",creatorinfo);
+		return "/artWork/otherBlog";
 	}
 	
 	@GetMapping("/upload")

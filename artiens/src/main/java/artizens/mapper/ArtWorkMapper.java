@@ -53,19 +53,14 @@ public interface ArtWorkMapper {
 	void insertArtWork(String title, String content);
 	
 	// 작품 메인 페이지 최신순 출력 쿼리
-	@Select("select " + 
-			"a.artwork_id as id," + 
-			"a.artwork_title as title, " + 
-			"b_img.artwork_images_storefilename as artworkImgName, " + 
-			"c.creator_profile_storefilename as creatorImgName, " + 
-			"c.creator_nickname as creatorNickName, " + 
-			"(select count(*) from artwork_sympathy where artwork_sympathy_id = a.artwork_id) as likeCount, " + 
-			"(select count(*) from artwork_comment where artwork_id = a.artwork_id) as commentCount " + 
-			"from artwork as a " + 
-			"left join artwork_images as b_img " + 
-			"on a.artwork_id = b_img.artwork_images_id " + 
-			"left join creator as c " + 
-			"on a.creator_id = c.creator_id limit 20;")
+	@Select("select creator.creator_id as id, "
+			+ "     artwork_images.artwork_images_storefilename as artworkImgName, "
+			+ "     creator.creator_profile_storefilename as creatorImgName, "
+			+ "     artwork.artwork_title as title "
+			+ "from artwork_images left join artwork "
+			+ "on artwork_images.art_work_id = artwork.artwork_id left "
+			+ "join creator on artwork.creator_id = creator.creator_id "
+			+ "order by artwork_register_date desc")
 	List<ArtWorkMainDto> findArtWorkMainAll();
 	
 	// 수묵화 상세페이지 출력 쿼리

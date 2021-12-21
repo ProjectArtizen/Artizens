@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import artizens.controller.dto.artwork.BlogInfoDTO;
 import artizens.controller.dto.artwork.StoreFileDTO;
 import artizens.controller.dto.artwork.UploadFileDTO;
 import artizens.domain.UploadFile;
@@ -78,9 +79,23 @@ public class ArtService {
 		return store;
 	}
 	
+	public String findByCreatorImage(Long creatorId ) {
+		String profileImage = artMapper.findByCreatorProfileImage(creatorId);
+		return profileImage;
+	}
+	
+	public String findByCreatorName( Long creator ) {
+		String nickname = artMapper.findByCreatorName(creator);
+		return nickname;
+	}
+	
 	public Long findByCreator(String nickname) {
 		Long creatorId = artMapper.findByCreator(nickname);
 		return creatorId;
 	}
 	
+	public List<BlogInfoDTO> findByCreatorForBlogAll(Long creatorid ) {
+		List<BlogInfoDTO> store = artMapper.findByCreatorBlogAll( creatorid );
+		return store;
+	}
 }

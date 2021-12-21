@@ -61,7 +61,6 @@ public class ArtWorkController {
 	public String artworkMain(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user,
 			Model model) {
 		
-		
 		if (user == null) { // 비회원일 경우
 			List<ArtWorkMainDto> result = artWorkService.selectAll();
 			model.addAttribute("result", result);
@@ -96,9 +95,6 @@ public class ArtWorkController {
 				model.addAttribute("result", result);
 			}
 		}
-
-		
-		
 		return "artWork/artWorkMain";
 	}
 

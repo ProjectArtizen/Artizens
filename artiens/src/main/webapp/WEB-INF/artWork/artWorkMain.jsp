@@ -110,12 +110,9 @@
 
 				<div class="container">
 
-					<h2 class="text-center">Category</h2>
-					<div
-						class="block-expand-categories flex-column flex-lg-row d-flex justify-content-center"
-						style="margin-bottom: 50;">
-						<div class="expand-category bg-light"
-							style="background-image: url('/images/artwork/category/8.jpg');"
+					<h2 class="text-center">Category</h2><br>
+					<div class="block-expand-categories flex-column flex-lg-row d-flex justify-content-center" style="height:500px;"/>
+						<div class="expand-category bg-light" style="background-image: url('/images/artwork/category/8.jpg');"
 							onclick="location.href='artWorkInkPainting'">
 							<h4 class="text-light">수묵화</h4>
 						</div>
@@ -155,21 +152,20 @@
 							onclick="location.href='artWorkPop'">
 							<h4 class="text-light">팝아트</h4>
 						</div>
-
 					</div>
 
 					<div class="line" style="margin-bottom: 45px;"></div>
 					<h2 class="text-center">ArtWork</h2>
-
+				</div>
+				<div class="container">
 					<!-- Posts
 				============================================= -->
 					<div id="posts" class="post-grid grid-container row gutter-40 mx-3">
-						<c:forEach var="content" items="${result }">
-					
+						<c:forEach var="content" items="${result }"> 
 						<div class="entry col-lg-3 col-md-4 col-sm-6 col-12">
-							<div class="grid-inner">
+							<div class="grid">
 								<div class="entry-image">
-									<a href="${content.artworkImgName }" data-lightbox="image"><img
+									<a style="cursor:pointer;" onclick="location.href='/artizen/blog/${content.id}'"><img
 										src="${content.artworkImgName }"
 										alt="Standard Post with Image"></a>
 								</div>
