@@ -1,95 +1,80 @@
 package artizens.mapper.dto.collaboration;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class CollaborationMainDto {
 	
-	private Long id;
+//	private Long 
+	private Long collaborationId;
+	private Long collaborationImageId;
 	private String title;
+	private String content;
+	private String deadLineDate;
 	private String registerDate;
-	private String deadlineDate; 
-	private String creatorNickname;
-	private String collaborationImgName;
-	private String creatorImgName;
-	private Integer artworkCount;
-	private Integer commentCount;
-	
-	
+	private String storedFileName;
+	private MultipartFile collaborationImage;
 	
 	public CollaborationMainDto() {
-		
+		super();
 	}
-	
-	
-
-	public Long getId() {
-		return id;
+	public CollaborationMainDto(Long collaborationId, String storedFileName) {
+		this.collaborationId = collaborationId;
+		this.storedFileName = storedFileName;
 	}
-
-	public void setId(Long id) {
-		this.id = id;
+	public Long getCollaborationId() {
+		return collaborationId;
 	}
-
+	public Long getCollaborationImageId() {
+		return collaborationImageId;
+	}
 	public String getTitle() {
 		return title;
 	}
-
-	public void setTitle(String title) {
-		this.title = title;
+	public String getContent() {
+		return content;
 	}
-
+	public String getDeadLineDate() {
+		return deadLineDate;
+	}
 	public String getRegisterDate() {
 		return registerDate;
 	}
-
+	public String getStoredFileName() {
+		return storedFileName;
+	}
+	public MultipartFile getCollaborationImage() {
+		return collaborationImage;
+	}
+	public void setCollaborationId(Long collaborationId) {
+		this.collaborationId = collaborationId;
+	}
+	public void setCollaborationImageId(Long collaborationImageId) {
+		this.collaborationImageId = collaborationImageId;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public void setDeadLineDate(String deadLineDate) {
+		this.deadLineDate = deadLineDate;
+	}
 	public void setRegisterDate(String registerDate) {
 		this.registerDate = registerDate;
 	}
-
-	public String getDeadlineDate() {
-		return deadlineDate;
+	public void setStoredFileName(String storedFileName) {
+		this.storedFileName = storedFileName;
 	}
-
-	public void setDeadlineDate(String deadlineDate) {
-		deadlineDate.split(".");
-		this.deadlineDate = deadlineDate;
+	public void setCollaborationImage(MultipartFile collaborationImage) {
+		this.collaborationImage = collaborationImage;
 	}
-
-	public String getCreatorNickname() {
-		return creatorNickname;
-	}
-
-	public void setCreatorNickname(String creatorNickname) {
-		this.creatorNickname = creatorNickname;
-	}
-
-	public String getCollaborationImgName() {
-		return collaborationImgName;
-	}
-
-	public void setCollaborationImgName(String collaborationImgName) {
-		this.collaborationImgName = collaborationImgName;
-	}
-
-	public String getCreatorImgName() {
-		return creatorImgName;
-	}
-
-	public void setCreatorImgName(String creatorImgName) {
-		this.creatorImgName = creatorImgName;
-	}
-
-	public Integer getArtworkCount() {
-		return artworkCount;
-	}
-
-	public void setArtworkCount(Integer artworkCount) {
-		this.artworkCount = artworkCount;
-	}
-
-	public Integer getCommentCount() {
-		return commentCount;
-	}
-
-	public void setCommentCount(Integer commentCount) {
-		this.commentCount = commentCount;
+	
+	@Override
+	public String toString() {
+		return "CollaborationDto [collaborationId=" + collaborationId + ", collaborationImageId=" + collaborationImageId
+				+ ", title=" + title + ", content=" + content + ", deadLineDate=" + deadLineDate + ", registerDate="
+				+ registerDate + ", storedFileName=" + storedFileName + ", collaborationImage=" + collaborationImage
+				+ "]";
 	}
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,102 +57,17 @@
 					<div style="height: 50px;">
 						<h3 style="display: inline-block;">진행중인
 							콜라보레이션</h3>
-						<a href="colPlanning" >
+						<a href="planning" >
 							<button
 								style="float: right; border-color: #00d084; border-radius: 25px; width: 190px; Height: 50px; color: #00d084; background-color: #ffffff">콜라보레이션
 								기획</button>
 						</a>
 					</div>
-
-					<!-- Modal -->
-					<div class="modal1 mfp-hide container clearfix"
-						id="block-modal-request">
-						<div class="modal-dialog modal-dialog-centered modal-lg">
-							<div class="modal-content bg-white p-4 p-md-5 rounded">
-								<div class="d-flex justify-content-between mb-2">
-									<h3 class="mb-0 text-uppercase ls1">콜라보레이션 기획</h3>
-									<a href="#" onClick="$.magnificPopup.close();return false;"
-										class="text-muted h4 mb-0 h-text-danger"><i
-										class="icon-line-circle-cross"></i></a>
-								</div>
-								<div class="line double-line mt-2 mb-4"></div>
-
-								<div class="form-widget">
-
-									<div class="form-result"></div>
-
-									<form class="mb-0" id="frm" name="frm" method="post">
-										<div class="form-process">
-											<div class="css3-spinner">
-												<div class="css3-spinner-scaler"></div>
-											</div>
-										</div>
-
-										<div class="row">
-											<div class="col-md-6 form-group w-100">
-												<label class="nott ls0 fw-medium"
-													for="template-contactform-name">Title <small>*</small></label>
-												<input type="text" id="title"
-													name="title" value=""
-													class="form-control required" />
-											</div>
-
-											<div class="w-100"></div>
-
-											<div class="col-md-6 form-group">
-												<label class="nott ls0 fw-medium"
-													for="template-contactform-upload">Upload <small
-													class="text-muted">(Maximum file size allowed is
-														2048 KB.)</small></label>
-												<div class="form-file">
-													<input type="file" class="form-control"
-														id="fileName" name="fileName">
-												</div>
-											</div>
-
-											<div class="col-md-6 bottommargin-sm">
-												<label for="" class="nott ls0 fw-medium">기간</label>
-												<input type="text" id="deadlineDate" name="deadlineDate"class="form-control text-start component-datepicker default" placeholder="YYYY/MM/DD">
-											</div>
-
-											<div class="w-100"></div>
-
-											<div class="col-12 form-group">
-												<label class="nott ls0 fw-medium"
-													for="template-contactform-message">Content <small>*</small></label>
-												<textarea style="height: 700px;"
-													class="required form-control"
-													id="content"
-													name="template-contactform-message" rows="5" cols="30"></textarea>
-											</div>
-
-											<div class="col-12 form-group d-none">
-												<input type="text" id="template-contactform-botcheck"
-													name="template-contactform-botcheck" value=""
-													class="form-control" />
-											</div>
-
-											<div class="col-12 d-flex justify-content-end">
-												<button
-													class="button ls0 nott px-5 py-3 rounded-pill bg-primary ms-2"
-													type="submit" id="btn_save"
-													name="template-contactform-submit" >Upload</button>
-											</div>
-										</div>
-
-										<input type="hidden" name="prefix"
-											value="template-contactform-">
-
-									</form>
-								</div>
-
-							</div>
-						</div>
-					</div>
-					<!-- modal -->
 					<hr>
-<%-- 					<c:choose>
+					
+<%-- 				<c:choose>
 					<c:when test=""> --%>
+					<c:forEach var="result" items="${result }">
 					<div class="post-grid row col-mb-30">
 						<!-- 콘텐츠 나열해주는 감싸기-->
 
@@ -173,7 +89,7 @@
 								</div>
 								<div class="p-4">
 									<h3 class="center" style="margin-bottom: 40px;">
-										<a href="colDetail">콜라보레이션 타이틀</a>
+										<a href="colDetail">${result.title }</a>
 									</h3>
 
 									<div class="container clearfix m-2">
@@ -182,7 +98,7 @@
 												<div class="d-flex flex-row align-items-center rounded"
 													style="margin-bottom: 15px;">
 													<div id="countdown" class="countdown flex-fill"
-														data-year="2021" data-month="12" data-day="1"
+														data-year="${result.year }" data-month="${result.month }" data-day="30"
 														data-format="dHMS"></div>
 													<div
 														style="width: 110px; padding: 8px; border: #dfdfdf solid 1px; text-align: center; margin-left: 10px; color: white; background-color: #1bbc9b;">000명
@@ -212,67 +128,9 @@
 							</div>
 						</div>
 						<!-- 콘텐츠 1 끝-->
-
-						<!-- 콘텐츠 2 시작-->
-						<div class="entry col-lg-4 col-md-6">
-							<div class="grid-inner shadow-sm card rounded-5">
-								<div class="entry-image mb-3">
-									<div class="fslider" data-arrows="false"
-										data-lightbox="gallery">
-										<div class="flexslider">
-											<div class="slider-wrap">
-												<div>
-													<img src="/images/collaboration/col/planning2.jpg"
-														 onclick="location='colDetail'">
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="p-4">
-									<h3 class="center" style="margin-bottom: 40px;">
-										<a href="col_detail.html">콜라보레이션 타이틀</a>
-									</h3>
-
-									<div class="container clearfix m-2">
-										<div class="row justify-content-center">
-											<div>
-												<div class="d-flex flex-row align-items-center rounded"
-													style="margin-bottom: 15px;">
-													<div id="countdown" class="countdown flex-fill"
-														data-year="2021" data-month="12" data-day="11"
-														data-format="dHMS"></div>
-													<div
-														style="width: 110px; padding: 8px; border: #dfdfdf solid 1px; text-align: center; margin-left: 10px; color: white; background-color: #1bbc9b;">000명
-														참여</div>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<hr class="my-4">
-									<div class="d-flex align-items-center">
-										<a href="#"><img src="/images/collaboration/author.jpg"
-											alt="Author" class="rounded-circle" width="38" height="38"></a>
-										<div class="entry-meta mt-0">
-											<div class="entry-meta"
-												style="margin-bottom: 10px; padding-left: 10px;">
-												<ul>
-													<li><a href="#"><h6 class="mb-1 h6" style="display: inline;">Author</h6></a></li>
-													<li><i class="icon-calendar3"></i>2021.11.21</li>
-													<li><a href="blog-single.html#comments"><i
-															class="icon-comments"></i> 13</a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- 콘텐츠 2 끝-->
-
 					</div>
-<%-- 					</c:when> --%>
+					</c:forEach>
+<%-- 				</c:when> --%>
 					
 
 				</div>

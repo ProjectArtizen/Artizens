@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import artizens.domain.UserProfile;
-import artizens.mapper.dto.collaboration.CollaborationDto;
-import artizens.service.CollaborationService;
+import artizens.mapper.dto.collaboration.CollaborationMainDto;
+import artizens.service.CollaborationService1;
 import artizens.web.session.SessionConst;
 
 @Controller
@@ -23,7 +23,7 @@ import artizens.web.session.SessionConst;
 public class CollaborationController1 {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CollaborationController1.class);
 
-	@Autowired CollaborationService collaborationService;
+	@Autowired CollaborationService1 collaborationService1;
 	
 	/**
 	 *  공모전 메인 화면
@@ -32,8 +32,8 @@ public class CollaborationController1 {
 	 */
 	@GetMapping("/main")
 	public String collaborationMain(Model model) {
-//		  List<CollaborationMainDto> result = collaborationservice.selectAll();
-//		  model.addAttribute("result", result); 
+		List<CollaborationMainDto> result = collaborationService1.findAllByCollaboration();
+		model.addAttribute("result", result); 
 		return "col/col_Main";
 	}
 	
@@ -45,12 +45,8 @@ public class CollaborationController1 {
 	 */
 	@GetMapping("/planning")
 	public String insertCollaboration(
-			@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user, Model model) {
-		List<CollaborationDto> result = collaborationService.findAllByCollaboration();
-		model.addAttribute("result", result);
-		for (CollaborationDto collaboration : result) {
-			System.out.println(collaboration.toString());
-		}
+		@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user) {
+		
 		return "col/col_Planning";
 	}
 	
@@ -60,10 +56,10 @@ public class CollaborationController1 {
 	 * @return
 	 */
 	@PostMapping("/planning")
-	public String viewCollaborationResult(@ModelAttribute CollaborationDto collaborationDto) {
-		CollaborationDto dto = collaborationService.insertCollaboration(collaborationDto);
+	public String viewCollaborationResult(@ModelAttribute CollaborationMainDto collaborationDto) {
+		CollaborationMainDto dto = collaborationService1.insertCollaboration(collaborationDto);
 		LOGGER.info("msg2={}", dto.toString());
-		return "col/col_Planning";
+		return "col/col_Main";
 	}
 	
 	/**
