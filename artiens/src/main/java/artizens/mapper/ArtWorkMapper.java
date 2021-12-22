@@ -54,7 +54,8 @@ public interface ArtWorkMapper {
 	
 	// 작품 메인 페이지 최신순 출력 쿼리
 	@Select("select creator.creator_id as id,"
-			+ "		artwork_images.artwork_images_id as imageId, "
+			+ "		artwork_images.artwork_images_id as imageId,"
+			+ "		artwork.artwork_register_date as registerday, "
 			+ "     artwork_images.artwork_images_storefilename as artworkImgName, "
 			+ "     creator.creator_profile_storefilename as creatorImgName, "
 			+ "     artwork.artwork_title as title "

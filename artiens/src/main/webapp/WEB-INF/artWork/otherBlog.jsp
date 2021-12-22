@@ -178,8 +178,15 @@
 
 									<div class="d-flex mt-3">
 										<a href="#">
-											<img class="rounded-circle m-2" style="width: 100px; height: 100px;"
-												 src="${profileImage }" alt="Image">
+											<c:set var="profile" value="${profileImage }"/>
+											<c:choose>
+												<c:when test="${profile eq null}">
+													<img class="rounded-circle m-2" style="width: 100px; height: 100px;" src="https://0.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=60" alt="Image">
+										 		</c:when>
+												<c:when test="${profile ne null}">
+													<img class="rounded-circle m-2" style="width: 100px; height: 100px;" src="${profile }" alt="Image">
+										 		</c:when>
+										 	</c:choose>
 										 </a>
 										<div class="m-3">
 											<div>${nickname }</div> 
