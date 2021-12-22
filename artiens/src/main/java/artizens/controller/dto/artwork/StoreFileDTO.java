@@ -1,14 +1,12 @@
 package artizens.controller.dto.artwork;
 
-public class StoreFileDTO {
+public class StoreFileDTO extends ArtDetailDTO{
 
 	private String storeFileName;
 	private String uploadFileName;
 	private String profileImage;
 	private String content;
 	private String nickname;
-	
-	
 	
 	@Override
 	public String toString() {

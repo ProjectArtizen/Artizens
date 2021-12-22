@@ -4,6 +4,7 @@ package artizens.mapper.dto;
 public class ArtWorkMainDto {
 	 
 	private Long id;
+	private Long imageId;
 	private String title;
 	private String artworkImgName;
 	private String creatorImgName;
@@ -15,6 +16,14 @@ public class ArtWorkMainDto {
 		
 	}
 	
+	public Long getImageId() {
+		return imageId;
+	}
+
+	public void setImageId(Long imageId) {
+		this.imageId = imageId;
+	}
+
 	public Long getId() {
 		return id;
 	}

@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import artizens.controller.dto.artwork.ArtDetailDTO;
 import artizens.controller.dto.artwork.BlogInfoDTO;
 import artizens.controller.dto.artwork.StoreFileDTO;
 import artizens.controller.dto.artwork.UploadFileDTO;
@@ -97,5 +98,21 @@ public class ArtService {
 	public List<BlogInfoDTO> findByCreatorForBlogAll(Long creatorid ) {
 		List<BlogInfoDTO> store = artMapper.findByCreatorBlogAll( creatorid );
 		return store;
+	}
+	
+	public ArtDetailDTO clickImageAction( Long imageId ) {
+		
+		List<ArtDetailDTO> store = artMapper.clickImageAction(imageId);
+		ArtDetailDTO detail = new ArtDetailDTO();
+		for( ArtDetailDTO a : store) {
+			detail.setTitle(a.getTitle());
+			detail.setTalk(a.getTalk());
+			detail.setProfile(a.getProfile());
+			detail.setNickname(a.getNickname());
+			detail.setImages(a.getImages());
+			detail.setDate(a.getDate());
+		}
+		LOGGER.info("detail={}",detail.toString());
+		return detail;
 	}
 }

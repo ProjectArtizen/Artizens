@@ -53,7 +53,8 @@ public interface ArtWorkMapper {
 	void insertArtWork(String title, String content);
 	
 	// 작품 메인 페이지 최신순 출력 쿼리
-	@Select("select creator.creator_id as id, "
+	@Select("select creator.creator_id as id,"
+			+ "		artwork_images.artwork_images_id as imageId, "
 			+ "     artwork_images.artwork_images_storefilename as artworkImgName, "
 			+ "     creator.creator_profile_storefilename as creatorImgName, "
 			+ "     artwork.artwork_title as title "

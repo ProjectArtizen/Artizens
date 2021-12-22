@@ -184,7 +184,7 @@
 														</ul>
 													</div>
 													<div class="entry-title title-sm">
-														<h3><a href="/artizen/blog/${content.id }">${content.title }</a></h3>
+														<h3><a href="/artizen/artwork/detail/${content.imageId }">${content.title }</a></h3>
 													</div>
 													<a href="/artizen/blog/${content.id }">BLOG<i class="icon-line-arrow-right btn-more"></i></a>
 												</div>

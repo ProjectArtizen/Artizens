@@ -105,9 +105,9 @@
 									
 										<ul class="tab-nav clearfix mb-3">
 											<li>
-												<a href="#tabs-3" class="link link-6 bg-light">Artwork</a>
+												<a href="#tabs-3" class="link link-6 bg-light">작품</a>
 											</li>
-											<li><a href="#tabs-4" class="link link-6 bg-light">Story</a></li>
+											<li><a href="#tabs-4" class="link link-6 bg-light">스토리</a></li>
 										</ul>
 										
 										<div class="tab-container" id="slider-tab">
@@ -116,7 +116,7 @@
 												<div class="posts-sm row col-mb-30">										
 													<div class="card-columns" data-lightbox="gallery">
 														<c:forEach var="imageURL" items="${store}">
-														<a href="${imageURL.storeFileName }" data-lightbox="gallery-item">
+														<a href="/artizen/artwork/detail/${imageURL.storeFileName}">
 															<img class="img-fluid mb-4 h-op-07 op-ts cursor-hover" src="${imageURL.storeFileName }" alt="Image"/>
 														</a>
 														</c:forEach>

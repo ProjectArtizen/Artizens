@@ -55,6 +55,25 @@ public class BlogInfoDTO {
 	
 	private Long folling;
 	
+	private String talk;
+	
+	
+	
+	@Override
+	public String toString() {
+		return "BlogInfoDTO [nickname=" + nickname + ", profile=" + profile + ", comment=" + comment + ", images="
+				+ images + ", date=" + date + ", title=" + title + ", artworkId=" + artworkId + ", creatorId="
+				+ creatorId + ", imageId=" + imageId + ", follower=" + follower + ", folling=" + folling + ", talk="
+				+ talk + "]";
+	}
+
+	public String getTalk() {
+		return talk;
+	}
+
+	public void setTalk(String talk) {
+		this.talk = talk;
+	}
 	
 	public String getNickname() {
 		return nickname;
@@ -122,6 +141,5 @@ public class BlogInfoDTO {
 	public void setFolling(Long folling) {
 		this.folling = folling;
 	}
-	
 	
 }

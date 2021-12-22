@@ -123,7 +123,7 @@
 												<div class="posts-sm row col-mb-30">										
 													<div class="card-columns" data-lightbox="gallery">
 														<c:forEach var="imageURL" items="${creatorinfo}">
-														<a href="${imageURL.images }" data-lightbox="gallery-item">
+														<a href="/artizen/artwork/detail/${imageURL.imageId }">
 															<img class="img-fluid mb-4 h-op-07 op-ts cursor-hover" src="${imageURL.images }" alt="Image"/>
 														</a>
 														</c:forEach>

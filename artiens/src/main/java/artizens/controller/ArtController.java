@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import artizens.controller.dto.artwork.ArtDetailDTO;
 import artizens.controller.dto.artwork.BlogInfoDTO;
 import artizens.controller.dto.artwork.StoreFileDTO;
 import artizens.controller.dto.artwork.UploadFileDTO;
@@ -58,7 +59,6 @@ public class ArtController {
 			if ( create_id == creator ) {
 				
 				List<StoreFileDTO> store = artService.findByAll( creator );
-				LOGGER.info("스토어이미지={}",store);
 				model.addAttribute("store",store);
 				
 				List<StoreFileDTO> profile = artService.findByProfile( creator );
@@ -127,6 +127,15 @@ public class ArtController {
 		
 		return "FileUpload/Upload";
 	}
+	
+	
+	@GetMapping("/artwork/detail/{imageId}")
+	public String ArtWorkDatail(@PathVariable Long imageId, Model model) {
+		ArtDetailDTO detail = artService.clickImageAction(imageId);
+		model.addAttribute("artwork",detail);
+		return "artWork/ArtWorkDetail";
+	}
+	
 	
 	@PostMapping("/upload")
 	public String FileSave( @ModelAttribute UploadFileDTO uploadfiledto, Model model ) throws Exception {

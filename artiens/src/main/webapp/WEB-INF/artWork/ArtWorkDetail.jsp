@@ -1,5 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html dir="ltr" lang="en-ko">
 <head>
    <!-- Stylesheets
@@ -9,26 +10,25 @@
 	rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
 	  rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
-<link rel="stylesheet" href="../style.css" type="text/css" />
-<link rel="stylesheet" href="../css/swiper.css" type="text/css" />
-<link rel="stylesheet" href="../css/dark.css" type="text/css" />
-<link rel="stylesheet" href="../css/font-icons.css" type="text/css" />
-<link rel="stylesheet" href="../css/animate.css" type="text/css" />
-<link rel="stylesheet" href="../css/magnific-popup.css" type="text/css" />
+<link rel="stylesheet" href="/css/bootstrap.css" type="text/css" />
+<link rel="stylesheet" href="/style.css" type="text/css" />
+<link rel="stylesheet" href="/css/swiper.css" type="text/css" />
+<link rel="stylesheet" href="/css/dark.css" type="text/css" />
+<link rel="stylesheet" href="/css/font-icons.css" type="text/css" />
+<link rel="stylesheet" href="/css/animate.css" type="text/css" />
+<link rel="stylesheet" href="/css/magnific-popup.css" type="text/css" />
 
-<link rel="stylesheet" href="../css/custom.css" type="text/css" />
+<link rel="stylesheet" href="/css/custom.css" type="text/css" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+<c:set var="artwork" value="${artwork }"/>
 <!-- Page Title -->
-<title>::: ARTIZEN | 작품 상세페이지 :::</title>
-
+<title>::: ${artwork.title }의 상세페이지 :::</title>
 </head>
 <body>
 <!-- HEADER
 ============================================= -->
 <header id="header" class="full-header transparent-header semi-transparent dark">
-    <%@include file="../include/header.jsp" %>
+    <c:import url="../include/header.jsp"/>
 </header>
 
 <section id="content">
@@ -43,13 +43,13 @@
 
                     <!-- Entry Title
                     ============================================= -->
-                    <div>
-                        <p class="center" style="font-size: 30px;">iPhone 목업파일 만들어 봤습니다.</p>
+                    <div><br>
+                        <p class="center" style="font-size: 30px;">${artwork.title }</p>
                         <hr>
                         <div class="entry-meta">
                             <ul>
-                                <li><i class="icon-calendar3"></i> 2021.10.27</li>
-                                <li><a href="#"><i class="icon-user"></i> 사용자이름</a></li>
+                                <li><i class="icon-calendar3"></i> ${artwork.date }</li>
+                                <li><a href="#"><i class="icon-user"> ${artwork.nickname }</i></a></li>
                             </ul>
                         </div>
                     </div><!-- .entry-title end -->
@@ -65,21 +65,15 @@
                                      data-nav="true" data-autoplay="5000" data-animate-in="fadeIn"
                                      data-animate-out="fadeOut" data-speed="800">
 
-                                    <a href="../images/artwork/1.jpg" data-lightbox="gallery-item">
-                                        <img class="img-fluid " src="../images/artwork/1.jpg" alt="Slider">
+                                    <a href="${artwork.images }" data-lightbox="gallery-item">
+                                        <img class="img-fluid " src="${artwork.images }" alt="Slider">
                                     </a>
-                                    <a href="../images/artwork/2.jpg" data-lightbox="gallery-item">
-                                        <img class="img-fluid " src="../images/artwork/2.jpg" alt="Slider">
-                                    </a>
-                                    <a href="../images/artwork/3.jpg" data-lightbox="gallery-item">
-                                        <img class="img-fluid " src="../images/artwork/3.jpg" alt="Slider">
-                                    </a>
-                                    <a href="#"><img src="../images/artwork/2.jpg" alt="Slider"></a>
-                                    <a href="#"><img src="../images/artwork/3.jpg" alt="Slider"></a>
+                                    
 
                                 </div>
 
                             </div>
+                        </div>
 
 
                     </section>
@@ -105,13 +99,9 @@
                             <div class="card-header"><strong>작가의 말 <a href="#">ARTIST</a></strong></div>
                             <div class="card-body">
                                 <div class="author-image">
-                                    <img src="../images/author/1.jpg" alt="Image" class="rounded-circle">
+                                    <img src="${artwork.profile }" alt="Image" class="rounded-circle">
                                 </div>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores, eveniet, eligendi et
-                                nobis neque minus mollitia sit repudiandae ad repellendus recusandae blanditiis
-                                praesentium vitae ab sint earum voluptate velit beatae alias fugit accusantium
-                                laboriosam nisi reiciendis deleniti tenetur molestiae maxime id quaerat consequatur
-                                fugiat aliquam laborum nam aliquid. Consectetur, perferendis?
+                                ${artwork.talk }
                             </div>
                         </div>
                         <!-- Post Author Info Ended-->
@@ -277,7 +267,7 @@
 </div>
 </div><!-- #wrapper end-->
 <footer id="footer" class="dark">
-    <%@include file="../include/footer.jsp" %>
+    <c:import url="../include/footer.jsp"/>
 </footer>
 
 <!-- Go To Top
@@ -286,13 +276,13 @@
 
 <!-- JavaScripts
 ============================================= -->
-<script src="../js/jquery.js"></script>
-<script src="../js/plugins.min.js"></script>
+<script src="/js/jquery.js"></script>
+<script src="/js/plugins.min.js"></script>
 
-<script src="../js/jquery.hotspot.js"></script>
+<script src="/js/jquery.hotspot.js"></script>
 <!-- Footer Scripts
 ============================================= -->
-<script src="../js/functions.js"></script>
+<script src="/js/functions.js"></script>
 
 </body>
 </html>
