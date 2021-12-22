@@ -134,7 +134,7 @@
                 </ul>
               </li>
               <li class="menu-item">
-                <a class="menu-link" style="font-size: larger;" href="/artizen/colMain">
+                <a class="menu-link" style="font-size: larger;" href="/artizen/collaboration/main">
                   <div>콜라보레이션</div>
                 </a>
               </li>

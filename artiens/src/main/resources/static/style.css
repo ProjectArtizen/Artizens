@@ -8526,14 +8526,15 @@ body:not(.device-touch):not(.device-sm):not(.device-xs) .product-image > a {
 
 .cart-product-thumbnail a {
 	display: block;
-	width: 68px;
+
 }
 
 .cart-product-thumbnail img {
 	display: block;
-	width: 64px;
-	height: 64px;
+	width: 240px;
+	height: 128px;
 	border: 2px solid #EEE;
+	object-fit: fill;
 }
 
 .cart-product-thumbnail img:hover { border-color: #1ABC9C; }

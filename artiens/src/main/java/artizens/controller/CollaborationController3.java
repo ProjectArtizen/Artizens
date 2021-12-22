@@ -23,7 +23,7 @@ public class CollaborationController3 {
 	 */
 	@GetMapping("/winner")
 	public String winnerSelect() {
-		return "col/col_winner";
+		return "col/col_Winner";
 	}
 	
 	/**
