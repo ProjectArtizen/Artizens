@@ -47,5 +47,112 @@ public class Collaboration {
 	
 	public Collaboration() {
 	}
+	
+	
+	
+	public Long getId() {
+		return id;
+	}
+
+
+
+	public String getTitle() {
+		return title;
+	}
+
+
+
+	public Date getRegisterDate() {
+		return registerDate;
+	}
+
+
+
+	public Date getDeadlineDate() {
+		return deadlineDate;
+	}
+
+
+
+	public String getContent() {
+		return content;
+	}
+
+
+
+	public Creator getCreator() {
+		return creator;
+	}
+
+
+
+	public List<CollaborationImages> getCollaborationImages() {
+		return collaborationImages;
+	}
+
+
+
+	public List<CollaborationComment> getCollaborationComment() {
+		return collaborationComment;
+	}
+
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+
+
+	public void setRegisterDate(Date registerDate) {
+		this.registerDate = registerDate;
+	}
+
+
+
+	public void setDeadlineDate(Date deadlineDate) {
+		this.deadlineDate = deadlineDate;
+	}
+
+
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+
+
+	public void setCreator(Creator creator) {
+		this.creator = creator;
+	}
+
+
+
+	public void setCollaborationImages(List<CollaborationImages> collaborationImages) {
+		this.collaborationImages = collaborationImages;
+	}
+
+
+
+	public void setCollaborationComment(List<CollaborationComment> collaborationComment) {
+		this.collaborationComment = collaborationComment;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Collaboration [id=" + id + ", title=" + title + ", registerDate=" + registerDate + ", deadlineDate="
+				+ deadlineDate + ", content=" + content + ", creator=" + creator + ", collaborationImages="
+				+ collaborationImages + ", collaborationComment=" + collaborationComment + "]";
+	}
+	
+	
 
 }

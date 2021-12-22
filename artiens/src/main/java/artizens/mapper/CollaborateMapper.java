@@ -12,7 +12,6 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import artizens.mapper.dto.collaboration.CollaborationDetailDto;
-import artizens.mapper.dto.collaboration.CollaborationInsertDto;
 import artizens.mapper.dto.collaboration.CollaborationMainDto;
 
 @Mapper
