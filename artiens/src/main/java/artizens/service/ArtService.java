@@ -109,6 +109,7 @@ public class ArtService {
 			detail.setTalk(a.getTalk());
 			detail.setProfile(a.getProfile());
 			detail.setNickname(a.getNickname());
+			detail.setContent(a.getContent());
 			detail.setImages(a.getImages());
 			detail.setDate(a.getDate());
 		}
@@ -117,7 +118,7 @@ public class ArtService {
 	}
 	
 	public String InsertComment( CommentDTO commentDto ) {
-		
-		return "";
+		artMapper.insertComment(commentDto.getArtworkId(),commentDto.getUserid(),commentDto.getComment());
+		return "success";
 	}
 }

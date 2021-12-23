@@ -28,7 +28,14 @@
 <!-- HEADER
 ============================================= -->
 <header id="header" class="full-header transparent-header semi-transparent dark">
-    <c:import url="../include/header.jsp"/>
+	<c:choose>
+		<c:when test="${userid eq null }">
+			<c:import url="../include/noneLoginHeader.jsp" />
+		</c:when>
+		<c:when test="${userid ne null }">
+			<c:import url="../include/header.jsp" />
+		</c:when>
+	</c:choose>
 </header>
 
 <section id="content">
@@ -109,7 +116,7 @@
                                 		</c:when>
                                 	</c:choose>
                                 </div>
-                                ${artwork.talk }
+                                ${artwork.content }
                             </div>
                         </div>
                         <!-- Post Author Info Ended-->
@@ -248,18 +255,20 @@
 
                         <!-- Comment Form Start
                         ===========================-->
-                        <form name="frm_comment" id="frm_comment" action="/artizen/artwork/commnet/detail/save" method="POST">
-                        	<input type="hidden" name="userid" value="">
-                        	<input type="hidden" name="artworkId" value="">
+                        <form name="frmComment" id="frm_comment" action="/artizen/artwork/detail/comment/save" method="POST">
+                        	<input type="hidden" name="userid" value="${userid }"/>
+                        	<input type="hidden" name="artworkId" value="${artworkId }"/>
                             <div class="border">
                                 <div class="border-collapse border-bottom p-3" style="height: 150px;">
                                     <textarea name="comment" class="textarea w-100" style="border: 0; height: 100%;" placeholder="댓글을 작성해 주세요."></textarea>
                                 </div>
                                 <div class="grid" style="text-align: right;">
-                                    <button type="submit" style="margin: 0;" class="button">등 록</button>
+                                    <button type="button" onclick="fn_submit();return false;" style="margin: 0;" class="button">등 록</button>
                                 </div>
                             </div>
                         </form>
+                        <!--  Comment Form Ended -->
+                    
                     </div>
                 </div>
             </div>
@@ -270,7 +279,25 @@
 <footer id="footer" class="dark">
     <c:import url="../include/footer.jsp"/>
 </footer>
-
+<script>
+	function fn_submit(){
+		var comment = document.frmComment.comment;
+		var userid = document.frmComment.userid;
+		var artworkid = document.frmComment.artworkId;
+		
+		if ( userid.value == "" || userid.value == null ) {
+			alert("로그인 후 댓글 작성이 가능합니다.");
+			location.href="/artizen/login";
+			return false;
+		}
+		if ( comment.value == "" ) {
+			alert("댓글을 입력해 주세요.");
+			comment.focus();
+			return false;
+		}
+		document.frmComment.submit();
+	}
+</script>
 <!-- Go To Top
 ============================================= -->
 <div id="gotoTop" class="icon-angle-up"></div>

@@ -139,7 +139,7 @@
                 </a>
               </li>
               <li class="menu-item">
-                <a class="menu-link" style="font-size: larger;" href="/artizen/patron/reward">
+                <a class="menu-link" style="font-size: larger;" href="/artizen/patron">
                   <div>후원하기</div>
                 </a>
                 <ul class="sub-menu-container bg-light">

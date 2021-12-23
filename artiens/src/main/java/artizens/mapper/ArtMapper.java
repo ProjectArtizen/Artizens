@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 
 import artizens.controller.dto.artwork.ArtDetailDTO;
 import artizens.controller.dto.artwork.BlogInfoDTO;
+import artizens.controller.dto.artwork.CommentDTO;
 import artizens.controller.dto.artwork.StoreFileDTO;
 import artizens.controller.dto.artwork.UploadFileDTO;
 import artizens.controller.dto.artwork.UploadTextDTO;
@@ -58,7 +59,8 @@ public interface ArtMapper {
 			+ "where creator.creator_id = ${creatorid}")
 	List<BlogInfoDTO> findByCreatorBlogAll( Long creatorid );
 	
-	@Select("select 	a.artwork_title as title, " + 
+	@Select("select 	a.artwork_title as title,"
+			+ "	a.artwork_content as content, " + 
 			"	b.artwork_images_storefilename as images, " + 
 			"	c.creator_profile_storefilename as profile, " + 
 			"	c.creator_detail_intro as talk, " + 
@@ -93,5 +95,17 @@ public interface ArtMapper {
 	@Insert("Insert into creator(creator_id,creator_nickname,user_profile_id) values(null,#{nickname},${userProfileId})")
 	@Options(useGeneratedKeys = true, keyColumn = "creator_id", keyProperty="creatorId")
 	Long insertCreatorNickname( UploadFileDTO upload );
+	
+	@Insert("Insert into artwork_comment(artwork_comment_id, "
+			+ "							 artwork_comment_conetent,"
+			+ "							 artwork_comment_register_date,"
+			+ "							 artwork_id,"
+			+ "							 user_profile_id) "
+			+ " values(null, "
+			+ "		 #{comment}, "
+			+ "		   now(), "
+			+ "		 ${userid}, "
+			+ "		 ${artworkId}")
+	String insertComment(Long artworkId, Long userid, String comment );
 			
 }
