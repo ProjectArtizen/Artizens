@@ -51,13 +51,10 @@
 		<!-- #header end -->
 
 		<!-- 타이틀============================================= -->
-		<section id="page-title" 
-				 class="page-title-center"
-				 style="background-color: white; 
-				 		border: none; 
-				 		padding-bottom: 0px;">
+		<section id="page-title" class="page-title-center"
+			style="background-color: white; border: none; padding-bottom: 0px;">
 			<div class="container clearfix" style="background-color: white;">
-			<%-- <c:if test="">
+				<%-- <c:if test="">
 				<span class="fw-bold"
 					  style="font-size:1.8em;
 					  		 width:7em;
@@ -68,8 +65,7 @@
 			</c:if>	 --%>
 				<h1>콜라보레이션 타이틀</h1>
 				<span style="margin-top: 20px;">
-					<div class="d-flex align-items-center"
-						style="justify-content: center;">
+					<div class="d-flex align-items-center" style="justify-content: center;">
 						<a href="#"><img src="/images/collaboration/author.jpg"
 							alt="Author" class="rounded-circle" width="35" height="35"></a>
 						<div class="entry-meta mt-0">
@@ -403,27 +399,27 @@
 		<script src="/js/functions.js"></script>
 
 		<script>
-		jQuery(document).ready(function() {
+			jQuery(document).ready(function() {
 
-			var element = $(".custom-file");
+				var element = $(".custom-file");
 
-			element.find('input[type="file"]').change(function(e) {
-				var fileName = e.target.files[0].name;
-				element.find('.custom-file-label').html(fileName);
+				element.find('input[type="file"]').change(function(e) {
+					var fileName = e.target.files[0].name;
+					element.find('.custom-file-label').html(fileName);
+				});
+
+				$('#block-modal-request').on('show.bs.modal', function(e) {
+					e.preventDefault();
+				})
+
+				$('#template-contactform').on('formSubmitSuccess', function() {
+					setTimeout(function() {
+						$('#block-modal-request').magnificPopup('close');
+					}, 500);
+				});
+
 			});
-
-			$('#block-modal-request').on('show.bs.modal', function(e) {
-				e.preventDefault();
-			})
-
-			$('#template-contactform').on('formSubmitSuccess', function() {
-				setTimeout(function() {
-					$('#block-modal-request').magnificPopup('close');
-				}, 500);
-			});
-
-		});
-	</script>
+		</script>
 	</div>
 	<!-- #wrapper end-->
 

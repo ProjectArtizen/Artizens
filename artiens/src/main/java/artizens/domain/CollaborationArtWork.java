@@ -70,6 +70,7 @@ public class CollaborationArtWork {
 		collaborationArtWork.creator = creator;
 		collaborationArtWork.storeFileName = collaboArtWorkImage;
 		collaborationArtWork.winner = false;
+		collaborationArtWork.collaboration = collaboration;
 		return collaborationArtWork;
 	}
 	

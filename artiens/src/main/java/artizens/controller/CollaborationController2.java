@@ -36,7 +36,7 @@ public class CollaborationController2 {
 		}
 		model.addAttribute("result", result);
 		LOGGER.info("result = {}", result.toString());
-		return "col/col_Detail2";
+		return "col/col_Detail";
 	}
 	
 	/**
@@ -55,7 +55,7 @@ public class CollaborationController2 {
 		}
 		model.addAttribute("result", result);
 		LOGGER.info("result = {}", result.toString());
-		return "col/col_Detail2";
+		return "col/col_Detail";
 	}
 	
 	/**
