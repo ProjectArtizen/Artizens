@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import artizens.domain.Collaboration;
-import artizens.domain.CollaborationArtWorkImages;
 import artizens.domain.UploadFile;
 import artizens.mapper.CollaborationMapper;
 import artizens.mapper.dto.collaboration.CollaborationDto;

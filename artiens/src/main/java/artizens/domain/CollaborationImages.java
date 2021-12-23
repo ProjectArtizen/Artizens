@@ -35,4 +35,11 @@ public class CollaborationImages {
 	public CollaborationImages() {
 	}
 	
+	public static CollaborationImages addImages(UploadFile uploadFile, Collaboration collaboration) {
+		CollaborationImages collaborationImages = new CollaborationImages();
+		collaborationImages.uploadFile = uploadFile;
+		collaborationImages.collaboration = collaboration;
+		return collaborationImages;
+	}
+	
 }

@@ -1,5 +1,7 @@
 package artizens.web.aws;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,5 +24,12 @@ public class FtpController {
         UploadFile uploadFile = fileUploadService.uploadImage(file);
         System.out.println(uploadFile.toString());
         return ResponseEntity.ok(uploadFile.toString());
+    }
+    
+    @PostMapping("/awsUploads")
+    public ResponseEntity<?> uploadImage(@RequestPart List<MultipartFile> file){
+        List<UploadFile> uploadFile = fileUploadService.uploadImages(file);
+        System.out.println(uploadFile.toString());
+        return ResponseEntity.ok(uploadFile);
     }
 }

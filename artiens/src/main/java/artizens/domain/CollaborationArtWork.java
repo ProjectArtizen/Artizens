@@ -1,5 +1,6 @@
 package artizens.domain;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -30,10 +31,10 @@ public class CollaborationArtWork {
 	private String content;
 	
 	@Column(name = "collaboration_artwork_register_date")
-	private Date registerDate;
+	private LocalDateTime registerDate;
 	
 	@Column(name = "collaboration_artwork_winner")
-	private String winner; 
+	private boolean winner; 
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "collaboration_id")
@@ -43,13 +44,44 @@ public class CollaborationArtWork {
 	@JoinColumn(name = "creator_id")
 	private Creator creator;
 	
+	/**
+     * 서버에 저장하는 파일명
+     * 업로드 된 파일명으로 서버에 저장 시 이름이 중복될 수 있음. 랜덤값으로 만드는 파일 이름
+     */
+	@Column(name = "collaboration_artwork_storeFileName", length = 100)
+    private String storeFileName;
+	
 	@OneToMany(mappedBy = "collaborationArtWork", cascade = CascadeType.ALL)
 	private List<CollaborationArtWorkComment> collaborationArtWorkComments;
 	
-	@OneToMany(mappedBy = "collaborationArtWork", cascade = CascadeType.ALL)
-	private List<CollaborationArtWorkImages> collaborationArtWorkImages;
-	
 	public CollaborationArtWork() {
 	}
+	
+	public static CollaborationArtWork createCollaborationArtWork(
+			String title, 
+			String content, 
+			Creator creator,
+			String collaboArtWorkImage,
+			Collaboration collaboration) {
+		CollaborationArtWork collaborationArtWork = new CollaborationArtWork();
+		collaborationArtWork.title = title;
+		collaborationArtWork.registerDate = LocalDateTime.now();
+		collaborationArtWork.content = content;
+		collaborationArtWork.creator = creator;
+		collaborationArtWork.storeFileName = collaboArtWorkImage;
+		collaborationArtWork.winner = false;
+		return collaborationArtWork;
+	}
+	
+	/**
+	 * 당선작 수상시 true
+	 * 아닐시 false
+	 * @param winner
+	 */
+	public void setCollaborationArtWorkWinner(Boolean winner) {
+		this.winner = winner;
+	}
+	
+	
 	
 }

@@ -2,6 +2,8 @@ package artizens;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import artizens.domain.ArtWork;
 import artizens.domain.ArtWorkCategory;
+import artizens.domain.Collaboration;
+import artizens.domain.CollaborationArtWork;
 import artizens.domain.Creator;
 import artizens.domain.Patron;
 import artizens.domain.PatronImages;
@@ -48,7 +52,11 @@ public class initDb {
 		}
 
 		public void dbInit1() {
-			// 최초 생성 user(admin) (creator 등록 완료, patron 등록 완료)
+			/**
+			 * user - admin 
+			 * creator - creator 등록 완료, 
+			 * patron - patron 등록 완료)
+			 */
 			UserProfile admin = UserProfile.createUser("user@gmail.com", "1234", "고흐");
 			em.persist(admin);
 
@@ -96,8 +104,11 @@ public class initDb {
 			em.persist(patron);
 			
 			
-			
-			// user(user1) (creator 등록, patron 미등록)
+			/**
+			 * user - user1 
+			 * creator - creator1 등록 완료, 
+			 * patron - 미등록)
+			 */
 			UserProfile user1 = UserProfile.createUser("user1@gmail.com", "1234", "dlwngus");
 			em.persist(user1);
 
@@ -109,13 +120,27 @@ public class initDb {
 
 			
 			
-			// user(user2) (creator 미등록, patron 미등록)
+			/**
+			 * user - user2 
+			 * creator - 미등록, 
+			 * patron - 미등록)
+			 */
 			UserProfile user2 = UserProfile.createUser("user2@gmail.com", "1234", "dlwngus");
 			em.persist(user2);
+			
+			
+			
+			
 			
 			RewardCategory[] rewardCategory = RewardCategory.values();
 			
 			// user3 ~ 50 (creator 등록, patron 미등록)
+			/**
+			 * user - userProfile(user3 ~user100) 
+			 * creator - creators(제작자3 ~ 제작자100), 
+			 * patron - bobPatron 등록
+			 * reward - reward - (달력, 컵, 노트 이미지 등록, 나머지는 default))
+			 */
 			for (int i = 3; i <= 100; i++) {
 				String userString = "user" + String.valueOf(i);
 				UserProfile userProfile = UserProfile.createUser(userString + "@gmail.com", "1234", userString);
@@ -163,6 +188,197 @@ public class initDb {
 				em.persist(reward);
 			}
 
+			// 콜라보레이션 initDB
+			
+			/**
+			 * creator : admin
+			 * collaboration : AK플라자와 함께 하는 일상 일러스트 공모전 
+			 * image : collabo1.JPG
+			 */
+			Collaboration collaboration1 = Collaboration.createCollaboration(
+					"AK플라자와 함께 하는 일상 일러스트 공모전", 
+					LocalDateTime.now().plusDays(7), 
+					"참여 방법\r\n" + 
+					"분당, 수원, 평택, 원주 AK플라자에서 즐거운 하루를 보내는 나의 일상의 모습을 그려주세요!\r\n" + 
+					"※ 지역구분은 AK플라자 입점 지역인 분당/수원/평택/원주에 한합니다.", 
+					creator, 
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/3da6058f-d5e3-4c5f-a782-ac4f62f90274.JPG");
+			em.persist(collaboration1);
+			
+			/**
+			 * creator : creator1
+			 * collaboration : AK플라자와 함께 하는 일상 일러스트 공모전 
+			 * collaborationArtWork : AK플라자 수원점, 도심속의 휴가 
+			 * image : collaboartwork1-1.JPG
+			 */
+			CollaborationArtWork collabo1_1 = CollaborationArtWork.createCollaborationArtWork(
+					"AK플라자 수원점, 도심속의 휴가", 
+					"마치 도심 속 휴양지에 온 듯한\r\n" + 
+					"AK플라자 수원점에서\r\n" + 
+					"가족 또는 친구, 연인과 함께 보내는 즐거운 하루.", 
+					creator1,
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/17451237-cb38-4db2-bd4b-7f1307ea09c7.JPG", 
+					collaboration1);
+			em.persist(collabo1_1);
+			
+			/**
+			 * creator : creator1
+			 * collaboration : AK플라자와 함께 하는 일상 일러스트 공모전 
+			 * collaborationArtWork : 분당 AK 식품관 
+			 * image : collaboartwork1-2.JPG
+			 */
+			CollaborationArtWork collabo1_2 = CollaborationArtWork.createCollaborationArtWork(
+					"분당 AK 식품관", 
+					"식품관 갔는데 식중독걸렸어요. 배상해주세요.", 
+					creator1,
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/1b3aa784-5b60-45be-82cd-dcd2a3d62633.JPG", 
+					collaboration1);
+			em.persist(collabo1_2);
+			
+			
+			/**
+			 * creator : creator1
+			 * collaboration : AK플라자와 함께 하는 일상 일러스트 공모전 
+			 * collaborationArtWork : daily life in ak 분당
+			 * image : collaboartwork1-3.JPG
+			 */
+			CollaborationArtWork collabo1_3 = CollaborationArtWork.createCollaborationArtWork(
+					"daily life in ak 분당", 
+					"건물이 많이 크던데요?", 
+					creator1,
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/0daaa8a7-dfc8-4f0d-a296-c33834bd514b.JPG", 
+					collaboration1);
+			em.persist(collabo1_3);
+			
+			
+			/**
+			 * creator : creator1
+			 * collaboration : 내가 그리는 로스터리R 패키지 일러스트 공모전
+			 * image : collabo2.JPG
+			 */
+			Collaboration collaboration2 = Collaboration.createCollaboration(
+					"내가 그리는 로스터리R 패키지 일러스트 공모전", 
+					LocalDateTime.now().plusDays(3), 
+					"참여 방법\r\n" + 
+					"로스터리R 로고를 중심으로 로스터리 컵커피에 어울리는 패키지를 자유롭게 디자인해주세요.\r\n" + 
+					"내 작품이 한정판 제품 패키지로 출시되는 기회를 드립니다.", 
+					creator1, 
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/b7b8ef08-7798-4fba-904b-84a0cb683e3d.JPG");
+			em.persist(collaboration2);
+			
+			/**
+			 * creator : creator(admin)
+			 * collaboration : 내가 그리는 로스터리R 패키지 일러스트 공모전
+			 * collaborationArtWork : 로스터리R 리치왕의 분노 패키지
+			 * image : collaboartwork2-1.JPG
+			 */
+			CollaborationArtWork collabo2_1 = CollaborationArtWork.createCollaborationArtWork(
+					"로스터리R 리치왕의 분노 패키지", 
+					"아들아...너가 태어나던 날.. 로스터리를 마시던 모든 사람들이 속삭였단다.. 아이스...", 
+					creator,
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/97efe479-6d1a-4b90-9833-20a117196509.JPG", 
+					collaboration2);
+			em.persist(collabo2_1);
+			
+			/**
+			 * creator : creator(admin)
+			 * collaboration : 내가 그리는 로스터리R 패키지 일러스트 공모전
+			 * collaborationArtWork : 로스터리R-샤워할때 생각나는 맛
+			 * image : collaboartwork2-2.JPG
+			 */
+			CollaborationArtWork collabo2_2 = CollaborationArtWork.createCollaborationArtWork(
+					"로스터리R-샤워할때 생각나는 맛", 
+					"샤워하고 나서 한잔 먹으면 맛있어요.", 
+					creator,
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/3c99a46c-e3ad-47ef-bd51-1a9de1e9b488.JPG", 
+					collaboration2);
+			em.persist(collabo2_2);
+			
+			/**
+			 * creator : creator(admin)
+			 * collaboration : 내가 그리는 로스터리R 패키지 일러스트 공모전
+			 * collaborationArtWork : 로스터리R-성냥팔이 소녀 패키지
+			 * image : collaboartwork2-3.JPG
+			 */
+			CollaborationArtWork collabo2_3 = CollaborationArtWork.createCollaborationArtWork(
+					"로스터리R-성냥팔이 소녀 패키지", 
+					"성냥팔이 소녀가 성냥을 팔고난 후... 주머니에 있던 3000원...그걸로 뭘샀는지 아십니까?", 
+					creator,
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/3c99a46c-e3ad-47ef-bd51-1a9de1e9b488.JPG", 
+					collaboration2);
+			em.persist(collabo2_3);
+			
+			
+			/**
+			 * creator : creator(admin)
+			 * collaboration : 내가 그리는 로스터리R 패키지 일러스트 공모전
+			 * collaborationArtWork : 로스터리R-카페보다 맛있는 맛
+			 * image : collaboartwork2-4.JPG
+			 */
+			CollaborationArtWork collabo2_4 = CollaborationArtWork.createCollaborationArtWork(
+					"로스터리R-카페보다 맛있는 맛", 
+					"카페를 가지말고 로스터리R을 사먹으세요. 가성비 좋아요.", 
+					creator,
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/a145b4e4-6f95-4eba-92e7-74a31011aeb0.JPG", 
+					collaboration2);
+			em.persist(collabo2_4);
+			
+			/**
+			 * creator : creator1
+			 * collaboration : 제7회 상상만발 책그림전
+			 * image : collabo3.JPG
+			 */
+			Collaboration collaboration3 = Collaboration.createCollaboration(
+					"제7회 상상만발 책그림전", 
+					LocalDateTime.now().minusDays(1), 
+					"참여 방법\r\n" + 
+					"* 각각의 이미지 사이즈는 10MB 안에서 자유롭게 조정할 수 있습니다. (단, 표지는 640px 크기로 노출됩니다)\r\n" + 
+					"* 콜라보레이션의 취지(주제와 무관 또는 광고, 타인 작품 도용 등)에 맞지 않는 응모작은 보기가 제한될 수 있습니다.", 
+					creator1, 
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/2d5b86d9-c26e-4a58-9908-68e432748b27.JPG");
+			em.persist(collaboration3);
+			
+			/**
+			 * creator : creator
+			 * collaboration : 제7회 상상만발 책그림전
+			 * collaborationArtWork : 너를 기다리는 시간
+			 * image : collaboartwork3-1.JPG
+			 */
+			CollaborationArtWork collabo3_1 = CollaborationArtWork.createCollaborationArtWork(
+					"너를 기다리는 시간", 
+					"아 주인님 좀 빨리와요 제발", 
+					creator,
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/a145b4e4-6f95-4eba-92e7-74a31011aeb0.JPG", 
+					collaboration3);
+			em.persist(collabo3_1);
+			
+			/**
+			 * creator : creator
+			 * collaboration : 제7회 상상만발 책그림전
+			 * collaborationArtWork : 나는 괴물이에요.
+			 * image : collaboartwork3-2.JPG
+			 */
+			CollaborationArtWork collabo3_2 = CollaborationArtWork.createCollaborationArtWork(
+					"나는 괴물이에요.", 
+					"나는 괴물이지만 너는 나물이에요.", 
+					creator,
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/a145b4e4-6f95-4eba-92e7-74a31011aeb0.JPG", 
+					collaboration3);
+			em.persist(collabo3_2);
+			
+			/**
+			 * creator : creator
+			 * collaboration : 제7회 상상만발 책그림전
+			 * collaborationArtWork : 4번 달걀의 비밀
+			 * image : collaboartwork3-3.JPG
+			 */
+			CollaborationArtWork collabo3_3 = CollaborationArtWork.createCollaborationArtWork(
+					"4번 달걀의 비밀", 
+					"4번은 개인주의", 
+					creator,
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/9e27ec0d-4756-431b-a112-80369d342315.JPG", 
+					collaboration3);
+			em.persist(collabo3_3);
 			
 			
 			// jpa 영속성 컨텍스트 초기화

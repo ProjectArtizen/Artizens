@@ -9,14 +9,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import artizens.service.CollaborationService;
+import artizens.mapper.dto.collaboration.CollaborationDetailDto;
+import artizens.service.CollaborationService2;
 
 @Controller
 @RequestMapping("/artizen/collaboration")
 public class CollaborationController2 {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CollaborationController2.class);
 
-	@Autowired CollaborationService collaborationService;
+	@Autowired CollaborationService2 collaborationService;
 	
 	/**
 	 * 공모전 상세 화면
@@ -25,10 +26,15 @@ public class CollaborationController2 {
 	 * @return
 	 */
 	@GetMapping("/{collaborationId}")
-	public String collaborationDetail(@PathVariable Long collaborationId, Model model) {
-//		  List<CollaborationDetailDto> result =
-//		  collaborationservice.selectDetail(collaborationId);
-//		  model.addAttribute("result",result); 
+	public String collaborationDetail(
+			@PathVariable Long collaborationId, 
+			Model model) {
+		CollaborationDetailDto result = collaborationService.collaborationDetailForm(collaborationId);
+		if (result == null) {
+			System.out.println("없음");
+			return "col/col_Detail";
+		}
+		LOGGER.info("result = {}", result.toString());
 		return "col/col_Detail";
 	}
 	
