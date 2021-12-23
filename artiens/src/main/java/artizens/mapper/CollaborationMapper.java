@@ -47,6 +47,7 @@ public interface CollaborationMapper {
 	
 	// 작품선정 리스트
 	@Results({
+		@Result(property = "collaborationId", column = "collaboration_id", id = true),
 		@Result(property = "image", column = "collaboration_artwork_images_storefilename"),
 		@Result(property = "title", column = "collaboration_artwork_title"),
 		@Result(property = "nickname", column = "creator_nickname")
@@ -59,8 +60,8 @@ public interface CollaborationMapper {
 			+ "			ON artwork.collaboration_artwork_id = image.collaboration_artwork_id"
 			+ "		JOIN creator "
 			+ "			ON creator.creator_id = artwork.creator_id"
-			+ "	WHERE artwork.collaboration_id = ")
-	List<CollaborationWinnerDto> finAllCollaborationWinner();
+			+ "	WHERE artwork.collaboration_id = ${collaborationId")
+	List<CollaborationWinnerDto> finAllCollaborationWinner(Long collaboraionId);
 	
 	
 	

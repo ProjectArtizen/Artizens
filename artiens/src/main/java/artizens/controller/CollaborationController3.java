@@ -30,8 +30,8 @@ public class CollaborationController3 {
 	 * 당선작을 처리하는 화면
 	 * @return
 	 */
-	@PostMapping("/winner")
-	public String winnerInsert() {
+	@PostMapping("/choice")
+	public String winnerUpdate() {
 		return "";
 	}
 }

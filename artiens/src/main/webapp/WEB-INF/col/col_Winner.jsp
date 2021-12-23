@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +18,49 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" /> 
 	<!-- Document Title	============================================= -->
 	<title>대상자 선정 페이지</title>
+	
+	<script>
+	<!-- ajax를 통한 전송완료 확인하는 함수 -->
+	$(function(){
+		// 체크 된거 업데이트 하기 
+		$("#btn_save").click(function(){
+			var len = $("input[name='chk']").length;
+			var values = "";
+			for(var i=0; i<len; i++) {
+				var chk = document.getElementsByName('chk')[i].checked;
+				if( chk == true ) {
+					values += document.getElementsByName('chk')[i].value;
+					values += ",";
+				}
+			}
+			
+			if(values.length > 0) {
+				
+				if(  confirm("일괄 삭제를 진행하시겠습니까?")  ) {
+					$.ajax({
+						type : "post",
+						url  : "choice",
+						data : "values="+values,
+						
+						datatype : "text",
+						success : function(data) {
+							if(data == "ok") {
+								alert("대상자 선정 처리 완료");
+								location="/main";
+							} else {
+								alert("대상자 선정 처리 실패");
+							}	
+						},
+						error : function() {
+							alert("시스템 오류");
+						}
+					});
+				}
+			}
+		});
+		
+	});
+	</script>
 </head>
 <body class="stretched">
 	<!-- Document Wrapper ============================================= -->
@@ -65,7 +109,7 @@
 						 		border-top: 2px solid #f3f3f3; 
 						 		border-bottom: 2px solid #f3f3f3">
 
-						<ul class="menu-container" style="margin-Left: 150px;">
+						<ul class="menu-container">
 							<li class="menu-item">
 								<a class="menu-link" href="../artizen/colDetail">
 									<div style="font-size: 20px; font-weight: normal;">콜라보레이션 소개</div>
@@ -76,11 +120,6 @@
 									<div style="font-size: 20px; font-weight: normal;">참여작품</div>
 								</a>
 							</li>
-							<div style="margin-left: 750px;">
-								<a href="#block-modal-request" data-lightbox="inline" data-target="#block-modal-request">
-									<button class="button m-3">당선작 선정하기</button>
-								</a>			
-							</div>
 						</ul>
 
 					</nav><!-- 서브메뉴 끝 -->
@@ -93,37 +132,44 @@
 		<section id="content">
 			<div class="content-wrap">
 				<div class="container">
-
 					<table class="table cart mb-5">
+						<colgroup>
+							<col width = "30%">
+							<col width = "30%">
+							<col width = "30%">
+							<col width = "10%">
+						</colgroup>
 						<thead>
 							<tr>
-								<th class="cart-product-remove" colspan="2">&nbsp;</th>
+								<th class="cart-product-remove">image</th>
 								<th class="cart-product-thumbnail">title</th>
-								<th class="cart-product-name">&nbsp;</th>
-								<th class="cart-product-price">creator</th>
+								<th class="cart-product-thumbnail">creator</th>
 								<th class="cart-product-subtotal">choice</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr class="cart_item">
-								<td class="cart-product-thumbnail" colspan="2">
-									<a href="/{collaborationId}"><img src="https://sunminki.s3.ap-northeast-2.amazonaws.com/7ee3d22c-4284-430b-aae4-f516c3a5682a.JPG"></a>
+								<td class="cart-product-thumbnail">
+									<a href="/{collaborationId}"><img width="240" height="128" src="https://sunminki.s3.ap-northeast-2.amazonaws.com/7ee3d22c-4284-430b-aae4-f516c3a5682a.JPG"></a>
 								</td>
 
 								<td class="cart-product-name">
 									<a href="#">Pink Printed Dress</a>
 								</td>
 
-								<td class="cart-product-quantity">
+								<td class="cart-product-name">
 									<a href="#">creatorName</a>
 								</td>
 
 								<td class="cart-product-subtotal">
-									<input type="checkbox" name="">
+									<input type="checkbox" name="chk" value="">
 								</td>
 							</tr>
 						</tbody>
 					</table>
+					<div class="row">
+						<button type="button" id="btn_save" class="button button-3d mt-2 mt-sm-0 me-0 ">대상자 선정</button>
+					</div>
 				</div>
 			</div>
 		</section><!-- #content end -->	

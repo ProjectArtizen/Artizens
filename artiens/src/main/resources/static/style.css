@@ -8534,7 +8534,7 @@ body:not(.device-touch):not(.device-sm):not(.device-xs) .product-image > a {
 	width: 240px;
 	height: 128px;
 	border: 2px solid #EEE;
-	object-fit: fill;
+
 }
 
 .cart-product-thumbnail img:hover { border-color: #1ABC9C; }

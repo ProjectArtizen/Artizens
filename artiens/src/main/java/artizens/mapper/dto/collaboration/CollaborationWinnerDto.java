@@ -1,10 +1,19 @@
 package artizens.mapper.dto.collaboration;
 
 public class CollaborationWinnerDto {
+	
+	private Long collaborationId;
 	private String image;
 	private String title;
 	private String nickname;
 	
+	
+	public Long getCollaborationId() {
+		return collaborationId;
+	}
+	public void setCollaborationId(Long collaborationId) {
+		this.collaborationId = collaborationId;
+	}
 	public String getImage() {
 		return image;
 	}
