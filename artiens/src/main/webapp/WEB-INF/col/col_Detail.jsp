@@ -50,8 +50,7 @@
 		</header>
 		<!-- #header end -->
 
-		<!-- 타이틀
-		============================================= -->
+		<!-- 타이틀============================================= -->
 		<section id="page-title" 
 				 class="page-title-center"
 				 style="background-color: white; 

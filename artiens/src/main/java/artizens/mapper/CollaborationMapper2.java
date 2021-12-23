@@ -23,7 +23,7 @@ public interface CollaborationMapper2 {
 		@Result(property = "registerDate", column = "collaboration_register_date"),
 		@Result(property = "creatorNickname", column = "creator_nickname"),
 		@Result(property = "creatorImgName", column = "creator_profile_storefilename"),
-		@Result(property = "contentImgName", column = "collaboration_store_file_name"),
+		@Result(property = "contentImgName", column = "collaboration_storefilename"),
 		@Result(property = "content", column = "collaboration_content")
 	})
 	@Select("select * from collaboration"
@@ -38,7 +38,7 @@ public interface CollaborationMapper2 {
 			@Result(property = "registerDate", column = "collaboration_artwork_register_date"),
 			@Result(property = "creatorNickname", column = "creator_nickname"),
 			@Result(property = "creatorImgName", column = "creator_profile_storefilename"),
-			@Result(property = "contentImgName", column = "collaboration_artwork_store_file_name"),
+			@Result(property = "contentImgName", column = "collaboration_artwork_storefilename"),
 			@Result(property = "content", column = "collaboration_artwork_content")
 		})
 	@Select("select * from collaboration_artwork"

@@ -48,7 +48,7 @@ public class CollaborationArtWork {
      * 서버에 저장하는 파일명
      * 업로드 된 파일명으로 서버에 저장 시 이름이 중복될 수 있음. 랜덤값으로 만드는 파일 이름
      */
-	@Column(name = "collaboration_artwork_storeFileName", length = 100)
+	@Column(name = "collaboration_artwork_storefilename", length = 100)
     private String storeFileName;
 	
 	@OneToMany(mappedBy = "collaborationArtWork", cascade = CascadeType.ALL)
