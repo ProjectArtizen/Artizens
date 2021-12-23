@@ -148,10 +148,10 @@
 							</tr>
 						</thead>
 						<tbody>
-						<c:forEach var="result" items="${list}">
+						<c:forEach var="result" items="${result}">
 							<tr class="cart_item">
 								<td class="cart-product-thumbnail">
-									<img width="240" height="128" src="${result.image }"></a>
+									<a href="#"><img width="240" height="128" src="${result.image }"></a>
 								</td>
 
 								<td class="cart-product-name">

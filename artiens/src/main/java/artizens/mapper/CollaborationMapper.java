@@ -45,24 +45,4 @@ public interface CollaborationMapper {
 	@Select("select * from collaboration")
 	List<CollaborationDto> findAllCollaboration();
 	
-	// 작품선정 리스트
-	@Results({
-		@Result(property = "collaborationId", column = "collaboration_id", id = true),
-		@Result(property = "image", column = "collaboration_artwork_images_storefilename"),
-		@Result(property = "title", column = "collaboration_artwork_title"),
-		@Result(property = "nickname", column = "creator_nickname")
-	})
-	@Select("select image.collaboration_artwork_images_storefilename, "
-			+ "		artwork.collaboration_artwork_title, "
-			+ "		creator.creator_nickname "
-			+ "	form collaboration_artwork AS artwork "
-			+ "		JOIN collaboration_artwork_Images AS image "
-			+ "			ON artwork.collaboration_artwork_id = image.collaboration_artwork_id"
-			+ "		JOIN creator "
-			+ "			ON creator.creator_id = artwork.creator_id"
-			+ "	WHERE artwork.collaboration_id = ${collaborationId")
-	List<CollaborationWinnerDto> findAllCollaborationWinner(Long collaboraionId);
-	
-	
-	
 }
