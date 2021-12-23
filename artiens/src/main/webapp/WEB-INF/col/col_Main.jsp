@@ -67,10 +67,10 @@
 					
 <%-- 				<c:choose>
 					<c:when test=""> --%>
-					<c:forEach var="result" items="${result }">
+					
 					<div class="post-grid row col-mb-30">
 						<!-- 콘텐츠 나열해주는 감싸기-->
-
+					<c:forEach var="result" items="${result }">
 						<!-- 콘텐츠 1 시작-->
 						<div class="entry col-lg-4 col-md-6">
 							<div class="grid-inner shadow-sm card rounded-5">
@@ -98,7 +98,7 @@
 												<div class="d-flex flex-row align-items-center rounded"
 													style="margin-bottom: 15px;">
 													<div id="countdown" class="countdown flex-fill"
-														data-year="${result.year }" data-month="${result.month }" data-day="30"
+														data-year="${result.deadLineYear }" data-month="${result.deadLineMonth }" data-day="${result.deadLineDay }"
 														data-format="dHMS"></div>
 													<div
 														style="width: 110px; padding: 8px; border: #dfdfdf solid 1px; text-align: center; margin-left: 10px; color: white; background-color: #1bbc9b;">000명
@@ -128,8 +128,9 @@
 							</div>
 						</div>
 						<!-- 콘텐츠 1 끝-->
+						</c:forEach>
+						
 					</div>
-					</c:forEach>
 <%-- 				</c:when> --%>
 					
 
