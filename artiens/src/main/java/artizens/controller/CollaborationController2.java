@@ -34,8 +34,9 @@ public class CollaborationController2 {
 			System.out.println("없음");
 			return "col/col_Detail";
 		}
+		model.addAttribute("result", result);
 		LOGGER.info("result = {}", result.toString());
-		return "col/col_Detail";
+		return "col/col_Detail2";
 	}
 	
 	/**
@@ -44,8 +45,17 @@ public class CollaborationController2 {
 	 * @return
 	 */
 	@GetMapping("/art/{collaborationArtWorkId}")
-	public String colArt(@PathVariable(name="collaborationArtWorkId") Long colArtId){
-		return "";
+	public String colArt(
+			@PathVariable(name="collaborationArtWorkId") Long colArtId,
+			Model model){
+		CollaborationDetailDto result = collaborationService.collaborationArtWotkDetailForm(colArtId);
+		if (result == null) {
+			System.out.println("없음");
+			return "col/col_Detail";
+		}
+		model.addAttribute("result", result);
+		LOGGER.info("result = {}", result.toString());
+		return "col/col_Detail2";
 	}
 	
 	/**
@@ -53,7 +63,7 @@ public class CollaborationController2 {
 	 * @return
 	 */
 	@GetMapping("/artlist")
-	public String colArtList() {
+	public String colArtList(Model model) {
 		return "col/col_ArtList";
 	}
 	
@@ -62,7 +72,7 @@ public class CollaborationController2 {
 	 * @return
 	 */
 	@GetMapping("/art/register")
-	public String colartReceipt() {
+	public String colartReceipt(Model model) {
 		return "col/col_artReceipt";
 	}
 	
@@ -71,7 +81,7 @@ public class CollaborationController2 {
 	 * @return
 	 */
 	@GetMapping("/art/modify")
-	public String colartReceiptModify() {
+	public String colartReceiptModify(Model model) {
 		return "col/col_artReceiptModify";
 	}
 }
