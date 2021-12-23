@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import artizens.controller.dto.artwork.ArtDetailDTO;
+import artizens.controller.dto.artwork.CommentDTO;
 import artizens.controller.dto.artwork.BlogInfoDTO;
 import artizens.controller.dto.artwork.StoreFileDTO;
 import artizens.controller.dto.artwork.UploadFileDTO;
@@ -130,10 +131,22 @@ public class ArtController {
 	
 	
 	@GetMapping("/artwork/detail/{imageId}")
-	public String ArtWorkDatail(@PathVariable Long imageId, Model model) {
+	public String ArtWorkDatail(@PathVariable Long imageId,
+								@SessionAttribute(name = SessionConst.LOGIN_USER, required = false ) UserProfile user, Model model) {
+		
 		ArtDetailDTO detail = artService.clickImageAction(imageId);
 		model.addAttribute("artwork",detail);
+		if ( user != null ) {
+			Long userid = artWorkService.findByUserId(user);
+			model.addAttribute("userid",userid);
+		}
 		return "artWork/ArtWorkDetail";
+	}
+	
+	@ResponseBody
+	@PostMapping("/artwork/detail/comment/save")
+	public void commentSave( @ModelAttribute CommentDTO commentDto ) {
+		artService.InsertComment(commentDto);
 	}
 	
 	

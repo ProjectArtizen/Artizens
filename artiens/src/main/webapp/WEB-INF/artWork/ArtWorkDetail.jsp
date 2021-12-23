@@ -99,7 +99,15 @@
                             <div class="card-header"><strong>작가의 말 <a href="#">ARTIST</a></strong></div>
                             <div class="card-body">
                                 <div class="author-image">
-                                    <img src="${artwork.profile }" alt="Image" class="rounded-circle">
+                                	<c:set var="profileImg" value="${artwork.profile}"/>
+                                	<c:choose>
+                                		<c:when test="${profileImg eq null}">
+		                                    <img src="https://0.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=60" alt="Image" class="rounded-circle">
+                                		</c:when>
+                                		<c:when test="${profileImg ne null}">
+		                                    <img src="${profileImg }" alt="Image" class="rounded-circle">
+                                		</c:when>
+                                	</c:choose>
                                 </div>
                                 ${artwork.talk }
                             </div>
@@ -129,8 +137,7 @@
                                                      src='https://0.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=60'
                                                      class='avatar avatar-60 photo avatar-default' height='60'
                                                      width='60'/></span>
-
-                                            </div>
+                                           	</div>
 
                                         </div>
 
@@ -241,24 +248,18 @@
 
                         <!-- Comment Form Start
                         ===========================-->
-                        <form action="">
-
+                        <form name="frm_comment" id="frm_comment" action="/artizen/artwork/commnet/detail/save" method="POST">
+                        	<input type="hidden" name="userid" value="">
+                        	<input type="hidden" name="artworkId" value="">
                             <div class="border">
                                 <div class="border-collapse border-bottom p-3" style="height: 150px;">
-                                    <textarea class="textarea w-100" style="border: 0; height: 100%;"
-                                              placeholder="댓글을 작성해 주세요."></textarea>
+                                    <textarea name="comment" class="textarea w-100" style="border: 0; height: 100%;" placeholder="댓글을 작성해 주세요."></textarea>
                                 </div>
                                 <div class="grid" style="text-align: right;">
-                                    <a href="#" style="margin: 0; border: 0;" class="social-icon si-facebook">
-                                        <i class="icon-like"></i>
-                                        <i class="icon-like"></i>
-                                    </a>
-                                    <button type="button" style="margin: 0;" class="button">등 록</button>
+                                    <button type="submit" style="margin: 0;" class="button">등 록</button>
                                 </div>
                             </div>
-
                         </form>
-
                     </div>
                 </div>
             </div>

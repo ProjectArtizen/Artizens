@@ -1,5 +1,8 @@
 package artizens.mapper.dto;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Calendar;
 
 public class ArtWorkMainDto {
 	 
@@ -8,7 +11,8 @@ public class ArtWorkMainDto {
 	private String title;
 	private String artworkImgName;
 	private String creatorImgName;
-	private String creatorNickName ;
+	private String creatorNickName;
+	private String registerday;
 	private Integer likeCount;
 	private Integer commentCount;
 	
@@ -16,6 +20,14 @@ public class ArtWorkMainDto {
 		
 	}
 	
+	public String getRegisterday() {
+		return registerday;
+	}
+
+	public void setRegisterday(String registerday) {
+		this.registerday = registerday;
+	}
+
 	public Long getImageId() {
 		return imageId;
 	}
@@ -65,6 +77,13 @@ public class ArtWorkMainDto {
 	}
 	public void setCommentCount(Integer commentCount) {
 		this.commentCount = commentCount;
+	}
+	
+	public String Day( String registerday ) {
+		SimpleDateFormat format = new SimpleDateFormat();
+		Calendar cal = Calendar.getInstance();
+		cal.getTimeInMillis();
+		return "";
 	}
 	
 }

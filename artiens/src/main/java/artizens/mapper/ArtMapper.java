@@ -35,9 +35,12 @@ public interface ArtMapper {
 	@Select("Select creator_nickname as nickname from creator where creator_id = ${creatorid}")
 	String findByCreatorName( Long creatorid );
 	
-	@Select("select b.artwork_images_storefilename as storefilename "
-			+ " from artwork a, artwork_images b "
-			+ " where a.artwork_id = b.art_work_id and a.creator_id = ${creator}")
+	@Select("select b.artwork_images_id as imageId, "
+			+ "		b.artwork_images_storefilename as storefilename "
+			+ "from artwork_images as b left join artwork as a on "
+			+ "b.art_work_id = a.artwork_id left join creator c on "
+			+ "a.creator_id = c.creator_id "
+			+ "where c.creator_id = ${creator}")
 	List<StoreFileDTO> findByImageURL(Long creator);
 	
 	@Select("select creator_profile_storefilename as profileImage, "

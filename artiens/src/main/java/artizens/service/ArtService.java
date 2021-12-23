@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import artizens.controller.dto.artwork.ArtDetailDTO;
+import artizens.controller.dto.artwork.CommentDTO;
 import artizens.controller.dto.artwork.BlogInfoDTO;
 import artizens.controller.dto.artwork.StoreFileDTO;
 import artizens.controller.dto.artwork.UploadFileDTO;
@@ -71,7 +72,6 @@ public class ArtService {
 	public List<StoreFileDTO> findByAll( Long creator ) {
 		
 		List<StoreFileDTO> storeFileName = artMapper.findByImageURL( creator );
-		LOGGER.info("storeFileName={}",storeFileName.toString());
 		return storeFileName;
 	}
 	
@@ -114,5 +114,10 @@ public class ArtService {
 		}
 		LOGGER.info("detail={}",detail.toString());
 		return detail;
+	}
+	
+	public String InsertComment( CommentDTO commentDto ) {
+		
+		return "";
 	}
 }

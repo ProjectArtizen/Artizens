@@ -116,7 +116,7 @@
 												<div class="posts-sm row col-mb-30">										
 													<div class="card-columns" data-lightbox="gallery">
 														<c:forEach var="imageURL" items="${store}">
-														<a href="/artizen/artwork/detail/${imageURL.storeFileName}">
+														<a href="/artizen/artwork/detail/${imageURL.imageId}">
 															<img class="img-fluid mb-4 h-op-07 op-ts cursor-hover" src="${imageURL.storeFileName }" alt="Image"/>
 														</a>
 														</c:forEach>
@@ -171,8 +171,14 @@
 
 									<div class="d-flex mt-3">
 										<a href="#">
-											<img class="rounded-circle m-2" style="width: 100px; height: 100px;"
-												 src="${profileimage }" alt="Image">
+											<c:choose>
+												<c:when test="${profileImage eq null}">
+													<img class="rounded-circle m-2" style="width: 100px; height: 100px;" src="https://0.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=60" alt="Image">
+										 		</c:when>
+												<c:when test="${profileImage ne null}">
+													<img class="rounded-circle m-2" style="width: 100px; height: 100px;" src="${profileimage }" alt="Image">
+										 		</c:when>
+										 	</c:choose>
 										 </a>
 										<div class="m-3">
 											<div>${nickname }</div> 
