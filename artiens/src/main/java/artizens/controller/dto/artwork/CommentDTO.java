@@ -3,8 +3,8 @@ package artizens.controller.dto.artwork;
 public class CommentDTO {
 	
 	private String comment;
-	private String userid;
-	private String artworkId;
+	private Long userid;
+	private Long artworkId;
 	
 	@Override
 	public String toString() {
@@ -16,18 +16,19 @@ public class CommentDTO {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	public String getUserid() {
+	public Long getUserid() {
 		return userid;
 	}
-	public void setUserid(String userid) {
+	public void setUserid(Long userid) {
 		this.userid = userid;
 	}
-	public String getArtworkId() {
+	public Long getArtworkId() {
 		return artworkId;
 	}
-	public void setArtworkId(String artworkId) {
+	public void setArtworkId(Long artworkId) {
 		this.artworkId = artworkId;
 	}
+
 	
 	
 }

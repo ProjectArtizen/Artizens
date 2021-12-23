@@ -63,7 +63,6 @@ public class ArtWorkService {
 			creatorId = info.getId();
 		}
 		LOGGER.info("creatorId={}",creatorId);
-		
 		return creatorId;
 	}
 	
@@ -78,5 +77,4 @@ public class ArtWorkService {
 		String result = nickname + "/" + creatorid;
 		return result;
 	}
-	
 }
