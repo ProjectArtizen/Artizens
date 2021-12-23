@@ -19,4 +19,8 @@ public class CollaborationService2 {
 	public CollaborationDetailDto collaborationDetailForm(Long collaborationId) {
 		return collaborationMapper.findCollaborationById(collaborationId);
 	}
+	
+	public CollaborationDetailDto collaborationArtWotkDetailForm(Long collaborationArtWorkId) {
+		return collaborationMapper.findaCollaboArtWorkById(collaborationArtWorkId);
+	}
 }

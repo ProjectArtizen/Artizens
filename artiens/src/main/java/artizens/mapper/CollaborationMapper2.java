@@ -23,19 +23,28 @@ public interface CollaborationMapper2 {
 		@Result(property = "registerDate", column = "collaboration_register_date"),
 		@Result(property = "creatorNickname", column = "creator_nickname"),
 		@Result(property = "creatorImgName", column = "creator_profile_storefilename"),
-		@Result(property = "collaborationImgName", column = "collaboration_images_storefilename"),
-		@Result(property = "collaborationContent", column = "collaboration_content")
+		@Result(property = "contentImgName", column = "collaboration_store_file_name"),
+		@Result(property = "content", column = "collaboration_content")
 	})
 	@Select("select * from collaboration"
 			+ " left join creator"
-			+ " on collaboration.collaboration_id = creator.creator_id"
-			+ " left join collaboration_images"
-			+ " on collaboration.collaboration_id = collaboration_images.collaboration_images_id"
+			+ " on collaboration.creator_id = creator.creator_id"
 			+ " where collaboration.collaboration_id=${collaborationId}")
 	CollaborationDetailDto findCollaborationById(Long collaborationId);
 	
-	
-	
-	
+	@Results(id = "collaboratonArtWorkResult", value = {
+			@Result(property = "id", column = "collaboration_artwork_id", id =true),
+			@Result(property = "title", column = "collaboration_artwork_title"),
+			@Result(property = "registerDate", column = "collaboration_artwork_register_date"),
+			@Result(property = "creatorNickname", column = "creator_nickname"),
+			@Result(property = "creatorImgName", column = "creator_profile_storefilename"),
+			@Result(property = "contentImgName", column = "collaboration_artwork_store_file_name"),
+			@Result(property = "content", column = "collaboration_artwork_content")
+		})
+	@Select("select * from collaboration_artwork"
+			+ " left join creator"
+			+ " on collaboration_artwork.creator_id = creator.creator_id"
+			+ " where collaboration_artwork.collaboration_artwork_id=${collaborationArtWorkId}")
+	CollaborationDetailDto findaCollaboArtWorkById(Long collaborationArtWorkId);
 	
 }

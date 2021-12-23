@@ -6,13 +6,12 @@ public class CollaborationDetailDto {
 	private String title;
 	private String registerDate;
 	private String creatorNickname;
-	private String collaborationImgName;
 	private String creatorImgName;
-	private String collaborationContent;
+	private String contentImgName;
+	private String content;
 	private Integer commentCount;
 	private Long commentId;
 	private String comment;
-	
 	public Long getId() {
 		return id;
 	}
@@ -25,14 +24,14 @@ public class CollaborationDetailDto {
 	public String getCreatorNickname() {
 		return creatorNickname;
 	}
-	public String getCollaborationImgName() {
-		return collaborationImgName;
-	}
 	public String getCreatorImgName() {
 		return creatorImgName;
 	}
-	public String getCollaborationContent() {
-		return collaborationContent;
+	public String getContentImgName() {
+		return contentImgName;
+	}
+	public String getContent() {
+		return content;
 	}
 	public Integer getCommentCount() {
 		return commentCount;
@@ -55,14 +54,14 @@ public class CollaborationDetailDto {
 	public void setCreatorNickname(String creatorNickname) {
 		this.creatorNickname = creatorNickname;
 	}
-	public void setCollaborationImgName(String collaborationImgName) {
-		this.collaborationImgName = collaborationImgName;
-	}
 	public void setCreatorImgName(String creatorImgName) {
 		this.creatorImgName = creatorImgName;
 	}
-	public void setCollaborationContent(String collaborationContent) {
-		this.collaborationContent = collaborationContent;
+	public void setContentImgName(String contentImgName) {
+		this.contentImgName = contentImgName;
+	}
+	public void setContent(String content) {
+		this.content = content;
 	}
 	public void setCommentCount(Integer commentCount) {
 		this.commentCount = commentCount;
@@ -76,10 +75,12 @@ public class CollaborationDetailDto {
 	@Override
 	public String toString() {
 		return "CollaborationDetailDto [id=" + id + ", title=" + title + ", registerDate=" + registerDate
-				+ ", creatorNickname=" + creatorNickname + ", collaborationImgName=" + collaborationImgName
-				+ ", creatorImgName=" + creatorImgName + ", collaborationContent=" + collaborationContent
-				+ ", commentCount=" + commentCount + ", commentId=" + commentId + ", comment=" + comment + "]";
+				+ ", creatorNickname=" + creatorNickname + ", creatorImgName=" + creatorImgName + ", contentImgName="
+				+ contentImgName + ", content=" + content + ", commentCount=" + commentCount + ", commentId="
+				+ commentId + ", comment=" + comment + "]";
 	}
+	
+	
 	
 	
 }
