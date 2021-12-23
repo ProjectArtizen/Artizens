@@ -81,7 +81,7 @@
 											<div class="slider-wrap">
 												<div>
 													<a href="colDetail"></a>
-													<img src="/images/collaboration/col/planning1.jpg">
+													<img src="${result.storedFileName }">
 												</div>
 											</div>
 										</div>

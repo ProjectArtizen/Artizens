@@ -23,10 +23,6 @@ public class CollaborationMainDto {
 	public CollaborationMainDto() {
 		super();
 	}
-	public CollaborationMainDto(Long collaborationId, String storedFileName) {
-		this.collaborationId = collaborationId;
-		this.storedFileName = storedFileName;
-	}
 	public Long getCollaborationId() {
 		return collaborationId;
 	}
@@ -76,11 +72,11 @@ public class CollaborationMainDto {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public void setDeadLineDate(LocalDateTime deadLineDate) {
-		this.deadLineDate = deadLineDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		this.deadLineYear = Integer.toString(deadLineDate.getYear());
-		this.deadLineMonth = Integer.toString(deadLineDate.getMonthValue());
-		this.deadLineDay = Integer.toString(deadLineDate.getDayOfMonth());
+	public void setDeadLineDate(String deadLineDate) {
+		this.deadLineDate = (deadLineDate!=null)?deadLineDate:null;
+		this.deadLineYear = (deadLineDate!=null)?deadLineDate.split("-")[0]:null;
+		this.deadLineMonth = (deadLineDate!=null)?deadLineDate.split("-")[1]:null;
+		this.deadLineDay = (deadLineDate!=null)?deadLineDate.split("-")[2].substring(0,2):null;
 	}
 	public void setRegisterDate(String registerDate) {
 		this.registerDate = registerDate;

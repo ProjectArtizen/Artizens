@@ -18,7 +18,7 @@ public interface CollaborationMapper1 {
 			+ "collaboration_register_date, "
 			+ "collaboration_deadline_date, "
 			+ "collaboration_content, "
-			+ "collaboration_store_file_name) values ("
+			+ "collaboration_storefilename) values ("
 			+ "#{title}, now(), #{deadLineDate}, #{content} , #{storedFileName})")
 	@Options(useGeneratedKeys = true, keyProperty = "collaborationId", keyColumn = "collaboration_id")
 	Long insertCollaboration(CollaborationMainDto collaborationDto);
@@ -29,7 +29,7 @@ public interface CollaborationMapper1 {
 		@Result(property = "deadLineDate", column = "collaboration_deadline_date"),
 		@Result(property = "registerDate", column = "collaboration_register_date"),
 		@Result(property = "content", column = "collaboration_content"),
-		@Result(property = "storedFileName", column = "collaboration_store_file_name")
+		@Result(property = "storedFileName", column = "collaboration_storefilename")
 	})
 	@Select("select * from collaboration")
 	List<CollaborationMainDto> findAllCollaboration();

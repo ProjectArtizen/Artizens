@@ -73,7 +73,7 @@ $( function() {
 			</tr>
 			<tr>	
 				<th>파일첨부<small>*</small></th>
-				<td><input type="file" name="collaborationImage" class="form-control" multiple ency></td>
+				<td><input type="file" name="collaborationImage" class="form-control"></td>
 			</tr>
 			<tr>
 				<th>기획내용<small>*</small></th>
