@@ -61,7 +61,7 @@ public interface CollaborationMapper {
 			+ "		JOIN creator "
 			+ "			ON creator.creator_id = artwork.creator_id"
 			+ "	WHERE artwork.collaboration_id = ${collaborationId")
-	List<CollaborationWinnerDto> finAllCollaborationWinner(Long collaboraionId);
+	List<CollaborationWinnerDto> findAllCollaborationWinner(Long collaboraionId);
 	
 	
 	
