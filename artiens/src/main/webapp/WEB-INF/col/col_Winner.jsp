@@ -148,23 +148,25 @@
 							</tr>
 						</thead>
 						<tbody>
+						<c:forEach var="result" items="${list}">
 							<tr class="cart_item">
 								<td class="cart-product-thumbnail">
-									<a href="/{collaborationId}"><img width="240" height="128" src="https://sunminki.s3.ap-northeast-2.amazonaws.com/7ee3d22c-4284-430b-aae4-f516c3a5682a.JPG"></a>
+									<img width="240" height="128" src="${result.image }"></a>
 								</td>
 
 								<td class="cart-product-name">
-									<a href="#">Pink Printed Dress</a>
+									<a href="#">${result.title }</a>
 								</td>
 
 								<td class="cart-product-name">
-									<a href="#">creatorName</a>
+									<a href="#">${result.nickname }</a>
 								</td>
 
 								<td class="cart-product-subtotal">
 									<input type="checkbox" name="chk" value="">
 								</td>
 							</tr>
+						</c:forEach>
 						</tbody>
 					</table>
 					<div class="row">
