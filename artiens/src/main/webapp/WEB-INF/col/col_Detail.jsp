@@ -26,12 +26,18 @@
 <link rel="stylesheet" href="/css/components/daterangepicker.css"
 	type="text/css" />
 <link rel="stylesheet" href="/css/custom.css" type="text/css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <!-- Document Title
 	============================================= -->
 <title>콜라보레이션</title>
-
+<script type="text/javascript">
+	function commentAlert(){
+		alert("댓글 작성은 구현 중입니다.")
+		location.href = '/artizen/collaboration/${result.id}'
+	}
+</script>
 </head>
 
 <body class="stretched">
@@ -66,14 +72,14 @@
 				<h1>콜라보레이션 타이틀</h1>
 				<span style="margin-top: 20px;">
 					<div class="d-flex align-items-center" style="justify-content: center;">
-						<a href="#"><img src="/images/collaboration/author.jpg"
+						<a href="#"><img src="${result.creatorImgName}"
 							alt="Author" class="rounded-circle" width="35" height="35"></a>
 						<div class="entry-meta mt-0">
 							<div class="entry-meta"
 								style="margin-bottom: 10px; padding-left: 10px;">
 								<ul>
-									<li><a href="/blog/{blogURL}">Author</a></li>
-									<li><i class="icon-calendar3"></i>2021.11.21</li>
+									<li><a href="/blog/${result.creatorId}">${result.creatorNickname}</a></li>
+									<li><i class="icon-calendar3"></i>${result.registerDate}</li>
 								</ul>
 							</div>
 						</div>
@@ -116,8 +122,7 @@
 							============================================= -->
 
 							<div class="entry-image bottommargin">
-								<img src="/images/collaboration/col/planning1.jpg"
-									alt="Blog Single">
+								<img src="${result.contentImgName}" alt="Blog Single">
 							</div>
 							<!-- 아미지 끝 -->
 
@@ -125,57 +130,9 @@
 							============================================= -->
 							<div class="entry-content mt-0">
 
-								<p>Duis mollis, est non commodo luctus, nisi erat porttitor
-									ligula, eget lacinia odio sem nec elit. Cras mattis consectetur
-									purus sit amet fermentum. Morbi leo risus, porta ac consectetur
-									ac, vestibulum at eros. Praesent commodo cursus magna, vel
-									scelerisque nisl consectetur et.</p>
-
-								<p>
-									Nullam id dolor id nibh ultricies vehicula ut id elit. <a
-										href="#">Curabitur blandit tempus porttitor</a>. Integer
-									posuere erat a ante venenatis dapibus posuere velit aliquet.
-									Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-									Vestibulum id ligula porta felis euismod semper. Donec id elit
-									non mi porta gravida at eget metus. Vestibulum id ligula porta
-									felis euismod semper.
-								</p>
-
 								<blockquote>
-									<p>Vestibulum id ligula porta felis euismod semper. Sed
-										posuere consectetur est at lobortis. Aenean eu leo quam.
-										Pellentesque ornare sem lacinia quam venenatis vestibulum.
-										Duis mollis, est non commodo luctus, nisi erat porttitor
-										ligula, eget lacinia odio sem nec elit. Donec ullamcorper
-										nulla non metus auctor fringilla. Vestibulum id ligula porta
-										felis euismod semper.</p>
+									<p>${result.content}</p>
 								</blockquote>
-
-								<p>Integer posuere erat a ante venenatis dapibus posuere
-									velit aliquet. Cras mattis consectetur purus sit amet
-									fermentum. Donec id elit non mi porta gravida at eget metus.</p>
-
-								<p>
-									Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-									Aenean lacinia bibendum nulla sed consectetur. Cras justo odio,
-									dapibus ac facilisis in, egestas eget quam. <a href="#">Nullam
-										quis risus eget urna</a> mollis ornare vel eu leo. Integer posuere
-									erat a ante venenatis dapibus posuere velit aliquet.
-								</p>
-
-								<p>Duis mollis, est non commodo luctus, nisi erat porttitor
-									ligula, eget lacinia odio sem nec elit. Cras mattis consectetur
-									purus sit amet fermentum. Morbi leo risus, porta ac consectetur
-									ac, vestibulum at eros. Praesent commodo cursus magna, vel
-									scelerisque nisl consectetur et.</p>
-
-								<p>Nullam id dolor id nibh ultricies vehicula ut id elit.
-									Curabitur blandit tempus porttitor. Integer posuere erat a ante
-									venenatis dapibus posuere velit aliquet. Cras justo odio,
-									dapibus ac facilisis in, egestas eget quam. Vestibulum id
-									ligula porta felis euismod semper. Donec id elit non mi porta
-									gravida at eget metus. Vestibulum id ligula porta felis euismod
-									semper.</p>
 								<!-- 내용 끝 -->
 
 								<div class="clear"></div>
@@ -197,10 +154,11 @@
 									<span>댓글작성</span>
 								</h3>
 
-								<form class="row" action="#" method="post" id="commentform">
+								<form class="row" action="" method="get" id="commentform" onsubmit="return commentAlert()">
 
-									<div class="w-100"></div>
-
+									<<!-- div class="w-100"></div>
+									<div><input type="hidden" name=userProFileId value=""></div>
+									
 									<div class="col-12 form-group">
 										<textarea name="comment" cols="58" rows="7" tabindex="4"
 											class="sm-form-control" placeholder="댓글을 입력하세요."></textarea>
@@ -209,7 +167,7 @@
 									<div class="col-12 form-group" style="text-align: right;">
 										<button name="submit" type="submit" id="submit-button"
 											tabindex="5" value="Submit" class="button button-3d m-0">작성하기</button>
-									</div>
+									</div> -->
 								</form>
 
 							</div>
@@ -221,10 +179,10 @@
 							<div class="line"></div>
 
 							<h3 id="comments-title">
-								<span>3</span> 개의 댓글
+								<span>${result.commentCount}</span> 개의 댓글
 							</h3>
-
-							<ol class="commentlist clearfix" style="border: none;">
+							
+							<!-- <ol class="commentlist clearfix" style="border: none;">
 
 								<li class="comment even thread-even depth-1" id="li-comment-1">
 
@@ -357,7 +315,7 @@
 								</li>
 
 							</ol>
-							<!-- 댓글목록 끝 -->
+							댓글목록 끝 -->
 
 							<div class="clear"></div>
 
