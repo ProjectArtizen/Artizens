@@ -33,7 +33,7 @@ public class CollaborationController1 {
 	@GetMapping("/main")
 	public String collaborationMain(Model model) {
 		List<CollaborationMainDto> result = collaborationService1.findAllByCollaboration();
-		model.addAttribute("result", result); 
+		model.addAttribute("result", result);
 		return "col/col_Main";
 	}
 	

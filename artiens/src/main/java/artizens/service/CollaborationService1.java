@@ -25,13 +25,11 @@ public class CollaborationService1 {
 	
 	// collaboration insert service method
 	public CollaborationMainDto insertCollaboration(CollaborationMainDto dto) {
-		// collaboration insert
-		collaborationMapper1.insertCollaboration(dto);
-		
 		// mutipartfile -> aws -> uploadfile객체로 loadW
+		// collaboration insert
 		UploadFile image = fileUploadService.uploadImage(dto.getCollaborationImage());
-		CollaborationMainDto imageDto = new CollaborationMainDto(dto.getCollaborationId(), image.getStoreFileName());
-		collaborationMapper1.insertCollaborationImage(imageDto);
+		dto.setStoredFileName(image.getStoreFileName());
+		collaborationMapper1.insertCollaboration(dto);
 		return dto;
 	}
 	
