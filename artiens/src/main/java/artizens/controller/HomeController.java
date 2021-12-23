@@ -18,20 +18,20 @@ import lombok.Data;
 @Controller
 public class HomeController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
-	@GetMapping("/artizen")
-    public String home(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user, Model model, HttpServletRequest request){
-        //세션 없으면 main.html
-        if (user == null){
-            return "/artizen/artwork/main";
-        }
-
-        //세션 유지되면 로그인이 된 loginMain.html 으로 이동
-        LoginUser loginUser = new LoginUser(user.getId(), user.getName());
-//        model.addAttribute("member",loginUser);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.sss");
-        model.addAttribute("creationTime", simpleDateFormat.format(request.getSession().getCreationTime()));
-        return "/artizen/artwork/main";
-    }
+//	@GetMapping("/artizen")
+//    public String home(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user, Model model, HttpServletRequest request){
+//        //세션 없으면 main.html
+//        if (user == null){
+//            return "redirect:/";
+//        }
+//
+//        //세션 유지되면 로그인이 된 loginMain.html 으로 이동
+//        LoginUser loginUser = new LoginUser(user.getId(), user.getName());
+////        model.addAttribute("member",loginUser);
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.sss");
+//        model.addAttribute("creationTime", simpleDateFormat.format(request.getSession().getCreationTime()));
+//        return "/artizen/artwork/main";
+//    }
 	
 	@GetMapping("/artizen/developing")
     public String developing(Model model){
