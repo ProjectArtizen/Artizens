@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import artizens.domain.UserProfile;
 import artizens.mapper.dto.collaboration.CollaborationMainDto;
+import artizens.mapper.dto.collaboration.CollaborationPlanningDto;
 import artizens.service.CollaborationService1;
 import artizens.web.session.SessionConst;
 
@@ -45,8 +46,10 @@ public class CollaborationController1 {
 	 */
 	@GetMapping("/planning")
 	public String insertCollaboration(
-		@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user) {
-		
+		@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user, Model model) {
+		CollaborationPlanningDto userId = collaborationService1.findCreatorId(user.getId());
+		LOGGER.info("msguser1={}",userId.getCreatorId());
+		model.addAttribute("userId",userId.getCreatorId());
 		return "col/col_Planning";
 	}
 	
@@ -56,10 +59,10 @@ public class CollaborationController1 {
 	 * @return
 	 */
 	@PostMapping("/planning")
-	public String viewCollaborationResult(@ModelAttribute CollaborationMainDto collaborationDto) {
-		CollaborationMainDto dto = collaborationService1.insertCollaboration(collaborationDto);
+	public String viewCollaborationResult(@ModelAttribute CollaborationPlanningDto collaborationDto) {
+		CollaborationPlanningDto dto = collaborationService1.insertCollaboration(collaborationDto);
 		LOGGER.info("msg2={}", dto.toString());
-		return "col/col_Main";
+		return "col/col_Planning";
 	}
 	
 	/**

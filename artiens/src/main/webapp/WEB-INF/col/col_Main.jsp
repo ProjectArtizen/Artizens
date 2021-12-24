@@ -79,18 +79,20 @@
 										data-lightbox="gallery">
 										<div class="flexslider">
 											<div class="slider-wrap">
-												<div>
+												<div style="height: 230px; overflow: hidden">
 													<a href="colDetail"></a>
-													<img src="${result.storedFileName }">
+													<img src="${result.storedFileName }"/>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 								<div class="p-4">
-									<h3 class="center" style="margin-bottom: 40px;">
-										<a href="colDetail">${result.title }</a>
-									</h3>
+									<div style="height:54px; margin-bottom: 20px;">
+										<h4 class="center">
+											<a href="colDetail">${result.title }</a>
+										</h4>
+									</div>
 
 									<div class="container clearfix m-2">
 										<div class="row justify-content-center">
@@ -110,14 +112,14 @@
 
 									<hr class="my-4">
 									<div class="d-flex align-items-center">
-										<a href="#"><img src="/images/collaboration/author.jpg"
-											alt="Author" class="rounded-circle" width="38" height="38"></a>
+										<a href="#"><img src="${result.creatorProfileStoredFileName }"
+											class="rounded-circle" width="38" height="38"></a>
 										<div class="entry-meta mt-0">
 											<div class="entry-meta"
 												style="margin-bottom: 10px; padding-left: 10px;">
 												<ul>
-													<li><a href="#"><h6 class="mb-1 h6" style="display: inline;">Author</h6></a></li>
-													<li><i class="icon-calendar3"></i>2021.11.21</li>
+													<li><a href="#"><h6 class="mb-1 h6" style="display: inline;">${result.creatorNickName }</h6></a></li>
+													<li><i class="icon-calendar3"></i>${result.registerDate }</li>
 													<li><a href="blog-single.html#comments"><i
 															class="icon-comments"></i> 13</a></li>
 												</ul>
