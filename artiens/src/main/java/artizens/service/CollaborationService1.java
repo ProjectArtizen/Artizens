@@ -1,5 +1,7 @@
 package artizens.service;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,10 +9,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import artizens.domain.UploadFile;
+import artizens.domain.UserProfile;
 import artizens.mapper.CollaborationMapper;
 import artizens.mapper.CollaborationMapper1;
 import artizens.mapper.dto.collaboration.CollaborationDto;
 import artizens.mapper.dto.collaboration.CollaborationMainDto;
+import artizens.mapper.dto.collaboration.CollaborationPlanningDto;
 import artizens.repository.CollaborationRepository;
 import artizens.web.aws.FileUploadService;
 
@@ -24,7 +28,7 @@ public class CollaborationService1 {
 	
 	
 	// collaboration insert service method
-	public CollaborationMainDto insertCollaboration(CollaborationMainDto dto) {
+	public CollaborationPlanningDto insertCollaboration(CollaborationPlanningDto dto) {
 		// mutipartfile -> aws -> uploadfile객체로 loadW
 		// collaboration insert
 		UploadFile image = fileUploadService.uploadImage(dto.getCollaborationImage());
@@ -36,6 +40,10 @@ public class CollaborationService1 {
 	public List<CollaborationMainDto> findAllByCollaboration(){
 //		return collaborationRepository.findAll();
 		return collaborationMapper1.findAllCollaboration();
+	}
+	
+	public CollaborationPlanningDto findCreatorId(Long userid) {
+		return collaborationMapper1.findCreatorId(userid);
 	}
 
 }
