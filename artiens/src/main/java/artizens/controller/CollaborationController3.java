@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -25,9 +26,9 @@ public class CollaborationController3 {
 	 * 당선작을 선택하는 화면
 	 * @return
 	 */
-	@GetMapping("/winner")
-	public String winnerSelect(Model model) {
-		List<CollaborationWinnerDto> result = collaborationService3.findAllCollaborationWinner();
+	@GetMapping("/winner/{collaboId}")
+	public String winnerSelect(@PathVariable Long collaboId, Model model) {
+		List<CollaborationWinnerDto> result = collaborationService3.findAllCollaborationWinner( collaboId);
 		model.addAttribute("result", result);
 		return "col/col_Winner";
 	}

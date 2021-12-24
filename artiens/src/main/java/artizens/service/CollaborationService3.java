@@ -12,8 +12,8 @@ import artizens.mapper.dto.collaboration.CollaborationWinnerDto;
 public class CollaborationService3 {
 	@Autowired CollaborationMapper3 collaborationMapper3;
 	
-	public List<CollaborationWinnerDto> findAllCollaborationWinner(){
-		return collaborationMapper3.findAllCollaborationWinner();
+	public List<CollaborationWinnerDto> findAllCollaborationWinner( Long collaboId){
+		return collaborationMapper3.findAllCollaborationWinner(collaboId);
 	}
 
 }
