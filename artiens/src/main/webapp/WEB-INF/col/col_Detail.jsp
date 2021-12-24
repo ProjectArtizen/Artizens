@@ -13,19 +13,19 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap"
 	rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="/css/bootstrap.css" type="text/css" />
-<link rel="stylesheet" href="/style.css" type="text/css" />
-<link rel="stylesheet" href="/css/dark.css" type="text/css" />
-<link rel="stylesheet" href="/css/font-icons.css" type="text/css" />
-<link rel="stylesheet" href="/css/animate.css" type="text/css" />
-<link rel="stylesheet" href="/css/magnific-popup.css" type="text/css" />
-<link rel="stylesheet" href="/css/components/datepicker.css"
+<link rel="stylesheet" href="../../css/bootstrap.css" type="text/css" />
+<link rel="stylesheet" href="../../style.css" type="text/css" />
+<link rel="stylesheet" href="../../css/dark.css" type="text/css" />
+<link rel="stylesheet" href="../../css/font-icons.css" type="text/css" />
+<link rel="stylesheet" href="../../css/animate.css" type="text/css" />
+<link rel="stylesheet" href="../../css/magnific-popup.css" type="text/css" />
+<link rel="stylesheet" href="../../css/components/datepicker.css"
 	type="text/css" />
-<link rel="stylesheet" href="/css/components/timepicker.css"
+<link rel="stylesheet" href="../../css/components/timepicker.css"
 	type="text/css" />
-<link rel="stylesheet" href="/css/components/daterangepicker.css"
+<link rel="stylesheet" href="../../css/components/daterangepicker.css"
 	type="text/css" />
-<link rel="stylesheet" href="/css/custom.css" type="text/css" />
+<link rel="stylesheet" href="../../css/custom.css" type="text/css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -156,18 +156,16 @@
 
 								<form class="row" action="" method="get" id="commentform" onsubmit="return commentAlert()">
 
-									<<!-- div class="w-100"></div>
-									<div><input type="hidden" name=userProFileId value=""></div>
+									<div class="w-100"></div>
+									<div><input type="hidden" name="" value=""></div>
 									
 									<div class="col-12 form-group">
-										<textarea name="comment" cols="58" rows="7" tabindex="4"
-											class="sm-form-control" placeholder="댓글을 입력하세요."></textarea>
+										<textarea name="" cols="58" rows="7" tabindex="4" class="sm-form-control" placeholder="댓글을 입력하세요."></textarea>
 									</div>
 
 									<div class="col-12 form-group" style="text-align: right;">
-										<button name="submit" type="submit" id="submit-button"
-											tabindex="5" value="Submit" class="button button-3d m-0">작성하기</button>
-									</div> -->
+										<button type="submit" id="submit-button" tabindex="5" value="" class="button button-3d m-0">작성하기</button>
+									</div>
 								</form>
 
 							</div>
