@@ -5,9 +5,12 @@ public class CollaborationWinnerDto {
 	private Long collaborationId;
 	private String image;
 	private String title;
+	
+	/*
+	 * creator nickname 
+	 */
 	private String nickname;
-	
-	
+
 	public Long getCollaborationId() {
 		return collaborationId;
 	}

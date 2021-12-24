@@ -11,9 +11,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
+import artizens.domain.UserProfile;
+import artizens.mapper.dto.collaboration.CollaborationCollaboratorDto;
 import artizens.mapper.dto.collaboration.CollaborationWinnerDto;
 import artizens.service.CollaborationService3;
+import artizens.web.session.SessionConst;
 
 @Controller
 @RequestMapping("/artizen/collaboration")
@@ -27,9 +31,13 @@ public class CollaborationController3 {
 	 * @return
 	 */
 	@GetMapping("/winner/{collaboId}")
-	public String winnerSelect(@PathVariable Long collaboId, Model model) {
+	public String winnerSelect(
+			@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user,
+			@PathVariable Long collaboId, Model model) {
 		List<CollaborationWinnerDto> result = collaborationService3.findAllCollaborationWinner( collaboId);
+		CollaborationCollaboratorDto collaborator = collaborationService3.findCollaborator(collaboId);
 		model.addAttribute("result", result);
+		model.addAttribute("collaborator", collaborator);
 		return "col/col_Winner";
 	}
 	
@@ -41,4 +49,5 @@ public class CollaborationController3 {
 	public String winnerUpdate() {
 		return "";
 	}
+	
 }
