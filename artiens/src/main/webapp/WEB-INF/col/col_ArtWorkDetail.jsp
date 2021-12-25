@@ -12,26 +12,22 @@
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap" rel="stylesheet" type="text/css" />
 <script type="text/javascript" nonce="a4f84d226a5b4b17b010d07a1b5" src="//local.adguard.org?ts=1635669619739&amp;type=content-script&amp;dmn=themes.semicolonweb.com&amp;app=msedge.exe&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=0"></script>
 <script type="text/javascript" nonce="a4f84d226a5b4b17b010d07a1b5" src="//local.adguard.org?ts=1635669619739&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;type=user-script"></script>
-<link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
-<link rel="stylesheet" href="../style.css" type="text/css" />
-<link rel="stylesheet" href="../css/dark.css" type="text/css" />
-<link rel="stylesheet" href="../css/font-icons.css" type="text/css" />
-<link rel="stylesheet" href="../css/animate.css" type="text/css" />
-<link rel="stylesheet" href="../css/magnific-popup.css" type="text/css" />
-<link rel="stylesheet" href="../css/components/datepicker.css" type="text/css" />
-<link rel="stylesheet" href="../css/components/timepicker.css" type="text/css" />
-<link rel="stylesheet" href="../css/components/daterangepicker.css" type="text/css" />
-<link rel="stylesheet" href="../css/custom.css" type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/bootstrap.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/style.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/dark.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/font-icons.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/animate.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/magnific-popup.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/components/datepicker.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/components/timepicker.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/components/daterangepicker.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/custom.css"></c:url>' type="text/css"/>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <!-- Document Title
 	============================================= -->
-<title>콜라보레이션</title>
-<script>
-	function commentAlert() {
-		alert("댓글 작성은 구현 중입니다.")
-	}
-</script>
+<title>콜라보레이션 작품</title>
+
 <style>
 
 .mfp-close {
@@ -106,13 +102,13 @@
 		<section id="page-title" class="page-title-center"
 			style="background-color: white; border: none; padding-bottom: 0px;">
 			<div class="container clearfix" style="background-color: white;">
-				<c:if test="${result.evaluate eq true}">
+				<c:if test="${result.winner eq true}">
 					<span class="fw-bold"
 						  style="font-size:1.8em;
 						  		 width:7em;
-						  		 background-color:gray; 
+						  		 background-color:#13cc83; 
 						  		 color:white; 
-						  		 margin-bottom:1em;">당선작 발표
+						  		 margin-bottom:1em;">수상작
 					</span>
 				</c:if>
 				<h1>${result.title}</h1>
@@ -126,7 +122,7 @@
 								style="margin-bottom: 10px; padding-left: 10px;">
 								<ul>
 									<li><a href="/blog/${result.creatorId}">${result.creatorNickname}</a></li>
-									<li><i class="icon-calendar3"></i>${result.registerDate} ~ ${result.deadlineTime}</li>
+									<li><i class="icon-calendar3"></i>${result.registerDate}</li>
 								</ul>
 							</div>
 						</div>
@@ -134,11 +130,6 @@
 				</span>
 
 
-				<div>
-					<!-- 서브메뉴 ============================================= -->
-						<%@ include file="../include/colNav.jsp"%>
-					<!-- 서브메뉴 끝 -->
-				</div>
 				<!-- Section Light -->
 				
 			</div>
@@ -215,6 +206,11 @@
 											class="button button-3d m-0">작성하기</button>
 									</div>
 								</form>
+								<script type="text/javascript">
+									function commentAlert() {
+										alert("댓글 작성은 구현 중입니다.");
+									}
+								</script>
 
 							</div>
 							<!-- 댓글작성 끝-->
@@ -387,42 +383,19 @@
 <div id="gotoTop" class="icon-angle-up"></div>
 <!-- JavaScripts
 ============================================= -->
-<script src="../js/jquery.js"></script>
-<script src="../js/plugins.min.js"></script>
+<script src='<c:url value="/js/jquery.js"/>'/></script>
+<script src='<c:url value="/js/plugins.min.js"/>'/></script>
 
 <!-- Date & Time Picker JS -->
-<script src="../js/components/moment.js"></script>
-<script src="../js/components/timepicker.js"></script>
-<script src="../js/components/datepicker.js"></script>
+<script src='<c:url value="/js/components/moment.js"/>'/></script>
+<script src='<c:url value="/js/components/timepicker.js"/>'/></script>
+<script src='<c:url value="/js/components/datepicker.js"/>'/></script>
 
 <!-- Include Date Range Picker -->
-<script src="../js/components/daterangepicker.js"></script>
-
+<script src='<c:url value="/js/components/daterangepicker.js"/>'/></script>
 <!-- Footer Scripts
 ============================================= -->
-<script src="../js/functions.js"></script>
-
-<script>
-	jQuery(document).ready(function() {
-
-		var element = $(".custom-file");
-
-		element.find('input[type="file"]').change(function(e) {
-			var fileName = e.target.files[0].name;
-			element.find('.custom-file-label').html(fileName);
-		});
-
-		$('#block-modal-request').on('show.bs.modal', function(e) {
-			e.preventDefault();
-		})
-
-		$('#template-contactform').on('formSubmitSuccess', function() {
-			setTimeout(function() {
-				$('#block-modal-request').magnificPopup('close');
-			}, 1);
-		});
-
-	});
-</script>
+<!-- <script src="../js/functions.js"></script> -->
+<script src='<c:url value="/js/functions.js"/>'/></script>
 </body>
 </html>

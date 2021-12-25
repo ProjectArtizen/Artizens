@@ -9,8 +9,8 @@
           <!-- Logo
           ============================================= -->
           <div id="logo">
-            <a href="/artizen/artwork/main" class="standard-logo" data-dark-logo="/images/logo_new/logo_D.png" style="height: 50px;">
-              <img src="/images/logo_new/logo_D.png" alt="Artizen Logo">
+            <a href="/artizen/artwork/main" class="standard-logo" data-dark-logo="<c:url value="/images/logo_new/logo_D.png"/>" style="height: 50px;">
+              <img src="<c:url value="/images/logo_new/logo_D.png"/>" alt="Artizen Logo">
             </a>
           </div><!-- #logo end -->
 

@@ -3,17 +3,12 @@ package artizens.mapper.dto.collaboration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import com.amazonaws.endpointdiscovery.DaemonThreadFactory;
-import com.sun.mail.handlers.image_gif;
-
-public class CollaborationDetailDto {
+public class CollaborationArtworkDetailDto {
 	
 	private Long id;
 	private String title;
 	private String registerDate;
-	private LocalDateTime deadlineTime;
-	private Boolean pastDateBoolean;
-	private Boolean evaluate;
+	private Boolean winner;
 	private Long creatorId;
 	private String creatorNickname;
 	private String creatorImgName;
@@ -59,23 +54,9 @@ public class CollaborationDetailDto {
 	public Long getCreatorId() {
 		return creatorId;
 	}
-	/*
-	 * 이미 공모전이 마감됬는지 아니면 진행중인지 체크
-	 * true = 마감된 공모전
-	 * false = 진행중인 공모전
-	 */
-	public Boolean getPastDateBoolean() {
-		return pastDateBoolean;
+	public Boolean getWinner() {
+		return winner;
 	}
-	public String getDeadlineTime() {
-		return deadlineTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-	}
-	public Boolean getEvaluate() {
-		return evaluate;
-	}
-	
-	
-	
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -87,16 +68,7 @@ public class CollaborationDetailDto {
 	 * @param registerDate
 	 */
 	public void setRegisterDate(LocalDateTime registerDate) {
-		this.registerDate = registerDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")); 
-	}
-	/*
-	 * 이미 공모전이 마감됬는지 아니면 진행중인지 체크
-	 * true = 마감된 공모전
-	 * false = 진행중인 공모전
-	 */
-	public void setDeadlineTime(LocalDateTime deadlineTime) {
-		this.deadlineTime = deadlineTime;
-		this.pastDateBoolean = deadlineTime.isBefore(LocalDateTime.now());
+		this.registerDate = registerDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 	}
 	public void setCreatorNickname(String creatorNickname) {
 		this.creatorNickname = creatorNickname;
@@ -119,20 +91,21 @@ public class CollaborationDetailDto {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	public void setCreatorId(Long creatorId) {
-		this.creatorId = creatorId;
+	public void setCreatorId(String creatorId) {
+		this.creatorId = Long.parseLong(creatorId);
 	}
-	public void setEvaluate(Boolean evaluate) {
-		this.evaluate = evaluate;
+	public void setWinner(Boolean winner) {
+		this.winner = winner;
 	}
-	
 	@Override
 	public String toString() {
 		return "CollaborationDetailDto [id=" + id + ", title=" + title + ", registerDate=" + registerDate
-				+ ", deadlineTime=" + deadlineTime + ", pastDateBoolean=" + pastDateBoolean + ", evaluate=" + evaluate
-				+ ", creatorId=" + creatorId + ", creatorNickname=" + creatorNickname + ", creatorImgName="
-				+ creatorImgName + ", contentImgName=" + contentImgName + ", content=" + content + ", commentCount="
-				+ commentCount + ", commentId=" + commentId + ", comment=" + comment + "]";
+				+ ", creatorNickname=" + creatorNickname + ", creatorImgName=" + creatorImgName + ", contentImgName="
+				+ contentImgName + ", content=" + content + ", commentCount=" + commentCount + ", commentId="
+				+ commentId + ", comment=" + comment + "]";
 	}
+	
+	
+	
 	
 }

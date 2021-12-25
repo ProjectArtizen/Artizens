@@ -41,8 +41,7 @@
 		============================================= -->
 		<section id="content">
 			<div class="content-wrap py-0">
-				<div
-					class="d-flex align-items-center justify-content-center min-vh-100">
+				<div class="d-flex align-items-center justify-content-center min-vh-100">
 					<a href="#block-modal-request" data-lightbox="inline" data-target="#block-modal-request">
 						<button	style="float: right; border-color: #00d084; border-radius: 25px; width: 190px; Height: 50px; color: #00d084; background-color: #ffffff">작품 접수</button>
 					</a>
