@@ -9,7 +9,7 @@
           <!-- Logo
           ============================================= -->
           <div id="logo">
-            <a href="/artizen/artwork/main" class="standard-logo" data-dark-logo="<c:url value="/images/logo_new/logo_D.png"/>" style="height: 50px;">
+            <a href="<c:url value='/'/>" class="standard-logo" data-dark-logo="<c:url value="/images/logo_new/logo_D.png"/>" style="height: 50px;">
               <img src="<c:url value="/images/logo_new/logo_D.png"/>" alt="Artizen Logo">
             </a>
           </div><!-- #logo end -->
@@ -24,9 +24,9 @@
               </a>
             </div><!-- #top-search end -->
 
-            <!-- 유저 로그아웃 정보-->
+            <!-- 유저 로그인 정보-->
             <div id="top-login-in" class="header-misc-icon d-none d-sm-block">
-              <a href="/artizen/login">
+              <a href="<c:url value='/login'/>">
                 <i class="icon-line-log-in">
 					
                 </i>
@@ -48,74 +48,69 @@
 
             <ul class="menu-container">
               <li class="menu-item">
-                <a class="menu-link" style="font-size: larger;" href="work.jsp">
-                  <div>홈</div>
-                </a>
-              </li>
-              <li class="menu-item">
-                <a class="menu-link" style="font-size: larger;" href="<c:url value='/artwork/main'/>">
+                <a class="menu-link" style="font-size: larger;" href="<c:url value='/'/>">
                   <div>작 품</div>
                 </a>
                 <ul class="sub-menu-container bg-light" >
                   <li class="menu-item ">
-                    <a class="menu-link" href="artWorkInkPainting">
+                    <a class="menu-link" href="<c:url value='/artwork/ink'/>">
                       <div>수묵화</div>
                     </a>
                   </li>
                   <li class="menu-item ">
-                    <a class="menu-link" href="artWorkColoring">
+                    <a class="menu-link" href="<c:url value='/artwork/color'/>">
                       <div>채색화</div>
                     </a>
                   </li>
                   <li class="menu-item ">
-                    <a class="menu-link" href="artWorkLandscape">
+                    <a class="menu-link" href="<c:url value='/artwork/landscape'/>">
                       <div>풍경화</div>
                     </a>
                   </li>
                   <li class="menu-item ">
-                    <a class="menu-link" href="artWorkFigure">
+                    <a class="menu-link" href="<c:url value='/artwork/figure'/>">
                       <div>인물화</div>
                     </a>
                   </li>
                   <li class="menu-item">
-                    <a class="menu-link" href="artWorkAbstract">
+                    <a class="menu-link" href="<c:url value='/artwork/abstract'/>">
                       <div>추상화</div>
                     </a>
                   </li>
                   <li class="menu-item">
-                    <a class="menu-link" href="artWorkStill">
+                    <a class="menu-link" href="<c:url value='/artwork/still'/>">
                       <div>정물화</div>
                     </a>
                   </li>
                   <li class="menu-item">
-                    <a class="menu-link" href="artWorkPop">
+                    <a class="menu-link" href="<c:url value='/artwork/pop'/>">
                       <div>팝아트</div>
                     </a>
                   </li>
                 </ul>
               </li>
               <li class="menu-item">
-                <a class="menu-link" style="font-size: larger;" href="/artizen/colMain">
+                <a class="menu-link" style="font-size: larger;" href="<c:url value='/collaboration/main'/>">
                   <div>콜라보레이션</div>
                 </a>
               </li>
               <li class="menu-item">
-                <a class="menu-link" style="font-size: larger;" href="/artizen/patron/reward">
+                <a class="menu-link" style="font-size: larger;" href="<c:url value='/patron'/>">
                   <div>후원하기</div>
                 </a>
                 <ul class="sub-menu-container bg-light">
                   <li class="menu-item">
-                    <a class="menu-link" href="#">
+                    <a class="menu-link" href="<c:url value='/patron'/>">
                       <div>후원이란</div>
                     </a>
                   </li>
                   <li class="menu-item">
-                    <a class="menu-link" href="#">
+                    <a class="menu-link" href="<c:url value='/patron/creator'/>">
                       <div>크리에이터</div>
                     </a>
                   </li>
                   <li class="menu-item">
-                    <a class="menu-link" href="#">
+                    <a class="menu-link" href="<c:url value='/patron/reward'/>">
                       <div>리워드</div>
                     </a>
                   </li>
@@ -131,25 +126,4 @@
       </div>
     </div>
   </div>
-<script>
-	jQuery(document).ready( function(){
-	
-		var element = $(".custom-file");
-	
-		element.find('input[type="file"]').change(function(e){
-			var fileName = e.target.files[0].name;
-			element.find('.custom-file-label').html(fileName);
-		});
-	
-		$('#template-contactform').click( 'formSubmitSuccess', function(){
-			setTimeout(function(){
-					$('#block-modal-request').magnificPopup('close');
-					}, 500);
-		});
-	
-	});
-	function fn_Upload() {
-		window.open("/artizen/upload","fileUpload","width=1250,height=700");
-	}
-</script>
 <!-- #header end -->

@@ -68,6 +68,7 @@ public class UserProfileController {
         if (redirectURL.equals("null")){
         	return "redirect:/";
         }
+        LOGGER.info("redirectURL={}", redirectURL);
         return "redirect:/" + redirectURL;
     }
 

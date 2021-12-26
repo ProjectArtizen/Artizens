@@ -32,7 +32,6 @@ import artizens.web.aws.FileUploadService;
 import artizens.web.session.SessionConst;
 
 @Controller
-@RequestMapping("/artizen")
 public class ArtController {
 		
 	private static final Logger LOGGER = LoggerFactory.getLogger(ArtController.class);
@@ -50,7 +49,7 @@ public class ArtController {
 							Model model) throws Exception {
 			
 		if ( user == null ) {
-			return "redirect:/artizen/artwork/main";
+			return "redirect:/";
 		}else {
 			
 			// 로그인 유저의 아이디값,
@@ -236,7 +235,7 @@ public class ArtController {
 	}
 
 	// 수묵화 상세 페이지
-	@GetMapping("/artwork/paint")
+	@GetMapping("/artwork/ink")
 	public String inkpainting(Model model) {
 
 		return "artWork/artWorkInkPainting";
