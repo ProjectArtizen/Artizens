@@ -13,7 +13,7 @@
     <h4 class="mb-3" th:text="|세션 유효 시간 : ${#session.getMaxInactiveInterval()}|"></h4>
     <h4 class="mb-3" th:text="|세션 생성 시간 : ${creationTime}|"></h4>
     <h4 class="mb-3" th:text="|최근 접근 시간 : ${#session.getLastAccessedTime()}|"></h4>
-    <form th:action="@{/artizen/logout}" method="post">
+    <form th:action="@{/logout}" method="post">
         <input type="submit" th:value="로그아웃">
     </form>
     <a href="/mail">메일</a>

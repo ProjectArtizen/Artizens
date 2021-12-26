@@ -69,7 +69,7 @@ public class PatronController {
     	if (user == null) {
     		// 로그인안했을때 로그인페이지 -> register로 이동
     		model.addAttribute("alertActive","noUser");
-    		model.addAttribute("redirectURL", "?redirectURL=/patron/register");
+    		model.addAttribute("redirectURL", "?redirectURL=patron/register");
     		return "thymeleaf/patron/patronAlert";
     	}
     	// 유저가 patron에 등록할 조건을 체크

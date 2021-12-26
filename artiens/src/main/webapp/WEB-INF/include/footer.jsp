@@ -14,7 +14,7 @@
 
         <div class="col-12 col-lg-auto text-center text-lg-end">
           <div class="copyrights-menu copyright-links">
-            <a href="#">홈</a>/<a href="artWorkMain">작품</a>/<a href="#">콜라보레이션</a>/<a href="#">후원하기</a>
+            <a href="<c:url value='/'/>">작품</a>/<a href="<c:url value='/collaboration/main'/>">콜라보레이션</a>/<a href="<c:url value='/patron'/>">후원하기</a>
           </div>
           <a href="#" class="social-icon inline-block si-small si-borderless mb-0 si-facebook">
             <i class="icon-facebook"></i>

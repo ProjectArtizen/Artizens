@@ -55,7 +55,7 @@ public class RewardController {
 			Model model,
 			@PageableDefault(size=30) Pageable pageable) {
 		if (!EnumUtils.isValidEnumIgnoreCase(RewardCategory.class, rewardItem)) {
-			return "redirect:/artizen/patron/reward";
+			return "redirect:/patron/reward";
 		}
 		model.addAttribute("member", user); // 세션 유무에 따른 헤더 세팅
 		

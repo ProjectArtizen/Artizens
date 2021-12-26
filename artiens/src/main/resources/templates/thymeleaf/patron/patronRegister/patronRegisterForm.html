@@ -15,9 +15,9 @@
     <div class="container clearfix">
         <h1>후원 등록</h1>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page"><a th:href="@{/artizen/patron}">후원이란</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a th:href="@{/artizen/patron/creator}">크리에이터</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a th:href="@{/artizen/patron/reward}">리워드</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a th:href="@{/patron}">후원이란</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a th:href="@{/patron/creator}">크리에이터</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a th:href="@{/patron/reward}">리워드</a></li>
         </ol>
     </div>
 
@@ -39,7 +39,7 @@
                             </div>
                             <div class="form-widget">
                                 <div class="form-result"></div>
-                                <form class="row" id="freelance-quote" action="/artizen/patron/register" method="post" enctype="multipart/form-data">
+                                <form class="row" id="freelance-quote" action="/patron/register" method="post" enctype="multipart/form-data">
                                     <div class="col-12 form-group">
                                         <label>대표 제목 :</label>
                                         <input type="text" name="title" id="rewardTitle" class="form-control required"
@@ -70,7 +70,7 @@
                                                value=""/>
                                     </div>
                                     <button class="button button-3d button-rounded button-teal"
-                                            th:href="|@{/artizen/patron/register/reward}|">리워드 설정</button>
+                                            th:href="|@{/patron/register/reward}|">리워드 설정</button>
                                 </form>
                             </div>
 

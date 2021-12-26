@@ -61,8 +61,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="swiper-slide-bg"
-                         style="background-image: url('/one-page/images/page/patron1.jpg');"></div>
+                    <div class="swiper-slide-bg" th:style="|background-image: url(@{/one-page/images/page/patron1.jpg});|"></div>
                 </div>
                 <div class="swiper-slide dark">
                     <div class="container">
@@ -75,7 +74,7 @@
                         </div>
                     </div>
                     <div class="swiper-slide-bg"
-                         style="background-image: url('/one-page/images/page/patron2.jpg');"></div>
+                         th:style="|background-image: url(@{/one-page/images/page/patron2.jpg});|"></div>
                 </div>
                 <div class="swiper-slide dark">
                     <div class="container">
@@ -87,14 +86,14 @@
                         </div>
                     </div>
                     <div class="swiper-slide-bg"
-                         style="background-image: url('/one-page/images/page/patron3.png');"></div>
+                         th:style="|background-image: url(@{/one-page/images/page/patron3.png});|"></div>
                 </div>
             </div>
             <div class="slider-arrow-left"><i class="icon-angle-left"></i></div>
             <div class="slider-arrow-right"><i class="icon-angle-right"></i></div>
         </div>
 
-        <a th:href="@{/artizen/patron}" data-scrollto="#section-about" data-easing="easeInOutExpo" data-speed="1250" data-offset="65"
+        <a th:href="@{/patron}" data-scrollto="#section-about" data-easing="easeInOutExpo" data-speed="1250" data-offset="65"
            class="one-page-arrow dark">
             <i class="icon-angle-down infinite animated fadeInDown"></i></a>
     </div>
@@ -106,9 +105,9 @@
     <div class="container clearfix">
         <h1>후원</h1>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page"><a th:href="@{/artizen/patron}">후원이란</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a th:href="@{/artizen/patron/creator}">크리에이터</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><a th:href="@{/artizen/patron/reward}">리워드</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a th:href="@{/patron}">후원이란</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a th:href="@{/patron/creator}">크리에이터</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a th:href="@{/patron/reward}">리워드</a></li>
         </ol>
     </div>
 
@@ -131,7 +130,7 @@
                         <p>팬들과 크리에이터가 좀 더 가깝게 교류할 수 있고, 스토리 연재를 지속하는데 도움이 될 수 있도록 후원 기능을 선보입니다.
                             후원을 통해 크리에이터는 작품 활동에 전념할 수 있으며, 팬들은 오직 후원자만 가질 수 있는 특별한 선물로 크리에이터와
                             좀 더 특별한 관계가 됩니다.</p>
-                        <a th:href="@{/artizen/patron/register}" class="button button-small button-dark button-rounded border-width-1 ms-0 mt-3">후원등록<i class="icon-angle-right me-0"></i></a>
+                        <a th:href="@{/patron/register}" class="button button-small button-dark button-rounded border-width-1 ms-0 mt-3">후원등록<i class="icon-angle-right me-0"></i></a>
                     </div>
                 </div>
 
@@ -139,7 +138,7 @@
 
                 <div class="col-md-6 feature-box fbox-border fbox-light fbox-effect">
                     <div class="fbox-icon bg-white">
-                        <a th:href="@{/artizen/patron}"><i class="icon-line-check-circle"></i></a>
+                        <a th:href="@{/patron}"><i class="icon-line-check-circle"></i></a>
                     </div>
                     <div class="fbox-content">
                         <h3 class="nott text-larger mb-2">Artizen 후원 조건</h3>
@@ -152,14 +151,14 @@
 
                 <div class="col-md-6 feature-box fbox-border fbox-light fbox-effect noborder">
                     <div class="fbox-icon bg-white">
-                        <a th:href="@{/artizen/patron}"><i class="icon-book3"></i></a>
+                        <a th:href="@{/patron}"><i class="icon-book3"></i></a>
                     </div>
                     <div class="fbox-content">
                         <h3 class="nott text-larger mb-2">Artizen 메뉴 이용 가이드</h3>
                         <p><strong>크리에이터</strong> - 선택하고 싶은 크리에이터분에게 직접 후원이 가능합니다.<br></p>
-                        <a th:href="@{/artizen/patron/creator}" class="button button-small button-dark button-rounded border-width-1 ms-0 mt-3">크리에이터<i class="icon-angle-right me-0"></i></a>
+                        <a th:href="@{/patron/creator}" class="button button-small button-dark button-rounded border-width-1 ms-0 mt-3">크리에이터<i class="icon-angle-right me-0"></i></a>
                         <p><strong>리워드</strong> - 리워드별로 후원이 가능합니다. 마음에 드는 작품을 리워드에!<br></p>
-                        <a th:href="@{/artizen/patron/reward}" class="button button-small button-dark button-rounded border-width-1 ms-0 mt-3">리워드<i class="icon-angle-right me-0"></i></a>
+                        <a th:href="@{/patron/reward}" class="button button-small button-dark button-rounded border-width-1 ms-0 mt-3">리워드<i class="icon-angle-right me-0"></i></a>
                     </div>
                 </div>
 

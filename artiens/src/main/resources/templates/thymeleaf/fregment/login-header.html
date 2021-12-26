@@ -11,7 +11,7 @@
                 <!-- Logo
                 ============================================= -->
                 <div id="logo">
-                    <a th:href="@{/artizen}" class="standard-logo" style="height: 50px;">
+                    <a th:href="@{/}" class="standard-logo" style="height: 50px;">
                         <img th:src="@{/images/logo_new/logo_D.png}" alt="Artizen Logo">
                     </a>
                 </div><!-- #logo end -->
@@ -28,14 +28,50 @@
                     </div><!-- #top-search end -->
 
                     <!-- 유저 정보-->
-                    <div id="top-login" class="header-misc-icon d-none d-sm-block">
-                        <a th:href="@{|/artwork/blog/${}|}">
-                            <i class="icon-user"></i>
-                        </a>
-                    </div>
+		            <div id="top-login" class="header-misc-icon d-none d-sm-block">
+		              <div class="primary-menu">
+		              	 <ul class="menu-container">
+		              	 	<li class="menu-item">
+		                		<a class="menu-link" style="font-size: larger;" th:href="@{/blog/my/${member.id}}">
+		                  			<i class="icon-user"></i>
+		               	 		</a>
+		               	 		<ul class="sub-menu-container bg-light" >
+		               	 			<li class="menu-item">
+		               	 				<a class="menu-link" href="javascript:fn_Upload();">
+		                      				<div>
+												작품 업로드
+											</div>
+		                    			</a>
+		               	 			</li>
+		               	 			<!-- <li class="menu-item">
+		               	 				<c:choose>
+		               	 					<c:when test="${creator eq null }">
+		               	 						<a class="menu-link" href="javascript:fn_blog()">내 블로그</a>
+		               	 					</c:when>
+		               	 					<div >
+		               	 						<a class="menu-link" href="@{/blog/my/${member.id}}">내 블로그</a>
+		               	 					</c:when>
+		               	 				</c:choose>
+		               	 			</li> -->
+		               	 			<li class="menu-item">
+		               	 				<a class="menu-link" th:href="@{/artwork/mypage}">
+		                      				<div>마이페이지</div>
+		                    			</a>
+		               	 			</li>
+		           	 			</ul>
+		           	 			<script type="text/javascript">
+		           	 				
+				           	 		function fn_Upload() {
+										window.open("/upload","fileUpload","width=1250,height=700");
+									}
+		           	 			</script>
+		              		</li>
+		              	 </ul>
+		              </div>
+		             </div>
 
                     <!-- 유저 로그아웃 정보-->
-                    <form name="logout" th:action="@{/artizen/logout}" method="POST"></form>
+                    <form name="logout" th:action="@{/logout}" method="POST"></form>
                     <div id="top-login-out" class="header-misc-icon d-none d-sm-block">
                         <a onclick="javascript:document.logout.submit()">
                             <i class="icon-line-log-out"></i>
@@ -57,81 +93,69 @@
 
                     <ul class="menu-container">
                         <li class="menu-item">
-                            <a class="menu-link" th:href="@{/artizen/artWorkMain}">
-                                <div>홈</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a class="menu-link" th:href="@{/artwork/art}">
+                            <a class="menu-link" th:href="@{/}">
                                 <div>작품</div>
                             </a>
                             <ul class="sub-menu-container">
                                 <li class="menu-item">
-                                    <a class="menu-link" th:href="@{/artizen/artWorkInkPainting}">
+                                    <a class="menu-link" th:href="@{/artwork/ink}">
                                         <div>수묵화</div>
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a class="menu-link" th:href="@{/artizen/artWorkColoring}">
+                                    <a class="menu-link" th:href="@{/artwork/color}">
                                         <div>채색화</div>
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a class="menu-link" th:href="@{/artizen}">
+                                    <a class="menu-link" th:href="@{/artwork/landscape}">
                                         <div>풍경화</div>
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a class="menu-link" th:href="@{/artizen}">
+                                    <a class="menu-link" th:href="@{/artwork/figure}">
                                         <div>인물화</div>
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a class="menu-link" th:href="@{/artizen}">
+                                    <a class="menu-link" th:href="@{/artwork/abstract}">
                                         <div>추상화</div>
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a class="menu-link" th:href="@{/artizen}">
+                                    <a class="menu-link" th:href="@{/artwork/still}">
                                         <div>정물화</div>
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a class="menu-link" th:href="@{/artizen}">
+                                    <a class="menu-link" th:href="@{/artwork/pop}">
                                         <div>팝아트</div>
                                     </a>
                                 </li>
                             </ul>
                         </li>
                         <li class="menu-item">
-                            <a class="menu-link" th:href="@{/artizen}">
+                            <a class="menu-link" th:href="@{/collaboration/main}">
                                 <div>콜라보레이션</div>
                             </a>
-                            <ul class="sub-menu-container">
-                                <li class="menu-item">
-                                    <a class="menu-link" th:href="@{/artizen}">
-                                        <div>콜라보레이션</div>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
                         <li class="menu-item">
-                            <a class="menu-link" th:href="@{/artizen/patron}">
+                            <a class="menu-link" th:href="@{/patron}">
                                 <div>후원</div>
                             </a>
                             <ul class="sub-menu-container">
                                 <li class="menu-item">
-                                    <a class="menu-link" th:href="@{/artizen/patron}">
+                                    <a class="menu-link" th:href="@{/patron}">
                                         <div>후원이란</div>
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a class="menu-link" th:href="@{/artizen/patron/creator}">
+                                    <a class="menu-link" th:href="@{/patron/creator}">
                                         <div>크리에이터</div>
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a class="menu-link" th:href="@{/artizen/patron/reward}">
+                                    <a class="menu-link" th:href="@{/patron/reward}">
                                         <div>리워드</div>
                                     </a>
                                 </li>
