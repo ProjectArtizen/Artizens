@@ -31,10 +31,10 @@
 	</style>
 
 </head>
-<body>
+<body class="stretched">
     	<!-- Document Wrapper
 	============================================= -->
-	
+	<div id="wrapper" class="clearfix">
 		<!-- Header
 		============================================= -->
 		<header id="header" class="full-header transparent-header semi-transparent dark">
