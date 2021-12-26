@@ -14,19 +14,19 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
 	  rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-<link rel="stylesheet" href="/style.css" type="text/css" />
-<link rel="stylesheet" href="/css/swiper.css" type="text/css" />
-<link rel="stylesheet" href="/css/dark.css" type="text/css" />
-<link rel="stylesheet" href="/css/font-icons.css" type="text/css" />
-<link rel="stylesheet" href="/css/animate.css" type="text/css" />
-<link rel="stylesheet" href="/css/magnific-popup.css" type="text/css" />
-<link rel="stylesheet" href="/css/linkAnimation.css" type="text/css" />
-<link rel="stylesheet" href="/css/button.css" type="text/css" />
-<link rel="stylesheet" href="/css/sticky.css" type="text/css" />
-<link rel="stylesheet" href="/css/custom.css" type="text/css" />
+<link rel="stylesheet" href="<c:url value='/style.css' />" type="text/css" />
+<link rel="stylesheet" href="<c:url value='/css/swiper.css' />" type="text/css" />
+<link rel="stylesheet" href="<c:url value='/css/dark.css' />" type="text/css" />
+<link rel="stylesheet" href="<c:url value='/css/font-icons.css' />" type="text/css" />
+<link rel="stylesheet" href="<c:url value='/css/animate.css' />" type="text/css" />
+<link rel="stylesheet" href="<c:url value='/css/magnific-popup.css' />" type="text/css" />
+<link rel="stylesheet" href="<c:url value='/css/linkAnimation.css' />" type="text/css" />
+<link rel="stylesheet" href="<c:url value='/css/button.css' />" type="text/css" />
+<link rel="stylesheet" href="<c:url value='/css/sticky.css' />" type="text/css" />
+<link rel="stylesheet" href=<c:url value='/css/custom.css' />" type="text/css" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-<title>::: ARTIZEN | ${nickname }님의 블로그 :::</title>
+<c:set var="profile" value="${profile }"/>
+<title>::: ARTIZEN | ${profile.nickname }님의 블로그 :::</title>
 
 <style>
 	
@@ -63,7 +63,7 @@
 				<div class="fslider" data-pagi="false" data-animation="fade">
 					<div class="flexslider">
 						<div class="slider-wrap">
-							<div style="background: url('/images/artwork/3.jpg')no-repeat center center/cover; height: 500px;"></div>
+							<div style="background: url('<c:url value='/images/artwork/3.jpg' />')no-repeat center center/cover; height: 500px;"></div>
 						</div>
 					</div>
 				</div>		
@@ -114,7 +114,6 @@
 											<li>
 												<a href="#tabs-3" class="link link-6 bg-light">Artwork</a>
 											</li>
-											<li><a href="#tabs-4" class="link link-6 bg-light">Story</a></li>
 										</ul>
 										
 										<div class="tab-container" id="slider-tab">
@@ -123,7 +122,7 @@
 												<div class="posts-sm row col-mb-30">										
 													<div class="card-columns" data-lightbox="gallery">
 														<c:forEach var="imageURL" items="${creatorinfo}">
-														<a href="/artizen/artwork/detail/${imageURL.imageId }">
+														<a href="<c:url value='/artwork/detail/${imageURL.imageId }' />">
 															<img class="img-fluid mb-4 h-op-07 op-ts cursor-hover" src="${imageURL.images }" alt="Image"/>
 														</a>
 														</c:forEach>
@@ -133,35 +132,9 @@
 											</div>
 											<!-- #tab-content #tab-3 -->
 											
-											<div class="tab-content clearfix" id="tabs-4">
-												<div class="posts-sm row col-mb-30">
-													<div class="card-columns" data-lightbox="gallery">
-														<a href="/images/artwork/9.jpg" data-lightbox="gallery-item">
-															<img class="img-fluid mb-4 h-op-07 op-ts" src="/images/artwork/9.jpg" alt="Image"/>
-														</a>
-														<a href="/images/artwork/10.jpg" data-lightbox="gallery-item">
-															<img class="img-fluid mb-4 h-op-07 op-ts" src="/images/artwork/10.jpg" alt="Image">
-														</a>
-														<a href="/images/artwork/11.jpg" data-lightbox="gallery-item">
-															<img class="img-fluid mb-4 h-op-07 op-ts" src="/images/artwork/11.jpg" alt="Image">
-														</a>
-														<a href="/images/artwork/12.jpg" data-lightbox="gallery-item">
-															<img class="img-fluid mb-4 h-op-07 op-ts" src="/images/artwork/12.jpg" alt="Image">
-														</a>
-														<a href="/images/artwork/13.jpg" data-lightbox="gallery-item">
-															<img class="img-fluid mb-4 h-op-07 op-ts" src="/images/artwork/13.jpg" alt="Image">
-														</a>
-														<a href="/images/artwork/14.jpg" data-lightbox="gallery-item">
-															<img class="img-fluid mb-4 h-op-07 op-ts" src="/images/artwork/14.jpg" alt="Image">
-														</a>
-													</div>
-												<!-- Grid row -->
-												</div>
-												<!-- POSTS END -->
-											</div>
-											<!-- #tab-content #tab-4 -->
 										</div>
 										<!-- #tab-container end -->
+
 									</div> <!-- sidebar-tab end  -->
 								</section><!-- #content end -->
 								
@@ -178,18 +151,17 @@
 
 									<div class="d-flex mt-3">
 										<a href="#">
-											<c:set var="profile" value="${profileImage }"/>
 											<c:choose>
-												<c:when test="${profile eq null}">
+												<c:when test="${profile.profile eq null}">
 													<img class="rounded-circle m-2" style="width: 100px; height: 100px;" src="https://0.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=60" alt="Image">
 										 		</c:when>
-												<c:when test="${profile ne null}">
-													<img class="rounded-circle m-2" style="width: 100px; height: 100px;" src="${profile }" alt="Image">
+												<c:when test="${profile.profile ne null}">
+													<img class="rounded-circle m-2" style="width: 100px; height: 100px;" src="${profile.profile }" alt="Image">
 										 		</c:when>
 										 	</c:choose>
 										 </a>
 										<div class="m-3">
-											<div>${nickname }</div> 
+											<div>${profile.nickname }</div> 
 											<div>팔로워 49.2만명</div> 
 											<div>팔로잉 40명</div>
 										</div>
@@ -204,9 +176,18 @@
 										</a>											
 									</div>
 									<div class="border m-3 p-3">
-										안녕하세요!<br> 그림 그리는 개발자 김기현입니다.
-										제가 가지고 있는 재능으로 세상에 다양한 경험을 해보고
-										얻은 가치를 제 능력을 통해 타인과 공유하고 싶습니다.
+									<c:choose>
+										<c:when test="${profile.content eq null }" >
+												<div>
+													<i>한줄 소개가 등록되지 않았습니다.</i>
+												</div>
+											</c:when>
+											<c:when test="${profile.content ne null }" >
+												<div>
+													${profile.content }
+												</div>
+											</c:when>
+									</c:choose>
 									</div>
 									<div class="clearfix"></div>
 

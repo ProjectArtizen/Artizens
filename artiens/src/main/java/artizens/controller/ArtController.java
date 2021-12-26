@@ -1,5 +1,6 @@
 package artizens.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -83,11 +84,14 @@ public class ArtController {
 			Long id = artWorkService.findByUserId(user);
 			model.addAttribute("userid",id);
 		}
-		
-		String nickname = artService.findByCreatorName(creatorid);
-		String profileImage = artService.findByCreatorImage(creatorid);
-		model.addAttribute("nickname",nickname);
-		model.addAttribute("profileImage",profileImage);
+		List<StoreFileDTO> profile = artService.findByProfile( creatorid );
+		BlogInfoDTO bloginfo = new BlogInfoDTO();
+		for( StoreFileDTO a : profile ) {
+			bloginfo.setNickname(a.getNickname());
+			bloginfo.setContent(a.getContent());
+			bloginfo.setProfile(a.getProfileImage());
+		}		
+		model.addAttribute("profile",bloginfo);
 		
 		List<BlogInfoDTO> creatorinfo = artService.findByCreatorForBlogAll( creatorid );
 		model.addAttribute("creatorinfo",creatorinfo);
@@ -160,10 +164,8 @@ public class ArtController {
 			model.addAttribute("result", result);
 			return "artWork/ArtWorkMain";
 		}else if( user != null ) { // 로그인 상태일 경우,
-			// 현재 로그인 된 유저의 유저 아이디값
 			Long id = artWorkService.findByUserId(user);
 			model.addAttribute("userid",id);
-			// 현재 로그인 된 유저의 크리에이터 아이디값
 			Long creator = artWorkService.findByCreator(id);
 			
 			List<ArtWorkMainDto> result2 = artWorkService.selectAll();
@@ -240,32 +242,69 @@ public class ArtController {
 
 	// 작품 카테고리별  상세 페이지
 	@GetMapping("/artwork/{page}")
-	public String inkpainting(@PathVariable String page, Model model) {
+	public String inkpainting(@PathVariable String page, Model model,
+							  @SessionAttribute(name = SessionConst.LOGIN_USER, required = false ) UserProfile user) {
+		if ( user == null ) {
+			model.addAttribute("user",0);
+		}else {
+			Long userid = artWorkService.findByUserId(user);
+			model.addAttribute("user",userid);
+		}
+		String category = "";
+		List<BlogInfoDTO> store = new ArrayList<BlogInfoDTO>();
 		if (page.equals("ink")) {
+			category = "수묵화";
+			store = artService.findByCategory(page);
+			model.addAttribute("page",category);
+			model.addAttribute("store",store);
 			return "artWork/ArtCategoryDetailPage";
-		}
-		else if (page.equals("color")) {
+		}else if (page.equals("color")) {
+			category = "채색화";
+			store = artService.findByCategory(page);
+			model.addAttribute("page",category);
+			model.addAttribute("store",store);
 			return "artWork/ArtCategoryDetailPage";
-		}
-		else if (page.equals("landscape")) {
+		}else if (page.equals("landscape")) {
+			category = "풍경화";
+			store = artService.findByCategory(page);
+			model.addAttribute("page",category);
+			model.addAttribute("store",store);
 			return "artWork/ArtCategoryDetailPage";
-		}
-		else if (page.equals("figure")) {
+		}else if (page.equals("figure")) {
+			category = "인물화";
+			store = artService.findByCategory(page);
+			model.addAttribute("page",category);
+			model.addAttribute("store",store);
 			return "artWork/ArtCategoryDetailPage";
-		}
-		else if (page.equals("abstract")) {
+		}else if (page.equals("abstract")) {
+			category = "추상화";
+			store = artService.findByCategory(page);
+			model.addAttribute("page",category);
+			model.addAttribute("store",store);
 			return "artWork/ArtCategoryDetailPage";
-		}
-		else if (page.equals("still")) {
+		}else if (page.equals("still")) {
+			category = "정물화";
+			store = artService.findByCategory(page);
+			model.addAttribute("page",category);
+			model.addAttribute("store",store);
 			return "artWork/ArtCategoryDetailPage";
-		}
-		else if (page.equals("pop")) {
+		}else if (page.equals("pop")) {
+			category = "팝아트";
+			store = artService.findByCategory(page);
+			model.addAttribute("page",category);
+			model.addAttribute("store",store);
 			return "artWork/ArtCategoryDetailPage";
-		}
-		else {
+		}else {
 			model.addAttribute("message","잘못된 접근입니다");
 			return "include/Alert";
 		}
+	}
+	
+	@GetMapping("/mypage/{userid}")
+	public String mypage(@PathVariable Long userid, Model model, 
+						 @SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user) {
+		
+		return "";
 	}
 
 }

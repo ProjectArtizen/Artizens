@@ -70,7 +70,6 @@ public class ArtService {
 	}
 	
 	public List<StoreFileDTO> findByAll( Long creator ) {
-		
 		List<StoreFileDTO> storeFileName = artMapper.findByImageURL( creator );
 		return storeFileName;
 	}
@@ -120,5 +119,24 @@ public class ArtService {
 	public String InsertComment( CommentDTO commentDto ) {
 		artMapper.insertComment(commentDto.getArtworkId(),commentDto.getUserid(),commentDto.getComment());
 		return "success";
+	}
+	
+	public List<BlogInfoDTO> findByCategory(String page) {
+		if ( page.equals("ink")) {
+			page = "수묵화";
+		}else if ( page.equals("color")) {
+			page = "채색화";
+		}else if ( page.equals("landscape")) {
+			page = "풍경화";
+		}else if ( page.equals("figure")) {
+			page = "인물화";
+		}else if ( page.equals("abstract")) {
+			page = "추상화";
+		}else if ( page.equals("still")) {
+			page = "정물화";
+		}else if ( page.equals("pop")) {
+			page = "팝아트";
+		}
+		return artMapper.findByCategory(page);
 	}
 }

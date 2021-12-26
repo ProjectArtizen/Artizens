@@ -21,6 +21,20 @@ import artizens.mapper.dto.InsertUserDto;
 @Mapper
 public interface ArtMapper {
 	
+	@Select("select b.artwork_images_storefilename as storefilename,"
+			+ "		a.artwork_title as title,"
+			+ "		a.artwork_id as imageId,"
+			+ "		a.creator_id as creatorId,"
+			+ "		a.artwork_register_date as date,"
+			+ "		a.artwork_category_name as category "
+			+ "from "
+			+ "		artwork as a left join artwork_images as b "
+			+ "on "
+			+ "		a.artwork_id = b.art_work_id "
+			+ "where "
+			+ "		a.artwork_category_name = #{page}")
+	List<BlogInfoDTO> findByCategory(String page);
+	
 	@Select("Select * from artwork")
 	List<ArtWork> findArtWorkAll();
 	
@@ -51,7 +65,6 @@ public interface ArtMapper {
 	List<StoreFileDTO> findByCreatorImage(Long creator ); 
 	
 	@Select("select image.artwork_images_storefilename as images,"
-			+ "image.artwork_images_id as imageId, "
 			+ "art.artwork_title as title, "
 			+ "image.artwork_images_id as imageId "
 			+ "from artwork_images as image left join artwork as art "

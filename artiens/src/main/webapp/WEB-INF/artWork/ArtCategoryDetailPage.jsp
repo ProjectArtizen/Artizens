@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,18 +12,19 @@
 	<!-- Stylesheets
 	============================================= -->
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" href="/css/bootstrap.css" type="text/css" />
-	<link rel="stylesheet" href="/style.css" type="text/css" />
-	<link rel="stylesheet" href="/css/dark.css" type="text/css" />
-	<link rel="stylesheet" href="/css/font-icons.css" type="text/css" />
-	<link rel="stylesheet" href="/css/animate.css" type="text/css" />
-	<link rel="stylesheet" href="/css/magnific-popup.css" type="text/css" />
+	<link rel="stylesheet" href="<c:url value='/css/bootstrap.css' />" type="text/css" />
+	<link rel="stylesheet" href="<c:url value='/style.css' />" type="text/css" />
+	<link rel="stylesheet" href="<c:url value='/css/dark.css' />" type="text/css" />
+	<link rel="stylesheet" href="<c:url value='/css/font-icons.css' />" type="text/css" />
+	<link rel="stylesheet" href="<c:url value='/css/animate.css' />" type="text/css" />
+	<link rel="stylesheet" href="<c:url value='/css/magnific-popup.css' />" type="text/css" />
 
 	<link rel="stylesheet" href="/css/custom.css" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<!-- Document Title
 	============================================= -->
-	<title>추상화상세페이지</title>
+	<c:set var="store" value="${store }"/>
+	<title>${page } 페이지</title>
   
 </head>
 
@@ -34,7 +37,14 @@
 		<!-- Header
 		============================================= -->
 		<header id="header" class="full-header transparent-header semi-transparent dark">
-				<%@ include file = "../include/header.jsp" %>
+			<c:choose>
+				<c:when test="${user eq 0 }">
+					<c:import url="../include/noneLoginHeader.jsp"/>
+				</c:when>
+				<c:when test="${user ne 0 }">
+					<c:import url="../include/header.jsp"/>
+				</c:when>
+			</c:choose>	 
 		</header><!-- #header end -->
 
 		<!-- Page Title

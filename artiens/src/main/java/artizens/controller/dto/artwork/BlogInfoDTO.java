@@ -51,16 +51,32 @@ public class BlogInfoDTO {
 	 * Image Id
 	 */
 	private Long imageId;
-
+	/**
+	 * 팔로워
+	 */
 	private Long follower;
-	
+	/**
+	 * 팔로잉
+	 */
 	private Long folling;
-	
+	/**
+	 * 작가의 말
+	 */
 	private String talk;
+	/**
+	 * category 
+	 */
+	private String category;
 	
 	
-	
-	
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
 
 	public String getContent() {
 		return content;
