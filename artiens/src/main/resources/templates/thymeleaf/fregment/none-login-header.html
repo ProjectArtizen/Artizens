@@ -10,7 +10,7 @@
                 <!-- Logo
                 ============================================= -->
                 <div id="logo">
-                    <a th:href="@{/artizen}" class="standard-logo" style="height: 50px;">
+                    <a th:href="@{/}" class="standard-logo" style="height: 50px;">
                         <img th:src="@{/images/logo_new/logo_D.png}" alt="Artizen Logo">
                     </a>
                 </div><!-- #logo end -->
@@ -28,7 +28,7 @@
 
                     <!-- 로그인 정보-->
                     <div id="top-login" class="header-misc-icon d-none d-sm-block">
-                        <a th:href="@{/artizen/login}">
+                        <a th:href="@{/login}">
                             <i class="icon-line2-login"></i>
                         </a>
                     </div>
@@ -49,27 +49,22 @@
 
                     <ul class="menu-container">
                         <li class="menu-item">
-                            <a class="menu-link" th:href="@{/artizen}">
-                                <div>홈</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a class="menu-link" th:href="@{/artizen}">
+                            <a class="menu-link" th:href="@{/}">
                                 <div>작품</div>
                             </a>
                             <ul class="sub-menu-container">
                                 <li class="menu-item">
-                                    <a class="menu-link" th:href="@{/artizen}">
+                                    <a class="menu-link" th:href="@{/artwork/ink}">
                                         <div>수묵화</div>
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a class="menu-link" th:href="@{/artizen}">
+                                    <a class="menu-link" th:href="@{/artwork/color}">
                                         <div>채색화</div>
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a class="menu-link" th:href="@{/artizen}">
+                                    <a class="menu-link" th:href="@{/artwork/}">
                                         <div>풍경화</div>
                                     </a>
                                 </li>

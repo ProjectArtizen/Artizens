@@ -51,7 +51,7 @@
                         <div class="card mb-0">
                             <div class="card-body" style="padding: 40px;">
                                 <form id="login-form" name="login-form" class="mb-0" th:object="${loginForm}"
-                                      th:action="@{|/artizen/login?redirectURL=${redirectPath}|}" method="post">
+                                      th:action="@{|/login?redirectURL=${redirectPath}|}" method="post">
 
                                     <h3>Login to your Account</h3>
 
@@ -96,7 +96,7 @@
                                 <h3>Register for an Account</h3>
 
                                 <form id="register-form" name="register-form" class="row mb-0" th:object="${joinForm}"
-                                      th:action="@{/artizen/join}" method="post">
+                                      th:action="@{/join}" method="post">
 
                                     <div class="col-12 form-group">
                                         <label for="register-form-name">Name:</label>
