@@ -10,7 +10,15 @@ public class CollaborationWinnerDto {
 	 * creator nickname 
 	 */
 	private String nickname;
+	
+	private int colArtworkId;
 
+	public int getColArtworkId() {
+		return colArtworkId;
+	}
+	public void setColArtworkId(int colArtworkId) {
+		this.colArtworkId = colArtworkId;
+	}
 	public Long getCollaborationId() {
 		return collaborationId;
 	}
