@@ -9,7 +9,16 @@ public class ArtDetailDTO {
 	private String nickname;
 	private String date;
 	private String content;
+	private Long artworkId;
 	
+	
+	
+	public Long getArtworkId() {
+		return artworkId;
+	}
+	public void setArtworkId(Long artworkId) {
+		this.artworkId = artworkId;
+	}
 	public String getContent() {
 		return content;
 	}

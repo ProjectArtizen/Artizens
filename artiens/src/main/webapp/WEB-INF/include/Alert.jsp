@@ -37,5 +37,13 @@
 		<c:when test="${ message == '크리에이터로 등록된 아이디입니다'}">
 			location.href="<c:url value='/blog/my/${creator_id}'/>";
 		</c:when>
+		<c:when test="${ message == '댓글등록성공'}">
+			alert("댓글을 등록하였습니다.");
+			location.href="<c:url value='/artwork/detail/${imageURL}' />";
+		</c:when>
+		<c:when test="${ message == '댓글등록실패'}">
+			alert("댓글 등록에 실패하였습니다.");
+			location.reload();
+		</c:when>
 	</c:choose>
 </script>

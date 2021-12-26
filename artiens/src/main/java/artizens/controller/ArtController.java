@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import artizens.controller.dto.artwork.ArtCommentDTO;
 import artizens.controller.dto.artwork.ArtDetailDTO;
 import artizens.controller.dto.artwork.CommentDTO;
 import artizens.controller.dto.artwork.BlogInfoDTO;
@@ -24,6 +25,7 @@ import artizens.controller.dto.artwork.StoreFileDTO;
 import artizens.controller.dto.artwork.UploadFileDTO;
 import artizens.domain.UploadFile;
 import artizens.domain.UserProfile;
+import artizens.mapper.ArtMapper;
 import artizens.mapper.ArtWorkMapper;
 import artizens.mapper.UserMapper;
 import artizens.mapper.dto.ArtWorkMainDto;
@@ -199,24 +201,35 @@ public class ArtController {
 								@SessionAttribute(name = SessionConst.LOGIN_USER, required = false ) UserProfile user, Model model) {
 		
 		ArtDetailDTO detail = artService.clickImageAction(imageId);
+		List<ArtCommentDTO> commentList = artService.findByCommentAll(detail.getArtworkId());
 		model.addAttribute("artwork",detail);
+		model.addAttribute("comment",commentList);
 		if ( user != null ) {
 			Long userid = artWorkService.findByUserId(user);
 			model.addAttribute("userid",userid);
 			Long creator = artWorkService.findByCreator(userid);
 			model.addAttribute("creator",creator);
-			Long artworkId = imageId;
-			model.addAttribute("artworkId",artworkId);
+			model.addAttribute("imageId",imageId);
 		}else {
 			model.addAttribute("userid",null);
 		}
 		return "artWork/ArtWorkDetail";
 	}
 	
-	@ResponseBody
-	@PostMapping("/artwork/detail/comment/save")
-	public void commentSave( @ModelAttribute CommentDTO commentDto ) {
+	
+	@PostMapping("/artwork/detail/comment/save/{imageId}")
+	public String commentSave( @PathVariable Long imageId,
+							   @ModelAttribute CommentDTO commentDto, Model model ) {
 		String message = artService.InsertComment(commentDto);
+		LOGGER.info("message={}",message);
+		if ( message == "success" ) {
+			model.addAttribute("message","댓글등록성공");
+			model.addAttribute("imageURL",imageId);
+			return "include/Alert";
+		}else {
+			model.addAttribute("message","댓글등록실패");
+			return "include/Alert";
+		}
 	}
 	
 	@GetMapping("/login/check/creator")

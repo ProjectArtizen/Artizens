@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import artizens.controller.dto.artwork.ArtCommentDTO;
 import artizens.controller.dto.artwork.ArtDetailDTO;
 import artizens.controller.dto.artwork.CommentDTO;
 import artizens.controller.dto.artwork.BlogInfoDTO;
@@ -111,13 +112,14 @@ public class ArtService {
 			detail.setContent(a.getContent());
 			detail.setImages(a.getImages());
 			detail.setDate(a.getDate());
+			detail.setArtworkId(a.getArtworkId());
 		}
 		LOGGER.info("detail={}",detail.toString());
 		return detail;
 	}
 	
 	public String InsertComment( CommentDTO commentDto ) {
-		artMapper.insertComment(commentDto.getArtworkId(),commentDto.getUserid(),commentDto.getComment());
+		artMapper.insertComment( commentDto );
 		return "success";
 	}
 	
@@ -138,5 +140,14 @@ public class ArtService {
 			page = "팝아트";
 		}
 		return artMapper.findByCategory(page);
+	}
+	
+	public Long findByArtworkId(Long imageId) {
+		return artMapper.findByArtWorkId(imageId);
+	}
+	
+	public List<ArtCommentDTO> findByCommentAll( Long artwork_id ) {
+		List<ArtCommentDTO> result = artMapper.findByCommentAll( artwork_id );
+		return result; 
 	}
 }

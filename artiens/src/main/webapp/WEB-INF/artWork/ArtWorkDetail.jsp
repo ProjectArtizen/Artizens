@@ -102,7 +102,7 @@
 
                         <!-- Post Author Info Start
                         ============================================= -->
-                        <div class="card mt-4">
+                        <div class="card mt-4 mb-4">
                             <div class="card-header"><strong>작가의 말 <a href="#">ARTIST</a></strong></div>
                             <div class="card-body">
                                 <div class="author-image">
@@ -119,155 +119,91 @@
                                 ${artwork.content }
                             </div>
                         </div>
+                       
                         <!-- Post Author Info Ended-->
-
+                        
+						<!-- Comment Form Start
+                        ===========================-->
+                        <div class="mb-0" style="margin-top:150px;">
+	                        <form name="frmComment" id="frm_comment" action="<c:url value='/artwork/detail/comment/save/${imageId }' />" method="POST">
+	                        	<input type="hidden" name="userid" value="${userid }"/>
+	                        	<input type="hidden" name="artworkId" value="${artwork.artworkId }"/>
+	                            <div class="border">
+	                                <div class="border-collapse border-bottom p-3" style="height: 150px;">
+	                                    <textarea name="comment" class="textarea w-100" style="border: 0; height: 100%;" placeholder="댓글을 작성해 주세요."></textarea>
+	                                </div>
+	                                <div class="grid" style="text-align: right;">
+	                                    <button type="button" onclick="fn_submit();return false;" style="margin: 0;" class="button">등 록</button>
+	                                </div>
+	                            </div>
+	                        </form>
+                        </div>
+                        
+                        <!--  Comment Form Ended -->
+                        
                         <!-- Comments
                     ============================================= -->
-                        <div id="comments" class="clearfix">
+                        <div id="comments">
 
                             <h3 id="comments-title"><span>3</span> Comments</h3>
 
                             <!-- Comments List
                             ============================================= -->
                             <ol class="commentlist clearfix">
-
-                                <li class="comment even thread-even depth-1" id="li-comment-1">
-
-                                    <div id="comment-1" class="comment-wrap clearfix">
-
-                                        <div class="comment-meta">
-
-                                            <div class="comment-author vcard">
-
-												<span class="comment-avatar clearfix">
-												<img alt='Image'
-                                                     src='https://0.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=60'
-                                                     class='avatar avatar-60 photo avatar-default' height='60'
-                                                     width='60'/></span>
-                                           	</div>
-
-                                        </div>
-
-                                        <div class="comment-content clearfix">
-
-                                            <div class="comment-author">John Doe<span><a href="#"
-                                                                                         title="Permalink to this comment">April 24, 2012 at 10:46 am</a></span>
-                                            </div>
-
-                                            <p>Donec sed odio dui. Nulla vitae elit libero, a pharetra augue. Nullam id
-                                                dolor id nibh ultricies vehicula ut id elit. Integer posuere erat a ante
-                                                venenatis dapibus posuere velit aliquet.</p>
-
-                                            <a class='comment-reply-link' href='#'><i class="icon-reply"></i></a>
-
-                                        </div>
-
-                                        <div class="clear"></div>
-
-                                    </div>
-
-
-                                    <ul class='children'>
-
-                                        <li class="comment byuser comment-author-_smcl_admin odd alt depth-2"
-                                            id="li-comment-3">
-
-                                            <div id="comment-3" class="comment-wrap clearfix">
-
-                                                <div class="comment-meta">
-
-                                                    <div class="comment-author vcard">
-
-														<span class="comment-avatar clearfix">
-														<img alt='Image'
-                                                             src='https://1.gravatar.com/avatar/30110f1f3a4238c619bcceb10f4c4484?s=40&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D40&amp;r=G'
-                                                             class='avatar avatar-40 photo' height='40'
-                                                             width='40'/></span>
-
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="comment-content clearfix">
-
-                                                    <div class="comment-author"><a href='#' rel='external nofollow'
-                                                                                   class='url'>SemiColon</a><span><a
-                                                            href="#" title="Permalink to this comment">April 25, 2012 at 1:03 am</a></span>
-                                                    </div>
-
-                                                    <p>Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-
-                                                    <a class='comment-reply-link' href='#'><i
-                                                            class="icon-reply"></i></a>
-
-                                                </div>
-
-                                                <div class="clear"></div>
-
-                                            </div>
-
-                                        </li>
-
-                                    </ul>
-
-                                </li>
-
-                                <li class="comment byuser comment-author-_smcl_admin even thread-odd thread-alt depth-1"
-                                    id="li-comment-2">
-
-                                    <div id="comment-2" class="comment-wrap clearfix">
-
-                                        <div class="comment-meta">
-
-                                            <div class="comment-author vcard">
-
-												<span class="comment-avatar clearfix">
-												<img alt='Image'
-                                                     src='https://1.gravatar.com/avatar/30110f1f3a4238c619bcceb10f4c4484?s=60&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D60&amp;r=G'
-                                                     class='avatar avatar-60 photo' height='60' width='60'/></span>
-
-                                            </div>
-
-                                        </div>
-
-                                        <div class="comment-content clearfix">
-
-                                            <div class="comment-author"><a
-                                                    href='https://themeforest.net/user/semicolonweb'
-                                                    rel='external nofollow' class='url'>SemiColon</a><span><a href="#"
-                                                                                                              title="Permalink to this comment">April 25, 2012 at 1:03 am</a></span>
-                                            </div>
-
-                                            <p>Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
-
-                                            <a class='comment-reply-link' href='#'><i class="icon-reply"></i></a>
-
-                                        </div>
-
-                                        <div class="clear"></div>
-
-                                    </div>
-
-                                </li>
-
+								<c:forEach var="comment" items="${comment }">
+	                                <li class="comment even thread-even depth-1" id="li-comment-1">
+	
+	                                    <div id="comment-1" class="comment-wrap clearfix">
+	
+	                                        <div class="comment-meta">
+	
+	                                            <div class="comment-author vcard">
+	
+													<span class="comment-avatar clearfix">
+														<c:choose>
+															<c:when test="${comment.storefilename eq null }">
+																<img alt='Image' src='https://0.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=60' class='avatar avatar-60 photo avatar-default' height='60' width='60'/>
+															</c:when>
+															<c:when test="${comment.storefilename ne null }">
+																<img alt='Image' src='${comment.storefilename }' class='avatar avatar-60 photo avatar-default' height='60' width='60'/>
+															</c:when>
+														</c:choose>
+													</span>
+	                                           	</div>
+	
+	                                        </div>
+	
+	                                        <div class="comment-content clearfix">
+	
+	                                            <div class="comment-author">
+	                                            	<c:choose>
+	                                            		<c:when test="${comment.nickname eq null }">
+															${comment.name }
+	                                            		</c:when>
+	                                            		<c:when test="${comment.nickname ne null }">
+															${comment.nickname }
+	                                            		</c:when>
+	                                            	</c:choose>
+	                                            	<span>
+	                                            		<a href="#"  title="Permalink to this comment">${comment.registerDay }</a>
+	                                            	</span>
+	                                            </div>
+	
+	                                            <p>${comment.content }</p>
+	
+	                                            <a class='comment-reply-link' href='#'><i class="icon-reply"></i></a>
+	
+	                                        </div>
+	
+	                                        <div class="clear"></div>
+	
+	                                    </div>
+	                                </li>
+								</c:forEach>
+                                
                             </ol><!-- .commentlist end -->
                         </div><!-- .entry end -->
 
-                        <!-- Comment Form Start
-                        ===========================-->
-                        <form name="frmComment" id="frm_comment" action="<c:url value='/artwork/detail/comment/save' />" method="POST">
-                        	<input type="hidden" name="userid" value="${userid }"/>
-                        	<input type="hidden" name="artworkId" value="${artworkId }"/>
-                            <div class="border">
-                                <div class="border-collapse border-bottom p-3" style="height: 150px;">
-                                    <textarea name="comment" class="textarea w-100" style="border: 0; height: 100%;" placeholder="댓글을 작성해 주세요."></textarea>
-                                </div>
-                                <div class="grid" style="text-align: right;">
-                                    <button type="button" onclick="fn_submit();return false;" style="margin: 0;" class="button">등 록</button>
-                                </div>
-                            </div>
-                        </form>
-                        <!--  Comment Form Ended -->
                     
                     </div>
                 </div>

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
+import artizens.controller.dto.artwork.ArtCommentDTO;
 import artizens.controller.dto.artwork.ArtDetailDTO;
 import artizens.controller.dto.artwork.BlogInfoDTO;
 import artizens.controller.dto.artwork.CommentDTO;
@@ -34,6 +35,26 @@ public interface ArtMapper {
 			+ "where "
 			+ "		a.artwork_category_name = #{page}")
 	List<BlogInfoDTO> findByCategory(String page);
+	
+	@Select("select comment.artwork_comment_conetent as content, "
+			+ "		date_format(comment.artwork_comment_register_date,'%M %D, %Y %p %h시 %i분 %s초') as registerDay, "
+			+ "		profile.user_profile_name as name, "
+			+ "		creator.creator_nickname as nickname, "
+			+ "		creator.creator_profile_storefilename as storefilename " + 
+			"	from "
+			+ "		artwork_comment as comment left join user_profile as profile "
+			+ "	on "
+			+ "		comment.user_profile_id = profile.user_profile_id "
+			+ "	left join "
+			+ "		creator "
+			+ "	on "
+			+ "		profile.user_profile_id = creator.creator_id "
+			+ "	where "
+			+ "		comment.artwork_id = ${artwork_id};")
+	List<ArtCommentDTO> findByCommentAll( Long artwork_id );
+	
+	@Select("Select art_work_id as artworkId from artwork_images where art_work_id = ${imageId}")
+	Long findByArtWorkId(Long imageId);
 	
 	@Select("Select * from artwork")
 	List<ArtWork> findArtWorkAll();
@@ -74,6 +95,7 @@ public interface ArtMapper {
 	List<BlogInfoDTO> findByCreatorBlogAll( Long creatorid );
 	
 	@Select("select 	a.artwork_title as title,"
+			+ "	a.artwork_id as artworkId, "
 			+ "	a.artwork_content as content, " + 
 			"	b.artwork_images_storefilename as images, " + 
 			"	c.creator_profile_storefilename as profile, " + 
@@ -111,15 +133,11 @@ public interface ArtMapper {
 	Long insertCreatorNickname( UploadFileDTO upload );
 	
 	@Insert("Insert into artwork_comment(artwork_comment_id, "
-			+ "							 artwork_comment_conetent,"
-			+ "							 artwork_comment_register_date,"
-			+ "							 artwork_id,"
+			+ "							 artwork_comment_conetent, "
+			+ "							 artwork_comment_register_date, "
+			+ "							 artwork_id, "
 			+ "							 user_profile_id) "
-			+ " values(null, "
-			+ "		 #{comment}, "
-			+ "		   now(), "
-			+ "		 ${userid}, "
-			+ "		 ${artworkId}")
-	String insertComment(Long artworkId, Long userid, String comment );
+			+ " values( null, #{comment }, now(), ${artworkId }, ${userid } ) ")
+	void insertComment( CommentDTO commentDTO );
 			
 }
