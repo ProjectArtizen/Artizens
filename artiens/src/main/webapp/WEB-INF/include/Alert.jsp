@@ -8,7 +8,7 @@
 	<c:choose>
 		<c:when test="${creator == '크리에이터를 등록해 주세요.'}">
 			alert("크리에이터를 등록해 주세요.");
-			location.href="";
+			location.href="<c:url value='/'/>";
 		</c:when>
 		<c:when test="${ message == 'Success image upload' }">
 			alert("이미지 업로드가 완료되었습니다.");
@@ -17,7 +17,7 @@
 		</c:when>
 		<c:when test= "${ message == '잘못된 접근입니다' }">
 			alert("잘못된 접근입니다.");
-			location.href="/";
+			location.href="<c:url value='/'/>";
 		</c:when>
 		<c:when test="${ message == 'fail' }">
 			alert("이미지 업로드에 실패하였습니다.");
