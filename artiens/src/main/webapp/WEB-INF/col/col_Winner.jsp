@@ -15,49 +15,49 @@
 <link rel="stylesheet" href='<c:url value="/css/magnific-popup.css"></c:url>' type="text/css" />
 <link rel="stylesheet" href='<c:url value="/css/custom.css"></c:url>' type="text/css"/>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+
 <!-- Document Title	============================================= -->
 <title>대상자 선정 페이지</title>
 </head>
 <script>
-
-	$(function(){
-
-		// 체크 된거 삭제하기 
-		$("#btn_chk").click(function(){
-			var len = $("input[name='chk']").length;
-			var values = "";
-			for(var i=0; i<len; i++) {
-				var chk = document.getElementsByName('chk')[i].checked;
-				if( chk == true ) {
-					values += document.getElementsByName('chk')[i].value;
-					values += ",";
-				}
-			}
-			
-			if(values.length > 0) {
-				
-				if(  confirm("일괄 삭제를 진행하시겠습니까?")  ) {
-					$.ajax({
-						type : "post",
-						url  : "choice",
-						data : "values="+values,
-						datatype : "text",
-						success : function(data) {
-							if(data == "ok") {
-								alert("삭제 처리 완료");
-								location="main";
-							} else {
-								alert("삭제 처리 실패!!");
-							}	
-						},
-						error : function() {
-							alert("시스템 오류");
-						}
-					});
-				}
-			}
-		});
+	$("#btn_chk").click(function{
+		alert("테스트입니다.");
 	});
+	$("#btn_chk").click(function(){
+		var len = $("input[name='chk']").length;
+		var values = "";
+		for(var i=0; i<len; i++) {
+			var chk = document.getElementsByName('chk')[i].checked;
+			if( chk == true ) {
+				values += document.getElementsByName('chk')[i].value;
+				values += ",";
+			}
+		}
+		
+		if(values.length > 0) {
+			
+			if(  confirm("대상자 선정을 진행하시겠습니까?")  ) {
+				$.ajax({
+					type : "post",
+					url  : "choice",
+					data : "values="+values,
+					datatype : "text",
+					success : function(data) {
+						if(data == "ok") {
+							alert("처리 완료");
+							location="main";
+						} else {
+							alert("처리 실패!!");
+						}	
+					},
+					error : function() {
+						alert("시스템 오류");
+					}
+				});
+			}
+		}
+	});
+
 </script>
 <body class="stretched">
 	<!-- Document Wrapper ============================================= -->
@@ -147,24 +147,29 @@
 						<tbody>
 							<c:forEach var="result" items="${result}">
 								<tr class="cart_item">
-									<td class="cart-product-thumbnail"><a href="#"><img
-											width="240" height="128" src="${result.image }"></a></td>
-
-									<td class="cart-product-name"><a href="#">${result.title }</a>
+									<td class="cart-product-thumbnail">
+										<a href="#">
+											<img width="240" height="128" src="${result.image }">
+										</a>
 									</td>
 
-									<td class="cart-product-name"><a href="#">${result.nickname }</a>
+									<td class="cart-product-name">
+										<a href="#">${result.title }</a>
 									</td>
 
-									<td class="cart-product-subtotal"><input type="checkbox"
-										name="chk"></td>
+									<td class="cart-product-name">
+										<a href="#">${result.nickname }</a>
+									</td>
+
+									<td class="cart-product-subtotal">
+										<input type="checkbox" name="chk" value="${result.colArtworkId }"></td>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
 					<div class="row">
 						<div class="col" style="text-align: right">
-							<button type="button" id="btn_save"
+							<button type="button" id="btn_chk"
 								class="button button-3d mt-2 mt-sm-0 me-0 ">대상자 선정</button>
 						</div>
 					</div>

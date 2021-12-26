@@ -46,8 +46,15 @@ public class CollaborationController3 {
 	 * @return
 	 */
 	@PostMapping("/choice")
-	public String winnerUpdate() {
-		return "";
+	public String winnerUpdate(String values) {
+		
+		values = values.substring(0,values.length()-1);
+		
+		int result = collaborationService3.winnerUpdate(values);
+		
+		String message = "ok";
+		if( result == 0 ) message = "error";
+		return message;
 	}
 	
 }
