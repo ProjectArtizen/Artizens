@@ -19,6 +19,8 @@ public class CollaborationMainDto {
 	private MultipartFile collaborationImage;
 	private String creatorNickName;
 	private String creatorProfileStoredFileName;
+	private int artworkcount;
+	private int deadLineDateCompare;
 	
 	public CollaborationMainDto() {
 		super();
@@ -57,10 +59,15 @@ public class CollaborationMainDto {
 	public String getCreatorProfileStoredFileName() {
 		return creatorProfileStoredFileName;
 	}
+	public int getDeadLineDateCompare() {
+		return deadLineDateCompare;
+	}
+	public int getArtworkcount() {
+		return artworkcount;
+	}
+
 	
-	
-	
-	
+
 	public void setCollaborationId(Long collaborationId) {
 		this.collaborationId = collaborationId;
 	}
@@ -72,6 +79,7 @@ public class CollaborationMainDto {
 		this.deadLineYear = (deadLineDate!=null)?deadLineDate.split("-")[0]:null;
 		this.deadLineMonth = (deadLineDate!=null)?deadLineDate.split("-")[1]:null;
 		this.deadLineDay = (deadLineDate!=null)?deadLineDate.split("-")[2].substring(0,2):null;
+		this.deadLineDateCompare = LocalDateTime.parse(deadLineDate,DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS")).compareTo(LocalDateTime.now());
 	}
 	public void setRegisterDate(String registerDate) {
 		this.registerDate = registerDate.substring(0,10);
@@ -88,6 +96,9 @@ public class CollaborationMainDto {
 	public void setCreatorProfileStoredFileName(String creatorProfileStoredFileName) {
 		this.creatorProfileStoredFileName = creatorProfileStoredFileName;
 	}
+	public void setArtworkcount(int artworkcount) {
+		this.artworkcount = artworkcount;
+	}
 
 	@Override
 	public String toString() {
@@ -95,8 +106,11 @@ public class CollaborationMainDto {
 				+ deadLineDate + ", deadLineYear=" + deadLineYear + ", deadLineMonth=" + deadLineMonth
 				+ ", deadLineDay=" + deadLineDay + ", registerDate=" + registerDate + ", storedFileName="
 				+ storedFileName + ", collaborationImage=" + collaborationImage + ", creatorNickName=" + creatorNickName
-				+ ", creatorProfileStoredFileName=" + creatorProfileStoredFileName + "]";
+				+ ", creatorProfileStoredFileName=" + creatorProfileStoredFileName + ", deadLineDateCompare="
+				+ deadLineDateCompare + "]";
 	}
+
+	
 	
 	
 	

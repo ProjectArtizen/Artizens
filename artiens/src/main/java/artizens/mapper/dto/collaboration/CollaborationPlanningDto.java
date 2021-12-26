@@ -60,7 +60,7 @@ public class CollaborationPlanningDto {
 		this.title = title;
 	}
 	public void setDeadLineDate(String deadLineDate) {
-		this.deadLineDate = deadLineDate + " 23:59:59";
+		this.deadLineDate = deadLineDate + " 23:59:59.111000";
 	}
 	public void setRegisterDate(String registerDate) {
 		this.registerDate = registerDate.substring(0,10);

@@ -38,15 +38,18 @@ public interface CollaborationMapper1 {
 			+ " col.collaboration_id as collaboration_id, "
 			+ " col.collaboration_title as collaboration_title, "
 			+ " col.collaboration_storefilename as collaboration_storefilename, "
-			+ " col.collaboration_deadline_date as collaboration_deadline_date, "
+			+ " date_add(col.collaboration_deadline_date, INTERVAL 1 DAY) as collaboration_deadline_date, "
 			+ " col.collaboration_register_date as collaboration_register_date, "
 			+ " cre.creator_nickname as creator_nickname, "
-			+ " cre.creator_profile_storefilename as creator_profile_storefilename "
+			+ " cre.creator_profile_storefilename as creator_profile_storefilename, "
 			+ " from collaboration as col "
 			+ " left join creator as cre "
-			+ " on col.creator_id = cre.creator_id")
+			+ " on col.creator_id = cre.creator_id "
+			+ " left join collaboration_artwork as colart "
+			+ " on col.collaboration_id = colart.collaboration_id ")
 	List<CollaborationMainDto> findAllCollaboration();
 	
 	@Select("select creator_id from creator where user_profile_id=${userId}")
 	CollaborationPlanningDto findCreatorId(Long userId);
+	
 }

@@ -55,18 +55,18 @@
 				<div class="container clearfix" style="width: 1250px;">
 					<div style="height: 50px;">
 						<h3 style="display: inline-block;">진행중인 콜라보레이션</h3>
-						<a href="./register" >
+						<a href="./planning" >
 							<button style="float: right; border-color: #00d084; border-radius: 25px; width: 190px; Height: 50px; color: #00d084; background-color: #ffffff">콜라보레이션 기획</button>
 						</a>
 					</div>
 					<hr>
 					
-<%-- 				<c:choose>
-					<c:when test=""> --%>
+
 					
 					<div class="post-grid row col-mb-30">
 						<!-- 콘텐츠 나열해주는 감싸기-->
 					<c:forEach var="result" items="${result }">
+						<c:if test = "${result.deadLineDateCompare > 0}">
 						<!-- 콘텐츠 1 시작-->
 						<div class="entry col-lg-4 col-md-6">
 							<div class="grid-inner shadow-sm card rounded-5">
@@ -96,7 +96,7 @@
 													<div id="countdown" class="countdown flex-fill"
 														data-year="${result.deadLineYear }" data-month="${result.deadLineMonth }" data-day="${result.deadLineDay }"
 														data-format="dHMS"></div>
-													<div style="width: 110px; padding: 8px; border: #dfdfdf solid 1px; text-align: center; margin-left: 10px; color: white; background-color: #1bbc9b;">000명
+													<div style="width: 110px; padding: 8px; border: #dfdfdf solid 1px; text-align: center; margin-left: 10px; color: white; background-color: #1bbc9b;">${result.artworkcount }명
 														참여</div>
 												</div>
 											</div>
@@ -121,10 +121,11 @@
 							</div>
 						</div>
 						<!-- 콘텐츠 1 끝-->
+						</c:if>
 						</c:forEach>
 						
 					</div>
-<%-- 				</c:when> --%>
+
 					
 
 				</div>
@@ -138,7 +139,9 @@
 
 					<div class="post-grid row col-mb-30">
 						<!-- 콘텐츠 나열해주는 감싸기-->
-
+						
+					<c:forEach var="result" items="${result }">
+						<c:if test = "${result.deadLineDateCompare <= 0}">
 						<!-- 콘텐츠 1 시작-->
 						<div class="entry col-lg-4 col-md-6">
 							<div class="grid-inner shadow-sm card rounded-5">
@@ -147,9 +150,9 @@
 										data-lightbox="gallery">
 										<div class="flexslider">
 											<div class="slider-wrap">
-												<div>
-													<img src="/images/collaboration/col/planning3.jpg"
-														 onclick="location.href='colDetail'">
+												<div style="height: 230px; overflow: hidden">
+													<a href="./${result.collaborationId}"></a>
+													<img src="${result.storedFileName}"/>
 												</div>
 											</div>
 										</div>
@@ -157,7 +160,7 @@
 								</div>
 								<div class="p-4">
 									<h3 class="center" style="margin-bottom: 40px;">
-										<a href="col_detail_end.html">콜라보레이션 타이틀</a>
+										<a href="./${result.collaborationId}">${result.title }</a>
 									</h3>
 
 									<div class="container clearfix m-2">
@@ -178,16 +181,15 @@
 
 									<hr class="my-4">
 									<div class="d-flex align-items-center">
-										<a href="#"><img src="/images/collaboration/author.jpg"
-											alt="Author" class="rounded-circle" width="38" height="38"></a>
+										<a href="./${result.collaborationId}"><img src="${result.creatorProfileStoredFileName}"
+											class="rounded-circle" width="38" height="38"></a>
 										<div class="entry-meta mt-0">
 											<div class="entry-meta"
 												style="margin-bottom: 10px; padding-left: 10px;">
 												<ul>
-													<li><a href="#"><h6 class="mb-1 h6" style="display: inline;">Author</h6></a></li>
-													<li><i class="icon-calendar3"></i>2021.11.21</li>
-													<li><a href="blog-single.html#comments"><i
-															class="icon-comments"></i> 13</a></li>
+													<li><a href="./${result.collaborationId}"><h6 class="mb-1 h6" style="display: inline;">${result.creatorNickName }</h6></a></li>
+													<li><i class="icon-calendar3"></i>${result.registerDate }</li>
+													<!-- <li><a href="blog-single.html#comments"><i class="icon-comments"></i> 13</a></li> -->
 												</ul>
 											</div>
 										</div>
@@ -196,365 +198,12 @@
 							</div>
 						</div>
 						<!-- 콘텐츠 1 끝-->
-
-						<!-- 콘텐츠 2 시작-->
-						<div class="entry col-lg-4 col-md-6">
-							<div class="grid-inner shadow-sm card rounded-5">
-								<div class="entry-image mb-3">
-									<div class="fslider" data-arrows="false"
-										data-lightbox="gallery">
-										<div class="flexslider">
-											<div class="slider-wrap">
-												<div>
-													<img src="/images/collaboration/col/planning4.jpg"
-														 onclick="location.href='colDetail'">
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="p-4">
-									<h3 class="center" style="margin-bottom: 40px;">
-										<a href="#">콜라보레이션 타이틀</a>
-									</h3>
-
-									<div class="container clearfix m-2">
-										<div class="row justify-content-center">
-											<div>
-												<div class="d-flex flex-row align-items-center rounded"
-													style="margin-bottom: 15px;">
-													<div
-														style="width: 110px; padding: 8px; border: #dfdfdf solid 1px; text-align: center; background-color: #666666; color: white;">당선작
-														발표</div>
-													<div
-														style="width: 110px; padding: 8px; border: #dfdfdf solid 1px; text-align: center; margin-left: 60px; color: white; background-color: #1bbc9b;">000명
-														참여</div>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<hr class="my-4">
-									<div class="d-flex align-items-center">
-										<a href="#"><img src="/images/collaboration/author.jpg"
-											alt="Author" class="rounded-circle" width="38" height="38"></a>
-										<div class="entry-meta mt-0">
-											<div class="entry-meta"
-												style="margin-bottom: 10px; padding-left: 10px;">
-												<ul>
-													<li><a href="#"><h6 class="mb-1 h6"
-																style="display: inline;">Author</h6></a></li>
-													<li><i class="icon-calendar3"></i>2021.11.21</li>
-													<li><a href="blog-single.html#comments"><i
-															class="icon-comments"></i> 13</a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- 콘텐츠 2 끝-->
-
-						<!-- 콘텐츠 3 시작-->
-						<div class="entry col-lg-4 col-md-6">
-							<div class="grid-inner shadow-sm card rounded-5">
-								<div class="entry-image mb-3">
-									<div class="fslider" data-arrows="false"
-										data-lightbox="gallery">
-										<div class="flexslider">
-											<div class="slider-wrap">
-												<div>
-													<img src="/images/collaboration/col/planning5.jpg"
-														 onclick="location.href='colDetail'">
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="p-4">
-									<h3 class="center" style="margin-bottom: 40px;">
-										<a href="col_detail_end.html">콜라보레이션 타이틀</a>
-									</h3>
-
-									<div class="container clearfix m-2">
-										<div class="row justify-content-center">
-											<div>
-												<div class="d-flex flex-row align-items-center rounded"
-													style="margin-bottom: 15px;">
-													<div
-														style="width: 110px; padding: 8px; border: #dfdfdf solid 1px; text-align: center; background-color: #666666; color: white;">당선작
-														발표</div>
-													<div
-														style="width: 110px; padding: 8px; border: #dfdfdf solid 1px; text-align: center; margin-left: 60px; color: white; background-color: #1bbc9b;">000명
-														참여</div>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<hr class="my-4">
-									<div class="d-flex align-items-center">
-										<a href="#"><img src="/images/collaboration/author.jpg"
-											alt="Author" class="rounded-circle" width="38" height="38"></a>
-										<div class="entry-meta mt-0">
-											<div class="entry-meta"
-												style="margin-bottom: 10px; padding-left: 10px;">
-												<ul>
-													<li><a href="#"><h6 class="mb-1 h6"
-																style="display: inline;">Author</h6></a></li>
-													<li><i class="icon-calendar3"></i>2021.11.21</li>
-													<li><a href="blog-single.html#comments"><i
-															class="icon-comments"></i> 13</a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- 콘텐츠 3 끝-->
-
-						<!-- 콘텐츠 4 시작-->
-						<div class="entry col-lg-4 col-md-6">
-							<div class="grid-inner shadow-sm card rounded-5">
-								<div class="entry-image mb-3">
-									<div class="fslider" data-arrows="false"
-										data-lightbox="gallery">
-										<div class="flexslider">
-											<div class="slider-wrap">
-												<div>
-													<img src="/images/collaboration/col/planning6.jpg"
-														 onclick="location.href='colDetail'">
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="p-4">
-									<h3 class="center" style="margin-bottom: 40px;">
-										<a href="#">콜라보레이션 타이틀</a>
-									</h3>
-
-									<div class="container clearfix m-2">
-										<div class="row justify-content-center">
-											<div>
-												<div class="d-flex flex-row align-items-center rounded"
-													style="margin-bottom: 15px;">
-													<div
-														style="width: 110px; padding: 8px; border: #dfdfdf solid 1px; text-align: center; background-color: #666666; color: white;">당선작
-														발표</div>
-													<div
-														style="width: 110px; padding: 8px; border: #dfdfdf solid 1px; text-align: center; margin-left: 60px; color: white; background-color: #1bbc9b;">000명
-														참여</div>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<hr class="my-4">
-									<div class="d-flex align-items-center">
-										<a href="#"><img src="/images/collaboration/author.jpg"
-											alt="Author" class="rounded-circle" width="38" height="38"></a>
-										<div class="entry-meta mt-0">
-											<div class="entry-meta"
-												style="margin-bottom: 10px; padding-left: 10px;">
-												<ul>
-													<li><a href="#"><h6 class="mb-1 h6"
-																style="display: inline;">Author</h6></a></li>
-													<li><i class="icon-calendar3"></i>2021.11.21</li>
-													<li><a href="blog-single.html#comments"><i
-															class="icon-comments"></i> 13</a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- 콘텐츠 4 끝-->
-
-						<!-- 콘텐츠 5 시작-->
-						<div class="entry col-lg-4 col-md-6">
-							<div class="grid-inner shadow-sm card rounded-5">
-								<div class="entry-image mb-3">
-									<div class="fslider" data-arrows="false"
-										data-lightbox="gallery">
-										<div class="flexslider">
-											<div class="slider-wrap">
-												<div>
-													<img src="/images/collaboration/col/planning8.jpg"
-														 onclick="location.href='colDetail'">
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="p-4">
-									<h3 class="center" style="margin-bottom: 40px;">
-										<a href="#">콜라보레이션 타이틀</a>
-									</h3>
-
-									<div class="container clearfix m-2">
-										<div class="row justify-content-center">
-											<div>
-												<div class="d-flex flex-row align-items-center rounded"
-													style="margin-bottom: 15px;">
-													<div
-														style="width: 110px; padding: 8px; border: #dfdfdf solid 1px; text-align: center; background-color: #666666; color: white;">당선작
-														발표</div>
-													<div
-														style="width: 110px; padding: 8px; border: #dfdfdf solid 1px; text-align: center; margin-left: 60px; color: white; background-color: #1bbc9b;">000명
-														참여</div>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<hr class="my-4">
-									<div class="d-flex align-items-center">
-										<a href="#"><img src="/images/collaboration/author.jpg"
-											alt="Author" class="rounded-circle" width="38" height="38"></a>
-										<div class="entry-meta mt-0">
-											<div class="entry-meta"
-												style="margin-bottom: 10px; padding-left: 10px;">
-												<ul>
-													<li><a href="#"><h6 class="mb-1 h6"
-																style="display: inline;">Author</h6></a></li>
-													<li><i class="icon-calendar3"></i>2021.11.21</li>
-													<li><a href="blog-single.html#comments"><i
-															class="icon-comments"></i> 13</a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- 콘텐츠 5 끝-->
-
-						<!-- 콘텐츠 6 시작-->
-						<div class="entry col-lg-4 col-md-6">
-							<div class="grid-inner shadow-sm card rounded-5">
-								<div class="entry-image mb-3">
-									<div class="fslider" data-arrows="false"
-										data-lightbox="gallery">
-										<div class="flexslider">
-											<div class="slider-wrap">
-												<div>
-													<img src="/images/collaboration/col/planning7.jpg"
-														 onclick="location.href='colDetail'">
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="p-4">
-									<h3 class="center" style="margin-bottom: 40px;">
-										<a href="#">콜라보레이션 타이틀</a>
-									</h3>
-
-									<div class="container clearfix m-2">
-										<div class="row justify-content-center">
-											<div>
-												<div class="d-flex flex-row align-items-center rounded"
-													style="margin-bottom: 15px;">
-													<div
-														style="width: 110px; padding: 8px; border: #dfdfdf solid 1px; text-align: center; background-color: #666666; color: white;">당선작
-														발표</div>
-													<div
-														style="width: 110px; padding: 8px; border: #dfdfdf solid 1px; text-align: center; margin-left: 60px; color: white; background-color: #1bbc9b;">000명
-														참여</div>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<hr class="my-4">
-									<div class="d-flex align-items-center">
-										<a href="#"><img src="/images/collaboration/author.jpg"
-											alt="Author" class="rounded-circle" width="38" height="38"></a>
-										<div class="entry-meta mt-0">
-											<div class="entry-meta"
-												style="margin-bottom: 10px; padding-left: 10px;">
-												<ul>
-													<li><a href="#"><h6 class="mb-1 h6"
-																style="display: inline;">Author</h6></a></li>
-													<li><i class="icon-calendar3"></i>2021.11.21</li>
-													<li><a href="blog-single.html#comments"><i
-															class="icon-comments"></i> 13</a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- 콘텐츠 6 끝-->
-
-						<!-- 콘텐츠 7 시작-->
-						<div class="entry col-lg-4 col-md-6">
-							<div class="grid-inner shadow-sm card rounded-5">
-								<div class="entry-image mb-3">
-									<div class="fslider" data-arrows="false"
-										data-lightbox="gallery">
-										<div class="flexslider">
-											<div class="slider-wrap">
-												<div>
-													<img src="/images/collaboration/col/planning1.jpg"
-														 onclick="location.href='colDetail'">
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="p-4">
-									<h3 class="center" style="margin-bottom: 40px;">
-										<a href="#">콜라보레이션 타이틀</a>
-									</h3>
-
-									<div class="container clearfix m-2">
-										<div class="row justify-content-center">
-											<div>
-												<div class="d-flex flex-row align-items-center rounded"
-													style="margin-bottom: 15px;">
-													<div
-														style="width: 110px; padding: 8px; border: #dfdfdf solid 1px; text-align: center; background-color: #666666; color: white;">당선작
-														발표</div>
-													<div
-														style="width: 110px; padding: 8px; border: #dfdfdf solid 1px; text-align: center; margin-left: 60px; color: white; background-color: #1bbc9b;">000명
-														참여</div>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<hr class="my-4">
-									<div class="d-flex align-items-center">
-										<a href="#"><img src="/images/collaboration/author.jpg"
-											alt="Author" class="rounded-circle" width="38" height="38"></a>
-										<div class="entry-meta mt-0">
-											<div class="entry-meta"
-												style="margin-bottom: 10px; padding-left: 10px;">
-												<ul>
-													<li><a href="#"><h6 class="mb-1 h6"
-																style="display: inline;">Author</h6></a></li>
-													<li><i class="icon-calendar3"></i>2021.11.21</li>
-													<li><a href="blog-single.html#comments"><i
-															class="icon-comments"></i> 13</a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- 콘텐츠 7 끝-->
-
+						</c:if>
+						</c:forEach>
 					</div>
 
 				</div>
-		<%-- 		</c:choose> --%>
+		
 				
 				
 			</div>

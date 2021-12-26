@@ -54,7 +54,7 @@ $( function() {
   ============================================= -->
 	<div id="wrapper" class="clearfix">
 	
-	<form name="frm" id="frm" action="/artizen/collaboration/planning" method="POST" enctype="multipart/form-data">
+	<form name="frm" id="frm" action="./planning" method="POST" enctype="multipart/form-data">
 		<input type="hidden" value="${userId }" name="creatorId" id="creatorId">
 		<table class="table text-center caption-top container-sm">
 			<caption class="text-center fs-3 fw-bold" ><img id="logo" src="/images/logo_new/logo_D.png" alt="Artizen Logo"></caption>
