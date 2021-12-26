@@ -31,7 +31,7 @@ import artizens.service.PatronService;
 import artizens.web.session.SessionConst;
 
 @Controller
-@RequestMapping("/artizen/patron")
+@RequestMapping("/patron")
 public class PatronController {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(PatronController.class);

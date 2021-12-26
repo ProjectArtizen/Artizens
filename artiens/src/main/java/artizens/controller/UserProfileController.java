@@ -30,7 +30,7 @@ public class UserProfileController {
 	
 	@Autowired private UserProfileService userProfileService;
 	
-	@GetMapping("/artizen/login")
+	@GetMapping("/login")
     public String userLogin(@ModelAttribute LoginForm loginForm,
                             @ModelAttribute JoinForm joinForm,
                             @RequestParam(value = "redirectURL", required = false, defaultValue = "") String redirectURL,
@@ -39,7 +39,7 @@ public class UserProfileController {
         return "thymeleaf/login/loginForm";
     }
 
-    @PostMapping("/artizen/login")
+    @PostMapping("/login")
     public String loginOk(@Validated LoginForm loginForm,
                           BindingResult bindingResult,
                           HttpServletRequest request,
@@ -65,14 +65,13 @@ public class UserProfileController {
         HttpSession session = request.getSession();
         session.setAttribute(SessionConst.LOGIN_USER, loginUser);
         session.setMaxInactiveInterval(3600);
-        System.out.println("is null?" + redirectURL);
         if (redirectURL.equals("null")){
-        	return "redirect:/artizen";
+        	return "redirect:/";
         }
-        return "redirect:/artizen" + redirectURL;
+        return "redirect:/" + redirectURL;
     }
 
-    @PostMapping("/artizen/join")
+    @PostMapping("/join")
     public String joinOk(@Validated JoinForm joinForm,
                          BindingResult bindingResult,
                          RedirectAttributes redirectAttributes,
@@ -107,17 +106,17 @@ public class UserProfileController {
             return "thymeleaf/login/loginForm";
 		}
         redirectAttributes.addAttribute("joinCheck", true);
-        return "redirect:/artizen/login";
+        return "redirect:/login";
 
     }
 
-    @PostMapping("/artizen/logout")
+    @PostMapping("/logout")
     public String logout(HttpServletRequest request){
         HttpSession session = request.getSession();
         if (session != null){
             session.invalidate(); // 세션 제거
         }
-        return "redirect:/artizen";
+        return "redirect:/";
     }
 	
 } 

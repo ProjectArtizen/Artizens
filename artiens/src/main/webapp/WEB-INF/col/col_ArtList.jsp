@@ -37,11 +37,15 @@
 		<!-- Header
 		============================================= -->
 		<header id="header" class="full-header transparent-header semi-transparent dark">
-
-			<%@ include file="../include/header.jsp"%>
-
-		</header>
-		<!-- #header end -->
+			<c:choose>
+				<c:when test="${userid eq null }">
+					<c:import url="../include/noneLoginHeader.jsp" />
+				</c:when>
+				<c:when test="${userid ne null }">
+					<c:import url="../include/header.jsp" />
+				</c:when>
+			</c:choose>
+		</header><!-- #header end -->
 
 		<!-- 타이틀
 		============================================= -->
@@ -66,7 +70,7 @@
 				</span>
 
 
-				<div style="width: 1600px;">
+				<div>
 					<!-- 서브메뉴
 							============================================= -->
 					<nav class="primary-menu"

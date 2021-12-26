@@ -64,7 +64,7 @@
             </div>
 
             <!-- 유저 로그아웃 정보-->
-            <form name="logout" action="/artizen/logout" method="POST"></form>
+            <form name="logout" action="../logout" method="POST"></form>
             <div id="top-login-out" class="header-misc-icon d-none d-sm-block">
               <a href="javascript:document.logout.submit();">
                 <i class="icon-line-log-out">	
@@ -92,7 +92,7 @@
                 </a>
               </li>
               <li class="menu-item">
-                <a class="menu-link" style="font-size: larger;" href="/artizen/artwork/main">
+                <a class="menu-link" style="font-size: larger;" href="/artwork/main">
                   <div>작 품</div>
                 </a>
                 <ul class="sub-menu-container bg-light" >
@@ -134,12 +134,12 @@
                 </ul>
               </li>
               <li class="menu-item">
-                <a class="menu-link" style="font-size: larger;" href="/artizen/collaboration/main">
+                <a class="menu-link" style="font-size: larger;" href="../collaboration/main">
                   <div>콜라보레이션</div>
                 </a>
               </li>
               <li class="menu-item">
-                <a class="menu-link" style="font-size: larger;" href="/artizen/patron">
+                <a class="menu-link" style="font-size: larger;" href="../patron">
                   <div>후원하기</div>
                 </a>
                 <ul class="sub-menu-container bg-light">

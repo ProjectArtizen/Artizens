@@ -26,16 +26,23 @@
     </style>
 </head>
 <body>
-<!-- HEADER
-============================================= -->
-<header id="header" class="full-header transparent-header semi-transparent dark">
-    <%@include file="../include/header.jsp" %>
-</header>
 
 <section id="content">
     <div class="content-wrap">
         <div class="container clearfix">
-
+			<!-- Header
+		============================================= -->
+		<header id="header" class="full-header transparent-header semi-transparent dark">
+			<c:choose>
+				<c:when test="${userid eq null }">
+					<c:import url="../include/noneLoginHeader.jsp" />
+				</c:when>
+				<c:when test="${userid ne null }">
+					<c:import url="../include/header.jsp" />
+				</c:when>
+			</c:choose>
+		</header><!-- #header end -->
+		
             <div class="single-post mb-0">
 
                 <!-- Single Post

@@ -33,7 +33,7 @@ public class HomeController {
 //        return "/artizen/artwork/main";
 //    }
 	
-	@GetMapping("/artizen/developing")
+	@GetMapping("/developing")
     public String developing(Model model){
     	model.addAttribute("alertActive", "developing");
     	return "thymeleaf/alert";

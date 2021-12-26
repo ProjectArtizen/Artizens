@@ -21,7 +21,7 @@ import artizens.service.RewardService;
 import artizens.web.session.SessionConst;
 
 @Controller
-@RequestMapping("/artizen/patron/reward")
+@RequestMapping("/patron/reward")
 public class RewardController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(RewardController.class);

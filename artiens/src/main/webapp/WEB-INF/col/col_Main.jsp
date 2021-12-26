@@ -37,14 +37,17 @@
 	<div id="wrapper" class="clearfix">
 
 		<!-- Header
-      ============================================= -->
-		<header id="header"
-			class="full-header transparent-header semi-transparent dark">
-
-			<%@ include file="../include/header.jsp"%>
-
-		</header>
-		<!-- #header end -->
+		============================================= -->
+		<header id="header" class="full-header transparent-header semi-transparent dark">
+			<c:choose>
+				<c:when test="${userid eq null }">
+					<c:import url="../include/noneLoginHeader.jsp" />
+				</c:when>
+				<c:when test="${userid ne null }">
+					<c:import url="../include/header.jsp" />
+				</c:when>
+			</c:choose>
+		</header><!-- #header end -->
 
 		<!-- content -->
 		<section id="content">
@@ -52,7 +55,7 @@
 				<div class="container clearfix" style="width: 1250px;">
 					<div style="height: 50px;">
 						<h3 style="display: inline-block;">진행중인 콜라보레이션</h3>
-						<a href="./planning" >
+						<a href="./register" >
 							<button style="float: right; border-color: #00d084; border-radius: 25px; width: 190px; Height: 50px; color: #00d084; background-color: #ffffff">콜라보레이션 기획</button>
 						</a>
 					</div>
@@ -72,8 +75,8 @@
 										<div class="flexslider">
 											<div class="slider-wrap">
 												<div style="height: 230px; overflow: hidden">
-													<a href="colDetail"></a>
-													<img src="${result.storedFileName }"/>
+													<a href="./${result.collaborationId}"></a>
+													<img src="${result.storedFileName}"/>
 												</div>
 											</div>
 										</div>
@@ -82,7 +85,7 @@
 								<div class="p-4">
 									<div style="height:54px; margin-bottom: 20px;">
 										<h4 class="center">
-											<a href="#">${result.title }</a>
+											<a href="./${result.collaborationId}">${result.title }</a>
 										</h4>
 									</div>
 
@@ -102,12 +105,12 @@
 
 									<hr class="my-4">
 									<div class="d-flex align-items-center">
-										<a href="#"><img src="${result.creatorProfileStoredFileName}"
+										<a href="./${result.collaborationId}"><img src="${result.creatorProfileStoredFileName}"
 											class="rounded-circle" width="38" height="38"></a>
 										<div class="entry-meta mt-0">
 											<div class="entry-meta" style="margin-bottom: 10px; padding-left: 10px;">
 												<ul>
-													<li><a href="#"><h6 class="mb-1 h6" style="display: inline;">${result.creatorNickName }</h6></a></li>
+													<li><a href="./${result.collaborationId}"><h6 class="mb-1 h6" style="display: inline;">${result.creatorNickName }</h6></a></li>
 													<li><i class="icon-calendar3"></i>${result.registerDate }</li>
 													<!-- <li><a href="blog-single.html#comments"><i class="icon-comments"></i> 13</a></li> -->
 												</ul>

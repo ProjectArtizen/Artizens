@@ -53,7 +53,7 @@
                 </a>
               </li>
               <li class="menu-item">
-                <a class="menu-link" style="font-size: larger;" href="artWorkMain">
+                <a class="menu-link" style="font-size: larger;" href="<c:url value='/artwork/main'/>">
                   <div>작 품</div>
                 </a>
                 <ul class="sub-menu-container bg-light" >
