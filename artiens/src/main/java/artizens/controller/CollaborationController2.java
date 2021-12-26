@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import artizens.domain.UserProfile;
+import artizens.mapper.CollaborationMapper2;
 import artizens.mapper.dto.collaboration.CollaborationArtWorkInsertDto;
 import artizens.mapper.dto.collaboration.CollaborationArtworkDetailDto;
 import artizens.mapper.dto.collaboration.CollaborationDetailDto;
@@ -28,6 +29,7 @@ public class CollaborationController2 {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CollaborationController2.class);
 
 	@Autowired CollaborationService2 collaborationService;
+	@Autowired CollaborationMapper2 collaborationMapper;
 	
 	/**
 	 * 공모전 상세 화면
@@ -46,7 +48,12 @@ public class CollaborationController2 {
 			return "col/col_Redirect";
 		}
 		model.addAttribute("result", result);
-		LOGGER.info("result = {}", result.toString());
+		
+		if (user != null) {
+			Long creatorId = collaborationMapper.findCreaotrByUserId(user.getId());
+			if (creatorId != 0L ) model.addAttribute("creatorId", creatorId);
+			LOGGER.info("result = {}", result.toString());
+		}else model.addAttribute("creatorId", null);
 		return "col/col_Detail";
 	}
 	

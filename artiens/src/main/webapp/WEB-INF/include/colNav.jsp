@@ -39,20 +39,14 @@
 
 			<c:choose>
 				<c:when test="${result.pastDateBoolean eq false}">
+					<!-- Button trigger modal -->
 					<div>
-						<a href="#block-modal-request" data-lightbox="inline" data-target="#block-modal-request">
-							<button
-								class="button m-3 button-rounded button-black d-none d-xl-flex my-4 ms-3"
-								id="modalbtn">접수하기</button>
-							<div class="header-misc-icon">
-								<a type="button" onclick="onClickmodals()" class="d-flex d-xl-none"><i class="icon-pencil"></i></a>
-							</div> 
-							<script type="text/javascript">
-								function onClickmodals() {
-									document.getElementById('modalbtn').click();
-								}
-							</script>
-						</a>
+						<a href="#" class="button button-border button-border-thin button-red" data-bs-toggle="modal" data-bs-target="#registerModal"><i class="icon-pencil"></i>접수하기</a>
+					</div>
+				</c:when>
+				<c:when test="${result.pastDateBoolean eq true && result.evaluate eq false && result.creatorId ne null && result.creatorId eq creatorId}">
+					<div>
+						<a href="#" class="button button-border button-border-thin button-brown" data-bs-toggle="modal" data-bs-target="#evaluateModel"><i class="icon-pencil"></i>평가하기</a>
 					</div>
 				</c:when>
 				<c:when test="${result.pastDateBoolean eq true}">
@@ -62,79 +56,54 @@
 		</ul>
 	</nav>
 	<!-- #primary-menu end -->
-
 </div>
 
-<!-- Modal -->
-<div class="modal1 mfp-hide" id="block-modal-request">
-	<div class="modal-dialog modal-dialog-centered modal-lg">
-		<div class="modal-content bg-white p-4 p-md-5 rounded">
-			<div class="d-flex justify-content-between mb-2">
-				<h3 class="mb-0 text-uppercase ls1">작품 접수</h3>
-				<a href="#" onClick="$.magnificPopup.close();return false;"
-					class="text-muted h4 mb-0 h-text-danger"><i
-					class="icon-line-circle-cross"></i></a>
-			</div>
-			<div class="line double-line mt-2 mb-4"></div>
-
-			<div class="form-widget">
-
-				<div class="form-result"></div>
-
-				<form class="mb-0" id="template-contactform" action="./art/register" method="post" enctype="multipart/form-data">
-					<input type="hidden" name="collaborationId" value="${result.id}">
-					<div class="form-process">
-						<div class="css3-spinner">
-							<div class="css3-spinner-scaler"></div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-6 form-group w-100">
-							<label class="nott ls0 fw-medium" for="template-contactform-name">Title <small>*</small></label>
-							<input stype="text" id="template-contactform-name" name="title" value="" class="form-control required" />
-						</div>
-
-						<div class="w-100"></div>
-
-						<div class="col-md-6 form-group w-100">
-							<label class="nott ls0 fw-medium" for="template-contactform-upload">Upload <small class="text-muted">(Maximum file size allowed is 2048 KB.)</small></label>
-							<div class="form-file">
-								<input type="file" name="file" class="form-control" id="template-contactform-upload">
-							</div>
-						</div>
-
-						<div class="w-100"></div>
-
-						<div class="col-12 form-group">
-							<label class="nott ls0 fw-medium" for="template-contactform-message">Content <small>*</small></label>
-							<textarea style="height: 700px;" class="required form-control" id="template-contactform-message" name="content" rows="5" cols="30"></textarea>
-						</div>
-
-						<div class="col-12 form-group d-none">
-							<input type="text" id="template-contactform-botcheck" name="template-contactform-botcheck" value="" class="form-control" />
-						</div>
-
-						<div style="color: red;">
-							해당 콜라보레이션에 접수한 작품은 개인 블로그에는 올라가지 않으며, 해당 콜라보레이션의 참여 작품에서 확인할
-							수 있습니다.<br> 이미지 교체 방지를 위해, 업로드 후 이미지는 수정할 수 없습니다.
-						</div>
-
-						<div class="col-12 d-flex justify-content-end">
-							<button class="button ls0 nott px-5 py-3 rounded-pill bg-primary ms-2" type="submit" id="template-contactform-submit"
-												name="template-contactform-submit" value="submit">Upload</button>
-							
-						</div>
-					</div>
-
-					<input type="hidden" name="prefix" value="template-contactform-">
-
-				</form>
-			</div>
-
-		</div>
-	</div>
+<!-- Modal - registerModal -->
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">공모전 접수</h4>
+                <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <h4>${result.title}</br> 에 참가하시겠습니까?</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                <a></a>
+                <button type="button" class="btn btn-primary" id="goto">가즈아</button>
+            </div>
+        </div>
+    </div>
 </div>
-</div>
-</section>
+
+<script type="text/javascript">
+$('#goto').click(function() {
+	
+}
+</script>
 <!-- modal -->
+
+<!-- Modal - evaluateModel -->
+<div class="modal fade" id="evaluateModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">공모전 작품 평가하기</h4>
+                <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <h4>Tooltips in a modal</h4>
+                <p><a href="#" data-bs-toggle="tooltip" title="" data-original-title="Tooltip">This link</a> and <a href="#" data-bs-toggle="tooltip" title="" data-original-title="Tooltip">that link</a> should have tooltips on hover.</p>
+                <hr>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal -->
+</section>

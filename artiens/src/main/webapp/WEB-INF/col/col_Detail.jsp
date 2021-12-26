@@ -82,6 +82,7 @@
 		z-index: 2;
 	}
 }
+
 </style>
 </head>
 
@@ -118,16 +119,16 @@
 					</span>
 				</c:if>
 				<h1>${result.title}</h1>
+				
 				<span style="margin-top: 20px;">
-					<div class="d-flex align-items-center"
-						style="justify-content: center;">
+					<div class="d-flex align-items-center" style="justify-content: center;">
 						<a href="#"><img src="${result.creatorImgName}" alt="Author"
 							class="rounded-circle" width="35" height="35"></a>
 						<div class="entry-meta mt-0">
 							<div class="entry-meta"
 								style="margin-bottom: 10px; padding-left: 10px;">
 								<ul>
-									<li><a href="/blog/${result.creatorId}">${result.creatorNickname}</a></li>
+									<li><a href="<c:url value='/blog/${result.creatorId}'/>">${result.creatorNickname}</a></li>
 									<li><i class="icon-calendar3"></i>${result.registerDate} ~ ${result.deadlineTime}</li>
 								</ul>
 							</div>
@@ -402,27 +403,5 @@
 ============================================= -->
 <script src='<c:url value="/js/functions.js"/>'/></script>
 
-<script>
-	jQuery(document).ready(function() {
-
-		var element = $(".custom-file");
-
-		element.find('input[type="file"]').change(function(e) {
-			var fileName = e.target.files[0].name;
-			element.find('.custom-file-label').html(fileName);
-		});
-
-		$('#block-modal-request').on('show.bs.modal', function(e) {
-			e.preventDefault();
-		})
-
-		$('#template-contactform').on('formSubmitSuccess', function() {
-			setTimeout(function() {
-				$('#block-modal-request').magnificPopup('close');
-			}, 1);
-		});
-
-	});
-</script>
 </body>
 </html>
