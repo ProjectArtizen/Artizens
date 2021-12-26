@@ -14,19 +14,19 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
 	  rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-<link rel="stylesheet" href="/style.css" type="text/css" />
-<link rel="stylesheet" href="/css/swiper.css" type="text/css" />
-<link rel="stylesheet" href="/css/dark.css" type="text/css" />
-<link rel="stylesheet" href="/css/font-icons.css" type="text/css" />
-<link rel="stylesheet" href="/css/animate.css" type="text/css" />
-<link rel="stylesheet" href="/css/magnific-popup.css" type="text/css" />
-<link rel="stylesheet" href="/css/linkAnimation.css" type="text/css" />
-<link rel="stylesheet" href="/css/button.css" type="text/css" />
-<link rel="stylesheet" href="/css/sticky.css" type="text/css" />
-<link rel="stylesheet" href="/css/custom.css" type="text/css" />
+<link rel="stylesheet" href="<c:url value='/style.css' />" type="text/css" />
+<link rel="stylesheet" href="<c:url value='/css/swiper.css' />" type="text/css" />
+<link rel="stylesheet" href="<c:url value='/css/dark.css' />" type="text/css" />
+<link rel="stylesheet" href="<c:url value='/css/font-icons.css' />" type="text/css" />
+<link rel="stylesheet" href="<c:url value='/css/animate.css' />" type="text/css" />
+<link rel="stylesheet" href="<c:url value='/css/magnific-popup.css' />" type="text/css" />
+<link rel="stylesheet" href="<c:url value='/css/linkAnimation.css' />" type="text/css" />
+<link rel="stylesheet" href="<c:url value='/css/button.css' />" type="text/css" />
+<link rel="stylesheet" href="<c:url value='/css/sticky.css' />" type="text/css" />
+<link rel="stylesheet" href="<c:url value='/css/custom.css' />" type="text/css" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-<title>::: ARTIZEN | ${nickname }님의 블로그 :::</title>
+<c:set var="profile" value="${profile }"/>
+<title>::: ARTIZEN | ${profile.nickname }님의 블로그 :::</title>
 
 <style>
 	
@@ -144,16 +144,16 @@
 									<div class="d-flex mt-3">
 										<a href="#">
 											<c:choose>
-												<c:when test="${profileImage eq null}">
+												<c:when test="${profile.images eq null}">
 													<img class="rounded-circle m-2" style="width: 100px; height: 100px;" src="https://0.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=60" alt="Image">
 										 		</c:when>
-												<c:when test="${profileImage ne null}">
-													<img class="rounded-circle m-2" style="width: 100px; height: 100px;" src="${profileimage }" alt="Image">
+												<c:when test="${profile.images ne null}">
+													<img class="rounded-circle m-2" style="width: 100px; height: 100px;" src="${profile.images }" alt="Image">
 										 		</c:when>
 										 	</c:choose>
 										 </a>
 										<div class="m-3">
-											<div>${nickname }</div> 
+											<div>${profile.nickname }</div> 
 											<div>팔로워 49.2만명</div> 
 											<div>팔로잉 40명</div>
 										</div>
@@ -168,9 +168,18 @@
 										</a>											
 									</div>
 									<div class="border m-3 p-3">
-										안녕하세요!<br> 그림 그리는 개발자 김기현입니다.
-										제가 가지고 있는 재능으로 세상에 다양한 경험을 해보고
-										얻은 가치를 제 능력을 통해 타인과 공유하고 싶습니다.
+										<c:choose>
+											<c:when test="${profile.content eq null }" >
+												<div>
+													<i>한 줄 이야기를 등록해 주세요.<br><small>(최대 50자까지 입력 가능합니다. )</small></i>
+												</div>
+											</c:when>
+											<c:when test="${profile.content ne null }" >
+												<div>
+													${profile.content }
+												</div>
+											</c:when>
+										</c:choose>
 									</div>
 									<div class="clearfix"></div>
 
@@ -364,12 +373,12 @@
 
 	<!-- JavaScripts
 	============================================= -->
-	<script src="/js/jquery.js"></script>
-	<script src="/js/plugins.min.js"></script>	
+	<script src="<c:url value='/js/jquery.js' />"></script>
+	<script src="<c:url value='/js/plugins.min.js' />"></script>	
 
 	<!-- Footer Scripts
 	============================================= -->
-	<script src="/js/functions.js"></script>
+	<script src="<c:url value='/js/functions.js' />"></script>
 
 </body>
 </html>

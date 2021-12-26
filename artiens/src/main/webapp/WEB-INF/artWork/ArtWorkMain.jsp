@@ -11,15 +11,15 @@
 	<!-- Stylesheets
 	============================================= -->
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="/css/bootstrap.css" type="text/css" />
-	<link rel="stylesheet" href="/style.css" type="text/css" />
-	<link rel="stylesheet" href="/css/swiper.css" type="text/css" />
-	<link rel="stylesheet" href="/css/dark.css" type="text/css" />
-	<link rel="stylesheet" href="/css/font-icons.css" type="text/css" />
-	<link rel="stylesheet" href="/css/animate.css" type="text/css" />
-	<link rel="stylesheet" href="/css/magnific-popup.css" type="text/css" />
-	<link rel="stylesheet" href="/css/main.css" type="text/css" />
-	<link rel="stylesheet" href="/css/custom.css" type="text/css" />
+	<link rel="stylesheet" href="<c:url value='/css/bootstrap.css' />" type="text/css" />
+	<link rel="stylesheet" href="<c:url value='/style.css' /> " type="text/css" />
+	<link rel="stylesheet" href="<c:url value='/css/swiper.css' />" type="text/css" />
+	<link rel="stylesheet" href="<c:url value='/css/dark.css' />" type="text/css" />
+	<link rel="stylesheet" href="<c:url value='/css/font-icons.css'/>" type="text/css" />
+	<link rel="stylesheet" href="<c:url value='/css/animate.css'/>" type="text/css" />
+	<link rel="stylesheet" href="<c:url value='/css/magnific-popup.css'/>" type="text/css" />
+	<link rel="stylesheet" href="<c:url value='/css/main.css'/>" type="text/css" />
+	<link rel="stylesheet" href="<c:url value='/css/custom.css'/>" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 	<!-- Document Title
@@ -69,7 +69,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="swiper-slide-bg" style="background-image: url('/images/artwork/category/13.jpg');"></div>
+							<div class="swiper-slide-bg" style="background-image: url('<c:url value='/images/artwork/category/13.jpg'/>');"></div>
 						</div>
 
 						<!-- Slide 2 -->
@@ -83,7 +83,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="swiper-slide-bg" style="background-image: url('/images/artwork/category/11.jpg');"></div>
+							<div class="swiper-slide-bg" style="background-image: url('<c:url value='/images/artwork/category/11.jpg'/>');"></div>
 						</div>
 
 						<!-- Slide 3 -->
@@ -97,7 +97,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="swiper-slide-bg" style="background-image: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.5)), url('/images/artwork/category/10.jpg');"></div>
+							<div class="swiper-slide-bg" style="background-image: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.5)), url('<c:url value='/images/artwork/category/10.jpg'/>');"></div>
 						</div>
 
 					</div>
@@ -120,32 +120,32 @@
 					<h1> CATEGORY</h1>
 					<hr>
 					<div class="block-expand-categories flex-column flex-lg-row d-flex justify-content-center">
-						<div class="expand-category bg-light" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('/images/artwork/category/8.jpg')">
-							<h4><a href="#" class="text-light">수묵화</a></h4>
+						<div class="expand-category bg-light" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('<c:url value='/images/artwork/category/8.jpg' />')">
+							<h4><a href="<c:url value='#' />" class="text-light">수묵화</a></h4>
 						</div>
 
-						<div class="expand-category bg-light" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('/images/artwork/category/9.jpg');">
-							<h4><a href="#" class="text-light">채색화</a></h4>
+						<div class="expand-category bg-light" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('<c:url value='/images/artwork/category/9.jpg' />');">
+							<h4><a href="<c:url value='#' />" class="text-light">채색화</a></h4>
 						</div>
 
-						<div class="expand-category bg-light" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('/images/artwork/category/10.jpg');">
-							<h4><a href="#" class="text-light">풍경화</a></h4>
+						<div class="expand-category bg-light" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('<c:url value='/images/artwork/category/10.jpg' />');">
+							<h4><a href="<c:url value='#' />" class="text-light">풍경화</a></h4>
 						</div>
 
-						<div class="expand-category bg-light" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('/images/artwork/category/11.jpg');">
-							<h4><a href="#" class="text-light">인물화</a></h4>
+						<div class="expand-category bg-light" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('<c:url value='/images/artwork/category/11.jpg' />');">
+							<h4><a href="<c:url value='#' />" class="text-light">인물화</a></h4>
 						</div>
 
-						<div class="expand-category bg-light" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('/images/artwork/category/12.jpg">
-							<h4><a href="#" class="text-light">추상화</a></h4>
+						<div class="expand-category bg-light" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('<c:url value='/images/artwork/category/12.jpg' />">
+							<h4><a href="<c:url value='#' />" class="text-light">추상화</a></h4>
 						</div>
 
-						<div class="expand-category bg-light" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('/images/artwork/category/13.jpg');">
-							<h4><a href="#" class="text-light">정물화</a></h4>
+						<div class="expand-category bg-light" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('<c:url value='/images/artwork/category/13.jpg' />');">
+							<h4><a href="<c:url value='#' />" class="text-light">정물화</a></h4>
 						</div>
 
-						<div class="expand-category bg-light" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('/images/artwork/category/14.jpg');">
-							<h4><a href="#" class="text-light">팝아트</a></h4>
+						<div class="expand-category bg-light" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('<c:url value='/images/artwork/category/14.jpg' />');">
+							<h4><a href="<c:url value='#' />" class="text-light">팝아트</a></h4>
 						</div>
 					</div>
 
@@ -184,9 +184,9 @@
 														</ul>
 													</div>
 													<div class="entry-title title-sm">
-														<h3><a href="/artizen/artwork/detail/${content.imageId }">${content.title }</a></h3>
+														<h3><a href="<c:url value='/artwork/detail/${content.imageId }' />">${content.title }</a></h3>
 													</div>
-													<a href="/artizen/blog/${content.id }">BLOG<i class="icon-line-arrow-right btn-more"></i></a>
+													<a href="<c:url value='/blog/${content.id }' />">BLOG<i class="icon-line-arrow-right btn-more"></i></a>
 												</div>
 											</div>
 										</div>
@@ -213,11 +213,10 @@
 
 <!-- JavaScripts
 ============================================= -->
-<script src="/js/jquery.js"></script>
-<script src="/js/plugins.min.js"></script>
-
-<script src="/js/jquery.hotspot.js"></script>
+<script src="<c:url value='/js/jquery.js' />"></script>
+<script src="<c:url value='/js/plugins.min.js' />"></script>
+<script src="<c:url value='/js/jquery.hotspot.js' />"></script>
 <!-- Footer Scripts
 ============================================= -->
-<script src="/js/functions.js"></script>
+<script src="<c:url value='/js/functions.js' />"></script>
     </body>

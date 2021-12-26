@@ -1,96 +1,43 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html dir="ltr" lang="en-US">
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<meta name="author" content="SemiColonWeb" />
 
-<!-- Stylesheets
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="SemiColonWeb" />
+
+	<!-- Stylesheets
 	============================================= -->
-<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-<link
-	href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap"
-	rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="/css/bootstrap.css" type="text/css" />
-<link rel="stylesheet" href="/style.css" type="text/css" />
-<link rel="stylesheet" href="/css/dark.css" type="text/css" />
-<link rel="stylesheet" href="/css/font-icons.css" type="text/css" />
-<link rel="stylesheet" href="/css/animate.css" type="text/css" />
-<link rel="stylesheet" href="/css/magnific-popup.css" type="text/css" />
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="<c:url value='/css/bootstrap.css' />" type="text/css" />
+	<link rel="stylesheet" href="<c:url value='/style.css' /> " type="text/css" />
+	<link rel="stylesheet" href="<c:url value='/css/swiper.css' />" type="text/css" />
+	<link rel="stylesheet" href="<c:url value='/css/dark.css' />" type="text/css" />
+	<link rel="stylesheet" href="<c:url value='/css/font-icons.css'/>" type="text/css" />
+	<link rel="stylesheet" href="<c:url value='/css/animate.css'/>" type="text/css" />
+	<link rel="stylesheet" href="<c:url value='/css/magnific-popup.css'/>" type="text/css" />
+	<link rel="stylesheet" href="<c:url value='/css/main.css'/>" type="text/css" />
+	<link rel="stylesheet" href="<c:url value='/css/custom.css'/>" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<link rel="stylesheet" href="/css/custom.css" type="text/css" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>작품메인페이지</title>
-<style>
-.block-expand-categories h1, .block-expand-categories h2,
-	.block-expand-categories h3 {
-	font-family: Playfair Display, serif !important;
-}
+	<!-- Document Title
+	============================================= -->
+	<title>::: ARTIZEN | Main :::</title>
 
-.block-expand-categories .expand-category { -
-	-height: 50vh; -
-	-responsive-height: 60px; -
-	-hover-flex: 10;
-	position: relative;
-	background-position: center center;
-	background-size: cover;
-	border-radius: 20px;
-	margin: 10px 0;
-	min-height: var(- -responsive-height);
-	cursor: pointer;
-}
+	<style>
+		
+	</style>
 
-.block-expand-categories .expand-category h4 {
-	position: absolute;
-	top: 50%;
-	left: 0;
-	right: 0;
-	text-align: center;
-	margin: 0;
-	transform: translateY(-50%);
-}
-
-/* Larger Device */
-@media ( min-width : 992px) {
-	.block-expand-categories .expand-category {
-		height: var(- -height);
-		flex: 1;
-		margin: 0 10px;
-		transition: flex 1s ease;
-		-webkit-backface-visibility: hidden;
-		transform: translate3d(0, 0, 0);
-	}
-	.block-expand-categories:not(.on-click) .expand-category:hover,
-		.block-expand-categories.on-click .expand-category.active {
-		flex: var(- -hover-flex);
-	}
-	.block-expand-categories .expand-category h4 {
-		opacity: 1;
-		top: auto;
-		bottom: 10px;
-		transform: none;
-		transition: opacity .4s ease;
-	}
-	.block-expand-categories:hover .expand-category:not(.active):not(:hover) h4,
-		.block-expand-categories.on-click .expand-category:not(.active) h4 {
-		opacity: 0;
-	}
-}
-</style>
 </head>
 <body class="stretched">
-
-	<!-- Document Wrapper
+    	<!-- Document Wrapper
 	============================================= -->
 	<div id="wrapper" class="clearfix">
-
 		<!-- Header
 		============================================= -->
-		<header id="header"
-			class="full-header transparent-header semi-transparent dark">
+		<header id="header" class="full-header transparent-header semi-transparent dark">
 			<c:choose>
 				<c:when test="${userid eq null }">
 					<c:import url="../include/noneLoginHeader.jsp" />
@@ -99,316 +46,177 @@
 					<c:import url="../include/header.jsp" />
 				</c:when>
 			</c:choose>
-		</header>
-		<!-- #header end -->
-		
-		<!-- 상세내용
+		</header><!-- #header end -->
+
+        <!--Banner img-->
+        <!-- Hero Section
 		============================================= -->
-		<section id="content">
-			<div class="content-wrap"
-				style="padding-top: 0px; margin-bottom: 0px;">
+		<section id="slider" class="slider-element include-header block-slider-1">
 
-				<div class="container">
+			<div class="swiper_wrapper overflow-visible min-vh-60" data-loop="true">
 
-					<h2 class="text-center">Category</h2><br>
-					<div class="block-expand-categories flex-column flex-lg-row d-flex justify-content-center" style="height:500px;"/>
-						<div class="expand-category bg-light" style="background-image: url('/images/artwork/category/8.jpg');"
-							onclick="location.href='artWorkInkPainting'">
-							<h4 class="text-light">수묵화</h4>
-						</div>
+				<div class="swiper-container swiper-parent">
+					<div class="swiper-wrapper">
 
-						<div class="expand-category bg-light"
-							style="background-image: url('/images/artwork/category/9.jpg');"
-							onclick="location.href='artWorkColoring'">
-							<h4 class="text-light">채색화</h4>
-						</div>
-
-						<div class="expand-category bg-light"
-							style="background-image: url('/images/artwork/category/10.jpg');"
-							onclick="location.href='artWorkLandscape'">
-							<h4 class="text-light">풍경화</h4>
-						</div>
-
-						<div class="expand-category bg-light"
-							style="background-image: url('/images/artwork/category/11.jpg');"
-							onclick="location.href='artWorkFigure'">
-							<h4 class="text-light">인물화</h4>
-						</div>
-
-						<div class="expand-category bg-light"
-							style="background-image: url('/images/artwork/category/12.jpg');"
-							onclick="location.href='artWorkAbstract'">
-							<h4 class="text-light">추상화</h4>
-						</div>
-
-						<div class="expand-category bg-light"
-							style="background-image: url('/images/artwork/category/13.jpg');"
-							onclick="location.href='artWorkStill'">
-							<h4 class="text-light">정물화</h4>
-						</div>
-
-						<div class="expand-category bg-light"
-							style="background-image: url('/images/artwork/category/14.jpg');"
-							onclick="location.href='artWorkPop'">
-							<h4 class="text-light">팝아트</h4>
-						</div>
-					</div>
-
-					<div class="line" style="margin-bottom: 45px;"></div>
-					<h2 class="text-center">ArtWork</h2>
-				</div>
-				<div class="container">
-					<!-- Posts
-				============================================= -->
-					<div id="posts" class="post-grid grid-container row gutter-40 mx-3">
-						<c:forEach var="content" items="${result }"> 
-						<div class="entry col-lg-3 col-md-4 col-sm-6 col-12">
-							<div class="grid">
-								<div class="entry-image">
-									<a style="cursor:pointer;" onclick="location.href='/artizen/blog/${content.id}'"><img
-										src="${content.artworkImgName }"
-										alt="Standard Post with Image"></a>
-								</div>
-								<div class="entry-title">
-									<h2>
-										<a href="blog-single.html">${content.title }</a>
-									</h2>
-								</div>
-								<div class="author-image" style="margin-top: 15px;">
-									<img src="${content.creatorImgName }" alt="image"
-										class="rounded-circle">
-								</div>
-								<div class="entry-meta"
-									style="margin-top: 55px; padding-left: 10px;">
-									<ul>
-										<li><a href="blog-single.html#comments"><i
-												class="icon-comments"></i> 13</a></li>
-										<li><a href="#"><i class="icon-thumbs-up2"></i> 20</a></li>
-									</ul>
+						<div class="swiper-slide dark">
+							<div class="container">
+								<div class="slider-caption">
+									<p class="mb-4 text-white-50 text-smaller" data-animate="fadeInUpSmall">인물화</p>
+									<h4 data-animate="fadeInUpSmall" data-delay="200">영국 여성화가</h4>
+									<h2 data-animate="fadeInUpSmall" data-delay="200">Jenny Savile</h2>
+									<div>
+										<a href="#" class="button button-border button-light button-rounded button-large ms-0 topmargin-sm" data-animate="fadeInUpSmall" data-delay="400">더 보기</a>
+									</div>
 								</div>
 							</div>
+							<div class="swiper-slide-bg" style="background-image: url('<c:url value='/images/artwork/category/13.jpg'/>');"></div>
 						</div>
-						
-						</c:forEach>
-						
-						<div class="entry col-lg-3 col-md-4 col-sm-6 col-12">
-							<div class="grid-inner">
-								
-								<div class="entry-image">
-									<a href="/images/artwork/category/8.jpg" data-lightbox="image"><img
-										src="/images/artwork/category/8.jpg"
-										alt="Standard Post with Image"></a>
-								</div>
-								<div class="entry-title">
-									<h2>
-										<a href="blog-single.html"></a>
-									</h2>
-								</div>
-								<div class="author-image" style="margin-top: 15px;">
-									<img src="/images/artwork/author1.jpg" alt="image"
-										class="rounded-circle">
-								</div>
-								<div class="entry-meta"
-									style="margin-top: 55px; padding-left: 10px;">
-									<ul>
-										<li><a href="blog-single.html#comments"><i
-												class="icon-comments"></i> 13</a></li>
-										<li><a href="#"><i class="icon-thumbs-up2"></i> 20</a></li>
-									</ul>
-								</div>
 
-
+						<!-- Slide 2 -->
+						<div class="swiper-slide dark">
+							<div class="container">
+								<div class="slider-caption slider-caption-right" style="max-width: 650px;">
+									<p class="mb-4 text-white-50 text-smaller" data-animate="fadeInUpSmall">Shop for Women</p>
+									<h2 data-animate="fadeInUpSmall" data-delay="200">You will be able to go anywhere.</h2>
+									<div>
+										<a href="#" class="button button-border button-light button-rounded button-large ms-0 topmargin-sm" data-animate="fadeInUpSmall" data-delay="400">Shop Now</a>
+									</div>
+								</div>
 							</div>
+							<div class="swiper-slide-bg" style="background-image: url('<c:url value='/images/artwork/category/11.jpg'/>');"></div>
 						</div>
 
-						<div class="entry col-lg-3 col-md-4 col-sm-6 col-12">
-							<div class="grid-inner">
-								<div class="entry-image">
-									<a href="/images/blog/full/9.jpg" data-lightbox="image"><img
-										src="/images/artwork/category/9.jpg"
-										alt="Standard Post with Image"></a>
+						<!-- Slide 3 -->
+						<div class="swiper-slide dark">
+							<div class="container">
+								<div class="slider-caption slider-caption-center">
+									<p class="mb-4 text-white-50 text-smaller" data-animate="fadeInUpSmall">Shop for Kids</p>
+									<h2 data-animate="fadeInUpSmall" data-delay="200">Bring power to your steps</h2>
+									<div>
+										<a href="#" class="button button-border button-light button-rounded button-large ms-0 topmargin-sm" data-animate="fadeInUpSmall" data-delay="400">Shop Now</a>
+									</div>
 								</div>
-								<div class="entry-title">
-									<h2>
-										<a href="blog-single.html">작품 타이틀</a>
-									</h2>
-								</div>
-								<div class="author-image" style="margin-top: 15px;">
-									<img src="/images/artwork/author1.jpg" alt="image"
-										class="rounded-circle">
-								</div>
-								<div class="entry-meta"
-									style="margin-top: 55px; padding-left: 10px;">
-									<ul>
-										<li><a href="blog-single.html#comments"><i
-												class="icon-comments"></i> 13</a></li>
-										<li><a href="#"><i class="icon-thumbs-up2"></i> 20</a></li>
-									</ul>
-								</div>
-
 							</div>
+							<div class="swiper-slide-bg" style="background-image: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.5)), url('<c:url value='/images/artwork/category/10.jpg'/>');"></div>
 						</div>
-
-						<div class="entry col-lg-3 col-md-4 col-sm-6 col-12">
-							<div class="grid-inner">
-								<div class="entry-image">
-									<a href="/images/blog/full/17.jpg" data-lightbox="image"><img
-										src="/images/artwork/category/10.jpg"
-										alt="Standard Post with Image"></a>
-								</div>
-								<div class="entry-title">
-									<h2>
-										<a href="blog-single.html">작품 타이틀</a>
-									</h2>
-								</div>
-								<div class="author-image" style="margin-top: 15px;">
-									<img src="/images/artwork/author1.jpg" alt="image"
-										class="rounded-circle">
-								</div>
-								<div class="entry-meta"
-									style="margin-top: 55px; padding-left: 10px;">
-									<ul>
-										<li><a href="blog-single.html#comments"><i
-												class="icon-comments"></i> 13</a></li>
-										<li><a href="#"><i class="icon-thumbs-up2"></i> 20</a></li>
-									</ul>
-								</div>
-
-							</div>
-						</div>
-
-						<div class="entry col-lg-3 col-md-4 col-sm-6 col-12">
-							<div class="grid-inner">
-								<div class="entry-image">
-									<a href="/images/blog/full/17.jpg" data-lightbox="image"><img
-										src="/images/artwork/category/11.jpg"
-										alt="Standard Post with Image"></a>
-								</div>
-								<div class="entry-title">
-									<h2>
-										<a href="blog-single.html">작품 타이틀</a>
-									</h2>
-								</div>
-								<div class="author-image" style="margin-top: 15px;">
-									<img src="/images/artwork/author1.jpg" alt="image"
-										class="rounded-circle">
-								</div>
-								<div class="entry-meta"
-									style="margin-top: 55px; padding-left: 10px;">
-									<ul>
-										<li><a href="blog-single.html#comments"><i
-												class="icon-comments"></i> 13</a></li>
-										<li><a href="#"><i class="icon-thumbs-up2"></i> 20</a></li>
-									</ul>
-								</div>
-
-							</div>
-						</div>
-
-						<div class="entry col-lg-3 col-md-4 col-sm-6 col-12">
-							<div class="grid-inner">
-								<div class="entry-image">
-									<a href="/images/blog/full/17.jpg" data-lightbox="image"><img
-										src="/images/artwork/category/12.jpg"
-										alt="Standard Post with Image"></a>
-								</div>
-								<div class="entry-title">
-									<h2>
-										<a href="blog-single.html">작품 타이틀</a>
-									</h2>
-								</div>
-								<div class="author-image" style="margin-top: 15px;">
-									<img src="/images/artwork/author1.jpg" alt="image"
-										class="rounded-circle">
-								</div>
-								<div class="entry-meta"
-									style="margin-top: 55px; padding-left: 10px;">
-									<ul>
-										<li><a href="blog-single.html#comments"><i
-												class="icon-comments"></i> 13</a></li>
-										<li><a href="#"><i class="icon-thumbs-up2"></i> 20</a></li>
-									</ul>
-								</div>
-
-							</div>
-						</div>
-
-						<div class="entry col-lg-3 col-md-4 col-sm-6 col-12">
-							<div class="grid-inner">
-								<div class="entry-image">
-									<a href="/images/blog/full/17.jpg" data-lightbox="image"><img
-										src="/images/artwork/category/13.jpg"
-										alt="Standard Post with Image"></a>
-								</div>
-								<div class="entry-title">
-									<h2>
-										<a href="blog-single.html">작품 타이틀</a>
-									</h2>
-								</div>
-								<div class="author-image" style="margin-top: 15px;">
-									<img src="/images/artwork/author1.jpg" alt="image"
-										class="rounded-circle">
-								</div>
-								<div class="entry-meta"
-									style="margin-top: 55px; padding-left: 10px;">
-									<ul>
-										<li><a href="blog-single.html#comments"><i
-												class="icon-comments"></i> 13</a></li>
-										<li><a href="#"><i class="icon-thumbs-up2"></i> 20</a></li>
-									</ul>
-								</div>
-
-							</div>
-						</div>
-
 
 					</div>
-					<!-- #posts end -->
 				</div>
 
+				<div class="slider-arrow-left"><i class="icon-angle-left"></i><span>Prev</span></div>
+				<div class="slider-arrow-right"><span>Next</span> <i class="icon-angle-right"></i></div>
+				<div class="slide-number font-secondary"><div class="slide-number-current"></div><span></span><div class="slide-number-total op-05"></div></div>
 			</div>
 
 		</section>
-		<!-- #content end -->
+		
+		<!-- Content
+		============================================= -->
+		<section id="content">
+			<div class="content-wrap">
 
-		<!-- Footer
-				============================================= -->
-		<footer id="footer" class="dark" style="margin-top: 0px;">
-			<%@ include file="../include/footer.jsp"%>
-		</footer>
-		<!-- #footer end -->
-	</div>
-	<!-- #wrapper end -->
+				<div class="container">
 
+					<h1> CATEGORY</h1>
+					<hr>
+					<div class="block-expand-categories flex-column flex-lg-row d-flex justify-content-center">
+						<div class="expand-category bg-light" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('<c:url value='/images/artwork/category/8.jpg' />')">
+							<h4><a href="<c:url value='#' />" class="text-light">수묵화</a></h4>
+						</div>
 
+						<div class="expand-category bg-light" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('<c:url value='/images/artwork/category/9.jpg' />');">
+							<h4><a href="<c:url value='#' />" class="text-light">채색화</a></h4>
+						</div>
 
-	<!-- Go To Top
-	============================================= -->
-	<div id="gotoTop" class="icon-angle-up"></div>
+						<div class="expand-category bg-light" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('<c:url value='/images/artwork/category/10.jpg' />');">
+							<h4><a href="<c:url value='#' />" class="text-light">풍경화</a></h4>
+						</div>
 
-	<!-- JavaScripts
-	============================================= -->
-	<script src="/js/jquery.js"></script>
-	<script src="/js/plugins.min.js"></script>
+						<div class="expand-category bg-light" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('<c:url value='/images/artwork/category/11.jpg' />');">
+							<h4><a href="<c:url value='#' />" class="text-light">인물화</a></h4>
+						</div>
 
-	<!-- Footer Scripts
-	============================================= -->
-	<script src="/js/functions.js"></script>
+						<div class="expand-category bg-light" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('<c:url value='/images/artwork/category/12.jpg' />">
+							<h4><a href="<c:url value='#' />" class="text-light">추상화</a></h4>
+						</div>
 
-	<script>
-		$(document).ready(
-				function() {
+						<div class="expand-category bg-light" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('<c:url value='/images/artwork/category/13.jpg' />');">
+							<h4><a href="<c:url value='#' />" class="text-light">정물화</a></h4>
+						</div>
 
-					jQuery('.block-expand-categories').find('.expand-category')
-							.on('click', function() {
-								let category = $(this);
+						<div class="expand-category bg-light" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('<c:url value='/images/artwork/category/14.jpg' />');">
+							<h4><a href="<c:url value='#' />" class="text-light">팝아트</a></h4>
+						</div>
+					</div>
 
-								category.siblings().removeClass('active');
-								category.addClass('active');
-							});
+					<div class="line"></div>
 
-				});
-	</script>
+				</div>
 
-</body>
-</html>
+			</div>
+		</section>
+        <!-- Content
+		============================================= -->
+		<section id="content">
+
+			<div class="content-wrap" style="margin-top: -200px;">
+                <div class="container">
+					<h1>ART WORK</h1>
+                    <hr>
+                    <div class="grid-filter-wrap">
+						
+						<!-- Portfolio Filter
+                            ============================================= -->
+						</div>
+                        
+                        <!-- Portfolio Items
+                            ============================================= -->
+							<div class="masonry-thumbs grid-container grid-1 grid-md-2 grid-lg-3 block-gallery-9 masonry-gap-lg">
+								<c:forEach var="content" items="${result }">
+									<div class="grid-item">
+										<div class="grid-inner" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('${content.artworkImgName }') no-repeat center center / cover; height: 400px">
+											<div class="bg-overlay position-relative">
+												<div class="bg-overlay-content flex-column justify-content-end align-items-start px-5 py-4 dark">
+													<div class="entry-meta mb-3">
+														<ul>
+															<li>1 day ago</li>
+															<li><a href="blog-single-thumbs.html#comments"><i class="icon-comments"></i> 15</a></li>
+														</ul>
+													</div>
+													<div class="entry-title title-sm">
+														<h3><a href="<c:url value='/artwork/detail/${content.imageId }' />">${content.title }</a></h3>
+													</div>
+													<a href="<c:url value='/blog/${content.id }' />">BLOG<i class="icon-line-arrow-right btn-more"></i></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</c:forEach>
+					</div><!-- #portfolio end -->
+					
+				</div>
+			</div>
+		</section><!-- #content end -->
+	</div>	
+	 <!-- Footer
+    ============================================= -->
+	<footer id="footer" class="dark" style="margin-top: 0px;">
+		<c:import url="../include/footer.jsp"/>
+	</footer>
+	<!-- #footer end -->
+
+</div><!-- #wrapper end-->
+
+<!-- Go To Top
+============================================= -->
+<div id="gotoTop" class="icon-angle-up"></div>
+
+<!-- JavaScripts
+============================================= -->
+<script src="<c:url value='/js/jquery.js' />"></script>
+<script src="<c:url value='/js/plugins.min.js' />"></script>
+<script src="<c:url value='/js/jquery.hotspot.js' />"></script>
+<!-- Footer Scripts
+============================================= -->
+<script src="<c:url value='/js/functions.js' />"></script>
+    </body>

@@ -47,7 +47,8 @@ public class ArtController {
 							@SessionAttribute(name = SessionConst.LOGIN_USER, required = false ) UserProfile user,
 							String createId,
 							Model model) throws Exception {
-		if ( user == null ) return "redirect:/artizen/artwork/main";
+		
+		if ( user == null ) return "redirect:/";
 		Long userid = artWorkService.findByUserId(user);
 		Long creator_id = artWorkService.findByCreator(userid);
 		if ( creator_id == creator ) {
@@ -58,15 +59,18 @@ public class ArtController {
 			for( StoreFileDTO a : profile ) {
 				bloginfoDTO.setNickname(a.getNickname());
 				bloginfoDTO.setImages(a.getProfileImage());
+				bloginfoDTO.setContent(a.getContent());
 			}
+			LOGGER.info("블로그프로필정보={}",bloginfoDTO);
+			LOGGER.info("content={}",bloginfoDTO.getContent());
 			model.addAttribute("profile",bloginfoDTO);
 			model.addAttribute("creator",creator);
-			return "artWork/blog";
+			return "artWork/ArtWorkMyBlog";
 			
 		}else {
 			model.addAttribute("message","잘못된 접근입니다.");
 		}
-		return "artWork/blog";
+		return "artWork/ArtWorkMyBlog";
 	}
 	
 	@GetMapping("/blog/{creatorid}")
@@ -87,7 +91,7 @@ public class ArtController {
 		
 		List<BlogInfoDTO> creatorinfo = artService.findByCreatorForBlogAll( creatorid );
 		model.addAttribute("creatorinfo",creatorinfo);
-		return "/artWork/otherBlog";
+		return "/artWork/ArtWorkOtherBlog";
 	}
 	
 	@GetMapping("/upload")
@@ -112,33 +116,6 @@ public class ArtController {
 		
 		return "FileUpload/Upload";
 	}
-	
-	
-	@GetMapping("/artwork/detail/{imageId}")
-	public String ArtWorkDatail(@PathVariable Long imageId,
-								@SessionAttribute(name = SessionConst.LOGIN_USER, required = false ) UserProfile user, Model model) {
-		
-		ArtDetailDTO detail = artService.clickImageAction(imageId);
-		model.addAttribute("artwork",detail);
-		if ( user != null ) {
-			Long userid = artWorkService.findByUserId(user);
-			model.addAttribute("userid",userid);
-			Long creator = artWorkService.findByCreator(userid);
-			model.addAttribute("creator",creator);
-			Long artworkId = imageId;
-			model.addAttribute("artworkId",artworkId);
-		}else {
-			model.addAttribute("userid",null);
-		}
-		return "artWork/ArtWorkDetail";
-	}
-	
-	@ResponseBody
-	@PostMapping("/artwork/detail/comment/save")
-	public void commentSave( @ModelAttribute CommentDTO commentDto ) {
-		String message = artService.InsertComment(commentDto);
-	}
-	
 	
 	@PostMapping("/upload")
 	public String FileSave( @ModelAttribute UploadFileDTO uploadfiledto, Model model ) throws Exception {
@@ -181,7 +158,7 @@ public class ArtController {
 		if (user == null) { // 비회원일 경우
 			List<ArtWorkMainDto> result = artWorkService.selectAll();
 			model.addAttribute("result", result);
-			return "artWork/main";
+			return "artWork/ArtWorkMain";
 		}else if( user != null ) { // 로그인 상태일 경우,
 			// 현재 로그인 된 유저의 유저 아이디값
 			Long id = artWorkService.findByUserId(user);
@@ -212,71 +189,83 @@ public class ArtController {
 				model.addAttribute("result", result);
 			}
 		}
-		return "artWork/main";
+		return "artWork/ArtWorkMain";
 	}
+	
+	@GetMapping("/artwork/detail/{imageId}")
+	public String ArtWorkDatail(@PathVariable Long imageId,
+								@SessionAttribute(name = SessionConst.LOGIN_USER, required = false ) UserProfile user, Model model) {
+		
+		ArtDetailDTO detail = artService.clickImageAction(imageId);
+		model.addAttribute("artwork",detail);
+		if ( user != null ) {
+			Long userid = artWorkService.findByUserId(user);
+			model.addAttribute("userid",userid);
+			Long creator = artWorkService.findByCreator(userid);
+			model.addAttribute("creator",creator);
+			Long artworkId = imageId;
+			model.addAttribute("artworkId",artworkId);
+		}else {
+			model.addAttribute("userid",null);
+		}
+		return "artWork/ArtWorkDetail";
+	}
+	
+	@ResponseBody
+	@PostMapping("/artwork/detail/comment/save")
+	public void commentSave( @ModelAttribute CommentDTO commentDto ) {
+		String message = artService.InsertComment(commentDto);
+	}
+	
 	@GetMapping("/login/check/creator")
 	public String loginCheckForm(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user, Model model){
-		Long userid = artWorkService.findByUserId(user);
-		model.addAttribute("userid",userid);
-		Long creator = artWorkService.findByCreator(userid);
-		if ( creator == null || creator == 0 ) {
-			model.addAttribute("creator_id",null);
-			model.addAttribute("message","크리에이터로 등록되지 않은 아이디 입니다");
+		if ( user == null ) {
+			model.addAttribute("message","잘못된 접근입니다");
 			return "include/Alert";
 		}else {
-			model.addAttribute("creator_id",creator);
-			model.addAttribute("message","크리에이터로 등록된 아이디입니다");
-			return "include/Alert";
+			Long userid = artWorkService.findByUserId(user);
+			model.addAttribute("userid",userid);
+			Long creator = artWorkService.findByCreator(userid);
+			if ( creator == null || creator == 0 ) {
+				model.addAttribute("creator_id",null);
+				model.addAttribute("message","크리에이터로 등록되지 않은 아이디 입니다");
+				return "include/Alert";
+			}else {
+				model.addAttribute("creator_id",creator);
+				model.addAttribute("message","크리에이터로 등록된 아이디입니다");
+				return "include/Alert";
+			}
 		}
 	}
 
-	// 수묵화 상세 페이지
-	@GetMapping("/artwork/ink")
-	public String inkpainting(Model model) {
-
-		return "artWork/artWorkInkPainting";
-	}
-
-	// 채색화 상세 페이지
-	@GetMapping("/artwork/color")
-	public String coloring(Model model) {
-
-		return "artWork/artWorkColoring";
-	}
-
-	// 풍경화 상세 페이지
-	@GetMapping("/artwork/landscape")
-	public String landscape(Model model) {
-
-		return "artWork/artWorkLandscape";
-	}
-
-	// 인물화 상세 페이지
-	@GetMapping("/artwork/figure")
-	public String figure(Model model) {
-
-		return "artWork/artWorkFigure";
-	}
-
-	// 추상화 상세 페이지
-	@GetMapping("/artwork/abstract")
-	public String artworkAbsract(Model model) {
-
-		return "artWork/artWorkAbstract";
-	}
-
-	// 정물화 상세 페이지
-	@GetMapping("/artwork/still")
-	public String still(Model model) {
-
-		return "artWork/artWorkStill";
-	}
-
-	// 팝아트 상세 페이지
-	@GetMapping("/artwork/pop")
-	public String popart(Model model) {
-
-		return "artWork/artWorkPop";
+	// 작품 카테고리별  상세 페이지
+	@GetMapping("/artwork/{page}")
+	public String inkpainting(@PathVariable String page, Model model) {
+		if (page.equals("ink")) {
+			return "artWork/ArtCategoryDetailPage";
+		}
+		else if (page.equals("color")) {
+			return "artWork/ArtCategoryDetailPage";
+		}
+		else if (page.equals("landscape")) {
+			return "artWork/ArtCategoryDetailPage";
+		}
+		else if (page.equals("figure")) {
+			return "artWork/ArtCategoryDetailPage";
+		}
+		else if (page.equals("abstract")) {
+			return "artWork/ArtCategoryDetailPage";
+		}
+		else if (page.equals("still")) {
+			return "artWork/ArtCategoryDetailPage";
+		}
+		else if (page.equals("pop")) {
+			return "artWork/ArtCategoryDetailPage";
+		}
+		else {
+			model.addAttribute("message","잘못된 접근입니다");
+			return "include/Alert";
+		}
 	}
 
 }

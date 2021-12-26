@@ -21,11 +21,11 @@
 <body>
 <div>
 	
-	<form name="frm" id="frm" action="/artizen/upload" method="POST" enctype="multipart/form-data">
+	<form name="frm" id="frm" action="<c:url value='/upload'/> " method="POST" enctype="multipart/form-data">
 		<input type="hidden" value="${creator }" name="creatorId">
 		<input type="hidden" value="${userid }" name="userProfileId"/>
-		<table class="table text-center caption-top" style="width:1200px;'">
-			<caption class="text-center fs-3 fw-bold" ><img id="logo" src="/images/logo_new/logo_D.png" alt="Artizen Logo"></caption>
+		<table class="table text-center caption-top" style="width:1200px;'"> 
+			<caption class="text-center fs-3 fw-bold" ><img id="logo" src="<c:url value='/images/logo_new/logo_D.png' />" alt="Artizen Logo"></caption>
 			<colgroup>
 				<col width="10%"/>
 				<col width="*"/>

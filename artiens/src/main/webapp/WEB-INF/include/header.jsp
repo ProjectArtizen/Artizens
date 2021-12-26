@@ -10,7 +10,7 @@
           <!-- Logo
           ============================================= -->
           <div id="logo">
-            <a href="/artizen/artwork/main" class="standard-logo" data-dark-logo="<c:url value="/images/logo_new/logo_D.png"/>" style="height: 50px;">
+            <a href="<c:url value='/' />" class="standard-logo" data-dark-logo="<c:url value="/images/logo_new/logo_D.png"/>" style="height: 50px;">
               <img src="<c:url value="/images/logo_new/logo_D.png"/>" alt="Artizen Logo">
             </a>
           </div><!-- #logo end -->
@@ -42,14 +42,7 @@
                     			</a>
                	 			</li>
                	 			<li class="menu-item">
-               	 				<c:choose>
-               	 					<c:when test="${creator eq null }">
-               	 						<a class="menu-link" href="javascript:fn_blog()">내 블로그</a>
-               	 					</c:when>
-               	 					<c:when test="${creator ne null }">
-               	 						<a class="menu-link" href="<c:url value='/blog/my/${userid }'/>">내 블로그</a>
-               	 					</c:when>
-               	 				</c:choose>
+               	 				<a class="menu-link" href="<c:url value='/login/check/creator'/>">내 블로그</a>
                	 			</li>
                	 			<li class="menu-item">
                	 				<a class="menu-link" href="<c:url value='/artwork/mypage'/>">
@@ -166,10 +159,6 @@
     </div>
   </div>
 <script>
-	function fn_blog() {
-		alert("첫 작품을 게시하고 크리에이터 등록을 해주세요.");
-		window.open("/artizen/upload","fileUpload","width=1250,height=700");
-	}
 	jQuery(document).ready( function(){
 	
 		var element = $(".custom-file");

@@ -7,6 +7,7 @@ public class BlogInfoDTO {
 	 * image_url / date / title / artworkId /creatorId
 	 */
 	
+	private String content;
 	/**
 	 *  Creator nickname
 	 */
@@ -59,12 +60,14 @@ public class BlogInfoDTO {
 	
 	
 	
-	@Override
-	public String toString() {
-		return "BlogInfoDTO [nickname=" + nickname + ", profile=" + profile + ", comment=" + comment + ", images="
-				+ images + ", date=" + date + ", title=" + title + ", artworkId=" + artworkId + ", creatorId="
-				+ creatorId + ", imageId=" + imageId + ", follower=" + follower + ", folling=" + folling + ", talk="
-				+ talk + "]";
+	
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public String getTalk() {

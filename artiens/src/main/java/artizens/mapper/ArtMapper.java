@@ -45,7 +45,8 @@ public interface ArtMapper {
 	List<StoreFileDTO> findByImageURL(Long creator);
 	
 	@Select("select creator_profile_storefilename as profileImage, "
-			+ "		creator_nickname as nickname	"
+			+ "		creator_nickname as nickname, "
+			+ "		creator_detail_intro as content	"
 			+ "from creator where creator_id = ${creaotr}")
 	List<StoreFileDTO> findByCreatorImage(Long creator ); 
 	
