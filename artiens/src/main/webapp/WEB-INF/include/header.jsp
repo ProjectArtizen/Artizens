@@ -30,7 +30,7 @@
               <div class="primary-menu">
               	 <ul class="menu-container">
               	 	<li class="menu-item">
-                		<a class="menu-link" style="font-size: larger;" href="work.jsp">
+                		<a class="menu-link" style="font-size: larger;" href="<c:url value='/blog/my/${userid }'/>">
                   			<i class="icon-user"></i>
                	 		</a>
                	 		<ul class="sub-menu-container bg-light" >
