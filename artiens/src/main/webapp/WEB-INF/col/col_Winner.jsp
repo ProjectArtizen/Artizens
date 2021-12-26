@@ -18,6 +18,47 @@
 <!-- Document Title	============================================= -->
 <title>대상자 선정 페이지</title>
 </head>
+<script>
+
+	$(function(){
+
+		// 체크 된거 삭제하기 
+		$("#btn_chk").click(function(){
+			var len = $("input[name='chk']").length;
+			var values = "";
+			for(var i=0; i<len; i++) {
+				var chk = document.getElementsByName('chk')[i].checked;
+				if( chk == true ) {
+					values += document.getElementsByName('chk')[i].value;
+					values += ",";
+				}
+			}
+			
+			if(values.length > 0) {
+				
+				if(  confirm("일괄 삭제를 진행하시겠습니까?")  ) {
+					$.ajax({
+						type : "post",
+						url  : "choice",
+						data : "values="+values,
+						datatype : "text",
+						success : function(data) {
+							if(data == "ok") {
+								alert("삭제 처리 완료");
+								location="main";
+							} else {
+								alert("삭제 처리 실패!!");
+							}	
+						},
+						error : function() {
+							alert("시스템 오류");
+						}
+					});
+				}
+			}
+		});
+	});
+</script>
 <body class="stretched">
 	<!-- Document Wrapper ============================================= -->
 	<div id="wrapper">
