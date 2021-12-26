@@ -42,49 +42,30 @@ public class ArtController {
 	@Autowired ArtWorkService artWorkService;
 	@Autowired ArtWorkMapper artWorkMapper;
 	
-	@GetMapping("/blog/my/{userid}")
-	public String userBlog( @PathVariable Long userid, RedirectAttributes redirectAttribute,
+	@GetMapping("/blog/my/{creator}")
+	public String userBlog( @PathVariable Long creator, RedirectAttributes redirectAttribute,
 							@SessionAttribute(name = SessionConst.LOGIN_USER, required = false ) UserProfile user,
 							String createId,
 							Model model) throws Exception {
-			
-		if ( user == null ) {
-			return "redirect:/";
-		}else {
-			
-			// 로그인 유저의 아이디값,
-			Long id = artWorkService.findByUserId(user);
-			// 해당 아이디값을 가진 사람의 크리에이터 아이디값
-			Long create_id = artWorkService.findByCreator(id);
-			// 현재 페이지의 크리에이터 아이디
-			Long creator = artWorkService.findByCreator(userid);
-			
-			if ( create_id == creator ) {
-				
-				List<StoreFileDTO> store = artService.findByAll( creator );
-				model.addAttribute("store",store);
-				
-				List<StoreFileDTO> profile = artService.findByProfile( creator );
-				String nickname = "";
-				String profileImage = "";
-				for( StoreFileDTO a : profile ) {
-					nickname = a.getNickname();
-					profileImage = a.getProfileImage();
-				}
-				if ( profileImage == null || profileImage.equals("") ) {
-					profileImage = "https://sunminki.s3.ap-northeast-2.amazonaws.com/b07b91a8-3a31-4ceb-a505-06a68d3ecf47.png";
-				}
-				model.addAttribute("profileimage",profileImage);
-				model.addAttribute("nickname",nickname);
-				model.addAttribute("creator",creator);
-				return "artWork/blog";
-				
-			}else if ( create_id != creator ) {
-				model.addAttribute("message","크리에이터 아이디가 다름");
-				return "include/Alert";
+		if ( user == null ) return "redirect:/artizen/artwork/main";
+		Long userid = artWorkService.findByUserId(user);
+		Long creator_id = artWorkService.findByCreator(userid);
+		if ( creator_id == creator ) {
+			List<StoreFileDTO> store = artService.findByAll( creator );
+			model.addAttribute("store",store);
+			List<StoreFileDTO> profile = artService.findByProfile( creator );
+			BlogInfoDTO bloginfoDTO = new BlogInfoDTO();
+			for( StoreFileDTO a : profile ) {
+				bloginfoDTO.setNickname(a.getNickname());
+				bloginfoDTO.setImages(a.getProfileImage());
 			}
+			model.addAttribute("profile",bloginfoDTO);
+			model.addAttribute("creator",creator);
+			return "artWork/blog";
+			
+		}else {
+			model.addAttribute("message","잘못된 접근입니다.");
 		}
-		
 		return "artWork/blog";
 	}
 	
@@ -232,6 +213,21 @@ public class ArtController {
 			}
 		}
 		return "artWork/main";
+	}
+	@GetMapping("/login/check/creator")
+	public String loginCheckForm(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user, Model model){
+		Long userid = artWorkService.findByUserId(user);
+		model.addAttribute("userid",userid);
+		Long creator = artWorkService.findByCreator(userid);
+		if ( creator == null || creator == 0 ) {
+			model.addAttribute("creator_id",null);
+			model.addAttribute("message","크리에이터로 등록되지 않은 아이디 입니다");
+			return "include/Alert";
+		}else {
+			model.addAttribute("creator_id",creator);
+			model.addAttribute("message","크리에이터로 등록된 아이디입니다");
+			return "include/Alert";
+		}
 	}
 
 	// 수묵화 상세 페이지

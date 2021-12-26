@@ -56,7 +56,7 @@
 				<div class="fslider" data-pagi="false" data-animation="fade">
 					<div class="flexslider">
 						<div class="slider-wrap">
-							<div style="background: url('/images/artwork/3.jpg')no-repeat center center/cover; height: 500px;"></div>
+							<div style="background: url('<c:url value="/images/artwork/3.jpg"/>')no-repeat center center/cover; height: 500px;"></div>
 						</div>
 					</div>
 				</div>		
@@ -107,7 +107,6 @@
 											<li>
 												<a href="#tabs-3" class="link link-6 bg-light">작품</a>
 											</li>
-											<li><a href="#tabs-4" class="link link-6 bg-light">스토리</a></li>
 										</ul>
 										
 										<div class="tab-container" id="slider-tab">
@@ -116,7 +115,7 @@
 												<div class="posts-sm row col-mb-30">										
 													<div class="card-columns" data-lightbox="gallery">
 														<c:forEach var="imageURL" items="${store}">
-														<a href="/artizen/artwork/detail/${imageURL.imageId}">
+														<a href="<c:url value='/artwork/detail/${imageURL.imageId}'/>">
 															<img class="img-fluid mb-4 h-op-07 op-ts cursor-hover" src="${imageURL.storeFileName }" alt="Image"/>
 														</a>
 														</c:forEach>
@@ -125,34 +124,7 @@
 												</div>
 											</div>
 											<!-- #tab-content #tab-3 -->
-											
-											<div class="tab-content clearfix" id="tabs-4">
-												<div class="posts-sm row col-mb-30">
-													<div class="card-columns" data-lightbox="gallery">
-														<a href="/images/artwork/9.jpg" data-lightbox="gallery-item">
-															<img class="img-fluid mb-4 h-op-07 op-ts" src="/images/artwork/9.jpg" alt="Image"/>
-														</a>
-														<a href="/images/artwork/10.jpg" data-lightbox="gallery-item">
-															<img class="img-fluid mb-4 h-op-07 op-ts" src="/images/artwork/10.jpg" alt="Image">
-														</a>
-														<a href="/images/artwork/11.jpg" data-lightbox="gallery-item">
-															<img class="img-fluid mb-4 h-op-07 op-ts" src="/images/artwork/11.jpg" alt="Image">
-														</a>
-														<a href="/images/artwork/12.jpg" data-lightbox="gallery-item">
-															<img class="img-fluid mb-4 h-op-07 op-ts" src="/images/artwork/12.jpg" alt="Image">
-														</a>
-														<a href="/images/artwork/13.jpg" data-lightbox="gallery-item">
-															<img class="img-fluid mb-4 h-op-07 op-ts" src="/images/artwork/13.jpg" alt="Image">
-														</a>
-														<a href="/images/artwork/14.jpg" data-lightbox="gallery-item">
-															<img class="img-fluid mb-4 h-op-07 op-ts" src="/images/artwork/14.jpg" alt="Image">
-														</a>
-													</div>
-												<!-- Grid row -->
-												</div>
-												<!-- POSTS END -->
-											</div>
-											<!-- #tab-content #tab-4 -->
+		
 										</div>
 										<!-- #tab-container end -->
 									</div> <!-- sidebar-tab end  -->
