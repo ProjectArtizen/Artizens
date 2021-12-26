@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
@@ -381,8 +380,7 @@
 <!-- Go To Top
 ============================================= -->
 <div id="gotoTop" class="icon-angle-up"></div>
-<!-- JavaScripts
-============================================= -->
+<!-- JavaScripts ============================================= -->
 <script src='<c:url value="/js/jquery.js"/>'/></script>
 <script src='<c:url value="/js/plugins.min.js"/>'/></script>
 
@@ -395,7 +393,6 @@
 <script src='<c:url value="/js/components/daterangepicker.js"/>'/></script>
 <!-- Footer Scripts
 ============================================= -->
-<!-- <script src="../js/functions.js"></script> -->
 <script src='<c:url value="/js/functions.js"/>'/></script>
 </body>
 </html>

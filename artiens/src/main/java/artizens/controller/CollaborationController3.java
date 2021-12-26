@@ -20,7 +20,7 @@ import artizens.service.CollaborationService3;
 import artizens.web.session.SessionConst;
 
 @Controller
-@RequestMapping("/artizen/collaboration")
+@RequestMapping("/collaboration")
 public class CollaborationController3 {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CollaborationController3.class);
 

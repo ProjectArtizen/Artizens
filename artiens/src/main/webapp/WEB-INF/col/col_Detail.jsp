@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
@@ -12,16 +11,16 @@
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap" rel="stylesheet" type="text/css" />
 <script type="text/javascript" nonce="a4f84d226a5b4b17b010d07a1b5" src="//local.adguard.org?ts=1635669619739&amp;type=content-script&amp;dmn=themes.semicolonweb.com&amp;app=msedge.exe&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=0"></script>
 <script type="text/javascript" nonce="a4f84d226a5b4b17b010d07a1b5" src="//local.adguard.org?ts=1635669619739&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;type=user-script"></script>
-<link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
-<link rel="stylesheet" href="../style.css" type="text/css" />
-<link rel="stylesheet" href="../css/dark.css" type="text/css" />
-<link rel="stylesheet" href="../css/font-icons.css" type="text/css" />
-<link rel="stylesheet" href="../css/animate.css" type="text/css" />
-<link rel="stylesheet" href="../css/magnific-popup.css" type="text/css" />
-<link rel="stylesheet" href="../css/components/datepicker.css" type="text/css" />
-<link rel="stylesheet" href="../css/components/timepicker.css" type="text/css" />
-<link rel="stylesheet" href="../css/components/daterangepicker.css" type="text/css" />
-<link rel="stylesheet" href="../css/custom.css" type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/bootstrap.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/style.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/dark.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/font-icons.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/animate.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/magnific-popup.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/components/datepicker.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/components/timepicker.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/components/daterangepicker.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/custom.css"></c:url>' type="text/css"/>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <!-- Document Title
@@ -385,22 +384,20 @@
 <!-- Go To Top
 ============================================= -->
 <div id="gotoTop" class="icon-angle-up"></div>
-<!-- JavaScripts
-============================================= -->
-<script src="../js/jquery.js"></script>
-<script src="../js/plugins.min.js"></script>
+<!-- JavaScripts  ============================================= -->
+<script src='<c:url value="/js/jquery.js"/>'/></script>
+<script src='<c:url value="/js/plugins.min.js"/>'/></script>
 
 <!-- Date & Time Picker JS -->
-<script src="../js/components/moment.js"></script>
-<script src="../js/components/timepicker.js"></script>
-<script src="../js/components/datepicker.js"></script>
+<script src='<c:url value="/js/components/moment.js"/>'/></script>
+<script src='<c:url value="/js/components/timepicker.js"/>'/></script>
+<script src='<c:url value="/js/components/datepicker.js"/>'/></script>
 
 <!-- Include Date Range Picker -->
-<script src="../js/components/daterangepicker.js"></script>
-
+<script src='<c:url value="/js/components/daterangepicker.js"/>'/></script>
 <!-- Footer Scripts
 ============================================= -->
-<script src="../js/functions.js"></script>
+<script src='<c:url value="/js/functions.js"/>'/></script>
 
 <script>
 	jQuery(document).ready(function() {

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
@@ -10,14 +10,16 @@
 	<!-- Stylesheets
 	============================================= -->
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" href="/css/bootstrap.css" type="text/css" />
-	<link rel="stylesheet" href="/style.css" type="text/css" />
-	<link rel="stylesheet" href="/css/dark.css" type="text/css" />
-	<link rel="stylesheet" href="/css/font-icons.css" type="text/css" />
-	<link rel="stylesheet" href="/css/animate.css" type="text/css" />
-	<link rel="stylesheet" href="/css/magnific-popup.css" type="text/css" />
-
-	<link rel="stylesheet" href="/css/custom.css" type="text/css" />
+	<link rel="stylesheet" href='<c:url value="/css/swiper.css"></c:url>' type="text/css" />
+	<link rel="stylesheet" href='<c:url value="/style.css"></c:url>' type="text/css" />
+	<link rel="stylesheet" href='<c:url value="/css/dark.css"></c:url>' type="text/css" />
+	<link rel="stylesheet" href='<c:url value="/css/font-icons.css"></c:url>' type="text/css" />
+	<link rel="stylesheet" href='<c:url value="/css/animate.css"></c:url>' type="text/css" />
+	<link rel="stylesheet" href='<c:url value="/css/magnific-popup.css"></c:url>' type="text/css" />
+	<link rel="stylesheet" href='<c:url value="/css/components/datepicker.css"></c:url>' type="text/css" />
+	<link rel="stylesheet" href='<c:url value="/css/components/timepicker.css"></c:url>' type="text/css" />
+	<link rel="stylesheet" href='<c:url value="/css/components/daterangepicker.css"></c:url>' type="text/css" />
+	<link rel="stylesheet" href='<c:url value="/css/custom.css"></c:url>' type="text/css"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 	<!-- Document Title
@@ -752,68 +754,11 @@
 			 </div><!-- #posts end -->			
 		</section>
 		
-		<!-- Footer
-		============================================= -->
+		<!-- Footer ============================================= -->
 		<footer id="footer" class="dark">
-				<!-- Copyrights
-				============================================= -->
-				<div id="copyrights">
-						<div class="container">
-								<div class="row justify-content-between col-mb-30">
-										<div class="col-12 col-lg-auto text-center text-lg-start order-last order-lg-first">
-												<img src="/images/logo_new/logo_D.png" alt="Image" class="mb-4"><br>
-												Copyrights &copy; 2021 All Rights Reserved by Artizen.
-										</div>
-
-										<div class="col-12 col-lg-auto text-center text-lg-end">
-												<div class="copyrights-menu copyright-links">
-														<a href="#">홈</a>/<a href="#">작품</a>/<a href="#">콜라보레이션</a>/<a href="#">후원</a>
-												</div>
-												<a href="#" class="social-icon inline-block si-small si-borderless mb-0 si-facebook">
-														<i class="icon-facebook"></i>
-														<i class="icon-facebook"></i>
-												</a>
-
-												<a href="#" class="social-icon inline-block si-small si-borderless mb-0 si-twitter">
-														<i class="icon-twitter"></i>
-														<i class="icon-twitter"></i>
-												</a>
-
-												<a href="#" class="social-icon inline-block si-small si-borderless mb-0 si-gplus">
-														<i class="icon-gplus"></i>
-														<i class="icon-gplus"></i>
-												</a>
-
-												<a href="#" class="social-icon inline-block si-small si-borderless mb-0 si-pinterest">
-														<i class="icon-pinterest"></i>
-														<i class="icon-pinterest"></i>
-												</a>
-
-												<a href="#" class="social-icon inline-block si-small si-borderless mb-0 si-vimeo">
-														<i class="icon-vimeo"></i>
-														<i class="icon-vimeo"></i>
-												</a>
-
-												<a href="#" class="social-icon inline-block si-small si-borderless mb-0 si-github">
-														<i class="icon-github"></i>
-														<i class="icon-github"></i>
-												</a>
-
-												<a href="#" class="social-icon inline-block si-small si-borderless mb-0 si-yahoo">
-														<i class="icon-yahoo"></i>
-														<i class="icon-yahoo"></i>
-												</a>
-
-												<a href="#" class="social-icon inline-block si-small si-borderless mb-0 si-linkedin">
-														<i class="icon-linkedin"></i>
-														<i class="icon-linkedin"></i>
-												</a>
-										</div>
-								</div>
-
-						</div>
-				</div><!-- #copyrights end -->
-		</footer><!-- #footer end -->
+			<%@ include file="../include/footer.jsp"%>
+		</footer>
+		<!-- #footer end -->
 
 	<!-- Go To Top
 	============================================= -->

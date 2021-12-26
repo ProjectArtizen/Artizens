@@ -1,21 +1,21 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-ko">
 <head>
    <!-- Stylesheets
     ============================================= -->
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
-<link rel="stylesheet" href="../style.css" type="text/css" />
-<link rel="stylesheet" href="../css/swiper.css" type="text/css" />
-<link rel="stylesheet" href="../css/dark.css" type="text/css" />
-<link rel="stylesheet" href="../css/font-icons.css" type="text/css" />
-<link rel="stylesheet" href="../css/animate.css" type="text/css" />
-<link rel="stylesheet" href="../css/magnific-popup.css" type="text/css" />
-
-<link rel="stylesheet" href="../css/custom.css" type="text/css" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href='<c:url value="/css/swiper.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/style.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/dark.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/font-icons.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/animate.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/magnific-popup.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/components/datepicker.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/components/timepicker.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/components/daterangepicker.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/custom.css"></c:url>' type="text/css"/>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <!-- Page Title -->
@@ -284,16 +284,14 @@
 <!-- Go To Top
 ============================================= -->
 <div id="gotoTop" class="icon-angle-up"></div>
-
-<!-- JavaScripts
-============================================= -->
-<script src="../js/jquery.js"></script>
-<script src="../js/plugins.min.js"></script>
-
-<script src="../js/jquery.hotspot.js"></script>
+<!-- JavaScripts ============================================= -->
+<script src='<c:url value="/js/jquery.js"/>'/></script>
+<script src='<c:url value="/js/plugins.min.js"/>'/></script>
+<script src='<c:url value="/js/jquery.hotspot.js"/>'/></script>
+<!-- Include Date Range Picker -->
+<script src='<c:url value="/js/components/daterangepicker.js"/>'/></script>
 <!-- Footer Scripts
 ============================================= -->
-<script src="../js/functions.js"></script>
-
+<script src='<c:url value="/js/functions.js"/>'/></script>
 </body>
 </html>

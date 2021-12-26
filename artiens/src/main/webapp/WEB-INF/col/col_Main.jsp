@@ -1,26 +1,22 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <!-- Stylesheets================== -->
-<script type="text/javascript" nonce="a4f84d226a5b4b17b010d07a1b5"
-	src="//local.adguard.org?ts=1635669619739&amp;type=content-script&amp;dmn=themes.semicolonweb.com&amp;app=msedge.exe&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=0"></script>
-<script type="text/javascript" nonce="a4f84d226a5b4b17b010d07a1b5"
-	src="//local.adguard.org?ts=1635669619739&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;type=user-script"></script>
-<link
-	href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap"
-	rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="/css/bootstrap.css" type="text/css" />
-<link rel="stylesheet" href="/style.css" type="text/css" />
-<link rel="stylesheet" href="/css/dark.css" type="text/css" />
-<link rel="stylesheet" href="/css/font-icons.css" type="text/css" />
-<link rel="stylesheet" href="/css/animate.css" type="text/css" />
-<link rel="stylesheet" href="/css/magnific-popup.css" type="text/css" />
-<link rel="stylesheet" href="/css/components/datepicker.css"
-	type="text/css" />
-<link rel="stylesheet" href="/css/custom.css" type="text/css" />
+<script type="text/javascript" nonce="a4f84d226a5b4b17b010d07a1b5" src="//local.adguard.org?ts=1635669619739&amp;type=content-script&amp;dmn=themes.semicolonweb.com&amp;app=msedge.exe&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=0"></script>
+<script type="text/javascript" nonce="a4f84d226a5b4b17b010d07a1b5" src="//local.adguard.org?ts=1635669619739&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;type=user-script"></script>
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/bootstrap.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/style.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/dark.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/font-icons.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/animate.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/magnific-popup.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/components/datepicker.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/components/timepicker.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/components/daterangepicker.css"></c:url>' type="text/css" />
+<link rel="stylesheet" href='<c:url value="/css/custom.css"></c:url>' type="text/css"/>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <!-- Document Title
@@ -55,12 +51,9 @@
 			<div class="content-wrap">
 				<div class="container clearfix" style="width: 1250px;">
 					<div style="height: 50px;">
-						<h3 style="display: inline-block;">진행중인
-							콜라보레이션</h3>
-						<a href="planning" >
-							<button
-								style="float: right; border-color: #00d084; border-radius: 25px; width: 190px; Height: 50px; color: #00d084; background-color: #ffffff">콜라보레이션
-								기획</button>
+						<h3 style="display: inline-block;">진행중인 콜라보레이션</h3>
+						<a href="./planning" >
+							<button style="float: right; border-color: #00d084; border-radius: 25px; width: 190px; Height: 50px; color: #00d084; background-color: #ffffff">콜라보레이션 기획</button>
 						</a>
 					</div>
 					<hr>
@@ -75,8 +68,7 @@
 						<div class="entry col-lg-4 col-md-6">
 							<div class="grid-inner shadow-sm card rounded-5">
 								<div class="entry-image mb-3">
-									<div class="fslider" data-arrows="false"
-										data-lightbox="gallery">
+									<div class="fslider" data-arrows="false" ata-lightbox="gallery">
 										<div class="flexslider">
 											<div class="slider-wrap">
 												<div style="height: 230px; overflow: hidden">
@@ -90,20 +82,18 @@
 								<div class="p-4">
 									<div style="height:54px; margin-bottom: 20px;">
 										<h4 class="center">
-											<a href="colDetail">${result.title }</a>
+											<a href="#">${result.title }</a>
 										</h4>
 									</div>
 
 									<div class="container clearfix m-2">
 										<div class="row justify-content-center">
 											<div>
-												<div class="d-flex flex-row align-items-center rounded"
-													style="margin-bottom: 15px;">
+												<div class="d-flex flex-row align-items-center rounded" style="margin-bottom: 15px;">
 													<div id="countdown" class="countdown flex-fill"
 														data-year="${result.deadLineYear }" data-month="${result.deadLineMonth }" data-day="${result.deadLineDay }"
 														data-format="dHMS"></div>
-													<div
-														style="width: 110px; padding: 8px; border: #dfdfdf solid 1px; text-align: center; margin-left: 10px; color: white; background-color: #1bbc9b;">000명
+													<div style="width: 110px; padding: 8px; border: #dfdfdf solid 1px; text-align: center; margin-left: 10px; color: white; background-color: #1bbc9b;">000명
 														참여</div>
 												</div>
 											</div>
@@ -112,16 +102,14 @@
 
 									<hr class="my-4">
 									<div class="d-flex align-items-center">
-										<a href="#"><img src="${result.creatorProfileStoredFileName }"
+										<a href="#"><img src="${result.creatorProfileStoredFileName}"
 											class="rounded-circle" width="38" height="38"></a>
 										<div class="entry-meta mt-0">
-											<div class="entry-meta"
-												style="margin-bottom: 10px; padding-left: 10px;">
+											<div class="entry-meta" style="margin-bottom: 10px; padding-left: 10px;">
 												<ul>
 													<li><a href="#"><h6 class="mb-1 h6" style="display: inline;">${result.creatorNickName }</h6></a></li>
 													<li><i class="icon-calendar3"></i>${result.registerDate }</li>
-													<li><a href="blog-single.html#comments"><i
-															class="icon-comments"></i> 13</a></li>
+													<!-- <li><a href="blog-single.html#comments"><i class="icon-comments"></i> 13</a></li> -->
 												</ul>
 											</div>
 										</div>
@@ -193,8 +181,7 @@
 											<div class="entry-meta"
 												style="margin-bottom: 10px; padding-left: 10px;">
 												<ul>
-													<li><a href="#"><h6 class="mb-1 h6"
-																style="display: inline;">Author</h6></a></li>
+													<li><a href="#"><h6 class="mb-1 h6" style="display: inline;">Author</h6></a></li>
 													<li><i class="icon-calendar3"></i>2021.11.21</li>
 													<li><a href="blog-single.html#comments"><i
 															class="icon-comments"></i> 13</a></li>
@@ -572,23 +559,23 @@
 		<!--Content End-->
 
 
-		<!-- Go To Top
-   ============================================= -->
+		<!-- Go To Top ============================================= -->
 		<div id="gotoTop" class="icon-angle-up"></div>
 
-		<!-- JavaScripts
-   ============================================= -->
-		<script src="/js/jquery.js"></script>
-		<script src="/js/plugins.min.js"></script>
-<!-- Date & Time Picker JS -->
-	<script src="/js/components/moment.js"></script>
-	<script src="/js/components/timepicker.js"></script>
-	<script src="/js/components/datepicker.js"></script>
-	
-
+		<!-- JavaScripts  ============================================= -->
+		<script src='<c:url value="/js/jquery.js"/>'/></script>
+		<script src='<c:url value="/js/plugins.min.js"/>'/></script>
+		
+		<!-- Date & Time Picker JS -->
+		<script src='<c:url value="/js/components/moment.js"/>'/></script>
+		<script src='<c:url value="/js/components/timepicker.js"/>'/></script>
+		<script src='<c:url value="/js/components/datepicker.js"/>'/></script>
+		
+		<!-- Include Date Range Picker -->
+		<script src='<c:url value="/js/components/daterangepicker.js"/>'/></script>
 		<!-- Footer Scripts
-   ============================================= -->
-		<script src="/js/functions.js"></script>
+		============================================= -->
+		<script src='<c:url value="/js/functions.js"/>'/></script>
 
 
 		<script>

@@ -20,7 +20,7 @@ import artizens.service.CollaborationService1;
 import artizens.web.session.SessionConst;
 
 @Controller
-@RequestMapping("/artizen/collaboration")
+@RequestMapping("/collaboration")
 public class CollaborationController1 {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CollaborationController1.class);
 
@@ -32,7 +32,8 @@ public class CollaborationController1 {
 	 * @return
 	 */
 	@GetMapping("/main")
-	public String collaborationMain(Model model) {
+	public String collaborationMain(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user, 
+			Model model) {
 		List<CollaborationMainDto> result = collaborationService1.findAllByCollaboration();
 		model.addAttribute("result", result);
 		return "col/col_Main";
@@ -46,7 +47,8 @@ public class CollaborationController1 {
 	 */
 	@GetMapping("/planning")
 	public String insertCollaboration(
-		@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user, Model model) {
+		@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user,
+		Model model) {
 		CollaborationPlanningDto userId = collaborationService1.findCreatorId(user.getId());
 		LOGGER.info("msguser1={}",userId.getCreatorId());
 		model.addAttribute("userId",userId.getCreatorId());
