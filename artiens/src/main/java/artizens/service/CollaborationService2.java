@@ -41,26 +41,31 @@ public class CollaborationService2 {
 	/**
 	 * collaborationArtwork Insert 
 	 * @param collaborationArtWorkInsertDto
-	 * 조건 : 일단 로그인을 해야되고, 크리에이터에 등록되야되고, 자신이 올린 공모전에는 참가신청을 할수 없음.
 	 * return CollaborationArtWorkId
 	 */
-	public String insertCollaborationArtWotk(UserProfile user, CollaborationArtWorkInsertDto collaborationArtWorkInsertDto) {
-		//user 권한 확인
-		if (user == null) {
-			return "noUser";
-		}
+	public Long insertCollaborationArtWotk(UserProfile user, CollaborationArtWorkInsertDto collaborationArtWorkInsertDto) {
 		Long creatorId = collaborationMapper.findCreaotrByUserId(user.getId());
-		if (creatorId == 0L) 
-			return "noCreator";
-		Long collaborationId = collaborationMapper.findCollaborationByCreatorId(creatorId);
-		if (collaborationId == collaborationArtWorkInsertDto.getCollaborationId()) {
-			return "organizer";
-		}
 		UploadFile uploadFile = fileUploadService.uploadImage(collaborationArtWorkInsertDto.getFile());
 		collaborationArtWorkInsertDto.setFileName(uploadFile.getStoreFileName());
 		collaborationArtWorkInsertDto.setCreatorId(creatorId);
 		collaborationMapper.insertCollaborationArtWork(collaborationArtWorkInsertDto);
-		return collaborationArtWorkInsertDto.getCollaborationArtWorkId().toString();
+		return collaborationArtWorkInsertDto.getCollaborationArtWorkId();
 	}
 	
+	/**
+	 * 조건 : 일단 로그인을 해야되고, 크리에이터에 등록되야되고, 이미 참여한 공모전에는 참여할 수 없음. 자신이 올린 공모전에는 참가신청을 할수 없음.
+	 * @param user
+	 * @param collaborationId
+	 * @return
+	 */
+	public String checkRegisterArtWork(UserProfile user, Long collaborationId) {
+		//user 권한 확인
+		if (user == null) return "noUser";
+		Long creatorId = collaborationMapper.findCreaotrByUserId(user.getId());
+		if (creatorId == null)  return "noCreator";
+		int count = collaborationMapper.countCollaborationByCreatorId(collaborationId, creatorId);
+		if (count > 1) return "already";
+		if (collaborationMapper.findCollaborationByCreatorId(creatorId).contains(collaborationId)) return "organizer";
+		return "pass";
+	}
 }

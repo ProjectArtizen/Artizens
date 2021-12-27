@@ -26,7 +26,11 @@
 <!-- Document Title
 	============================================= -->
 <title>콜라보레이션 작품</title>
-
+<script type="text/javascript">
+	if ('${update} == 'success'){
+		alert("콜라보레이션 참가가 완료 되었습니다.")
+	}
+</script>
 <style>
 
 .mfp-close {

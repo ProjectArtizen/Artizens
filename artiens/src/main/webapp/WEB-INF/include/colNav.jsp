@@ -46,7 +46,7 @@
 				</c:when>
 				<c:when test="${result.pastDateBoolean eq true && result.evaluate eq false && result.creatorId ne null && result.creatorId eq creatorId}">
 					<div>
-						<a href="#" class="button button-border button-border-thin button-brown" data-bs-toggle="modal" data-bs-target="#evaluateModel"><i class="icon-pencil"></i>평가하기</a>
+						<a href="#" class="button button-border button-border-thin button-brown" data-bs-toggle="modal" data-bs-target="#evaluateModal"><i class="icon-pencil"></i>평가하기</a>
 					</div>
 				</c:when>
 				<c:when test="${result.pastDateBoolean eq true}">
@@ -70,23 +70,17 @@
                 <h4>${result.title}</br> 에 참가하시겠습니까?</h4>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-                <a></a>
-                <button type="button" class="btn btn-primary" id="goto">가즈아</button>
+            	<a href="#" class="button button-3d button-rounded button-red" data-bs-dismiss="modal"><i class="icon-line-arrow-left-circle"></i>취소하기</a>
+                <a href="<c:url value='/collaboration/art/register/${result.id}'></c:url>" class="button button-3d button-rounded button-green"><i class="icon-hand-right"></i>참여하기</a>
             </div>
         </div>
     </div>
 </div>
 
-<script type="text/javascript">
-$('#goto').click(function() {
-	
-}
-</script>
 <!-- modal -->
 
 <!-- Modal - evaluateModel -->
-<div class="modal fade" id="evaluateModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="evaluateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -94,13 +88,11 @@ $('#goto').click(function() {
                 <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-hidden="true"></button>
             </div>
             <div class="modal-body">
-                <h4>Tooltips in a modal</h4>
-                <p><a href="#" data-bs-toggle="tooltip" title="" data-original-title="Tooltip">This link</a> and <a href="#" data-bs-toggle="tooltip" title="" data-original-title="Tooltip">that link</a> should have tooltips on hover.</p>
-                <hr>
+                <h4>${result.title}</br> 참가작품을 평가하시겠습니까?</h4>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <a href="#" class="button button-3d button-rounded button-red" data-bs-dismiss="modal"><i class="icon-line-arrow-left-circle"></i>취소하기</a>
+                <a href="<c:url value='/collaboration/winner/${result.id}'></c:url>" class="button button-3d button-rounded button-black"><i class="icon-hand-right"></i>평가하기</a>
             </div>
         </div>
     </div>

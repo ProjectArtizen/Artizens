@@ -90,7 +90,14 @@ public interface CollaborationMapper2 {
 	 * @return collaboration_id
 	 */
 	@Select("select collaboration_id from collaboration where creator_id = ${creatorId}")
-	Long findCollaborationByCreatorId(Long creatorId);
+	List<Long> findCollaborationByCreatorId(Long creatorId);
 	
-	
+	/**
+	 * 공모전에 참여한 creator의 수
+	 * @param collaborationId
+	 * @param creatorId
+	 * @return
+	 */
+	@Select("select count(*) from collaboration_artwork where collaboration_id = ${collaborationId} and creator_id = ${creatorId}")
+	int countCollaborationByCreatorId(Long collaborationId, Long creatorId);
 }

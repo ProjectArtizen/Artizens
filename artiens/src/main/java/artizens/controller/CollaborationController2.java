@@ -1,6 +1,8 @@
 package artizens.controller;
 
-import java.lang.ProcessBuilder.Redirect;
+import static org.hamcrest.CoreMatchers.nullValue;
+
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -42,6 +45,7 @@ public class CollaborationController2 {
 			@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user, 
 			@PathVariable Long collaborationId, 
 			Model model) {
+		
 		CollaborationDetailDto result = collaborationService.collaborationDetailForm(collaborationId);
 		if (result == null) {
 			model.addAttribute("condition", "invalidRequest");
@@ -51,9 +55,12 @@ public class CollaborationController2 {
 		
 		if (user != null) {
 			Long creatorId = collaborationMapper.findCreaotrByUserId(user.getId());
-			if (creatorId != 0L ) model.addAttribute("creatorId", creatorId);
-			LOGGER.info("result = {}", result.toString());
+			model.addAttribute("creatorId", (creatorId == null || creatorId == 0L)? null:creatorId);
 		}else model.addAttribute("creatorId", null);
+		
+		
+		// 세션에 따른 헤더 설정 
+		model.addAttribute("userid", ((user == null) ? null : user.getId()));
 		return "col/col_Detail";
 	}
 	
@@ -66,6 +73,7 @@ public class CollaborationController2 {
 	public String colArt(
 			@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user,
 			@PathVariable(name="collaborationArtWorkId") Long colArtId,
+			@RequestParam(value = "update") String update,
 			Model model){
 		CollaborationArtworkDetailDto result = collaborationService.collaborationArtWotkDetailForm(colArtId);
 		if (result == null) {
@@ -73,7 +81,9 @@ public class CollaborationController2 {
 			return "col/col_Redirect";
 		}
 		model.addAttribute("result", result);
-		LOGGER.info("result = {}", result.toString());
+		model.addAttribute("update", update);
+		// 세션에 따른 헤더 설정 
+		model.addAttribute("userid", ((user == null) ? null : user.getId()));
 		return "col/col_ArtWorkDetail";
 	}
 	
@@ -85,6 +95,8 @@ public class CollaborationController2 {
 	public String colArtList(
 			@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user,
 			Model model) {
+		// 세션에 따른 헤더 설정 
+		model.addAttribute("userid", ((user == null) ? null : user.getId()));
 		return "col/col_ArtList";
 	}
 	
@@ -96,7 +108,40 @@ public class CollaborationController2 {
 	public String colWInnerArtList(
 			@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user,
 			Model model) {
+		// 세션에 따른 헤더 설정 
+		model.addAttribute("userid", ((user == null) ? null : user.getId()));
 		return "col/col_ArtWinnerList";
+	}
+	
+	/**
+	 * 참여작품을 접수하는 화면
+	 * @return
+	 */
+	@GetMapping("/art/register/{collaborationId}")
+	public String colArtRegister(
+			@PathVariable(name = "collaborationId") Long collaborationId,
+			@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user,
+			Model model) {
+		
+		// 콜라보레이션에 참여할 권한이 있는지 체크
+		String checkResult = collaborationService.checkRegisterArtWork(user, collaborationId);
+		if (!checkResult.equals("pass")) {
+			model.addAttribute("condition", checkResult);
+			return "col/col_Redirect";
+		}
+		
+		// 콜라보레이션의 정보를 select 
+		CollaborationDetailDto colInfo = collaborationService.collaborationDetailForm(collaborationId);
+		if (colInfo == null) {
+			model.addAttribute("condition", "InvalidRequest");
+			return "col/col_Redirect";
+		}
+		
+		// 세션에 따른 헤더 설정 
+		model.addAttribute("userid", ((user == null) ? null : user.getId()));
+		model.addAttribute("collaborationId", colInfo.getId());
+		model.addAttribute("collaborationTitle", colInfo.getTitle());
+		return "col/col_ArtWorkRegister";
 	}
 	
 	/**
@@ -107,18 +152,12 @@ public class CollaborationController2 {
 	public String colartReceipt(
 			@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user,
 			@ModelAttribute CollaborationArtWorkInsertDto dto, 
-			RedirectAttributes redirectAttributes,
 			Model model) {
-		System.out.println(dto.toString());
-		String insertCondition = collaborationService.insertCollaborationArtWotk(user, dto);
-		if (insertCondition.equals("noUser") || insertCondition.equals("noCreator") || insertCondition.equals("organizer")) {
-			model.addAttribute("condition", insertCondition);
-			return "col/col_Redirect";
-		}
-		System.out.println(dto.toString());
+		Long insertCondition = collaborationService.insertCollaborationArtWotk(user, dto);
 		System.out.println(insertCondition);
-		redirectAttributes.addAttribute("condition", "insert");
-		return "redirect:/collaboration/art/"+insertCondition;
+		model.addAttribute("update", "success");
+		model.addAttribute("updateValue", insertCondition);
+		return "col/col_Redirect";
 	}
 	
 	/**
