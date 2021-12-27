@@ -25,7 +25,9 @@
 <!-- Document Title
 ============================================= -->
 <title>::: ARTIZEN | Main :::</title>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>var $j351 = jQuery.noConflict();</script>
+<script>var $j360 = jQuery.noConflict();</script>
 
 
 </head>
@@ -191,12 +193,12 @@
 										</div>
 									</div>
 								</c:forEach>
-					</div><!-- #portfolio end -->
-					<div class="container mt-4">
-						<button type="button" class="btn btn-light rounded w-100 text-center" id="btnMoreView" onclick="location.href='<c:url value="/?startpage=${cnt }" />'" />
-							more view
-						</button>
-					</div>
+								</div><!-- #portfolio end -->
+							<div class="container mt-4">
+								<button type="button" class="btn btn-light rounded w-100 text-center" id="btnMoreView" onclick="fn_submit('count');"  />
+								more view
+								</button>
+							</div>
 				</div>
 			</div>
 		</section><!-- #content end -->
@@ -211,6 +213,27 @@
 </div><!-- #wrapper end-->
 <script>
 
+function fn_submit(type) {
+	$j351('#btnMoreView').click(function(){
+		const resultElement = document.getElementById('count');
+		let page = resultElement.innerText;
+		if ()
+		$.ajax({
+			url: "/",
+			type: "GET",
+			data:"startpage="+9,
+			dataType:"html",
+			success:function(data){
+				console.log(data);
+				$(document).html(data);
+			},
+			error:function(){
+				alert("실패");
+			}
+		});
+	});
+}
+
 </script>
 <!-- Go To Top
 ============================================= -->
@@ -223,19 +246,7 @@
 <script src="<c:url value='/js/plugins.min.js' />"></script>
 <script src="<c:url value='/js/jquery.hotspot.js' />"></script>
 <script>
-	function moreView() {
-		$ajax({
-			url : "/",
-			type: "GET",
-			cache:false,
-			dataType:"json",
-			data: "startpage="+20,
-			success: function(){
-				alert("몰뷰");
-			}
-			
-		});
-	}
+	
 </script>
 <!-- Footer Scripts
 ============================================= -->

@@ -3,9 +3,13 @@ package artizens.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -35,6 +40,7 @@ import artizens.service.ArtService;
 import artizens.service.ArtWorkService;
 import artizens.web.aws.FileUploadService;
 import artizens.web.session.SessionConst;
+import net.bytebuddy.description.ModifierReviewable;
 
 @Controller
 public class ArtController {
@@ -160,12 +166,12 @@ public class ArtController {
 	}
 	
 	@GetMapping
-	public String artworkMain(	@ModelAttribute MainPageDTO pagedto,
+	public String artworkMain(	@ModelAttribute MainPageDTO mainpagedto,
 								@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user,
 								Model model) {
-		
+			
 		if (user == null) { // 비회원일 경우
-			List<ArtWorkMainDto> result = artWorkService.selectAll(pagedto.getStartpage());
+			List<ArtWorkMainDto> result = artWorkService.selectAll(mainpagedto.getStartpage());
 			model.addAttribute("result", result);
 			return "artWork/ArtWorkMain";
 		}else if( user != null ) { // 로그인 상태일 경우,
@@ -173,7 +179,7 @@ public class ArtController {
 			model.addAttribute("userid",id);
 			Long creator = artWorkService.findByCreator(id);
 			
-			List<ArtWorkMainDto> result2 = artWorkService.selectAll(pagedto.getStartpage());
+			List<ArtWorkMainDto> result2 = artWorkService.selectAll(mainpagedto.getStartpage());
 			model.addAttribute("result", result2);
 			
 			if ( creator == 0 || creator == null ) { // 크리에이터 아이디가 없는 경우,
@@ -192,7 +198,7 @@ public class ArtController {
 				model.addAttribute("nickname",nick);
 				
 				// 모든 작품들 
-				List<ArtWorkMainDto> result = artWorkService.selectAll(pagedto.getStartpage());
+				List<ArtWorkMainDto> result = artWorkService.selectAll(mainpagedto.getStartpage());
 				model.addAttribute("result", result);
 			}
 		}
@@ -217,6 +223,13 @@ public class ArtController {
 			model.addAttribute("userid",null);
 		}
 		return "artWork/ArtWorkDetail";
+	}
+	
+	@ResponseBody
+	@PostMapping("/moreview")
+	public void moreView(@ModelAttribute MainPageDTO mainPageDTO, HttpServletRequest request,
+						  HttpServletResponse response) {
+		
 	}
 	
 	
