@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -48,10 +47,16 @@ public interface CollaborationMapper3 {
 	  @Result(property = "registerdate", column = "collaboration_register_date") })
 	  CollaborationCollaboratorDto findcollaborator(Long collaboId);
 
-	  @Update("UPDATE collaboration_artwork "
-	  		+ "		SET collaboration_artwork_winner = 1 "
-	  		+ "		WHERE collaboration_artwork_id in ${values}")
-	  int winnerUpdate(String values);
+
+	  @Update("UPDATE collaboration_artwork artwork "
+			  + "		JOIN collaboration "
+			  + "		ON artwork.collaboration_id = collaboration.collaboration_id "
+			  + "		SET artwork.collaboration_artwork_winner = true , collaboration.collaboration_evaluate = true "
+			  + "		WHERE collaboration_artwork_id = ${value}")
+	  int winnerUpdate(Integer value);
+	  
+	  
+
 	  
 
 }

@@ -19,46 +19,7 @@
 <!-- Document Title	============================================= -->
 <title>대상자 선정 페이지</title>
 </head>
-<script>
-	$("#btn_chk").click(function{
-		alert("테스트입니다.");
-	});
-	$("#btn_chk").click(function(){
-		var len = $("input[name='chk']").length;
-		var values = "";
-		for(var i=0; i<len; i++) {
-			var chk = document.getElementsByName('chk')[i].checked;
-			if( chk == true ) {
-				values += document.getElementsByName('chk')[i].value;
-				values += ",";
-			}
-		}
-		
-		if(values.length > 0) {
-			
-			if(  confirm("대상자 선정을 진행하시겠습니까?")  ) {
-				$.ajax({
-					type : "post",
-					url  : "choice",
-					data : "values="+values,
-					datatype : "text",
-					success : function(data) {
-						if(data == "ok") {
-							alert("처리 완료");
-							location="main";
-						} else {
-							alert("처리 실패!!");
-						}	
-					},
-					error : function() {
-						alert("시스템 오류");
-					}
-				});
-			}
-		}
-	});
 
-</script>
 <body class="stretched">
 	<!-- Document Wrapper ============================================= -->
 	<div id="wrapper">
@@ -129,6 +90,7 @@
 		<section id="content">
 			<div class="content-wrap">
 				<div class="container">
+					<form name="frm" method="POST" action="/collaboration/choice" >
 					<table class="table cart mb-5">
 						<colgroup>
 							<col width="30%">
@@ -162,17 +124,18 @@
 									</td>
 
 									<td class="cart-product-subtotal">
-										<input type="checkbox" name="chk" value="${result.colArtworkId }"></td>
+										<input type="checkbox" name="checkeds" value="${result.colArtworkId }"></td>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
 					<div class="row">
 						<div class="col" style="text-align: right">
-							<button type="button" id="btn_chk"
-								class="button button-3d mt-2 mt-sm-0 me-0 ">대상자 선정</button>
+							<button type="submit" name="submit" id="btn_save"
+									class="button button-3d mt-2 mt-sm-0 me-0 ">대상자 선정</button>
 						</div>
 					</div>
+					</form>
 				</div>
 			</div>
 		</section>
@@ -186,6 +149,8 @@
 
 	</div>
 	<!-- #wrapper end -->
+	
+	
 
 	<!-- Go To Top ============================================= -->
 	<div id="gotoTop" class="icon-angle-up"></div>

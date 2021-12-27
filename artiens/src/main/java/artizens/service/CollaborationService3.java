@@ -29,9 +29,11 @@ public class CollaborationService3 {
 		return collaborationMapper3.findcollaborator(collaboId);
 	}
 
-	public int winnerUpdate(String values) {
-		return collaborationMapper3.winnerUpdate(values);
+	public String winnerUpdate(List<Integer> value) {
+		for( Integer a: value ) {
+			collaborationMapper3.winnerUpdate(a);			
+		}
+		return "success";
 	}
-
 	
 }

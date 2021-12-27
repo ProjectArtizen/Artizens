@@ -3,6 +3,7 @@
 
 	<c:set var="creator" value="${creator }" />
 	<c:set var="message" value="${message }" />
+	<c:set var="msg" value="${msg }" />
 
 <script language="javaScript">
 	<c:choose>
@@ -43,6 +44,14 @@
 		</c:when>
 		<c:when test="${ message == '댓글등록실패'}">
 			alert("댓글 등록에 실패하였습니다.");
+			location.reload();
+		</c:when>
+		<c:when test="${msg == '대상자 선정완료'}">
+			alert("대상자 선정이 완료되었습니다.");
+			location.href="<c:url value='/collaboration/main' />";
+		</c:when>
+		<c:when test="${msg == '대상자 선정실패'}">
+			alert("대상자 선정에 실패하셨습니다. 다시 시도해 주세요.");
 			location.reload();
 		</c:when>
 	</c:choose>

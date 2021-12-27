@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import artizens.domain.UserProfile;
@@ -46,15 +48,18 @@ public class CollaborationController3 {
 	 * @return
 	 */
 	@PostMapping("/choice")
-	public String winnerUpdate(String values) {
+	public String winnerUpdate(@RequestParam(name = "checkeds") List<Integer> value, Model model ) {
+		LOGGER.info("msg={}", value);
 		
-		values = values.substring(0,values.length()-1);
-		
-		int result = collaborationService3.winnerUpdate(values);
-		
-		String message = "ok";
-		if( result == 0 ) message = "error";
-		return message;
+		String result = collaborationService3.winnerUpdate(value); 
+		if( result.equals("success") ) {
+			model.addAttribute("msg","대상자 선정완료");
+			return "include/Alert";
+		}else {
+			model.addAttribute("msg","대상자 선정실패");
+			return "include/Alert";
+		}
+			
 	}
 	
 }
