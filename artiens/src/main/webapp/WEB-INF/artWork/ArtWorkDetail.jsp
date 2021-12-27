@@ -75,10 +75,7 @@
                                     <a href="${artwork.images }" data-lightbox="gallery-item">
                                         <img class="img-fluid " src="${artwork.images }" alt="Slider">
                                     </a>
-                                    
-
                                 </div>
-
                             </div>
                         </div>
 
