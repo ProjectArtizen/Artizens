@@ -120,32 +120,32 @@
 					<h1> CATEGORY</h1>
 					<hr>
 					<div class="block-expand-categories flex-column flex-lg-row d-flex justify-content-center">
-						<div class="expand-category bg-light" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('<c:url value='/images/artwork/category/8.jpg' />')">
-							<h4><a href="<c:url value='#' />" class="text-light">수묵화</a></h4>
+						<div class="expand-category bg-light" onclick="location.href='<c:url value="/artwork/ink" />'" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('<c:url value='/images/artwork/category/8.jpg' />')">
+							<h4><a href="<c:url value='/artwork/ink' />" class="text-light">수묵화</a></h4>
 						</div>
 
-						<div class="expand-category bg-light" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('<c:url value='/images/artwork/category/9.jpg' />');">
-							<h4><a href="<c:url value='#' />" class="text-light">채색화</a></h4>
+						<div class="expand-category bg-light" onclick="location.href='<c:url value="/artwork/color" />'" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('<c:url value='/images/artwork/category/9.jpg' />');">
+							<h4><a href="<c:url value='/artwork/color' />" class="text-light">채색화</a></h4>
 						</div>
 
-						<div class="expand-category bg-light" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('<c:url value='/images/artwork/category/10.jpg' />');">
-							<h4><a href="<c:url value='#' />" class="text-light">풍경화</a></h4>
+						<div class="expand-category bg-light" onclick="location.href='<c:url value="/artwork/landscape" />'" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('<c:url value='/images/artwork/category/10.jpg' />');">
+							<h4><a href="<c:url value='/artwork/landscape' />" class="text-light">풍경화</a></h4>
 						</div>
 
-						<div class="expand-category bg-light" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('<c:url value='/images/artwork/category/11.jpg' />');">
-							<h4><a href="<c:url value='#' />" class="text-light">인물화</a></h4>
+						<div class="expand-category bg-light" onclick="location.href='<c:url value="/artwork/figure" />'" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('<c:url value='/images/artwork/category/11.jpg' />');">
+							<h4><a href="<c:url value='/artwork/figure' />" class="text-light">인물화</a></h4>
 						</div>
 
-						<div class="expand-category bg-light" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('<c:url value='/images/artwork/category/12.jpg' />">
-							<h4><a href="<c:url value='#' />" class="text-light">추상화</a></h4>
+						<div class="expand-category bg-light" onclick="location.href='<c:url value="/artwork/abstract" />'" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('<c:url value='/images/artwork/category/12.jpg' />">
+							<h4><a href="<c:url value='/artwork/abstract' />" class="text-light">추상화</a></h4>
 						</div>
 
-						<div class="expand-category bg-light" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('<c:url value='/images/artwork/category/13.jpg' />');">
-							<h4><a href="<c:url value='#' />" class="text-light">정물화</a></h4>
+						<div class="expand-category bg-light" onclick="location.href='<c:url value="/artwork/still" />'" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('<c:url value='/images/artwork/category/13.jpg' />');">
+							<h4><a href="<c:url value='/artwork/still' />" class="text-light">정물화</a></h4>
 						</div>
 
-						<div class="expand-category bg-light" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('<c:url value='/images/artwork/category/14.jpg' />');">
-							<h4><a href="<c:url value='#' />" class="text-light">팝아트</a></h4>
+						<div class="expand-category bg-light" onclick="location.href='<c:url value="/artwork/pop" />'" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('<c:url value='/images/artwork/category/14.jpg' />');">
+							<h4><a href="<c:url value='/artwork/pop' />" class="text-light">팝아트</a></h4>
 						</div>
 					</div>
 
