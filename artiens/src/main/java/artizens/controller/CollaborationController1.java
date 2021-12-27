@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -36,6 +37,16 @@ public class CollaborationController1 {
 			Model model) {
 		List<CollaborationMainDto> result = collaborationService1.findAllByCollaboration();
 		model.addAttribute("result", result);
+		
+		if(user != null) {
+			model.addAttribute("userId",user.getId());
+			CollaborationMainDto creatorId = collaborationService1.findCreatorId(user.getId());
+			
+			if(creatorId.getCreatorId() != null) {
+			model.addAttribute("creatorId",creatorId.getCreatorId());
+			}
+			
+		}
 		return "col/col_Main";
 	}
 	
@@ -45,13 +56,12 @@ public class CollaborationController1 {
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("/planning")
+	@GetMapping("/planning/{creatorId}")
 	public String insertCollaboration(
 		@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user,
-		Model model) {
-		CollaborationPlanningDto userId = collaborationService1.findCreatorId(user.getId());
-		LOGGER.info("msguser1={}",userId.getCreatorId());
-		model.addAttribute("userId",userId.getCreatorId());
+		@PathVariable Long creatorId,
+		Model model) throws Exception {
+		model.addAttribute("creatorId",creatorId);
 		return "col/col_Planning";
 	}
 	

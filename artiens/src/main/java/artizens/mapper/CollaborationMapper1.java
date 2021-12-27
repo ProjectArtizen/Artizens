@@ -41,15 +41,17 @@ public interface CollaborationMapper1 {
 			+ " date_add(col.collaboration_deadline_date, INTERVAL 1 DAY) as collaboration_deadline_date, "
 			+ " col.collaboration_register_date as collaboration_register_date, "
 			+ " cre.creator_nickname as creator_nickname, "
-			+ " cre.creator_profile_storefilename as creator_profile_storefilename, "
+			+ " cre.creator_profile_storefilename as creator_profile_storefilename,"
+			+ " count(colart.collaboration_id) as artworkcount "
 			+ " from collaboration as col "
 			+ " left join creator as cre "
 			+ " on col.creator_id = cre.creator_id "
 			+ " left join collaboration_artwork as colart "
-			+ " on col.collaboration_id = colart.collaboration_id ")
+			+ " on col.collaboration_id = colart.collaboration_id "
+			+ " group by collaboration_id")
 	List<CollaborationMainDto> findAllCollaboration();
 	
 	@Select("select creator_id from creator where user_profile_id=${userId}")
-	CollaborationPlanningDto findCreatorId(Long userId);
+	CollaborationMainDto findCreatorId(Long userId);
 	
 }

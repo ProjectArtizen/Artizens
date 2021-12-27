@@ -17,6 +17,7 @@ public class CollaborationMainDto {
 	private String registerDate;
 	private String storedFileName;
 	private MultipartFile collaborationImage;
+	private Long creatorId;
 	private String creatorNickName;
 	private String creatorProfileStoredFileName;
 	private int artworkcount;
@@ -49,6 +50,9 @@ public class CollaborationMainDto {
 	}
 	public String getDeadLineMonth() {
 		return deadLineMonth;
+	}
+	public Long getCreatorId() {
+		return creatorId;
 	}
 	public String getDeadLineDay() {
 		return deadLineDay;
@@ -89,6 +93,9 @@ public class CollaborationMainDto {
 	}
 	public void setCollaborationImage(MultipartFile collaborationImage) {
 		this.collaborationImage = collaborationImage;
+	}
+	public void setCreatorId(Long creatorId) {
+		this.creatorId = creatorId;
 	}
 	public void setCreatorNickName(String creatorNickName) {
 		this.creatorNickName = creatorNickName;

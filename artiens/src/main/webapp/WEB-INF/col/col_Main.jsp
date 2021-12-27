@@ -55,9 +55,11 @@
 				<div class="container clearfix" style="width: 1250px;">
 					<div style="height: 50px;">
 						<h3 style="display: inline-block;">진행중인 콜라보레이션</h3>
-						<a href="./planning" >
-							<button style="float: right; border-color: #00d084; border-radius: 25px; width: 190px; Height: 50px; color: #00d084; background-color: #ffffff">콜라보레이션 기획</button>
-						</a>
+						<form name="frm" id="frm" action="./planning/${creatorid }">
+						<input type="hidden" name="userId" value="${userId }">
+						<input type="hidden" name="creatorId" value="${creatorId }">
+						<button style="float: right; border-color: #00d084; border-radius: 25px; width: 190px; Height: 50px; color: #00d084; background-color: #ffffff" onclick="fn_check();return false;">콜라보레이션 기획</button>
+						</form>
 					</div>
 					<hr>
 					
@@ -75,8 +77,9 @@
 										<div class="flexslider">
 											<div class="slider-wrap">
 												<div style="height: 230px; overflow: hidden">
-													<a href="./${result.collaborationId}"></a>
+													<a href="./${result.collaborationId}">
 													<img src="${result.storedFileName}"/>
+													</a>
 												</div>
 											</div>
 										</div>
@@ -96,7 +99,7 @@
 													<div id="countdown" class="countdown flex-fill"
 														data-year="${result.deadLineYear }" data-month="${result.deadLineMonth }" data-day="${result.deadLineDay }"
 														data-format="dHMS"></div>
-													<div style="width: 110px; padding: 8px; border: #dfdfdf solid 1px; text-align: center; margin-left: 10px; color: white; background-color: #1bbc9b;">${result.artworkcount }명
+													<div style="width: 110px; padding: 8px; border: #dfdfdf solid 1px; text-align: center; margin-left: 10px; color: white; background-color: #1bbc9b;">${result.artworkcount}명
 														참여</div>
 												</div>
 											</div>
@@ -151,8 +154,9 @@
 										<div class="flexslider">
 											<div class="slider-wrap">
 												<div style="height: 230px; overflow: hidden">
-													<a href="./${result.collaborationId}"></a>
+													<a href="./${result.collaborationId}">
 													<img src="${result.storedFileName}"/>
+													</a>
 												</div>
 											</div>
 										</div>
@@ -172,7 +176,7 @@
 														style="width: 110px; padding: 8px; border: #dfdfdf solid 1px; text-align: center; background-color: #666666; color: white;">당선작
 														발표</div>
 													<div
-														style="width: 110px; padding: 8px; border: #dfdfdf solid 1px; text-align: center; margin-left: 60px; color: white; background-color: #1bbc9b;">000명
+														style="width: 110px; padding: 8px; border: #dfdfdf solid 1px; text-align: center; margin-left: 60px; color: white; background-color: #1bbc9b;">${result.artworkcount}명
 														참여</div>
 												</div>
 											</div>
@@ -270,6 +274,26 @@
 
 			});
 
+		</script>
+		<script>
+		function fn_check() {
+			var userId = document.frm.userId;
+			var creatorId = document.frm.creatorId;
+			
+			if(userId.value == "" || userId.value == null ) {
+				alert("로그인 후 기획가능합니다.")
+				location.href="<c:url value='/login' />";
+				return false;
+			}
+			
+			if(creatorId == "" || creatorId == null) {
+				alert("작품을 최소 1개이상 등록해주세요.")
+				return false;
+			}
+			document.frm.submit();
+			
+		}
+		
 		</script>
 
 		<!-- Footer
