@@ -52,6 +52,6 @@ public interface CollaborationMapper1 {
 	List<CollaborationMainDto> findAllCollaboration();
 	
 	@Select("select creator_id from creator where user_profile_id=${userId}")
-	CollaborationMainDto findCreatorId(Long userId);
+	Long findCreatorId(Long userId);
 	
 }

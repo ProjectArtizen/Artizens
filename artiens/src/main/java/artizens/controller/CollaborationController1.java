@@ -36,14 +36,15 @@ public class CollaborationController1 {
 	public String collaborationMain(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user, 
 			Model model) {
 		List<CollaborationMainDto> result = collaborationService1.findAllByCollaboration();
+		LOGGER.info("msg2={}", result);
 		model.addAttribute("result", result);
 		
 		if(user != null) {
 			model.addAttribute("userId",user.getId());
-			CollaborationMainDto creatorId = collaborationService1.findCreatorId(user.getId());
+			Long creatorId = collaborationService1.findCreatorId(user.getId());
 			
-			if(creatorId.getCreatorId() != null) {
-			model.addAttribute("creatorId",creatorId.getCreatorId());
+			if(creatorId != null) {
+			model.addAttribute("creatorId",creatorId);
 			}
 			
 		}

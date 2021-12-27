@@ -40,7 +40,7 @@ public class CollaborationService1 {
 		return collaborationMapper1.findAllCollaboration();
 	}
 	
-	public CollaborationMainDto findCreatorId(Long userid) {
+	public Long findCreatorId(Long userid) {
 		return collaborationMapper1.findCreatorId(userid);
 	}
 

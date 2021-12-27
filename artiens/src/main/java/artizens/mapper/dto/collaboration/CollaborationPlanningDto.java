@@ -11,7 +11,6 @@ public class CollaborationPlanningDto {
 	private String registerDate;
 	private String storedFileName;
 	private MultipartFile collaborationImage;
-	private Long creatorId;
 	private String creatorNickName;
 	private String creatorProfileStoredFileName;
 	
@@ -46,9 +45,6 @@ public class CollaborationPlanningDto {
 	public String getContent() {
 		return content;
 	}
-	public Long getCreatorId() {
-		return creatorId;
-	}
 	
 	
 	
@@ -60,7 +56,7 @@ public class CollaborationPlanningDto {
 		this.title = title;
 	}
 	public void setDeadLineDate(String deadLineDate) {
-		this.deadLineDate = deadLineDate + " 23:59:59.111000";
+		this.deadLineDate = deadLineDate + " 00:00:00.000001";
 	}
 	public void setRegisterDate(String registerDate) {
 		this.registerDate = registerDate.substring(0,10);
@@ -79,9 +75,6 @@ public class CollaborationPlanningDto {
 	}
 	public void setContent(String content) {
 		this.content = content;
-	}
-	public void setCreatorId(Long creatorId) {
-		this.creatorId = creatorId;
 	}
 	
 	

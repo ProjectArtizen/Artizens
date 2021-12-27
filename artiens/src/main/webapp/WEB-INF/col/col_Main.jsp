@@ -55,11 +55,9 @@
 				<div class="container clearfix" style="width: 1250px;">
 					<div style="height: 50px;">
 						<h3 style="display: inline-block;">진행중인 콜라보레이션</h3>
-						<form name="frm" id="frm" action="./planning/${creatorid }">
-						<input type="hidden" name="userId" value="${userId }">
-						<input type="hidden" name="creatorId" value="${creatorId }">
+						<input type="hidden" name="userId" id="userId" value="${userId }">
+						<input type="hidden" name="creatorId" id="creatorId" value="${creatorId }">
 						<button style="float: right; border-color: #00d084; border-radius: 25px; width: 190px; Height: 50px; color: #00d084; background-color: #ffffff" onclick="fn_check();return false;">콜라보레이션 기획</button>
-						</form>
 					</div>
 					<hr>
 					
@@ -92,19 +90,13 @@
 										</h4>
 									</div>
 
-									<div class="container clearfix m-2">
-										<div class="row justify-content-center">
-											<div>
+										<div class="row justify-content-center" style="width:300px;margin:0 auto;">
 												<div class="d-flex flex-row align-items-center rounded" style="margin-bottom: 15px;">
 													<div id="countdown" class="countdown flex-fill"
 														data-year="${result.deadLineYear }" data-month="${result.deadLineMonth }" data-day="${result.deadLineDay }"
 														data-format="dHMS"></div>
-													<div style="width: 110px; padding: 8px; border: #dfdfdf solid 1px; text-align: center; margin-left: 10px; color: white; background-color: #1bbc9b;">${result.artworkcount}명
-														참여</div>
 												</div>
-											</div>
-										</div>
-									</div>
+										</div>									
 
 									<hr class="my-4">
 									<div class="d-flex align-items-center">
@@ -116,6 +108,7 @@
 													<li><a href="./${result.collaborationId}"><h6 class="mb-1 h6" style="display: inline;">${result.creatorNickName }</h6></a></li>
 													<li><i class="icon-calendar3"></i>${result.registerDate }</li>
 													<!-- <li><a href="blog-single.html#comments"><i class="icon-comments"></i> 13</a></li> -->
+													<li>${result.artworkcount}명 참여</li>
 												</ul>
 											</div>
 										</div>
@@ -163,26 +156,19 @@
 									</div>
 								</div>
 								<div class="p-4">
-									<h3 class="center" style="margin-bottom: 40px;">
+									<h3 class="center" style="margin-bottom: 25px;">
 										<a href="./${result.collaborationId}">${result.title }</a>
 									</h3>
 
-									<div class="container clearfix m-2">
 										<div class="row justify-content-center">
-											<div>
-												<div class="d-flex flex-row align-items-center rounded"
-													style="margin-bottom: 15px;">
-													<div
-														style="width: 110px; padding: 8px; border: #dfdfdf solid 1px; text-align: center; background-color: #666666; color: white;">당선작
-														발표</div>
-													<div
-														style="width: 110px; padding: 8px; border: #dfdfdf solid 1px; text-align: center; margin-left: 60px; color: white; background-color: #1bbc9b;">${result.artworkcount}명
-														참여</div>
-												</div>
+											<div class="d-flex flex-row align-items-center rounded"
+												style="margin-bottom: 10px;">
+												<div
+													style="width: 110px; padding: 8px; border: #dfdfdf solid 1px; text-align: center; background-color: #666666; color: white;margin:0 auto;">당선작
+													발표</div>
 											</div>
 										</div>
-									</div>
-
+										
 									<hr class="my-4">
 									<div class="d-flex align-items-center">
 										<a href="./${result.collaborationId}"><img src="${result.creatorProfileStoredFileName}"
@@ -194,6 +180,7 @@
 													<li><a href="./${result.collaborationId}"><h6 class="mb-1 h6" style="display: inline;">${result.creatorNickName }</h6></a></li>
 													<li><i class="icon-calendar3"></i>${result.registerDate }</li>
 													<!-- <li><a href="blog-single.html#comments"><i class="icon-comments"></i> 13</a></li> -->
+													<li>${result.artworkcount}명 참여</li>
 												</ul>
 											</div>
 										</div>
@@ -277,20 +264,20 @@
 		</script>
 		<script>
 		function fn_check() {
-			var userId = document.frm.userId;
-			var creatorId = document.frm.creatorId;
+			var userId = document.getElementById('userId');
+			var creatorId = document.getElementById('creatorId');
 			
-			if(userId.value == "" || userId.value == null ) {
-				alert("로그인 후 기획가능합니다.")
+			if(userId.value == "" || userId.value == null) {
+				alert("로그인 후 이용가능합니다.");
 				location.href="<c:url value='/login' />";
 				return false;
 			}
-			
-			if(creatorId == "" || creatorId == null) {
-				alert("작품을 최소 1개이상 등록해주세요.")
+			if(creatorId.value == "" || creatorId.value == null) {
+				alert("작품을 최소 1개이상 등록해주세요.");
+				location.href="";
 				return false;
 			}
-			document.frm.submit();
+			location.href = "./planning/${creatorId}"
 			
 		}
 		
