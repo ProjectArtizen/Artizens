@@ -27,7 +27,6 @@
 <title>::: ARTIZEN | Main :::</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>var $j351 = jQuery.noConflict();</script>
-<script>var $j360 = jQuery.noConflict();</script>
 
 
 </head>
@@ -195,12 +194,18 @@
 								</c:forEach>
 								</div><!-- #portfolio end -->
 							<div class="container mt-4">
-								<button type="button" class="btn btn-light rounded w-100 text-center" id="btnMoreView" onclick="fn_submit('count');"  />
-								more view
-								</button>
-							</div>
+						</div>
+					</div>
+					<ul class="pagination mt-5 pagination-circle pagination-lg justify-content-center" id="pagingNumbers">
+						<li class="page-item"><a class="page-link" href="creator?page=''" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
+						<li class="page-item active"><a class="page-link" href="?s_page=0&e_page=9">1</a></li>
+						<li class="page-item"><a class="page-link" href="?s_page=10&e_page=18">2</a></li>
+						<li class="page-item"><a class="page-link" href="?s_page=19&e_page=27">3</a></li>
+						<li class="page-item"><a class="page-link" href="?s_page=28&e_page=36">4</a></li>
+						<li class="page-item"><a class="page-link" href="?s_page=37&e_page=45">5</a></li>
+						<li class="page-item"><a class="page-link" href="?page='5'" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+					</ul>
 				</div>
-			</div>
 		</section><!-- #content end -->
 	</div>	
 	 <!-- Footer
@@ -210,7 +215,6 @@
 	</footer>
 	<!-- #footer end -->
 
-</div><!-- #wrapper end-->
 <script>
 
 function fn_submit(type) {

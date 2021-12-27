@@ -171,7 +171,7 @@ public class ArtController {
 								Model model) {
 			
 		if (user == null) { // 비회원일 경우
-			List<ArtWorkMainDto> result = artWorkService.selectAll(mainpagedto.getStartpage());
+			List<ArtWorkMainDto> result = artWorkService.selectAll(mainpagedto.getS_page(), mainpagedto.getE_page());
 			model.addAttribute("result", result);
 			return "artWork/ArtWorkMain";
 		}else if( user != null ) { // 로그인 상태일 경우,
@@ -179,7 +179,7 @@ public class ArtController {
 			model.addAttribute("userid",id);
 			Long creator = artWorkService.findByCreator(id);
 			
-			List<ArtWorkMainDto> result2 = artWorkService.selectAll(mainpagedto.getStartpage());
+			List<ArtWorkMainDto> result2 = artWorkService.selectAll(mainpagedto.getS_page(), mainpagedto.getE_page());
 			model.addAttribute("result", result2);
 			
 			if ( creator == 0 || creator == null ) { // 크리에이터 아이디가 없는 경우,
@@ -198,7 +198,7 @@ public class ArtController {
 				model.addAttribute("nickname",nick);
 				
 				// 모든 작품들 
-				List<ArtWorkMainDto> result = artWorkService.selectAll(mainpagedto.getStartpage());
+				List<ArtWorkMainDto> result = artWorkService.selectAll(mainpagedto.getS_page(), mainpagedto.getE_page());
 				model.addAttribute("result", result);
 			}
 		}

@@ -26,8 +26,8 @@ public class ArtWorkService {
 	@Autowired ArtWorkMapper artWorkMapper;
 	@Autowired ArtWorkImagesMapper artWorkImagesMapper; 
 	
-	public List<ArtWorkMainDto> selectAll(int startpage ){
-		List<ArtWorkMainDto> result = artWorkMapper.findArtWorkMainAll( startpage );
+	public List<ArtWorkMainDto> selectAll( int s_page, int e_page ){
+		List<ArtWorkMainDto> result = artWorkMapper.findArtWorkMainAll( s_page, e_page );
 		return result; 
 	}
 	
