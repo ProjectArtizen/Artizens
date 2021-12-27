@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import artizens.controller.dto.artwork.ArtCategoryDTO;
 import artizens.controller.dto.artwork.ArtCommentDTO;
 import artizens.controller.dto.artwork.ArtDetailDTO;
 import artizens.controller.dto.artwork.CommentDTO;
@@ -264,46 +265,45 @@ public class ArtController {
 			model.addAttribute("user",userid);
 		}
 		String category = "";
-		List<BlogInfoDTO> store = new ArrayList<BlogInfoDTO>();
 		if (page.equals("ink")) {
 			category = "수묵화";
-			store = artService.findByCategory(page);
+			List<ArtCategoryDTO> store = artService.findByCategory(category);
 			model.addAttribute("page",category);
 			model.addAttribute("store",store);
 			return "artWork/ArtCategoryDetailPage";
 		}else if (page.equals("color")) {
 			category = "채색화";
-			store = artService.findByCategory(page);
+			List<ArtCategoryDTO> store = artService.findByCategory(category);
 			model.addAttribute("page",category);
 			model.addAttribute("store",store);
 			return "artWork/ArtCategoryDetailPage";
 		}else if (page.equals("landscape")) {
 			category = "풍경화";
-			store = artService.findByCategory(page);
+			List<ArtCategoryDTO> store = artService.findByCategory(category);
 			model.addAttribute("page",category);
 			model.addAttribute("store",store);
 			return "artWork/ArtCategoryDetailPage";
 		}else if (page.equals("figure")) {
 			category = "인물화";
-			store = artService.findByCategory(page);
+			List<ArtCategoryDTO> store = artService.findByCategory(category);
 			model.addAttribute("page",category);
 			model.addAttribute("store",store);
 			return "artWork/ArtCategoryDetailPage";
 		}else if (page.equals("abstract")) {
 			category = "추상화";
-			store = artService.findByCategory(page);
+			List<ArtCategoryDTO> store = artService.findByCategory(category);
 			model.addAttribute("page",category);
 			model.addAttribute("store",store);
 			return "artWork/ArtCategoryDetailPage";
 		}else if (page.equals("still")) {
 			category = "정물화";
-			store = artService.findByCategory(page);
+			List<ArtCategoryDTO> store = artService.findByCategory(category);
 			model.addAttribute("page",category);
 			model.addAttribute("store",store);
 			return "artWork/ArtCategoryDetailPage";
 		}else if (page.equals("pop")) {
 			category = "팝아트";
-			store = artService.findByCategory(page);
+			List<ArtCategoryDTO> store = artService.findByCategory(category);
 			model.addAttribute("page",category);
 			model.addAttribute("store",store);
 			return "artWork/ArtCategoryDetailPage";

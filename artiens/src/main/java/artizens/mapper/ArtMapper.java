@@ -7,34 +7,34 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
+import artizens.controller.dto.artwork.ArtCategoryDTO;
 import artizens.controller.dto.artwork.ArtCommentDTO;
 import artizens.controller.dto.artwork.ArtDetailDTO;
 import artizens.controller.dto.artwork.BlogInfoDTO;
 import artizens.controller.dto.artwork.CommentDTO;
 import artizens.controller.dto.artwork.StoreFileDTO;
 import artizens.controller.dto.artwork.UploadFileDTO;
-import artizens.controller.dto.artwork.UploadTextDTO;
 import artizens.domain.ArtWork;
-import artizens.domain.ArtWorkImages;
-import artizens.mapper.dto.ArtWorkMainDto;
-import artizens.mapper.dto.InsertUserDto;
 
 @Mapper
 public interface ArtMapper {
 	
 	@Select("select b.artwork_images_storefilename as storefilename,"
 			+ "		a.artwork_title as title,"
-			+ "		a.artwork_id as imageId,"
-			+ "		a.creator_id as creatorId,"
-			+ "		a.artwork_register_date as date,"
-			+ "		a.artwork_category_name as category "
+			+ "		b.artwork_images_id as imageId,"
+			+ "		a.artwork_register_date as registerday,"
+			+ "		c.creator_nickname as nickname,"
+			+ "		c.creator_profile_storefilename as profileimage,"
+			+ "		c.creator_id as creatorId "
 			+ "from "
-			+ "		artwork as a left join artwork_images as b "
+			+ "		artwork_images as b left join artwork as a "
 			+ "on "
-			+ "		a.artwork_id = b.art_work_id "
+			+ "		b.art_work_id = a.artwork_id left join creator as c "
+			+ "on "
+			+ "		a.creator_id = c.creator_id "
 			+ "where "
 			+ "		a.artwork_category_name = #{page}")
-	List<BlogInfoDTO> findByCategory(String page);
+	List<ArtCategoryDTO> findByCategory(String page);
 	
 	@Select("select comment.artwork_comment_conetent as content, "
 			+ "		date_format(comment.artwork_comment_register_date,'%M %D, %Y %p %h시 %i분 %s초') as registerDay, "

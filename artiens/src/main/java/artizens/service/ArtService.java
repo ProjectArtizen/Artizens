@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import artizens.controller.dto.artwork.ArtCategoryDTO;
 import artizens.controller.dto.artwork.ArtCommentDTO;
 import artizens.controller.dto.artwork.ArtDetailDTO;
 import artizens.controller.dto.artwork.CommentDTO;
@@ -123,22 +124,7 @@ public class ArtService {
 		return "success";
 	}
 	
-	public List<BlogInfoDTO> findByCategory(String page) {
-		if ( page.equals("ink")) {
-			page = "수묵화";
-		}else if ( page.equals("color")) {
-			page = "채색화";
-		}else if ( page.equals("landscape")) {
-			page = "풍경화";
-		}else if ( page.equals("figure")) {
-			page = "인물화";
-		}else if ( page.equals("abstract")) {
-			page = "추상화";
-		}else if ( page.equals("still")) {
-			page = "정물화";
-		}else if ( page.equals("pop")) {
-			page = "팝아트";
-		}
+	public List<ArtCategoryDTO> findByCategory(String page) {
 		return artMapper.findByCategory(page);
 	}
 	
