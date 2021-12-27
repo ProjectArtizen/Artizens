@@ -27,11 +27,10 @@
 <link rel="stylesheet" href="<c:url value='/css/magnific-popup.css' />"
 	type="text/css" />
 
-<link rel="stylesheet" href="/css/custom.css" type="text/css" />
+<link rel="stylesheet" href="<c:url value='/css/custom.css' />" type="text/css" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!-- Document Title
 	============================================= -->
-<c:set var="store" value="${store }" />
 <title>${page }페이지</title>
 
 </head>
@@ -175,7 +174,6 @@
 	<script>
 		$(document).ready(
 				function() {
-
 					jQuery('.block-expand-categories').find('.expand-category')
 							.on('click', function() {
 								let category = $(this);

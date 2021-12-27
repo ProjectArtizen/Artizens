@@ -62,8 +62,8 @@ public interface ArtWorkMapper {
 			+ "from artwork_images left join artwork "
 			+ "on artwork_images.art_work_id = artwork.artwork_id left "
 			+ "join creator on artwork.creator_id = creator.creator_id "
-			+ "order by artwork_register_date desc")
-	List<ArtWorkMainDto> findArtWorkMainAll();
+			+ "order by artwork_register_date desc limit ${startpage} ")
+	List<ArtWorkMainDto> findArtWorkMainAll(int startpage );
 	
 	// 수묵화 상세페이지 출력 쿼리
 	@Select("")

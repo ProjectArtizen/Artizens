@@ -21,6 +21,7 @@ import artizens.controller.dto.artwork.ArtCategoryDTO;
 import artizens.controller.dto.artwork.ArtCommentDTO;
 import artizens.controller.dto.artwork.ArtDetailDTO;
 import artizens.controller.dto.artwork.CommentDTO;
+import artizens.controller.dto.artwork.MainPageDTO;
 import artizens.controller.dto.artwork.BlogInfoDTO;
 import artizens.controller.dto.artwork.StoreFileDTO;
 import artizens.controller.dto.artwork.UploadFileDTO;
@@ -159,11 +160,12 @@ public class ArtController {
 	}
 	
 	@GetMapping
-	public String artworkMain(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user,
-			Model model) {
+	public String artworkMain(	@ModelAttribute MainPageDTO pagedto,
+								@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user,
+								Model model) {
 		
 		if (user == null) { // 비회원일 경우
-			List<ArtWorkMainDto> result = artWorkService.selectAll();
+			List<ArtWorkMainDto> result = artWorkService.selectAll(pagedto.getStartpage());
 			model.addAttribute("result", result);
 			return "artWork/ArtWorkMain";
 		}else if( user != null ) { // 로그인 상태일 경우,
@@ -171,7 +173,7 @@ public class ArtController {
 			model.addAttribute("userid",id);
 			Long creator = artWorkService.findByCreator(id);
 			
-			List<ArtWorkMainDto> result2 = artWorkService.selectAll();
+			List<ArtWorkMainDto> result2 = artWorkService.selectAll(pagedto.getStartpage());
 			model.addAttribute("result", result2);
 			
 			if ( creator == 0 || creator == null ) { // 크리에이터 아이디가 없는 경우,
@@ -190,7 +192,7 @@ public class ArtController {
 				model.addAttribute("nickname",nick);
 				
 				// 모든 작품들 
-				List<ArtWorkMainDto> result = artWorkService.selectAll();
+				List<ArtWorkMainDto> result = artWorkService.selectAll(pagedto.getStartpage());
 				model.addAttribute("result", result);
 			}
 		}

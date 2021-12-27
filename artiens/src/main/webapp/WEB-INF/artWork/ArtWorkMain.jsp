@@ -22,13 +22,11 @@
 	<link rel="stylesheet" href="<c:url value='/css/custom.css'/>" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<!-- Document Title
-	============================================= -->
-	<title>::: ARTIZEN | Main :::</title>
+<!-- Document Title
+============================================= -->
+<title>::: ARTIZEN | Main :::</title>
 
-	<style>
-		
-	</style>
+
 
 </head>
 <body class="stretched">
@@ -193,7 +191,11 @@
 									</div>
 								</c:forEach>
 					</div><!-- #portfolio end -->
-					
+					<div class="container mt-4">
+						<button type="button" class="btn btn-light rounded w-100 text-center" onclick="location.href='<c:url value="/?startpage=20" />'">
+							more view
+						</button>
+					</div>
 				</div>
 			</div>
 		</section><!-- #content end -->
@@ -210,7 +212,9 @@
 <!-- Go To Top
 ============================================= -->
 <div id="gotoTop" class="icon-angle-up"></div>
-
+<!-- JQeryScript 
+============================================= -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- JavaScripts
 ============================================= -->
 <script src="<c:url value='/js/jquery.js' />"></script>
