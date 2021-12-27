@@ -5,6 +5,7 @@ public class CollaborationWinnerDto {
 	private Long collaborationId;
 	private String image;
 	private String title;
+	private Long creatorId;
 	
 	/*
 	 * creator nickname 
@@ -12,7 +13,15 @@ public class CollaborationWinnerDto {
 	private String nickname;
 	
 	private int colArtworkId;
+	
+	
 
+	public Long getCreatorId() {
+		return creatorId;
+	}
+	public void setCreatorId(Long creatorId) {
+		this.creatorId = creatorId;
+	}
 	public int getColArtworkId() {
 		return colArtworkId;
 	}

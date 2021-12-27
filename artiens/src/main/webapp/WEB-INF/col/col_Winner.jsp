@@ -46,14 +46,14 @@
 				<span style="margin-top: 20px;">
 					<div class="d-flex align-items-center"
 						style="justify-content: center;">
-						<a href="#"> <img src="${collaborator.creatorimage }"
+						<a href="/blog/${collaborator.creatorId }"> <img src="${collaborator.creatorimage }"
 							alt="Author" class="rounded-circle" width="35" height="35">
 						</a>
 						<div class="entry-meta mt-0">
 							<div class="entry-meta"
 								style="margin-bottom: 10px; padding-left: 10px;">
 								<ul>
-									<li><a href="/blog/{blogURL}">${collaborator.onenickname }</a></li>
+									<li><a href="/blog/${collaborator.creatorId }">${collaborator.onenickname }</a></li>
 									<li><i class="icon-calendar3"></i>${collaborator.registerdate }</li>
 								</ul>
 							</div>
@@ -110,17 +110,17 @@
 							<c:forEach var="result" items="${result}">
 								<tr class="cart_item">
 									<td class="cart-product-thumbnail">
-										<a href="#">
+										<a href="/collaboration/art/${result.colArtworkId }">
 											<img width="240" height="128" src="${result.image }">
 										</a>
 									</td>
 
 									<td class="cart-product-name">
-										<a href="#">${result.title }</a>
+										<a href="/collaboration/art/${result.colArtworkId }">${result.title }</a>
 									</td>
 
 									<td class="cart-product-name">
-										<a href="#">${result.nickname }</a>
+										<a href="/blog/${result.creatorId }">${result.nickname }</a>
 									</td>
 
 									<td class="cart-product-subtotal">

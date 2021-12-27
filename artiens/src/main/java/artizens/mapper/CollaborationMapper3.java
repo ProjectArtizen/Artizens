@@ -18,6 +18,7 @@ public interface CollaborationMapper3 {
 	@Select("SELECT artwork.collaboration_artwork_storefilename, "
 			+ "		artwork.collaboration_artwork_id, " 
 			+ "		artwork.collaboration_artwork_title, "
+			+ "		artwork.creator_id, "
 			+ "		creator.creator_nickname " 
 			+ "	FROM collaboration_artwork AS artwork " 
 			+ "		JOIN creator "
@@ -33,6 +34,7 @@ public interface CollaborationMapper3 {
 	
 	  @Select("SELECT creator.creator_profile_storefilename, " +
 	  "		creator.creator_nickname, " +
+	  "		creator.creator_id, " +
 	  "		collaboration.collaboration_register_date " + "	FROM creator " +
 	  "		JOIN collaboration " +
 	  "			ON creator.creator_id = collaboration.creator_id " +
@@ -41,7 +43,7 @@ public interface CollaborationMapper3 {
 	  @Results({
 	  
 	  @Result(property = "onenickname", column = "creator_nickname"),
-	  
+	  @Result(property = "creatorId", column = "creator_id"),
 	  @Result(property = "creatorimage", column = "creator_profile_storefilename"),
 	  
 	  @Result(property = "registerdate", column = "collaboration_register_date") })

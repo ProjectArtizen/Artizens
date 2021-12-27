@@ -1,7 +1,7 @@
 package artizens.mapper.dto.collaboration;
 
 public class CollaborationCollaboratorDto {
-	
+	private Long creatorId;
 	/*
 	 * creator nickname 
 	 */
@@ -16,6 +16,16 @@ public class CollaborationCollaboratorDto {
 	 * collaboration_register_date
 	 */
 	private String registerdate;
+
+	
+	
+	public Long getCreatorId() {
+		return creatorId;
+	}
+
+	public void setCreatorId(Long creatorId) {
+		this.creatorId = creatorId;
+	}
 
 	public String getOnenickname() {
 		return onenickname;
