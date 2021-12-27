@@ -152,6 +152,19 @@ public class initDb {
 				Creator creators = Creator.createCreator("제작자"+String.valueOf(i), creatorImageDefault, "www.naver.com", userProfile);
 				em.persist(creators);
 				
+				
+				// artwork 100개 (creators)
+				List<UploadFile> artWorkImages = new ArrayList<UploadFile>();
+				artWorkImages.add(UploadFile.createUploadFile("별이빛나는밤에.JPG",
+						"https://sunminki.s3.ap-northeast-2.amazonaws.com/2fb61b17-7dcb-43ab-8a33-7bfb7ff83611.JPG"));
+				artWorkImages.add(UploadFile.createUploadFile("카페.JPG",
+						"https://sunminki.s3.ap-northeast-2.amazonaws.com/d6d96ab0-d8f0-413e-b683-aaea23a89e2e.JPG"));
+				artWorkImages.add(UploadFile.createUploadFile("침대.JPG",
+						"https://sunminki.s3.ap-northeast-2.amazonaws.com/b3b5addc-9b57-4639-a043-e4b455679bbd.JPG"));
+				ArtWork artworks = ArtWork.createArtWork("고흐의 작품들TEST"+String.valueOf(i), "이것은 별이 빛나고 있는 카페의 침대에 대한 내용"+String.valueOf(i)+"입니다.", ArtWorkCategory.추상화, creators, artWorkImages);
+				em.persist(artworks);
+				
+				
 				// admin patron(후원등록 creator)
 				List<UploadFile> bobImages = new ArrayList<UploadFile>();
 				bobImages.add(UploadFile.createUploadFile("밥로스_산.JPG",
