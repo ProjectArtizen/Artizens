@@ -43,26 +43,16 @@
 											</div>
 		                    			</a>
 		               	 			</li>
-		               	 			<!-- <li class="menu-item">
-		               	 				<c:choose>
-		               	 					<c:when test="${creator eq null }">
-		               	 						<a class="menu-link" href="javascript:fn_blog()">내 블로그</a>
-		               	 					</c:when>
-		               	 					<div >
-		               	 						<a class="menu-link" href="@{/blog/my/${member.id}}">내 블로그</a>
-		               	 					</c:when>
-		               	 				</c:choose>
-		               	 			</li> -->
 		               	 			<li class="menu-item">
-		               	 				<a class="menu-link" th:href="@{/artwork/mypage}">
-		                      				<div>마이페이지</div>
-		                    			</a>
+               	 						<a class="menu-link" th:href="@{/login/check/creator}">내 블로그</a>
 		               	 			</li>
+		               	 			<li class="menu-item">
+               	 						<a class="menu-link" th:href="@{/artwork/mypage}"><div>마이페이지</div></a>
+               	 					</li>
 		           	 			</ul>
-		           	 			<script type="text/javascript">
-		           	 				
+		           	 			<script th:inline="javascript">
 				           	 		function fn_Upload() {
-										window.open("/upload","fileUpload","width=1250,height=700");
+										window.open([[@{/upload}]],"fileUpload","width=1250,height=700");
 									}
 		           	 			</script>
 		              		</li>
