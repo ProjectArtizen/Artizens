@@ -41,18 +41,18 @@
 		<section id="page-title" class="page-title-center"
 			style="background-color: white; border: none; padding-bottom: 0px;">
 			<div class="container clearfix" style="background-color: white;">
-
+ 
 				<h1>${collaborator.title }</h1>
 				<span style="margin-top: 20px;">
 					<div class="d-flex align-items-center"
 						style="justify-content: center;">
-						<a href="/blog/${collaborator.creatorId }"> <img src="${collaborator.creatorimage }"
+						<a href="<c:url value='/blog/${collaborator.creatorId }'/>"> <img src="<c:url value='${collaborator.creatorimage }'/> "
 							alt="Author" class="rounded-circle" width="35" height="35">
 						</a>
 						<div class="entry-meta mt-0">
 							<div class="entry-meta" style="margin-bottom: 10px; padding-left: 10px;">
 								<ul>
-									<li><a href="/blog/${collaborator.creatorId }">${collaborator.onenickname }</a></li>
+									<li><a href="<c:url value='/blog/${collaborator.creatorId }'/> ">${collaborator.onenickname }</a></li>
 									<li><i class="icon-calendar3"></i>${collaborator.registerdate }</li>
 								</ul>
 							</div>
@@ -85,9 +85,9 @@
 									<!-- justify-content-center class for center menu-->
 						
 									<li class="menu-item"><a class="menu-link"
-										href="<c:url value="/collaboration/${collaborator.collaborationId}"/>"><div>콜라보레이션 소개</div></a></li>
+										href="<c:url value='/collaboration/${collaborator.collaborationId}'/> "><div>콜라보레이션 소개</div></a></li>
 						
-									<li class="menu-item"><a class="menu-link" href="<c:url value = "/collaboration/${collaborator.collaborationId}/art"/>"><div>참여작품</div></a></li>
+									<li class="menu-item"><a class="menu-link" href="<c:url value = '/collaboration/${collaborator.collaborationId}/art' />"><div>참여작품</div></a></li>
 						
 									<li class="menu-item col-sm-6 col-12"></li>
 								</ul>
@@ -106,7 +106,7 @@
 		<section id="content">
 			<div class="content-wrap">
 				<div class="container">
-					<form name="frm" method="POST" action="/collaboration/choice" >
+					<form name="frm" method="POST" action="<c:url value='/collaboration/choice'/> " >
 					<table class="table cart mb-5">
 						<colgroup>
 							<col width="30%">
@@ -126,17 +126,17 @@
 							<c:forEach var="result" items="${result}">
 								<tr class="cart_item">
 									<td class="cart-product-thumbnail">
-										<a href="${result.image }" data-lightbox="image">
-											<img width="240" height="128" src="${result.image }">
+										<a href="<c:url value='${result.image }'/> " data-lightbox="image">
+											<img width="240" height="128" src="<c:url value='${result.image }'/> ">
 										</a>
 									</td>
 
 									<td class="cart-product-name">
-										<a href="/collaboration/art/${result.colArtworkId }">${result.title }</a>
+										<a href="<c:url value='/collaboration/art/${result.colArtworkId }'/> ">${result.title }</a>
 									</td>
 
 									<td class="cart-product-name">
-										<a href="/blog/${result.creatorId }">${result.nickname }</a>
+										<a href="<c:url value='/blog/${result.creatorId }'/> ">${result.nickname }</a>
 									</td>
 
 									<td class="cart-product-subtotal">
@@ -172,10 +172,10 @@
 	<div id="gotoTop" class="icon-angle-up"></div>
 
 	<!-- JavaScripts ============================================= -->
-	<script src='<c:url value="/js/jquery.js"/>'/></script>
-	<script src='<c:url value="/js/plugins.min.js"/>'/></script>
+	<script src="<c:url value='/js/jquery.js'/> "/>
+	<script src="<c:url value='/js/plugins.min.js'/>"/>
 	<!-- Footer Scripts
 	============================================= -->
-	<script src='<c:url value="/js/functions.js"/>'/></script>
+	<script src="<c:url value='/js/functions.js'/>"/>
 </body>
 </html>
