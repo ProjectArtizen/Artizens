@@ -27,6 +27,14 @@
 .mfp-close {
 	display: none !important;
 }
+
+.font-style {
+	padding: 5px;
+	padding-left: 8px;
+	padding-right: 8px;
+	letter-spacing:-1px;
+	border-radius: 3px;
+}
 </style>
 
 </head>
@@ -163,24 +171,32 @@
 										</div>
 									</div>
 								</div>
-								<div class="p-4">
-									<h3 class="center" style="margin-bottom: 25px;">
-										<a href="<c:url value='./${result.collaborationId}'/>">${result.title }</a>
-									</h3>
+								<div class="p-4" style="padding-top:12px;">
 
 										<div class="row justify-content-center">
 											<div class="d-flex flex-row align-items-center rounded"
 												style="margin-bottom: 10px;">
-												<div
-													style="width: 110px; padding: 8px; border: #dfdfdf solid 1px; text-align: center; background-color: #666666; color: white;margin:0 auto;">당선작
-													발표</div>
+												<div class="font-style"
+													style="border: #404040 solid 1px; text-align: center; background-color: #666666; color: white;margin:0 auto; font-size:13px;">당선작  &nbsp;&nbsp;발표</div>
+												
 											</div>
+											<h4 class="center" style="margin-bottom: 15px;">
+												<a href="<c:url value='./${result.collaborationId}'/>">${result.title }</a>
+											</h4>
 										</div>
 										
 									<hr class="my-4">
 									<div class="d-flex align-items-center">
-										<a href="<c:url value='/blog/${result.creatorId}'/>"><img src="${result.creatorProfileStoredFileName}"
-											class="rounded-circle" width="38" height="38"></a>
+										<c:choose>
+											<c:when test="${result.creatorProfileStoredFileName eq null}">
+											<a href="<c:url value='/blog/${result.creatorId}'/>"><img src="https://0.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=60"
+												class="rounded-circle" width="38" height="38"></a>
+											</c:when>
+											<c:when test="${result.creatorProfileStoredFileName ne null}">
+											<a href="<c:url value='/blog/${result.creatorId}'/>"><img src="${result.creatorProfileStoredFileName}"
+												class="rounded-circle" width="38" height="38"></a>
+											</c:when>
+										</c:choose>
 										<div class="entry-meta mt-0">
 											<div class="entry-meta"
 												style="margin-bottom: 10px; padding-left: 10px;">
@@ -199,6 +215,12 @@
 						<!-- 콘텐츠 1 끝-->
 						</c:if>
 						</c:forEach>
+						
+						<ul class="pagination mt-5 pagination-circle justify-content-center" id="pagingNumbers">
+			              <li class="page-item disabled"><a class="page-link" href="#"><i class="icon-angle-left"></i></a></li>
+			              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+			              <li class="page-item"><a class="page-link" href="#"><i class="icon-angle-right"></i></a></li>
+			            </ul>
 					</div>
 
 				</div>
@@ -282,7 +304,7 @@
 			}
 			if(creatorId.value == "" || creatorId.value == null) {
 				alert("작품을 최소 1개이상 등록해주세요.");
-				location.href="<c:url value='/upload' />";
+				window.open("<c:url value='/upload'/>","fileUpload","width=1250,height=700");
 				return false;
 			}
 			location.href = "<c:url value='./planning/${creatorId}' />"
