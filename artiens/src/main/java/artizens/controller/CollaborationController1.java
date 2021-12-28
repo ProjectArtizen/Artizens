@@ -48,6 +48,8 @@ public class CollaborationController1 {
 			}
 			
 		}
+		// 세션에 따른 헤더 설정 
+					model.addAttribute("userid", ((user == null) ? null : user.getId()));
 		return "col/col_Main";
 	}
 	
@@ -63,6 +65,9 @@ public class CollaborationController1 {
 		@PathVariable Long creatorId,
 		Model model) throws Exception {
 		model.addAttribute("creatorId",creatorId);
+		
+		// 세션에 따른 헤더 설정 
+		model.addAttribute("userid", ((user == null) ? null : user.getId()));
 		return "col/col_Planning";
 	}
 	
@@ -72,10 +77,17 @@ public class CollaborationController1 {
 	 * @return
 	 */
 	@PostMapping("/planning")
-	public String viewCollaborationResult(@ModelAttribute CollaborationPlanningDto collaborationDto) {
-		CollaborationPlanningDto dto = collaborationService1.insertCollaboration(collaborationDto);
+	public String viewCollaborationResult(@ModelAttribute CollaborationPlanningDto collaborationDto, Model model) {
+		String dto = collaborationService1.insertCollaboration(collaborationDto);
 		LOGGER.info("msg2={}", dto.toString());
-		return "col/col_Planning";
+		
+		if( dto.equals("success") ) {
+			model.addAttribute("msg","콜라보레이션등록완료");
+			return "include/Alert";
+		}else {
+			model.addAttribute("msg","콜라보레이션등록실패");
+			return "include/Alert";
+		}
 	}
 	
 	/**

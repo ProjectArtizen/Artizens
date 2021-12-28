@@ -112,10 +112,13 @@ public class CollaborationMainDto {
 		return "CollaborationMainDto [collaborationId=" + collaborationId + ", title=" + title + ", deadLineDate="
 				+ deadLineDate + ", deadLineYear=" + deadLineYear + ", deadLineMonth=" + deadLineMonth
 				+ ", deadLineDay=" + deadLineDay + ", registerDate=" + registerDate + ", storedFileName="
-				+ storedFileName + ", collaborationImage=" + collaborationImage + ", creatorNickName=" + creatorNickName
-				+ ", creatorProfileStoredFileName=" + creatorProfileStoredFileName + ", deadLineDateCompare="
+				+ storedFileName + ", collaborationImage=" + collaborationImage + ", creatorId=" + creatorId
+				+ ", creatorNickName=" + creatorNickName + ", creatorProfileStoredFileName="
+				+ creatorProfileStoredFileName + ", artworkcount=" + artworkcount + ", deadLineDateCompare="
 				+ deadLineDateCompare + "]";
 	}
+
+	
 
 	
 	

@@ -54,7 +54,7 @@ $( function() {
   ============================================= -->
 	<div id="wrapper" class="clearfix">
 	
-	<form name="frm" id="frm" action="../planning" method="POST" enctype="multipart/form-data">
+	<form name="frm" id="frm" action="<c:url value='../planning'/>" method="POST" enctype="multipart/form-data">
 		<input type="hidden" value="${creatorId }" name="creatorId" id="creatorId">
 		<table class="table text-center caption-top container-sm">
 			<caption class="text-center fs-3 fw-bold" ><img id="logo" src="/images/logo_new/logo_D.png" alt="Artizen Logo"></caption>
@@ -72,7 +72,7 @@ $( function() {
 			</tr>
 			<tr>	
 				<th>파일첨부<small>*</small></th>
-				<td><input type="file" name="collaborationImage" class="form-control"></td>
+				<td><input type="file" name="collaborationImage" id="collaborationImage" class="form-control"></td>
 			</tr>
 			<tr>
 				<th>기획내용<small>*</small></th>
@@ -80,7 +80,7 @@ $( function() {
 			</tr>
 			<tr class="border-borderless">
 				<td colspan="2">
-					<button type="submit" name="submit" id="submit" class="btn btn-primary m-3">콜라보레이션 등록</button>
+					<button type="submit" onclick="fn_chk();return false;" class="btn btn-primary m-3">콜라보레이션 등록</button>
 					<button type="button" onclick="window.close();" class="btn btn-primary ms-3">취소</button>
 				</td>
 			</tr>
@@ -94,15 +94,38 @@ $( function() {
 <script src='<c:url value="/js/components/moment.js"/>'/></script>
 <script src='<c:url value="/js/components/timepicker.js"/>'/></script>
 <script src='<c:url value="/js/components/datepicker.js"/>'/></script>
+
 <script>
-	
-	$(function(){
-		$('#submit').click(function(){
-			if( confirm("콜라보레이션을 등록 하시겠습니까??") == true ) {
-				document.frm.submit();
-			}
-		})
-	})
+	function fn_chk() {
+		var title = document.frm.title;
+		var deadLineDate = document.frm.deadLineDate;
+		var collaborationImage = document.frm.collaborationImage;
+		var content = document.frm.content;
+		
+		if( title.value == "" || title.value == null) {
+			alert("제목을 입력해주세요.");
+			title.focus();
+			return false;
+		}
+		if( deadLineDate.value == "" || deadLineDate.value == null) {
+			alert("기간을 입력해주세요.");
+			return false;
+		}
+		if( collaborationImage.value == "" || collaborationImage.value == null) {
+			alert("이미지를 등록해주세요.");
+			return false;
+		}
+		if( content.value == "" || content.value == null) {
+			alert("내용을 입력해주세요.");
+			content.focus();
+			return false;
+		}
+		if( confirm("콜라보레이션을 등록 하시겠습니까??") == true ) {
+			document.frm.submit();
+			
+		}
+		
+	}
 	
 	$(function() {
 				
@@ -113,7 +136,7 @@ $( function() {
 				});
 
 			});
-	
+
 </script>
 </body>
 </html>

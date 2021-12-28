@@ -11,8 +11,8 @@ public class CollaborationPlanningDto {
 	private String registerDate;
 	private String storedFileName;
 	private MultipartFile collaborationImage;
-	private String creatorNickName;
-	private String creatorProfileStoredFileName;
+	private Long creatorId;
+	
 	
 	public CollaborationPlanningDto() {
 		super();
@@ -36,19 +36,22 @@ public class CollaborationPlanningDto {
 	public MultipartFile getCollaborationImage() {
 		return collaborationImage;
 	}
-	public String getCreatorNickName() {
-		return creatorNickName;
-	}
-	public String getCreatorProfileStoredFileName() {
-		return creatorProfileStoredFileName;
-	}
 	public String getContent() {
 		return content;
 	}
+	public Long getCreatorId() {
+		return creatorId;
+	}
 	
 	
 	
 	
+	
+
+	public void setCreatorId(Long creatorId) {
+		this.creatorId = creatorId;
+	}
+
 	public void setCollaborationId(Long collaborationId) {
 		this.collaborationId = collaborationId;
 	}
@@ -66,12 +69,6 @@ public class CollaborationPlanningDto {
 	}
 	public void setCollaborationImage(MultipartFile collaborationImage) {
 		this.collaborationImage = collaborationImage;
-	}
-	public void setCreatorNickName(String creatorNickName) {
-		this.creatorNickName = creatorNickName;
-	}
-	public void setCreatorProfileStoredFileName(String creatorProfileStoredFileName) {
-		this.creatorProfileStoredFileName = creatorProfileStoredFileName;
 	}
 	public void setContent(String content) {
 		this.content = content;

@@ -57,7 +57,7 @@
 						<h3 style="display: inline-block;">진행중인 콜라보레이션</h3>
 						<input type="hidden" name="userId" id="userId" value="${userId }">
 						<input type="hidden" name="creatorId" id="creatorId" value="${creatorId }">
-						<button style="float: right; border-color: #00d084; border-radius: 25px; width: 190px; Height: 50px; color: #00d084; background-color: #ffffff" onclick="fn_check();return false;">콜라보레이션 기획</button>
+						<button type="button" onclick="fn_check();return false;" style="float: right; border-color: #00d084; border-radius: 25px; width: 190px; Height: 50px; color: #00d084; background-color: #ffffff">콜라보레이션 기획</button>
 					</div>
 					<hr>
 					
@@ -75,7 +75,7 @@
 										<div class="flexslider">
 											<div class="slider-wrap">
 												<div style="height: 230px; overflow: hidden">
-													<a href="./${result.collaborationId}">
+													<a href="<c:url value='./${result.collaborationId}'/>">
 													<img src="${result.storedFileName}"/>
 													</a>
 												</div>
@@ -86,7 +86,7 @@
 								<div class="p-4">
 									<div style="height:54px; margin-bottom: 20px;">
 										<h4 class="center">
-											<a href="./${result.collaborationId}">${result.title }</a>
+											<a href="<c:url value='./${result.collaborationId}'/>">${result.title }</a>
 										</h4>
 									</div>
 
@@ -100,12 +100,20 @@
 
 									<hr class="my-4">
 									<div class="d-flex align-items-center">
-										<a href="./${result.collaborationId}"><img src="${result.creatorProfileStoredFileName}"
-											class="rounded-circle" width="38" height="38"></a>
+										<c:choose>
+											<c:when test="${result.creatorProfileStoredFileName eq null}">
+											<a href="<c:url value='/blog/${result.creatorId}'/>"><img src="https://0.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=60"
+												class="rounded-circle" width="38" height="38"></a>
+											</c:when>
+											<c:when test="${result.creatorProfileStoredFileName ne null}">
+											<a href="<c:url value='/blog/${result.creatorId}'/>"><img src="${result.creatorProfileStoredFileName}"
+												class="rounded-circle" width="38" height="38"></a>
+											</c:when>
+										</c:choose>
 										<div class="entry-meta mt-0">
 											<div class="entry-meta" style="margin-bottom: 10px; padding-left: 10px;">
 												<ul>
-													<li><a href="./${result.collaborationId}"><h6 class="mb-1 h6" style="display: inline;">${result.creatorNickName }</h6></a></li>
+													<li><a href="<c:url value='/blog/${result.creatorId}'/>"><h6 class="mb-1 h6" style="display: inline;">${result.creatorNickName }</h6></a></li>
 													<li><i class="icon-calendar3"></i>${result.registerDate }</li>
 													<!-- <li><a href="blog-single.html#comments"><i class="icon-comments"></i> 13</a></li> -->
 													<li>${result.artworkcount}명 참여</li>
@@ -147,7 +155,7 @@
 										<div class="flexslider">
 											<div class="slider-wrap">
 												<div style="height: 230px; overflow: hidden">
-													<a href="./${result.collaborationId}">
+													<a href="<c:url value='./${result.collaborationId}'/>">
 													<img src="${result.storedFileName}"/>
 													</a>
 												</div>
@@ -157,7 +165,7 @@
 								</div>
 								<div class="p-4">
 									<h3 class="center" style="margin-bottom: 25px;">
-										<a href="./${result.collaborationId}">${result.title }</a>
+										<a href="<c:url value='./${result.collaborationId}'/>">${result.title }</a>
 									</h3>
 
 										<div class="row justify-content-center">
@@ -171,13 +179,13 @@
 										
 									<hr class="my-4">
 									<div class="d-flex align-items-center">
-										<a href="./${result.collaborationId}"><img src="${result.creatorProfileStoredFileName}"
+										<a href="<c:url value='/blog/${result.creatorId}'/>"><img src="${result.creatorProfileStoredFileName}"
 											class="rounded-circle" width="38" height="38"></a>
 										<div class="entry-meta mt-0">
 											<div class="entry-meta"
 												style="margin-bottom: 10px; padding-left: 10px;">
 												<ul>
-													<li><a href="./${result.collaborationId}"><h6 class="mb-1 h6" style="display: inline;">${result.creatorNickName }</h6></a></li>
+													<li><a href="<c:url value='/blog/${result.creatorId}'/>"><h6 class="mb-1 h6" style="display: inline;">${result.creatorNickName }</h6></a></li>
 													<li><i class="icon-calendar3"></i>${result.registerDate }</li>
 													<!-- <li><a href="blog-single.html#comments"><i class="icon-comments"></i> 13</a></li> -->
 													<li>${result.artworkcount}명 참여</li>
@@ -274,10 +282,10 @@
 			}
 			if(creatorId.value == "" || creatorId.value == null) {
 				alert("작품을 최소 1개이상 등록해주세요.");
-				location.href="";
+				location.href="<c:url value='/upload' />";
 				return false;
 			}
-			location.href = "./planning/${creatorId}"
+			location.href = "<c:url value='./planning/${creatorId}' />"
 			
 		}
 		

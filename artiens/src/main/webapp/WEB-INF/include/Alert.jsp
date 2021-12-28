@@ -54,5 +54,13 @@
 			alert("대상자 선정에 실패하셨습니다. 다시 시도해 주세요.");
 			location.reload();
 		</c:when>
+		<c:when test="${msg == '콜라보레이션등록완료'}">
+			alert("콜라보레이션 등록을 완료하였습니다.");
+			location.href="<c:url value='/collaboration/main' />";
+		</c:when>
+		<c:when test="${msg == '콜라보레이션등록실패'}">
+			alert("콜라보레이션 등록을 실패하였습니다.");
+			location.reload();
+		</c:when>
 	</c:choose>
 </script>
