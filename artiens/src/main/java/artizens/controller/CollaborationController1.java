@@ -82,11 +82,11 @@ public class CollaborationController1 {
 		LOGGER.info("msg2={}", dto.toString());
 		
 		if( dto.equals("success") ) {
-			model.addAttribute("msg","콜라보레이션등록완료");
-			return "include/Alert";
+			model.addAttribute("msg","colRegister");
+			return "col/col_Redirect";
 		}else {
-			model.addAttribute("msg","콜라보레이션등록실패");
-			return "include/Alert";
+			model.addAttribute("msg","colFail");
+			return "col/col_Redirect";
 		}
 	}
 	

@@ -20,7 +20,6 @@ public class CollaborationService3 {
 	
 	public List<CollaborationWinnerDto> findAllCollaborationWinner( Long collaboId){
 		List<CollaborationWinnerDto> result = collaborationMapper3.findAllCollaborationWinner(collaboId);
-		LOGGER.info("값={}",result);
 		return result;
 	}
 

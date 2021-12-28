@@ -40,6 +40,8 @@ public class CollaborationController3 {
 		CollaborationCollaboratorDto collaborator = collaborationService3.findCollaborator(collaboId);
 		model.addAttribute("result", result);
 		model.addAttribute("collaborator", collaborator);
+		// 세션에 따른 헤더 설정 
+		model.addAttribute("userid", ((user == null) ? null : user.getId()));
 		return "col/col_Winner";
 	}
 	
@@ -50,14 +52,17 @@ public class CollaborationController3 {
 	@PostMapping("/choice")
 	public String winnerUpdate(@RequestParam(name = "checkeds") List<Integer> value, Model model ) {
 		LOGGER.info("msg={}", value);
-		
+		if (value == null || value.size() == 0 ) {
+			model.addAttribute("msg","winnerNotSelect");
+			return "col/col_Redirect";
+		}
 		String result = collaborationService3.winnerUpdate(value); 
 		if( result.equals("success") ) {
-			model.addAttribute("msg","대상자 선정완료");
-			return "include/Alert";
+			model.addAttribute("msg","winnerComplete");
+			return "col/col_Redirect";
 		}else {
-			model.addAttribute("msg","대상자 선정실패");
-			return "include/Alert";
+			model.addAttribute("msg","winnerFail");
+			return "col/col_Redirect";
 		}
 			
 	}

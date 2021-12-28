@@ -35,6 +35,29 @@
 		alert("평가중입니다. 기다리세요.");
 		location.href = "<c:url value='/collaboration/art/${artworkValue}'/>";
 	</c:if>
+	
+	<c:if test="${msg == 'winnerComplete'}">
+		alert("수상작 평가를 완료했습니다! 이제 수상작품에 뜹니다.");
+		location.href = "<c:url value='/collaboration/main'/>";
+	</c:if>
+	<c:if test="${msg == 'winnerFail'}">
+		alert("수상작 평가에 실패했습니다.");
+		location.href = "<c:url value='/collaboration/main'/>";
+	</c:if>
+	<c:if test="${msg == 'winnerNotSelect'}">
+		alert("선정작을 선택하지 않았습니다.");
+		location.href = "<c:url value='/collaboration/main'/>";
+	</c:if>
+	
+	
+	<c:if test="${msg == 'colRegister'}">
+		alert("콜라보레이션 등록을 완료했습니다.");
+		location.href = "<c:url value='/collaboration/main'/>";
+	</c:if>
+	<c:if test="${msg == 'colFail'}">
+		alert("콜라보레이션 등록에 실패했습니다.");
+		location.href = "<c:url value='/collaboration/main'/>";
+	</c:if>
 </script>
 </head>
 </html>
