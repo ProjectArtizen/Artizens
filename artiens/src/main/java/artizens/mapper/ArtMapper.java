@@ -99,6 +99,17 @@ public interface ArtMapper {
 			+ "where c.creator_id = ${creator}")
 	List<StoreFileDTO> findByImageURL(Long creator);
 	
+	@Select("select b.artwork_images_id as imageId, "
+			+ "		b.artwork_images_storefilename as storefilename,"
+			+ "		a.artwork_title as title, "
+			+ "		date_format(a.artwork_register_date,'%Y-%m-%d')as register  "
+			+ "from artwork_images as b left join artwork as a on "
+			+ "b.art_work_id = a.artwork_id left join creator c on "
+			+ "a.creator_id = c.creator_id "
+			+ "where c.creator_id = ${creator} "
+			+ "order by register desc limit 3")
+	List<StoreFileDTO> findByRecent(Long creator);
+	
 	@Select("select creator_profile_storefilename as profileImage, "
 			+ "		creator_nickname as nickname, "
 			+ "		creator_detail_intro as content	"

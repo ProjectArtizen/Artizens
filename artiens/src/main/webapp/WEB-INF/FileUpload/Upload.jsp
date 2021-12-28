@@ -146,15 +146,13 @@
 			tagbox.value = result;
 			
 	 	}
-		
-
 	});
 	
 	$(function(){
 		$('#submit').click(function(){
 			if( confirm("이미지를 등록하시겠습니까?") == true ) {
 				document.frm.method = "post"; 
-				theForm.action = "/artizen/upload";
+				theForm.action = "<c:url value='/upload'/>";
 				document.frm.submit();
 			}
 		})

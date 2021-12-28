@@ -118,9 +118,9 @@
 					<!-- #posts end -->
 					<ul class="pagination mt-5 pagination-circle pagination-lg justify-content-center" id="pagingNumbers">
 						<c:choose>
-							<c:when test="${nowpage eq 1 }">
+							<c:when test="${nowpage < 5 }">
 							</c:when>
-							<c:when test="${nowpage ne 1 }">
+							<c:when test="${nowpage > 5 }">
 								<li class="page-item"><a class="page-link" href="?page=${spage-1}" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
 							</c:when>
 						</c:choose>

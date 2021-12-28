@@ -119,31 +119,31 @@
 					<h1> CATEGORY</h1>
 					<hr>
 					<div class="block-expand-categories flex-column flex-lg-row d-flex justify-content-center">
-						<div class="expand-category bg-light" onclick="location.href='<c:url value="/artwork/ink" />'" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('https://sunminki.s3.ap-northeast-2.amazonaws.com/27ce9d54-874d-4c35-b601-617920fb88f7.jpg')no-repeat; background-size: cover;">
+						<div class="expand-category bg-light" onclick="location.href='<c:url value="/artwork/ink" />'" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('https://sunminki.s3.ap-northeast-2.amazonaws.com/76332500-b8b4-42f4-a2c6-7ec756d14d25.jpg')no-repeat; background-size: cover;">
 							<h4><a href="<c:url value='/artwork/ink' />" class="text-light">수묵화</a></h4>
 						</div>
 
-						<div class="expand-category bg-light" onclick="location.href='<c:url value="/artwork/color" />'" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('https://sunminki.s3.ap-northeast-2.amazonaws.com/3ab02651-602c-4911-8a5c-00e9c2d5cf10.jpg')no-repeat; background-size: cover;">
+						<div class="expand-category bg-light" onclick="location.href='<c:url value="/artwork/color" />'" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('https://sunminki.s3.ap-northeast-2.amazonaws.com/fdc3dfe6-9742-4af7-b308-906c115e863b.jpg')no-repeat; background-size: cover;">
 							<h4><a href="<c:url value='/artwork/color' />" class="text-light">채색화</a></h4>
 						</div>
 
-						<div class="expand-category bg-light" onclick="location.href='<c:url value="/artwork/landscape" />'" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('https://sunminki.s3.ap-northeast-2.amazonaws.com/aed6e477-ec18-4714-a8cb-3d669e7ff5f2.jpg')no-repeat; background-size: cover;;">
+						<div class="expand-category bg-light" onclick="location.href='<c:url value="/artwork/landscape" />'" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('https://sunminki.s3.ap-northeast-2.amazonaws.com/b8e903f4-2e56-4c55-af2c-5daa398bad4b.jpg')no-repeat; background-size: cover;;">
 							<h4><a href="<c:url value='/artwork/landscape' />" class="text-light">풍경화</a></h4>
 						</div>
 
-						<div class="expand-category bg-light" onclick="location.href='<c:url value="/artwork/figure" />'" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('https://sunminki.s3.ap-northeast-2.amazonaws.com/d0be31ce-5e93-4263-be30-6d8cddb5a14c.jpg')no-repeat; background-size:cover">
+						<div class="expand-category bg-light" onclick="location.href='<c:url value="/artwork/figure" />'" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('https://sunminki.s3.ap-northeast-2.amazonaws.com/1d687c4b-2b29-459e-996d-25b7df947391.jpg')no-repeat; background-size:cover">
 							<h4><a href="<c:url value='/artwork/figure' />" class="text-light">인물화</a></h4>
 						</div>
 
-						<div class="expand-category bg-light" onclick="location.href='<c:url value="/artwork/abstract" />'" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('https://sunminki.s3.ap-northeast-2.amazonaws.com/ee535b89-d18c-4083-a72f-e448f7ab4431.jpg')no-repeat; background-size:cover;">
+						<div class="expand-category bg-light" onclick="location.href='<c:url value="/artwork/abstract" />'" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('https://sunminki.s3.ap-northeast-2.amazonaws.com/14c1801b-f038-41ad-a4a8-ae5d811940f5.jpg')no-repeat; background-size:cover;">
 							<h4><a href="<c:url value='/artwork/abstract' />" class="text-light">추상화</a></h4>
 						</div>
 
-						<div class="expand-category bg-light" onclick="location.href='<c:url value="/artwork/still" />'" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('https://sunminki.s3.ap-northeast-2.amazonaws.com/21e36b59-31fc-4cc2-950b-4817e11241bc.jpg')no-repeat; background-size:cover;;">
+						<div class="expand-category bg-light" onclick="location.href='<c:url value="/artwork/still" />'" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('https://sunminki.s3.ap-northeast-2.amazonaws.com/f05707e3-1ea0-48de-aef1-1adad22512fe.jpg')no-repeat; background-size:cover;;">
 							<h4><a href="<c:url value='/artwork/still' />" class="text-light">정물화</a></h4>
 						</div>
 
-						<div class="expand-category bg-light" onclick="location.href='<c:url value="/artwork/pop" />'" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('https://sunminki.s3.ap-northeast-2.amazonaws.com/ac373e31-5e0c-4fd0-b4bb-2eef7578755a.jpg')no-repeat; background-size:cover;;">
+						<div class="expand-category bg-light" onclick="location.href='<c:url value="/artwork/pop" />'" style="background: linear-gradient(to bottom, transparent, rgba(0,0,0,.3) 75%, rgba(0,0,0,0.9) 100%), url('https://sunminki.s3.ap-northeast-2.amazonaws.com/91819c20-ab24-46eb-a7c2-3dfdb93e7327.jpg')no-repeat; background-size:cover;;">
 							<h4><a href="<c:url value='/artwork/pop' />" class="text-light">팝아트</a></h4>
 						</div>
 					</div>

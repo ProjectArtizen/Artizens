@@ -96,12 +96,16 @@ public class ArtService {
 	}
 	
 	public List<StoreFileDTO> findByAll( Long creator ) {
-		List<StoreFileDTO> storeFileName = artMapper.findByImageURL( creator );
-		return storeFileName;
+		return artMapper.findByImageURL( creator );
 	}
 	
 	public List<StoreFileDTO> findByProfile( Long creator ) {
 		List<StoreFileDTO> store = artMapper.findByCreatorImage( creator );
+		return store;
+	}
+	
+	public List<StoreFileDTO> findByRecent( Long creator ) {
+		List<StoreFileDTO> store = artMapper.findByRecent( creator );
 		return store;
 	}
 	
@@ -151,7 +155,7 @@ public class ArtService {
 	public List<ArtCategoryDTO> findByCategory(String page,int startno, int unit) {
 		if ( startno == 1 ) {
 			startno = 0;
-			}
+		}
 		return artMapper.findByCategory(page,startno,unit);
 	}
 	

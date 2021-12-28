@@ -8,11 +8,22 @@ public class StoreFileDTO extends ArtDetailDTO{
 	private String content;
 	private String nickname;
 	private Long imageId;
+	private String register;
+	private String title;
 	
-	@Override
-	public String toString() {
-		return "StoreFileDTO [storeFileName=" + storeFileName + ", uploadFileName=" + uploadFileName + ", profileImage="
-				+ profileImage + ", content=" + content + ", nickname=" + nickname + ", imageId=" + imageId + "]";
+	
+	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getRegister() {
+		return register;
+	}
+	public void setRegister(String register) {
+		this.register = register;
 	}
 	public Long getImageId() {
 		return imageId;

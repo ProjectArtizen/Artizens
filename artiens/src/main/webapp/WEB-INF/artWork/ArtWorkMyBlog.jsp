@@ -26,6 +26,7 @@
 <link rel="stylesheet" href="<c:url value='/css/custom.css' />" type="text/css" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <c:set var="profile" value="${profile }"/>
+<c:set var="recent" value="${recent }"/>
 <title>::: ARTIZEN | ${profile.nickname }님의 블로그 :::</title>
 
 <style>
@@ -190,159 +191,42 @@
 									<div class="tabs mb-0 clearfix" id="sidebar-tabs">
 
 										<ul class="tab-nav clearfix">
-											<li><a href="#tabs-1">인기 작품</a></li>
-											<li><a href="#tabs-2">최근 작품</a></li>
+											<li><a href="#tabs-1">최근 작품</a></li>
 										</ul>
 
 										<div class="tab-container">
 
+										
 											<div class="tab-content clearfix" id="tabs-1">
+												
 												<div class="posts-sm row col-mb-30"
 													id="recent-post-list-sidebar">
+													<c:forEach var="recent" items="${recent }">
 													<div class="entry col-12">
 														<div class="grid-inner row g-0">
 															<div class="col-auto">
 																<div class="entry-image">
-																	<a href="#"><img src="/images/artwork/1.jpg" alt="Image"></a>
+																	<a href="#"><img src="<c:url value='${recent.storeFileName }' />" alt="Image"></a>
 																</div>
 															</div>
 															<div class="col ps-3">
 																<div class="entry-title">
 																	<h4>
-																		<a href="#">Lorem ipsum dolor sit amet,
-																			consectetur</a>
+																		<a href="#">${recent.title }</a>
 																	</h4>
 																</div>
 																<div class="entry-meta">
 																	<ul>
-																		<li>10th July 2021</li>
+																		<li>${recent.register }</li>
 																	</ul>
 																</div>
 															</div>
 														</div>
 													</div>
-
-													<div class="entry col-12">
-														<div class="grid-inner row g-0">
-															<div class="col-auto">
-																<div class="entry-image">
-																	<a href="#"><img src="/images/artwork/3.jpg" alt="Image"></a>
-																</div>
-															</div>
-															<div class="col ps-3">
-																<div class="entry-title">
-																	<h4>
-																		<a href="#">Elit Assumenda vel amet dolorum quasi</a>
-																	</h4>
-																</div>
-																<div class="entry-meta">
-																	<ul>
-																		<li>10th July 2021</li>
-																	</ul>
-																</div>
-															</div>
-														</div>
-													</div>
-
-													<div class="entry col-12">
-														<div class="grid-inner row g-0">
-															<div class="col-auto">
-																<div class="entry-image">
-																	<a href="#">
-																		<img src="/images/artwork/5.jpg" alt="Image"></a>
-																</div>
-															</div>
-															<div class="col ps-3">
-																<div class="entry-title">
-																	<h4>
-																		<a href="#">Debitis nihil placeat, illum est nisi</a>
-																	</h4>
-																</div>
-																<div class="entry-meta">
-																	<ul>
-																		<li>10th July 2021</li>
-																	</ul>
-																</div>
-															</div>
-														</div>
-													</div>
+													</c:forEach>
 												</div>
 											</div>
-											<div class="tab-content clearfix" id="tabs-2">
-												<div class="posts-sm row col-mb-30"
-													id="recent-post-list-sidebar">
-													<div class="entry col-12">
-														<div class="grid-inner row g-0">
-															<div class="col-auto">
-																<div class="entry-image">
-																	<a href="#"><img class="rounded-circle"
-																		src="/images/artwork/9.jpg" alt="Image"></a>
-																</div>
-															</div>
-															<div class="col ps-3">
-																<div class="entry-title">
-																	<h4>
-																		<a href="#">Lorem ipsum dolor sit amet,
-																			consectetur</a>
-																	</h4>
-																</div>
-																<div class="entry-meta">
-																	<ul>
-																		<li>10th July 2021</li>
-																	</ul>
-																</div>
-															</div>
-														</div>
-													</div>
-
-													<div class="entry col-12">
-														<div class="grid-inner row g-0">
-															<div class="col-auto">
-																<div class="entry-image">
-																	<a href="#"><img class="rounded-circle"
-																		src="/images/artwork/10.jpg" alt="Image"></a>
-																</div>
-															</div>
-															<div class="col ps-3">
-																<div class="entry-title">
-																	<h4>
-																		<a href="#">Elit Assumenda vel amet dolorum quasi</a>
-																	</h4>
-																</div>
-																<div class="entry-meta">
-																	<ul>
-																		<li>10th July 2021</li>
-																	</ul>
-																</div>
-															</div>
-														</div>
-													</div>
-
-													<div class="entry col-12">
-														<div class="grid-inner row g-0">
-															<div class="col-auto">
-																<div class="entry-image">
-																	<a href="#"><img class="rounded-circle"
-																		src="/images/artwork/11.jpg" alt="Image"></a>
-																</div>
-															</div>
-															<div class="col ps-3">
-																<div class="entry-title">
-																	<h4>
-																		<a href="#">Debitis nihil placeat, illum est nisi</a>
-																	</h4>
-																</div>
-																<div class="entry-meta">
-																	<ul>
-																		<li>10th July 2021</li>
-																	</ul>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-	
+										
 										</div>
 
 									</div>

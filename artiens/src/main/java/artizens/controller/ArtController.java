@@ -69,6 +69,8 @@ public class ArtController {
 			List<StoreFileDTO> store = artService.findByAll( creator );
 			model.addAttribute("store",store);
 			List<StoreFileDTO> profile = artService.findByProfile( creator );
+			List<StoreFileDTO> recent = artService.findByRecent( creator );
+			model.addAttribute("recent",recent);
 			BlogInfoDTO bloginfoDTO = new BlogInfoDTO();
 			for( StoreFileDTO a : profile ) {
 				bloginfoDTO.setNickname(a.getNickname());
