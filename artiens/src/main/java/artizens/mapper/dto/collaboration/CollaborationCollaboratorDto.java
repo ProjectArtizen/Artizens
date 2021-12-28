@@ -23,7 +23,7 @@ public class CollaborationCollaboratorDto {
 	private String registerdate;
 
 	
-	
+
 	public Long getCollaborationId() {
 		return collaborationId;
 	}
