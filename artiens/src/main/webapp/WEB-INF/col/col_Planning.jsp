@@ -57,7 +57,7 @@ $( function() {
 	<form name="frm" id="frm" action="<c:url value='../planning'/>" method="POST" enctype="multipart/form-data">
 		<input type="hidden" value="${creatorId }" name="creatorId" id="creatorId">
 		<table class="table text-center caption-top container-sm">
-			<caption class="text-center fs-3 fw-bold" ><img id="logo" src="/images/logo_new/logo_D.png" alt="Artizen Logo"></caption>
+			<caption class="text-center fs-3 fw-bold" ><img id="logo" src="<c:url value='/images/logo_new/logo_D.png' />" alt="Artizen Logo"></caption>
 			<colgroup>
 				<col width="10%"/>
 				<col width="*"/>
