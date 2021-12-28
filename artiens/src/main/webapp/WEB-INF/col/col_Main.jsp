@@ -176,14 +176,21 @@
 										<div class="row justify-content-center">
 											<div class="d-flex flex-row align-items-center rounded"
 												style="margin-bottom: 10px;">
+												<c:choose>
+												<c:when test="${result.evaluate eq true}">
 												<div class="font-style"
-													style="border: #404040 solid 1px; text-align: center; background-color: #666666; color: white;margin:0 auto; font-size:13px;">당선작  &nbsp;&nbsp;발표</div>
-												
+															style="border: #404040 solid 1px; text-align: center; background-color: #666666; color: white;margin:0 auto; font-size:13px;">당선작  &nbsp;&nbsp;발표</div>
+												</c:when>
+												<c:when test="${result.evaluate eq false}">
+												<div class="font-style"
+															style="border: #404040 solid 1px; text-align: center; background-color: #666666; color: white;margin:0 auto; font-size:13px;">당선작  &nbsp;&nbsp;선정중</div>
+												</c:when>
+												</c:choose>
 											</div>
-											<h4 class="center" style="margin-bottom: 15px;">
+										</div>
+										<h4 class="center" style="margin-bottom: 15px;">
 												<a href="<c:url value='./${result.collaborationId}'/>">${result.title }</a>
 											</h4>
-										</div>
 										
 									<hr class="my-4">
 									<div class="d-flex align-items-center">
@@ -206,6 +213,7 @@
 													<!-- <li><a href="blog-single.html#comments"><i class="icon-comments"></i> 13</a></li> -->
 													<li>${result.artworkcount}명 참여</li>
 												</ul>
+												
 											</div>
 										</div>
 									</div>

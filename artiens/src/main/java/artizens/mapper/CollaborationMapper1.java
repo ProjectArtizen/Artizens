@@ -33,6 +33,9 @@ public interface CollaborationMapper1 {
 		@Result(property = "registerDate", column = "collaboration_register_date"),
 		@Result(property = "storedFileName", column = "collaboration_storefilename"),
 		@Result(property = "creatorProfileStoredFileName", column = "creator_profile_storefilename"),
+		@Result(property = "evaluate", column = "collaboration_evaluate"),
+		@Result(property = "creatorId", column = "creator_id"),
+		@Result(property = "creatorNickName", column = "creator_nickname")
 	})
 	@Select("select"
 			+ " col.collaboration_id as collaboration_id, "
@@ -40,6 +43,7 @@ public interface CollaborationMapper1 {
 			+ " col.collaboration_storefilename as collaboration_storefilename, "
 			+ " date_add(col.collaboration_deadline_date, INTERVAL 1 DAY) as collaboration_deadline_date, "
 			+ " col.collaboration_register_date as collaboration_register_date,"
+			+ "	col.collaboration_evaluate as collaboration_evaluate, "
 			+ "	cre.creator_id as creator_id, "
 			+ " cre.creator_nickname as creator_nickname, "
 			+ " cre.creator_profile_storefilename as creator_profile_storefilename,"

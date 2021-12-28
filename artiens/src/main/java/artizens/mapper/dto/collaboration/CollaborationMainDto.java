@@ -22,11 +22,12 @@ public class CollaborationMainDto {
 	private String creatorProfileStoredFileName;
 	private int artworkcount;
 	private int deadLineDateCompare;
+	private boolean evaluate;
+	
 	
 	public CollaborationMainDto() {
 		super();
 	}
-	
 	public Long getCollaborationId() {
 		return collaborationId;
 	}
@@ -69,7 +70,10 @@ public class CollaborationMainDto {
 	public int getArtworkcount() {
 		return artworkcount;
 	}
-
+	public boolean isEvaluate() {
+		return evaluate;
+	}
+	
 	
 
 	public void setCollaborationId(Long collaborationId) {
@@ -106,7 +110,9 @@ public class CollaborationMainDto {
 	public void setArtworkcount(int artworkcount) {
 		this.artworkcount = artworkcount;
 	}
-
+	public void setEvaluate(boolean evaluate) {
+		this.evaluate = evaluate;
+	}
 	@Override
 	public String toString() {
 		return "CollaborationMainDto [collaborationId=" + collaborationId + ", title=" + title + ", deadLineDate="
@@ -115,15 +121,6 @@ public class CollaborationMainDto {
 				+ storedFileName + ", collaborationImage=" + collaborationImage + ", creatorId=" + creatorId
 				+ ", creatorNickName=" + creatorNickName + ", creatorProfileStoredFileName="
 				+ creatorProfileStoredFileName + ", artworkcount=" + artworkcount + ", deadLineDateCompare="
-				+ deadLineDateCompare + "]";
+				+ deadLineDateCompare + ", evaluate=" + evaluate + "]";
 	}
-
-	
-
-	
-	
-	
-	
-	
-	
 }
