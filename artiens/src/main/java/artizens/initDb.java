@@ -105,7 +105,7 @@ public class initDb {
 			
 			
 			/**
-			 * user - user1 
+			 * user - user1 조커
 			 * creator - creator1 등록 완료, 
 			 * patron - 미등록)
 			 */
@@ -147,8 +147,8 @@ public class initDb {
 				em.persist(userProfile);
 				
 				// 참쉽죠 아저씨 이미지 
-				UploadFile creatorImageDefault = UploadFile.createUploadFile("김기현.JPG",
-						"https://sunminki.s3.ap-northeast-2.amazonaws.com/0081e4f3-3cec-46b6-a34d-3b0139c4635d.jpg");
+				UploadFile creatorImageDefault = UploadFile.createUploadFile("밥로스.JPG",
+						"https://sunminki.s3.ap-northeast-2.amazonaws.com/fe9b1626-bd9a-40ae-934f-6ec53b96b062.JPG");
 				Creator creators = Creator.createCreator("제작자"+String.valueOf(i), creatorImageDefault, "www.naver.com", userProfile);
 				em.persist(creators);
 				
