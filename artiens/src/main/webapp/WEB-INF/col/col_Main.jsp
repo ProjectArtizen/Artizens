@@ -193,7 +193,7 @@
 												</c:choose>
 											</div>
 										</div>
-										<h4 class="center" style="margin-bottom: 15px;">
+										<h4 class="center" style="margin-bottom: 30px;">
 												<a href="<c:url value='./${result.collaborationId}'/>">${result.title }</a>
 											</h4>
 										
