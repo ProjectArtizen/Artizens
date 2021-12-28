@@ -123,7 +123,7 @@ public class CollaborationController2 {
 		}
 		model.addAttribute("result", result);
 		model.addAttribute("userid", ((user == null) ? null : user.getId()));
-		return "col/col_ArtWinnerList";
+		return "col/col_ArtList";
 	}
 	
 	/**
