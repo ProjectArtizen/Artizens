@@ -1,9 +1,5 @@
 package artizens.controller;
 
-import static org.hamcrest.CoreMatchers.nullValue;
-
-import java.util.Optional;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import artizens.domain.UserProfile;
 import artizens.mapper.CollaborationMapper2;
@@ -73,7 +68,6 @@ public class CollaborationController2 {
 	public String colArt(
 			@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user,
 			@PathVariable(name="collaborationArtWorkId") Long colArtId,
-			@RequestParam(value = "update") String update,
 			Model model){
 		CollaborationArtworkDetailDto result = collaborationService.collaborationArtWotkDetailForm(colArtId);
 		if (result == null) {
@@ -81,7 +75,6 @@ public class CollaborationController2 {
 			return "col/col_Redirect";
 		}
 		model.addAttribute("result", result);
-		model.addAttribute("update", update);
 		// 세션에 따른 헤더 설정 
 		model.addAttribute("userid", ((user == null) ? null : user.getId()));
 		return "col/col_ArtWorkDetail";

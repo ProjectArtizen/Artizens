@@ -28,7 +28,7 @@
 		location.href = "<c:url value='/collaboration/main'/>";
 	</c:if>
 	<c:if test="${update == 'success'}">
-		alert("이미 참여한 콜라보레이션 입니다.");
+		alert("참여가 완료 되었습니다.");
 		location.href = "<c:url value='/collaboration/art/${updateValue}'/>";
 	</c:if>
 </script>

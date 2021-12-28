@@ -53,11 +53,15 @@ public interface CollaborationMapper2 {
 			@Result(property = "creatorNickname", column = "creator_nickname"),
 			@Result(property = "creatorImgName", column = "creator_profile_storefilename"),
 			@Result(property = "contentImgName", column = "collaboration_artwork_storefilename"),
-			@Result(property = "content", column = "collaboration_artwork_content")
+			@Result(property = "content", column = "collaboration_artwork_content"),
+			@Result(property = "collaborationTitle", column = "collaboration_title"),
+			@Result(property = "collaborationId", column = "collaboration_id")
 		})
 	@Select("select * from collaboration_artwork"
 			+ " left join creator"
 			+ " on collaboration_artwork.creator_id = creator.creator_id"
+			+ " left join collaboration"
+			+ " on collaboration_artwork.collaboration_id = collaboration.collaboration_id" 
 			+ " where collaboration_artwork.collaboration_artwork_id=${collaborationArtWorkId}")
 	CollaborationArtworkDetailDto findaCollaboArtWorkById(Long collaborationArtWorkId);
 	

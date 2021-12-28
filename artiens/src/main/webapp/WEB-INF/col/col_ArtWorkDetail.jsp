@@ -26,11 +26,6 @@
 <!-- Document Title
 	============================================= -->
 <title>콜라보레이션 작품</title>
-<script type="text/javascript">
-	if ('${update} == 'success'){
-		alert("콜라보레이션 참가가 완료 되었습니다.")
-	}
-</script>
 <style>
 
 .mfp-close {
@@ -117,7 +112,8 @@
 						  		 margin-bottom:1em;">수상작
 					</span>
 				</c:if>
-				<h1>${result.title}</h1>
+				<h1><a href="<c:url value='/collaboration/${result.collaborationId}'/>">${result.collaborationTitle}</a></h1>
+				<h3>- ${result.title} -</h3>
 				<span style="margin-top: 20px;">
 					<div class="d-flex align-items-center"
 						style="justify-content: center;">

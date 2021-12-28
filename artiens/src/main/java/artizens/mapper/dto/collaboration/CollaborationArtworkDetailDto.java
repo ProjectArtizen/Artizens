@@ -17,9 +17,17 @@ public class CollaborationArtworkDetailDto {
 	private int commentCount;
 	private Long commentId;
 	private String comment;
+	private String collaborationTitle;
+	private Long collaborationId;
+	
 	public Long getId() {
 		return id;
 	}
+	
+	public Long getCollaborationId() {
+		return collaborationId;
+	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -57,9 +65,19 @@ public class CollaborationArtworkDetailDto {
 	public Boolean getWinner() {
 		return winner;
 	}
+	public String getCollaborationTitle() {
+		return collaborationTitle;
+	}
+	
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	public void setCollaborationId(Long collaborationId) {
+		this.collaborationId = collaborationId;
+	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
@@ -97,15 +115,16 @@ public class CollaborationArtworkDetailDto {
 	public void setWinner(Boolean winner) {
 		this.winner = winner;
 	}
+	public void setCollaborationTitle(String collaborationTitle) {
+		this.collaborationTitle = collaborationTitle;
+	}
 	@Override
 	public String toString() {
-		return "CollaborationDetailDto [id=" + id + ", title=" + title + ", registerDate=" + registerDate
-				+ ", creatorNickname=" + creatorNickname + ", creatorImgName=" + creatorImgName + ", contentImgName="
-				+ contentImgName + ", content=" + content + ", commentCount=" + commentCount + ", commentId="
-				+ commentId + ", comment=" + comment + "]";
+		return "CollaborationArtworkDetailDto [id=" + id + ", title=" + title + ", registerDate=" + registerDate
+				+ ", winner=" + winner + ", creatorId=" + creatorId + ", creatorNickname=" + creatorNickname
+				+ ", creatorImgName=" + creatorImgName + ", contentImgName=" + contentImgName + ", content=" + content
+				+ ", commentCount=" + commentCount + ", commentId=" + commentId + ", comment=" + comment
+				+ ", collaborationTitle=" + collaborationTitle + "]";
 	}
-	
-	
-	
 	
 }

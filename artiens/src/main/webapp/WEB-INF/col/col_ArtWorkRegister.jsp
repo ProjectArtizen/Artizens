@@ -87,22 +87,22 @@
 	                    <div class="col-lg-7 col-md-10">
 	                        <div class="card shadow-sm">
 	                            <div class="card-header">
-	                                <h4 class="mb-0">${collaborationTitle} 에 참여 작품 신청</h4>
+	                                <h4 class="mb-0">${collaborationTitle}에 참여 작품 신청</h4>
 	                            </div>
 	                            <div class="card-body">
 	
-	                                <div class="form-widget">
+	                               <!--  <div class="form-widget"> -->
 	
-	                                    <div class="form-result"></div>
+	                                    <!-- <div class="form-result"></div>
 	
 	                                    <div class="form-process">
 	                                        <div class="css3-spinner">
 	                                            <div class="css3-spinner-double-bounce1"></div>
 	                                            <div class="css3-spinner-double-bounce2"></div>
 	                                        </div>
-	                                    </div>
+	                                    </div> -->
 	
-	                                    <form class="mb-0" id="template-contactform" action='<c:url value="/collaboration/art/register"></c:url>' method="post" enctype="multipart/form-data">
+	                                    <form action='<c:url value="/collaboration/art/register"></c:url>' method="post" enctype="multipart/form-data">
 											<input type="hidden" name="collaborationId" value="${collaborationId}">
 	                                        <div class="row">
 	
@@ -125,7 +125,7 @@
 	                                                <input type="text" id="template-contactform-botcheck" name="template-contactform-botcheck" value="" />
 	                                            </div>
 	                                            <div class="col-12">
-	                                                <button type="submit" class="btn btn-dark w-100 btn-lg">제출</button>
+	                                                <button type="submit"  name="submit" id="submit" class="btn btn-dark w-100 btn-lg">제출</button>
 	                                            </div>
 	
 	                                            <input type="hidden" name="prefix" value="template-contactform-">
@@ -135,7 +135,7 @@
 	                                    </form>
 	                                </div>
 	                            </div>
-	                        </div>
+	                        <!-- </div> -->
 	                    </div>
 	                </div>
 	
