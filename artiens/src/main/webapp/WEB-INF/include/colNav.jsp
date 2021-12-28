@@ -25,15 +25,13 @@
 			<!-- justify-content-center class for center menu-->
 
 			<li class="menu-item"><a class="menu-link"
-				href="../collaboration/${result.id}"><div>콜라보레이션 소개</div></a></li>
+				href="<c:url value="/collaboration/${result.id}"/>"><div>콜라보레이션 소개</div></a></li>
 
 			<c:if test="${result.pastDateBoolean eq true}">
-				<li class="menu-item"><a class="menu-link"
-					href="../collaboration/art/winner"><div>당선작품</div></a></li>
+				<li class="menu-item"><a class="menu-link" href="<c:url value = "/collaboration/${result.id}/art/winner"/>"><div>당선작품</div></a></li>
 			</c:if>
 
-			<li class="menu-item"><a class="menu-link"
-				href="../collaboration/art"><div>참여작품</div></a></li>
+			<li class="menu-item"><a class="menu-link" href="<c:url value = "/collaboration/${result.id}/art"/>"><div>참여작품</div></a></li>
 
 			<li class="menu-item col-sm-6 col-12"></li>
 

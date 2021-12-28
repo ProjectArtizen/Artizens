@@ -31,6 +31,10 @@
 		alert("참여가 완료 되었습니다.");
 		location.href = "<c:url value='/collaboration/art/${updateValue}'/>";
 	</c:if>
+	<c:if test="${update == 'underway'}">
+		alert("평가중입니다. 기다리세요.");
+		location.href = "<c:url value='/collaboration/art/${artworkValue}'/>";
+	</c:if>
 </script>
 </head>
 </html>

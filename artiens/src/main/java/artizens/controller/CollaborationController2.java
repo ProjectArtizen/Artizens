@@ -3,6 +3,8 @@ package artizens.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +20,7 @@ import artizens.mapper.CollaborationMapper2;
 import artizens.mapper.dto.collaboration.CollaborationArtWorkInsertDto;
 import artizens.mapper.dto.collaboration.CollaborationArtworkDetailDto;
 import artizens.mapper.dto.collaboration.CollaborationDetailDto;
+import artizens.repository.querydsl.collaboration.CollaborationInfoDto;
 import artizens.service.CollaborationService2;
 import artizens.web.session.SessionConst;
 
@@ -84,11 +87,19 @@ public class CollaborationController2 {
 	 * 참여 작품 목록
 	 * @return
 	 */
-	@GetMapping("/art")
+	@GetMapping("/{collaborationId}/art")
 	public String colArtList(
 			@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user,
+			@PathVariable(name = "collaborationId") Long collaborationId,
+			@PageableDefault(size=20) Pageable pageable,
 			Model model) {
 		// 세션에 따른 헤더 설정 
+		CollaborationInfoDto result = collaborationService.totalColArtWorkByColId(pageable, collaborationId);
+		if (result == null) {
+			model.addAttribute("condition", "InvalidRequest");
+			return "col/col_Redirect";
+		}
+		model.addAttribute("result", result);
 		model.addAttribute("userid", ((user == null) ? null : user.getId()));
 		return "col/col_ArtList";
 	}
@@ -97,11 +108,20 @@ public class CollaborationController2 {
 	 * 당선 작품 목록
 	 * @return
 	 */
-	@GetMapping("/art/winner")
+	@GetMapping("/{collaborationId}/art/winner")
 	public String colWInnerArtList(
 			@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user,
+			@PathVariable(name = "collaborationId") Long collaborationId,
+			@PageableDefault(size=20) Pageable pageable,
 			Model model) {
 		// 세션에 따른 헤더 설정 
+		CollaborationInfoDto result = collaborationService.totalColArtWorkWinnerByColId(pageable, collaborationId);
+		if (result == null) {
+			model.addAttribute("condition", "underway");
+			model.addAttribute("artworkValue", collaborationId);
+			return "col/col_Redirect";
+		}
+		model.addAttribute("result", result);
 		model.addAttribute("userid", ((user == null) ? null : user.getId()));
 		return "col/col_ArtWinnerList";
 	}
@@ -147,7 +167,6 @@ public class CollaborationController2 {
 			@ModelAttribute CollaborationArtWorkInsertDto dto, 
 			Model model) {
 		Long insertCondition = collaborationService.insertCollaborationArtWotk(user, dto);
-		System.out.println(insertCondition);
 		model.addAttribute("update", "success");
 		model.addAttribute("updateValue", insertCondition);
 		return "col/col_Redirect";

@@ -47,22 +47,22 @@
 			</c:choose>
 		</header><!-- #header end -->
 
-		<!-- 타이틀
-		============================================= -->
+		<!-- 타이틀============================================= -->
 		<section id="page-title" class="page-title-center"
 			style="background-color: white; border: none; padding-bottom: 0px;">
-
 			<div class="container clearfix" style="background-color: white;">
-				<h1>콜라보레이션 타이틀</h1>
+				<h1>${result.collaborationTitle}</h1>
+				
 				<span style="margin-top: 20px;">
 					<div class="d-flex align-items-center" style="justify-content: center;">
-						<a href="#"><img src="/images/collaboration/author.jpg" alt="Author" class="rounded-circle" width="35" height="35"></a>
+						<a href="#"><img src="${result.collaborationCreatorImage}" alt="Author"
+							class="rounded-circle" width="25" height="25"></a>
 						<div class="entry-meta mt-0">
 							<div class="entry-meta"
 								style="margin-bottom: 10px; padding-left: 10px;">
 								<ul>
-									<li><a href="#">Author</a></li>
-									<li><i class="icon-calendar3"></i>2021.11.21</li>
+									<li><a href="<c:url value='/blog/${result.collaborationCreatorId}'/>">${result.collaborationCreatorName}</a></li>
+									<li><i class="icon-calendar3"></i>${result.colRegisterDateTime} ~ ${result.colDeadlineDateTime}</li>
 								</ul>
 							</div>
 						</div>
@@ -71,16 +71,12 @@
 
 
 				<div>
-					<!-- 서브메뉴
-							============================================= -->
-					<nav class="primary-menu"
-						style="margin-top: 100px; border-top: 2px solid #f3f3f3; border-bottom: 2px solid #f3f3f3">
-
-						<%@ include file="../include/colNav.jsp"%>
-
-					</nav>
+					<!-- 서브메뉴 ============================================= -->
+						<%@ include file="../include/colArtWorkNav.jsp"%>
 					<!-- 서브메뉴 끝 -->
 				</div>
+				<!-- Section Light -->
+				
 			</div>
 
 		</section>
@@ -92,185 +88,37 @@
 	<section id="content">
 		<div class="content-wrap">
 			<div class="container clearfix">
-				<!-- Posts
-            ============================================= -->
+				<!-- Posts  ============================================= -->
 				<div id="posts" class="post-grid grid-container row gutter-40 mx-3">
-
-					<div class="entry col-lg-3 col-md-4 col-sm-6 col-12">
-						<div class="grid-inner">
-							<div class="entry-image">
-								<a href="/images/collaboration/art/art1.jpg"
-									data-lightbox="image"><img
-									src="/images/collaboration/art/art1.jpg"
-									alt="Standard Post with Image"></a>
+					<!--FORM-->
+					<c:forEach var="artwork" items="${result.artWorks.content}">
+						<div class="entry col-lg-3 col-md-4 col-sm-6 col-12">
+							<div class="grid-inner">
+								<div class="entry-image">
+									<a href="<c:url value="${artwork.colArtWorkImage}"/>"
+										data-lightbox="image"><img
+										src="<c:url value="${artwork.colArtWorkImage}"/>"
+										alt="Standard Post with Image"></a>
+								</div>
+								<div class="entry-title">
+									<h2>
+										<a href="<c:url value="/collaboration/art/${artwork.colArtWorkId}"/>">${artwork.colArtWorkTitle}</a>
+									</h2>
+								</div>
+								<div class="author-image" style="margin-top: 15px;">
+									<img src="${artwork.colArtWorkCreatorImage}" alt="image" class="rounded-circle">
+								</div>
+								<div class="entry-meta"
+									style="margin-top: 55px; padding-left: 10px;">
+									<ul>
+										<li><a href="#"><i class="icon-user"></i>${artwork.colArtWorkCreatorName}</a></li>
+										<li><a href="#"><i class="icon-pencil"></i>${artwork.colArtWorkregiseDateTime}</a></li>
+									</ul>
+								</div>
 							</div>
-							<div class="entry-title">
-								<h2>
-									<a href="blog-single.html">작품 타이틀</a>
-								</h2>
-							</div>
-							<div class="author-image" style="margin-top: 15px;">
-								<img src="/images/collaboration/author.jpg" alt="image"
-									class="rounded-circle">
-							</div>
-							<div class="entry-meta"
-								style="margin-top: 55px; padding-left: 10px;">
-								<ul>
-									<li><a href="blog-single.html#comments"><i
-											class="icon-comments"></i> 13</a></li>
-									<li><a href="#"><i class="icon-thumbs-up2"></i> 20</a></li>
-								</ul>
-							</div>
-
-
 						</div>
-					</div>
-
-					<div class="entry col-lg-3 col-md-4 col-sm-6 col-12">
-						<div class="grid-inner">
-							<div class="entry-image">
-								<a href="/images/collaboration/art/art2.jpg"
-									data-lightbox="image"><img
-									src="/images/collaboration/art/art2.jpg"
-									alt="Standard Post with Image"></a>
-							</div>
-							<div class="entry-title">
-								<h2>
-									<a href="blog-single.html">작품 타이틀</a>
-								</h2>
-							</div>
-							<div class="author-image" style="margin-top: 15px;">
-								<img src="/images/collaboration/author.jpg" alt="image"
-									class="rounded-circle">
-							</div>
-							<div class="entry-meta"
-								style="margin-top: 55px; padding-left: 10px;">
-								<ul>
-									<li><a href="blog-single.html#comments"><i
-											class="icon-comments"></i> 13</a></li>
-									<li><a href="#"><i class="icon-thumbs-up2"></i> 20</a></li>
-								</ul>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="entry col-lg-3 col-md-4 col-sm-6 col-12">
-						<div class="grid-inner">
-							<div class="entry-image">
-								<a href="/images/collaboration/art/art3.jpg"
-									data-lightbox="image"><img
-									src="/images/collaboration/art/art3.jpg"
-									alt="Standard Post with Image"></a>
-							</div>
-							<div class="entry-title">
-								<h2>
-									<a href="blog-single.html">작품 타이틀</a>
-								</h2>
-							</div>
-							<div class="author-image" style="margin-top: 15px;">
-								<img src="/images/collaboration/author.jpg" alt="image"
-									class="rounded-circle">
-							</div>
-							<div class="entry-meta"
-								style="margin-top: 55px; padding-left: 10px;">
-								<ul>
-									<li><a href="blog-single.html#comments"><i
-											class="icon-comments"></i> 13</a></li>
-									<li><a href="#"><i class="icon-thumbs-up2"></i> 20</a></li>
-								</ul>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="entry col-lg-3 col-md-4 col-sm-6 col-12">
-						<div class="grid-inner">
-							<div class="entry-image">
-								<a href="/images/collaboration/art/art4.jpg"
-									data-lightbox="image"><img
-									src="/images/collaboration/art/art4.jpg"
-									alt="Standard Post with Image"></a>
-							</div>
-							<div class="entry-title">
-								<h2>
-									<a href="blog-single.html">작품 타이틀</a>
-								</h2>
-							</div>
-							<div class="author-image" style="margin-top: 15px;">
-								<img src="/images/collaboration/author.jpg" alt="image"
-									class="rounded-circle">
-							</div>
-							<div class="entry-meta"
-								style="margin-top: 55px; padding-left: 10px;">
-								<ul>
-									<li><a href="blog-single.html#comments"><i
-											class="icon-comments"></i> 13</a></li>
-									<li><a href="#"><i class="icon-thumbs-up2"></i> 20</a></li>
-								</ul>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="entry col-lg-3 col-md-4 col-sm-6 col-12">
-						<div class="grid-inner">
-							<div class="entry-image">
-								<a href="/images/collaboration/art/art5.jpg"
-									data-lightbox="image"><img
-									src="/images/collaboration/art/art5.jpg"
-									alt="Standard Post with Image"></a>
-							</div>
-							<div class="entry-title">
-								<h2>
-									<a href="blog-single.html">작품 타이틀</a>
-								</h2>
-							</div>
-							<div class="author-image" style="margin-top: 15px;">
-								<img src="/images/collaboration/author.jpg" alt="image"
-									class="rounded-circle">
-							</div>
-							<div class="entry-meta"
-								style="margin-top: 55px; padding-left: 10px;">
-								<ul>
-									<li><a href="blog-single.html#comments"><i
-											class="icon-comments"></i> 13</a></li>
-									<li><a href="#"><i class="icon-thumbs-up2"></i> 20</a></li>
-								</ul>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="entry col-lg-3 col-md-4 col-sm-6 col-12">
-						<div class="grid-inner">
-							<div class="entry-image">
-								<a href="/images/collaboration/art/art1.jpg"
-									data-lightbox="image"><img
-									src="/images/collaboration/art/art1.jpg"
-									alt="Standard Post with Image"></a>
-							</div>
-							<div class="entry-title">
-								<h2>
-									<a href="blog-single.html">작품 타이틀</a>
-								</h2>
-							</div>
-							<div class="author-image" style="margin-top: 15px;">
-								<img src="/images/collaboration/author.jpg" alt="image"
-									class="rounded-circle">
-							</div>
-							<div class="entry-meta"
-								style="margin-top: 55px; padding-left: 10px;">
-								<ul>
-									<li><a href="blog-single.html#comments"><i class="icon-comments"></i> 13</a></li>
-									<li><a href="#"><i class="icon-thumbs-up2"></i> 20</a></li>
-								</ul>
-							</div>
-
-						</div>
-					</div>
-
-
+					</c:forEach>
+					<!--FORM end-->
 				</div>
 				<!-- #posts end -->
 	</section>
@@ -287,41 +135,10 @@
 		<div id="gotoTop" class="icon-angle-up"></div>
 		<!-- JavaScripts ============================================= -->
 		<script src='<c:url value="/js/jquery.js"/>'/></script>
-		<script src='<c:url value="/js/plugins.min.js"/>'/></script>
-		
-		<!-- Date & Time Picker JS -->
-		<script src='<c:url value="/js/components/moment.js"/>'/></script>
-		<script src='<c:url value="/js/components/timepicker.js"/>'/></script>
-		<script src='<c:url value="/js/components/datepicker.js"/>'/></script>
-		
-		<!-- Include Date Range Picker -->
-		<script src='<c:url value="/js/components/daterangepicker.js"/>'/></script>
+		<script src='<c:url value="/js/plugins.min.js"/>'/></script> 
 		<!-- Footer Scripts
 		============================================= -->
 		<script src='<c:url value="/js/functions.js"/>'/></script>
-
-		<script>
-		jQuery(document).ready(function() {
-
-			var element = $(".custom-file");
-
-			element.find('input[type="file"]').change(function(e) {
-				var fileName = e.target.files[0].name;
-				element.find('.custom-file-label').html(fileName);
-			});
-
-			$('#block-modal-request').on('show.bs.modal', function(e) {
-				e.preventDefault();
-			})
-
-			$('#template-contactform').on('formSubmitSuccess', function() {
-				setTimeout(function() {
-					$('#block-modal-request').magnificPopup('close');
-				}, 500);
-			});
-
-		});
-	</script>
 	</div>
 	<!-- #wrapper end-->	
 

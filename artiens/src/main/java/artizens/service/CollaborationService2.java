@@ -1,6 +1,12 @@
 package artizens.service;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,7 +16,10 @@ import artizens.mapper.CollaborationMapper2;
 import artizens.mapper.dto.collaboration.CollaborationArtWorkInsertDto;
 import artizens.mapper.dto.collaboration.CollaborationArtworkDetailDto;
 import artizens.mapper.dto.collaboration.CollaborationDetailDto;
+import artizens.repository.CollaborationArtWorkRepository;
 import artizens.repository.CollaborationRepository;
+import artizens.repository.querydsl.collaboration.CollaborationArtWorkDto;
+import artizens.repository.querydsl.collaboration.CollaborationInfoDto;
 import artizens.web.aws.FileUploadService;
 
 @Service
@@ -18,6 +27,7 @@ import artizens.web.aws.FileUploadService;
 public class CollaborationService2 {
 	@Autowired CollaborationMapper2 collaborationMapper;
 	@Autowired CollaborationRepository collaborationRepository;
+	@Autowired CollaborationArtWorkRepository collaborationArtWorkRepository;
 	@Autowired FileUploadService fileUploadService;
 	
 	/**
@@ -37,6 +47,41 @@ public class CollaborationService2 {
 	public CollaborationArtworkDetailDto collaborationArtWotkDetailForm(Long collaborationArtWorkId) {
 		return collaborationMapper.findaCollaboArtWorkById(collaborationArtWorkId);
 	}
+	
+	/**
+	 * collaboration의 참여 작품 조회
+	 * @param pageable
+	 * @param collaborationId
+	 * @return
+	 */
+	public CollaborationInfoDto totalColArtWorkByColId(Pageable pageable, Long collaborationId) {
+		CollaborationInfoDto colResult = collaborationRepository.findCollaborationById(collaborationId);
+		if (colResult == null) return null;
+		colResult.setArtWorks(
+				new PageImpl<CollaborationArtWorkDto>(
+						collaborationRepository.findAllColArtWorkByCollaboration(pageable, colResult.getCollaborationId()), 
+						pageable,
+						collaborationArtWorkRepository.count()));
+		return colResult;
+	}
+	
+	/**
+	 * collaboration의 우승작 조회
+	 * @param pageable
+	 * @param collaborationId
+	 * @return
+	 */
+	public CollaborationInfoDto totalColArtWorkWinnerByColId(Pageable pageable, Long collaborationId) {
+		CollaborationInfoDto colResult = collaborationRepository.findCollaborationById(collaborationId);
+		if (colResult == null) return null;
+		colResult.setArtWorks(
+				new PageImpl<CollaborationArtWorkDto>(
+						collaborationRepository.findAllColWinnerArtWorkByCollaboration(pageable, colResult.getCollaborationId()), 
+						pageable,
+						collaborationArtWorkRepository.count()));
+		return colResult;
+	}
+	
 	
 	/**
 	 * collaborationArtwork Insert 
