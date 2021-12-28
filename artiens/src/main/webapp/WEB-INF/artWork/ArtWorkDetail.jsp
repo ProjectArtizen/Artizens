@@ -142,7 +142,7 @@
                     ============================================= -->
                         <div id="comments">
 
-                            <h3 id="comments-title"><span>3</span> Comments</h3>
+                            <h3 id="comments-title"><span>${total }</span> 댓글</h3>
 
                             <!-- Comments List
                             ============================================= -->

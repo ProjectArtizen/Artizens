@@ -6,7 +6,15 @@ public class ArtCommentDTO {
 	private String name;
 	private String nickname;
 	private String storefilename;
+	private int total;
 	
+	
+	public int getTotal() {
+		return total;
+	}
+	public void setTotal(int total) {
+		this.total = total;
+	}
 	public String getContent() {
 		return content;
 	}

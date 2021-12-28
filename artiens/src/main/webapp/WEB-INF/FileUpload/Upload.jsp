@@ -154,6 +154,8 @@
 				document.frm.method = "post"; 
 				theForm.action = "<c:url value='/upload'/>";
 				document.frm.submit();
+			}else {
+				window.close();
 			}
 		})
 	})

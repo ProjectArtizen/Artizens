@@ -58,7 +58,7 @@ public interface ArtMapper {
 	
 	@Select("select comment.artwork_comment_conetent as content, "
 			+ "		date_format(comment.artwork_comment_register_date,'%M %D, %Y %p %h시 %i분 %s초') as registerDay, "
-			+ "		profile.user_profile_name as name, "
+			+ "		profile.user_profile_name as name,"
 			+ "		creator.creator_nickname as nickname, "
 			+ "		creator.creator_profile_storefilename as storefilename " + 
 			"	from "
@@ -72,6 +72,19 @@ public interface ArtMapper {
 			+ "	where "
 			+ "		comment.artwork_id = ${artwork_id};")
 	List<ArtCommentDTO> findByCommentAll( Long artwork_id );
+	
+	@Select("select count(*) as total "
+			+ "	from "
+			+ "		artwork_comment as comment left join user_profile as profile "
+			+ "	on "
+			+ "		comment.user_profile_id = profile.user_profile_id "
+			+ "	left join "
+			+ "		creator "
+			+ "	on "
+			+ "		profile.user_profile_id = creator.creator_id "
+			+ "	where "
+			+ "		comment.artwork_id = ${artwork_id};")
+	int findByCommentTotal( Long artworkid );
 	
 	@Select("Select art_work_id as artworkId from artwork_images where art_work_id = ${imageId}")
 	Long findByArtWorkId(Long imageId);

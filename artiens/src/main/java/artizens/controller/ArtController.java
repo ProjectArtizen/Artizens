@@ -91,7 +91,7 @@ public class ArtController {
 	
 	@GetMapping("/blog/{creatorid}")
 	public String otherBlog(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user,
-							@PathVariable Long creatorid,Model model ) throws Exception {
+							@PathVariable Long creatorid, Model model ) throws Exception {
 		
 		if ( user == null ) {
 			model.addAttribute("userid",0);
@@ -100,6 +100,8 @@ public class ArtController {
 			model.addAttribute("userid",id);
 		}
 		List<StoreFileDTO> profile = artService.findByProfile( creatorid );
+		List<StoreFileDTO> recent = artService.findByRecent( creatorid );
+		model.addAttribute("recent",recent);
 		BlogInfoDTO bloginfo = new BlogInfoDTO();
 		for( StoreFileDTO a : profile ) {
 			bloginfo.setNickname(a.getNickname());
@@ -180,6 +182,7 @@ public class ArtController {
 		int startno = artWorkMainDto.startno(page);
 		int endno = startno + ( unit-1 );
 		int total = artService.findByTotal();
+		LOGGER.info("total={}",total);
 		int totalpage = (int) Math.ceil( (double)total / unit );
 		int startpage = ( ( page-1 ) / 5 ) * 5 + 1; // 
 		int endpage = startpage + 4 ;
@@ -197,9 +200,12 @@ public class ArtController {
 		
 		if (user == null) { // 비회원일 경우
 			List<ArtWorkMainDto> result = artWorkService.selectAll(startno,unit);
+			total = artService.findByTotal();
 			model.addAttribute("result", result);
 			return "artWork/ArtWorkMain";
 		}else if( user != null ) { // 로그인 상태일 경우,
+			total = artService.findByTotal();
+
 			Long id = artWorkService.findByUserId(user);
 			model.addAttribute("userid",id);
 			Long creator = artWorkService.findByCreator(id);
@@ -211,6 +217,8 @@ public class ArtController {
 				model.addAttribute("creator", null);
 			}else if( creator > 0 || creator != null ){ // 크리에이터 아이디가 있는 경우,
 				
+				total = artService.findByTotal();
+
 				// 크리에이터
 				String info = artWorkService.findByAll( creator );
 				String nick = info.split("/")[0];
@@ -236,6 +244,8 @@ public class ArtController {
 		
 		ArtDetailDTO detail = artService.clickImageAction(imageId);
 		List<ArtCommentDTO> commentList = artService.findByCommentAll(detail.getArtworkId());
+		int total = artService.findByCommentTotal(detail.getArtworkId());
+		model.addAttribute("total",total);
 		model.addAttribute("artwork",detail);
 		model.addAttribute("comment",commentList);
 		if ( user != null ) {

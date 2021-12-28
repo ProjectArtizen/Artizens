@@ -147,6 +147,10 @@ public class ArtService {
 		return detail;
 	}
 	
+	public int findByCommentTotal(Long artworkid) {
+		return artMapper.findByCommentTotal(artworkid);
+	}
+	
 	public String InsertComment( CommentDTO commentDto ) {
 		artMapper.insertComment( commentDto );
 		return "success";
