@@ -215,7 +215,7 @@ public class initDb {
 					"분당, 수원, 평택, 원주 AK플라자에서 즐거운 하루를 보내는 나의 일상의 모습을 그려주세요!\r\n" + 
 					"※ 지역구분은 AK플라자 입점 지역인 분당/수원/평택/원주에 한합니다.", 
 					creator, 
-					"https://sunminki.s3.ap-northeast-2.amazonaws.com/3da6058f-d5e3-4c5f-a782-ac4f62f90274.JPG");
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/f97bc0b0-262d-49d4-a9eb-f455d4666499.JPG");
 			em.persist(collaboration1);
 			
 			/**
@@ -230,7 +230,7 @@ public class initDb {
 					"AK플라자 수원점에서\r\n" + 
 					"가족 또는 친구, 연인과 함께 보내는 즐거운 하루.", 
 					creator1,
-					"https://sunminki.s3.ap-northeast-2.amazonaws.com/17451237-cb38-4db2-bd4b-7f1307ea09c7.JPG", 
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/86ff7b55-2e81-4406-b041-e5097d4a95eb.JPG", 
 					collaboration1);
 			em.persist(collabo1_1);
 			
@@ -244,7 +244,7 @@ public class initDb {
 					"분당 AK 식품관", 
 					"식품관 갔는데 식중독걸렸어요. 배상해주세요.", 
 					creator1,
-					"https://sunminki.s3.ap-northeast-2.amazonaws.com/1b3aa784-5b60-45be-82cd-dcd2a3d62633.JPG", 
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/350bc0cf-ecea-40c0-8468-eb4171e8482c.JPG", 
 					collaboration1);
 			em.persist(collabo1_2);
 			
@@ -259,7 +259,7 @@ public class initDb {
 					"daily life in ak 분당", 
 					"건물이 많이 크던데요?", 
 					creator1,
-					"https://sunminki.s3.ap-northeast-2.amazonaws.com/0daaa8a7-dfc8-4f0d-a296-c33834bd514b.JPG", 
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/fe6e509d-d195-467b-a8f0-b1b029a52104.JPG", 
 					collaboration1);
 			em.persist(collabo1_3);
 			
@@ -276,7 +276,7 @@ public class initDb {
 					"로스터리R 로고를 중심으로 로스터리 컵커피에 어울리는 패키지를 자유롭게 디자인해주세요.\r\n" + 
 					"내 작품이 한정판 제품 패키지로 출시되는 기회를 드립니다.", 
 					creator1, 
-					"https://sunminki.s3.ap-northeast-2.amazonaws.com/b7b8ef08-7798-4fba-904b-84a0cb683e3d.JPG");
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/b7bb7245-f151-4e77-9889-199b61e095d9.JPG");
 			em.persist(collaboration2);
 			
 			/**
@@ -289,7 +289,7 @@ public class initDb {
 					"로스터리R 리치왕의 분노 패키지", 
 					"아들아...너가 태어나던 날.. 로스터리를 마시던 모든 사람들이 속삭였단다.. 아이스...", 
 					creator,
-					"https://sunminki.s3.ap-northeast-2.amazonaws.com/97efe479-6d1a-4b90-9833-20a117196509.JPG", 
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/104516de-26e0-4ac0-889e-abcdc7c2465c.JPG", 
 					collaboration2);
 			em.persist(collabo2_1);
 			
@@ -303,7 +303,7 @@ public class initDb {
 					"로스터리R-샤워할때 생각나는 맛", 
 					"샤워하고 나서 한잔 먹으면 맛있어요.", 
 					creator,
-					"https://sunminki.s3.ap-northeast-2.amazonaws.com/3c99a46c-e3ad-47ef-bd51-1a9de1e9b488.JPG", 
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/3795aca1-6cf2-4317-8e27-63e3d004ea87.JPG", 
 					collaboration2);
 			em.persist(collabo2_2);
 			
@@ -317,7 +317,7 @@ public class initDb {
 					"로스터리R-성냥팔이 소녀 패키지", 
 					"성냥팔이 소녀가 성냥을 팔고난 후... 주머니에 있던 3000원...그걸로 뭘샀는지 아십니까?", 
 					creator,
-					"https://sunminki.s3.ap-northeast-2.amazonaws.com/3c99a46c-e3ad-47ef-bd51-1a9de1e9b488.JPG", 
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/5d8e76ed-351b-4443-890c-f09064b55608.JPG", 
 					collaboration2);
 			em.persist(collabo2_3);
 			
@@ -332,7 +332,7 @@ public class initDb {
 					"로스터리R-카페보다 맛있는 맛", 
 					"카페를 가지말고 로스터리R을 사먹으세요. 가성비 좋아요.", 
 					creator,
-					"https://sunminki.s3.ap-northeast-2.amazonaws.com/a145b4e4-6f95-4eba-92e7-74a31011aeb0.JPG", 
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/9a82bfde-82d0-4e57-ba8b-dc0faa0b1353.JPG", 
 					collaboration2);
 			em.persist(collabo2_4);
 			
@@ -348,7 +348,7 @@ public class initDb {
 					"* 각각의 이미지 사이즈는 10MB 안에서 자유롭게 조정할 수 있습니다. (단, 표지는 640px 크기로 노출됩니다)\r\n" + 
 					"* 콜라보레이션의 취지(주제와 무관 또는 광고, 타인 작품 도용 등)에 맞지 않는 응모작은 보기가 제한될 수 있습니다.", 
 					creator1, 
-					"https://sunminki.s3.ap-northeast-2.amazonaws.com/2d5b86d9-c26e-4a58-9908-68e432748b27.JPG");
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/f4f4979b-aad5-435c-bc72-8a5858ffcac6.JPG");
 			em.persist(collaboration3);
 			
 			/**
@@ -361,7 +361,7 @@ public class initDb {
 					"너를 기다리는 시간", 
 					"아 주인님 좀 빨리와요 제발", 
 					creator,
-					"https://sunminki.s3.ap-northeast-2.amazonaws.com/a145b4e4-6f95-4eba-92e7-74a31011aeb0.JPG", 
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/8f09f2f6-bce5-4356-95ca-24041cef96a9.JPG", 
 					collaboration3);
 			em.persist(collabo3_1);
 			
@@ -375,7 +375,7 @@ public class initDb {
 					"나는 괴물이에요.", 
 					"나는 괴물이지만 너는 나물이에요.", 
 					creator,
-					"https://sunminki.s3.ap-northeast-2.amazonaws.com/a145b4e4-6f95-4eba-92e7-74a31011aeb0.JPG", 
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/d2a1bcc3-3e1d-4305-bce1-ebe25faeded2.JPG", 
 					collaboration3);
 			em.persist(collabo3_2);
 			
@@ -389,7 +389,7 @@ public class initDb {
 					"4번 달걀의 비밀", 
 					"4번은 개인주의", 
 					creator,
-					"https://sunminki.s3.ap-northeast-2.amazonaws.com/9e27ec0d-4756-431b-a112-80369d342315.JPG", 
+					"https://sunminki.s3.ap-northeast-2.amazonaws.com/a1643e2c-49fa-4e8d-b67c-c639f460a54e.JPG", 
 					collaboration3);
 			em.persist(collabo3_3);
 			
