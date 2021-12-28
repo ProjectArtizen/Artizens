@@ -121,6 +121,15 @@
 					<!--FORM end-->
 				</div>
 				<!-- #posts end -->
+				<ul class="pagination mt-5 pagination-circle justify-content-center" id="pagingNumbers">
+                <!-- <li class="page-item disabled"><a class="page-link" href="#"><i class="icon-angle-left"></i></a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                <li class="page-item"><a class="page-link" href="#"><i class="icon-angle-right"></i></a></li> -->
+            	</ul>
 	</section>
 	
 	<!-- Footer
@@ -141,6 +150,63 @@
 		<script src='<c:url value="/js/functions.js"/>'/></script>
 	</div>
 	<!-- #wrapper end-->	
+<script>
+function pageAlgo(totalPageSize, bottomSize, cursor){
+   	
+    let pageNumList = []
+    for (let i = cursor - (bottomSize - 1) ; i <= cursor + (bottomSize - 1); i++ ){
+    	if (i >= 1 && i <= totalPageSize){
+    		pageNumList.push(i);
+    	}
+    }
+    console.log(pageNumList.toString());
+    
+    if (pageNumList.length > bottomSize){
+    	let modifyPageNumList = []; 
+    	let cursorIndex = pageNumList.indexOf(cursor);
+    	
+    	modifyPageNumList.push(pageNumList[cursorIndex]);
+    	let front = cursorIndex - 1;
+    	let end = cursorIndex + 1;
+    	
+    	while (modifyPageNumList.length != bottomSize){
+    		if (front >= 0){
+    			modifyPageNumList.push(pageNumList[front]);
+    		} 
+			if (end < pageNumList.length){
+        		modifyPageNumList.push(pageNumList[end]);
+			}	
+      		front -= 1;
+      		end += 1;
+    	}
+    	pageNumList = modifyPageNumList.sort();
+    }
 
+    console.log(pageNumList.toString());
+    
+    var pageNumForm = document.querySelector('#pagingNumbers');
+    
+    if (cursor > 1) pageNumForm.innerHTML += '<li class="page-item"><a class="page-link" href="?page='+ (cursor - 2) +'" aria-label="Previous"><i class="icon-angle-left"></i></a></li>';	
+    
+    for (let i = 0 ; i < pageNumList.length; i++){
+    	let pageNumber =  pageNumList[i];
+    	if (pageNumber == cursor){
+    		pageNumForm.innerHTML += '<li class="page-item active"><a class="page-link" href="?page=' + (pageNumber-1) +'">'+ pageNumber +'</a></li>';
+    	} else{
+    		pageNumForm.innerHTML += '<li class="page-item"><a class="page-link" href="?page=' + (pageNumber - 1) +'">'+ pageNumber + '</a></li>';
+    	}
+    }
+    
+    if (cursor < totalPageSize) pageNumForm.innerHTML += '<li class="page-item"><a class="page-link" href="?page=' + cursor + '" aria-label="Next"><i class="icon-angle-right"></i></a></li>';	
+    
+}
+const totalPageSize = ${result.artWorks.totalPages}
+// 하단크기
+const bottomSize = 5
+//  현재 나의 페이지
+const cursor = ${result.artWorks.number} + 1
+
+pageAlgo(totalPageSize, bottomSize, cursor)
+</script>
 </body>
 </html>

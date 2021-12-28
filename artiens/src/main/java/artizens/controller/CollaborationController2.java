@@ -116,7 +116,7 @@ public class CollaborationController2 {
 			Model model) {
 		// 세션에 따른 헤더 설정 
 		CollaborationInfoDto result = collaborationService.totalColArtWorkWinnerByColId(pageable, collaborationId);
-		if (result == null) {
+		if (result == null || result.getArtWorks().getTotalElements() == 0) {
 			model.addAttribute("condition", "underway");
 			model.addAttribute("artworkValue", collaborationId);
 			return "col/col_Redirect";
