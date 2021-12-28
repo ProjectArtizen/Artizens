@@ -16,8 +16,58 @@ public class ArtWorkMainDto {
 	private Integer likeCount;
 	private Integer commentCount;
 	
-	public ArtWorkMainDto() {
-		
+	private int page = 1;
+	private int unit = 9;
+	private int total;
+	private String after;
+	private String before;
+	
+	public int startno( int page ) {
+		int startpage = ( page - 1) * this.unit + 1;
+		return startpage;
+	}
+	
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+	public int getUnit() {
+		return unit;
+	}
+
+	public void setUnit(int unit) {
+		this.unit = unit;
+	}
+
+	public int getTotal() {
+		return total;
+	}
+
+	public void setTotal(int total) {
+		this.total = total;
+	}
+
+	public String getAfter() {
+		return after;
+	}
+
+	public void setAfter(String after) {
+		this.after = after;
+	}
+
+	public String getBefore() {
+		return before;
+	}
+
+	public void setBefore(String before) {
+		this.before = before;
+	}
+
+	public ArtWorkMainDto() {	
 	}
 	
 	public String getRegisterday() {

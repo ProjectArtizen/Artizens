@@ -197,15 +197,26 @@
 						</div>
 					</div>
 					<ul class="pagination mt-5 pagination-circle pagination-lg justify-content-center" id="pagingNumbers">
-						<li class="page-item"><a class="page-link" href="creator?page=''" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
-						<li class="page-item active"><a class="page-link" href="?s_page=0&e_page=9">1</a></li>
-						<li class="page-item"><a class="page-link" href="?s_page=10&e_page=18">2</a></li>
-						<li class="page-item"><a class="page-link" href="?s_page=19&e_page=27">3</a></li>
-						<li class="page-item"><a class="page-link" href="?s_page=28&e_page=36">4</a></li>
-						<li class="page-item"><a class="page-link" href="?s_page=37&e_page=45">5</a></li>
-						<li class="page-item"><a class="page-link" href="?page='5'" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+						<c:choose>
+							<c:when test="${page eq 1 }">
+							</c:when>
+							<c:when test="${page ne 1 }">
+								<li class="page-item"><a class="page-link" href="?page=${spage-1}" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
+							</c:when>
+						</c:choose>
+						<c:forEach var="i" begin="${spage }" end="${endpage }">
+							<li id="pagenumber" class="page-item <c:if test='${page == i }'>active</c:if> "><a class="page-link" href="?page=${i }">${i }</a></li>								
+						</c:forEach> 
+						<c:choose>
+							<c:when test="${page >= totalpage -3 }">
+							</c:when>						
+							<c:when test="${page < totalpage }">
+								<li class="page-item"><a class="page-link" href="?page=${endpage+1 }" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+							</c:when>						
+						</c:choose>
 					</ul>
 				</div>
+				
 		</section><!-- #content end -->
 	</div>	
 	 <!-- Footer
@@ -215,30 +226,6 @@
 	</footer>
 	<!-- #footer end -->
 
-<script>
-
-function fn_submit(type) {
-	$j351('#btnMoreView').click(function(){
-		const resultElement = document.getElementById('count');
-		let page = resultElement.innerText;
-		if ()
-		$.ajax({
-			url: "/",
-			type: "GET",
-			data:"startpage="+9,
-			dataType:"html",
-			success:function(data){
-				console.log(data);
-				$(document).html(data);
-			},
-			error:function(){
-				alert("실패");
-			}
-		});
-	});
-}
-
-</script>
 <!-- Go To Top
 ============================================= -->
 <div id="gotoTop" class="icon-angle-up"></div>

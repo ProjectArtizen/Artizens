@@ -19,6 +19,26 @@ import artizens.domain.ArtWork;
 @Mapper
 public interface ArtMapper {
 	
+	@Select("select count(*) as total "
+			+ "from	"
+			+ "		artwork_images as b left join artwork as a "
+			+ "on "
+			+ "		b.art_work_id = a.artwork_id left join creator as c "
+			+ "on "
+			+ "		a.creator_id = c.creator_id ")
+	int findByTotal();
+	
+	@Select("Select count(*) "
+			+ "from "
+			+ "		artwork_images as b left join artwork as a "
+			+ "on "
+			+ "		b.art_work_id = a.artwork_id left join creator as c "
+			+ "on "
+			+ "		a.creator_id = c.creator_id "
+			+ "where "
+			+ "		a.artwork_category_name = #{category}")
+	int findByCateoryTotal(String category);
+	
 	@Select("select b.artwork_images_storefilename as storefilename,"
 			+ "		a.artwork_title as title,"
 			+ "		b.artwork_images_id as imageId,"
@@ -33,8 +53,8 @@ public interface ArtMapper {
 			+ "on "
 			+ "		a.creator_id = c.creator_id "
 			+ "where "
-			+ "		a.artwork_category_name = #{page}")
-	List<ArtCategoryDTO> findByCategory(String page);
+			+ "		a.artwork_category_name = #{page} limit ${unit} offset ${startno}")
+	List<ArtCategoryDTO> findByCategory(String page, int startno, int unit);
 	
 	@Select("select comment.artwork_comment_conetent as content, "
 			+ "		date_format(comment.artwork_comment_register_date,'%M %D, %Y %p %h시 %i분 %s초') as registerDay, "

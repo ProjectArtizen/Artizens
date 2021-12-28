@@ -57,13 +57,13 @@ public interface ArtWorkMapper {
 			+ "		artwork_images.artwork_images_id as imageId,"
 			+ "		artwork.artwork_register_date as registerday, "
 			+ "     artwork_images.artwork_images_storefilename as artworkImgName, "
-			+ "     creator.creator_profile_storefilename as creatorImgName, "
+			+ "     creator.creator_profile_storefilename as creatorImgName,"
 			+ "     artwork.artwork_title as title "
 			+ "from artwork_images left join artwork "
 			+ "on artwork_images.art_work_id = artwork.artwork_id left "
 			+ "join creator on artwork.creator_id = creator.creator_id "
-			+ "order by artwork_register_date desc limit ${s_page}, ${e_page } ")
-	List<ArtWorkMainDto> findArtWorkMainAll(int s_page, int e_page );
+			+ "order by artwork_register_date desc limit ${epage } offset ${spage }")
+	List<ArtWorkMainDto> findArtWorkMainAll(int spage, int epage );
 	
 	// 수묵화 상세페이지 출력 쿼리
 	@Select("")

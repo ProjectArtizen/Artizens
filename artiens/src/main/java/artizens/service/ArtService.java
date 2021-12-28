@@ -30,6 +30,30 @@ public class ArtService {
 	@Autowired FileUploadService fileUploadService;
 	@Autowired ArtService artService;
 	
+	public int findByCateoryTotal(String Category) {
+		String cate = "";
+		if ( Category.equals("ink") ) {
+			cate ="수묵화";
+		}else if ( Category.equals("color") ) {
+			cate ="채색화";
+		}else if ( Category.equals("landscape") ) {
+			cate ="풍경화";
+		}else if ( Category.equals("figure") ) {
+			cate ="인물화";
+		}else if ( Category.equals("abstract") ) {
+			cate ="추상화";
+		}else if ( Category.equals("still") ) {
+			cate ="정물화";
+		}else if ( Category.equals("pop") ) {
+			cate ="팝아트";
+		}
+		return artMapper.findByCateoryTotal(cate);
+	}
+	
+	public int findByTotal() {
+		return artMapper.findByTotal();
+	}
+	
 	public String insertImageUpload( UploadFileDTO uploadfiledto ) {
 		
 		UploadFileDTO upload = new UploadFileDTO();
@@ -124,8 +148,11 @@ public class ArtService {
 		return "success";
 	}
 	
-	public List<ArtCategoryDTO> findByCategory(String page) {
-		return artMapper.findByCategory(page);
+	public List<ArtCategoryDTO> findByCategory(String page,int startno, int unit) {
+		if ( startno == 1 ) {
+			startno = 0;
+			}
+		return artMapper.findByCategory(page,startno,unit);
 	}
 	
 	public Long findByArtworkId(Long imageId) {

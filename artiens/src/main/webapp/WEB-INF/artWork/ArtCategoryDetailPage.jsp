@@ -116,7 +116,25 @@
 						</c:forEach>
 					</div>
 					<!-- #posts end -->
-
+					<ul class="pagination mt-5 pagination-circle pagination-lg justify-content-center" id="pagingNumbers">
+						<c:choose>
+							<c:when test="${nowpage eq 1 }">
+							</c:when>
+							<c:when test="${nowpage ne 1 }">
+								<li class="page-item"><a class="page-link" href="?page=${spage-1}" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
+							</c:when>
+						</c:choose>
+						<c:forEach var="i" begin="${spage }" end="${endpage }">
+							<li id="pagenumber" class="page-item <c:if test='${nowpage == i }'>active</c:if> "><a class="page-link" href="?page=${i }">${i }</a></li>								
+						</c:forEach> 
+						<c:choose>
+							<c:when test="${nowpage >= totalpage -3 }">
+							</c:when>						
+							<c:when test="${nowpage < totalpage }">
+								<li class="page-item"><a class="page-link" href="/artwork/${catepage }/?page=${endpage+1 }" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+							</c:when>						
+						</c:choose>
+					</ul>
 					<div class="page-load-status">
 						<div class="css3-spinner infinite-scroll-request">
 							<div class="css3-spinner-ball-pulse-sync">

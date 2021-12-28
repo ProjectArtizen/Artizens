@@ -10,6 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,6 +43,7 @@ import artizens.service.ArtWorkService;
 import artizens.web.aws.FileUploadService;
 import artizens.web.session.SessionConst;
 import net.bytebuddy.description.ModifierReviewable;
+import net.bytebuddy.dynamic.DynamicType.Builder.InnerTypeDefinition;
 
 @Controller
 public class ArtController {
@@ -166,12 +169,32 @@ public class ArtController {
 	}
 	
 	@GetMapping
-	public String artworkMain(	@ModelAttribute MainPageDTO mainpagedto,
+	public String artworkMain(	@ModelAttribute ArtWorkMainDto artWorkMainDto,
 								@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) UserProfile user,
 								Model model) {
-			
+		
+		int unit = artWorkMainDto.getUnit();
+		int page = artWorkMainDto.getPage();
+		int startno = artWorkMainDto.startno(page);
+		int endno = startno + ( unit-1 );
+		int total = artService.findByTotal();
+		int totalpage = (int) Math.ceil( (double)total / unit );
+		int startpage = ( ( page-1 ) / 5 ) * 5 + 1; // 
+		int endpage = startpage + 4 ;
+		if ( endpage >= totalpage ) { 
+			endpage = totalpage;
+		}
+
+		model.addAttribute("page",page);
+		model.addAttribute("total",total);
+		model.addAttribute("totalpage",totalpage);
+		model.addAttribute("startno",startno);
+		model.addAttribute("endno",endno);
+		model.addAttribute("spage",startpage);
+		model.addAttribute("endpage",endpage);
+		
 		if (user == null) { // 비회원일 경우
-			List<ArtWorkMainDto> result = artWorkService.selectAll(mainpagedto.getS_page(), mainpagedto.getE_page());
+			List<ArtWorkMainDto> result = artWorkService.selectAll(startno,unit);
 			model.addAttribute("result", result);
 			return "artWork/ArtWorkMain";
 		}else if( user != null ) { // 로그인 상태일 경우,
@@ -179,7 +202,7 @@ public class ArtController {
 			model.addAttribute("userid",id);
 			Long creator = artWorkService.findByCreator(id);
 			
-			List<ArtWorkMainDto> result2 = artWorkService.selectAll(mainpagedto.getS_page(), mainpagedto.getE_page());
+			List<ArtWorkMainDto> result2 = artWorkService.selectAll(startno,unit);
 			model.addAttribute("result", result2);
 			
 			if ( creator == 0 || creator == null ) { // 크리에이터 아이디가 없는 경우,
@@ -198,7 +221,7 @@ public class ArtController {
 				model.addAttribute("nickname",nick);
 				
 				// 모든 작품들 
-				List<ArtWorkMainDto> result = artWorkService.selectAll(mainpagedto.getS_page(), mainpagedto.getE_page());
+				List<ArtWorkMainDto> result = artWorkService.selectAll(startno,unit);
 				model.addAttribute("result", result);
 			}
 		}
@@ -224,15 +247,7 @@ public class ArtController {
 		}
 		return "artWork/ArtWorkDetail";
 	}
-	
-	@ResponseBody
-	@PostMapping("/moreview")
-	public void moreView(@ModelAttribute MainPageDTO mainPageDTO, HttpServletRequest request,
-						  HttpServletResponse response) {
-		
-	}
-	
-	
+			
 	@PostMapping("/artwork/detail/comment/save/{imageId}")
 	public String commentSave( @PathVariable Long imageId,
 							   @ModelAttribute CommentDTO commentDto, Model model ) {
@@ -270,9 +285,32 @@ public class ArtController {
 	}
 
 	// 작품 카테고리별  상세 페이지
-	@GetMapping("/artwork/{page}")
-	public String inkpainting(@PathVariable String page, Model model,
+	@GetMapping("/artwork/{categorypage}")
+	public String inkpainting(@PathVariable String categorypage, Model model, @ModelAttribute ArtWorkMainDto artWorkMainDto,
 							  @SessionAttribute(name = SessionConst.LOGIN_USER, required = false ) UserProfile user) {
+		
+		int unit = artWorkMainDto.getUnit();
+		int nowpage = artWorkMainDto.getPage();
+		int startno = artWorkMainDto.startno(nowpage);
+		int endno = startno + ( unit-1 );
+		int total = artService.findByCateoryTotal(categorypage);
+		int totalpage = (int) Math.ceil( (double)total / unit );
+		int startpage = ( ( nowpage-1 ) / 5 ) * 5 + 1; // 
+		int endpage = startpage + 4 ;
+		if ( endpage >= totalpage ) { 
+			endpage = totalpage;
+		}
+		
+		model.addAttribute("catepage",categorypage);
+		model.addAttribute("nowpage",nowpage);
+		model.addAttribute("total",total);
+		model.addAttribute("totalpage",totalpage);
+		model.addAttribute("startno",startno);
+		model.addAttribute("endno",endno);
+		model.addAttribute("spage",startpage);
+		model.addAttribute("endpage",endpage);
+		
+		
 		if ( user == null ) {
 			model.addAttribute("user",0);
 		}else {
@@ -280,45 +318,45 @@ public class ArtController {
 			model.addAttribute("user",userid);
 		}
 		String category = "";
-		if (page.equals("ink")) {
+		if (categorypage.equals("ink")) {
 			category = "수묵화";
-			List<ArtCategoryDTO> store = artService.findByCategory(category);
+			List<ArtCategoryDTO> store = artService.findByCategory(category,startno,unit);
 			model.addAttribute("page",category);
 			model.addAttribute("store",store);
 			return "artWork/ArtCategoryDetailPage";
-		}else if (page.equals("color")) {
+		}else if (categorypage.equals("color")) {
 			category = "채색화";
-			List<ArtCategoryDTO> store = artService.findByCategory(category);
+			List<ArtCategoryDTO> store = artService.findByCategory(category,startno,unit);
 			model.addAttribute("page",category);
 			model.addAttribute("store",store);
 			return "artWork/ArtCategoryDetailPage";
-		}else if (page.equals("landscape")) {
+		}else if (categorypage.equals("landscape")) {
 			category = "풍경화";
-			List<ArtCategoryDTO> store = artService.findByCategory(category);
+			List<ArtCategoryDTO> store = artService.findByCategory(category,startno,unit);
 			model.addAttribute("page",category);
 			model.addAttribute("store",store);
 			return "artWork/ArtCategoryDetailPage";
-		}else if (page.equals("figure")) {
+		}else if (categorypage.equals("figure")) {
 			category = "인물화";
-			List<ArtCategoryDTO> store = artService.findByCategory(category);
+			List<ArtCategoryDTO> store = artService.findByCategory(category,startno,unit);
 			model.addAttribute("page",category);
 			model.addAttribute("store",store);
 			return "artWork/ArtCategoryDetailPage";
-		}else if (page.equals("abstract")) {
+		}else if (categorypage.equals("abstract")) {
 			category = "추상화";
-			List<ArtCategoryDTO> store = artService.findByCategory(category);
+			List<ArtCategoryDTO> store = artService.findByCategory(category,startno,unit);
 			model.addAttribute("page",category);
 			model.addAttribute("store",store);
 			return "artWork/ArtCategoryDetailPage";
-		}else if (page.equals("still")) {
+		}else if (categorypage.equals("still")) {
 			category = "정물화";
-			List<ArtCategoryDTO> store = artService.findByCategory(category);
+			List<ArtCategoryDTO> store = artService.findByCategory(category,startno,unit);
 			model.addAttribute("page",category);
 			model.addAttribute("store",store);
 			return "artWork/ArtCategoryDetailPage";
-		}else if (page.equals("pop")) {
+		}else if (categorypage.equals("pop")) {
 			category = "팝아트";
-			List<ArtCategoryDTO> store = artService.findByCategory(category);
+			List<ArtCategoryDTO> store = artService.findByCategory(category,startno,unit);
 			model.addAttribute("page",category);
 			model.addAttribute("store",store);
 			return "artWork/ArtCategoryDetailPage";
