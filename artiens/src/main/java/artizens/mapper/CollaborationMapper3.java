@@ -32,20 +32,22 @@ public interface CollaborationMapper3 {
 	List<CollaborationWinnerDto> findAllCollaborationWinner(Long collaboration_id);
 
 	
-	  @Select("SELECT creator.creator_profile_storefilename, " +
-	  "		creator.creator_nickname, " +
-	  "		creator.creator_id, " +
-	  "		collaboration.collaboration_register_date " + "	FROM creator " +
-	  "		JOIN collaboration " +
-	  "			ON creator.creator_id = collaboration.creator_id " +
-	  "	WHERE collaboration.collaboration_id = ${collaboId}")
-	  
+	  @Select("SELECT creator.creator_profile_storefilename, " 
+			+ "		  creator.creator_nickname, " 
+			+ "		  collaboration.collaboration_title, "
+			+ "		  collaboration.collaboration_id, "
+			+ "		  creator.creator_id, " 
+			+ "		  collaboration.collaboration_register_date " 
+			+ "	 FROM creator " 
+			+ "	 JOIN collaboration " 
+			+ "	   ON creator.creator_id = collaboration.creator_id " 
+			+ "	WHERE collaboration.collaboration_id = ${collaboId}")
 	  @Results({
-	  
+	  @Result(property = "title", column = "collaboration_title"),
+	  @Result(property = "collaborationId", column = "collaboration_id"),
 	  @Result(property = "onenickname", column = "creator_nickname"),
 	  @Result(property = "creatorId", column = "creator_id"),
 	  @Result(property = "creatorimage", column = "creator_profile_storefilename"),
-	  
 	  @Result(property = "registerdate", column = "collaboration_register_date") })
 	  CollaborationCollaboratorDto findcollaborator(Long collaboId);
 

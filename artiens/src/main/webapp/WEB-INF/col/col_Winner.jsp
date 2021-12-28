@@ -42,7 +42,7 @@
 			style="background-color: white; border: none; padding-bottom: 0px;">
 			<div class="container clearfix" style="background-color: white;">
 
-				<h1>콜라보레이션 타이틀</h1>
+				<h1>${collaborator.title }</h1>
 				<span style="margin-top: 20px;">
 					<div class="d-flex align-items-center"
 						style="justify-content: center;">
@@ -50,8 +50,7 @@
 							alt="Author" class="rounded-circle" width="35" height="35">
 						</a>
 						<div class="entry-meta mt-0">
-							<div class="entry-meta"
-								style="margin-bottom: 10px; padding-left: 10px;">
+							<div class="entry-meta" style="margin-bottom: 10px; padding-left: 10px;">
 								<ul>
 									<li><a href="/blog/${collaborator.creatorId }">${collaborator.onenickname }</a></li>
 									<li><i class="icon-calendar3"></i>${collaborator.registerdate }</li>
@@ -61,26 +60,9 @@
 					</div>
 				</span>
 
-				<div style="width: 1600px;">
-					<!-- 서브메뉴 ============================================= -->
-					<nav class="primary-menu"
-						style="margin-top: 100px; border-top: 2px solid #f3f3f3; border-bottom: 2px solid #f3f3f3">
-
-						<ul class="menu-container">
-							<li class="menu-item"><a class="menu-link"
-								href="../artizen/colDetail">
-									<div style="font-size: 20px; font-weight: normal;">콜라보레이션
-										소개</div>
-							</a></li>
-							<li class="menu-item"><a class="menu-link"
-								href="../artizen/colArtList">
-									<div style="font-size: 20px; font-weight: normal;">참여작품</div>
-							</a></li>
-						</ul>
-
-					</nav>
-					<!-- 서브메뉴 끝 -->
-				</div>
+				<!-- 서브메뉴 ============================================= -->
+				<%@ include file="../include/colNav.jsp"%>
+				<!-- 서브메뉴 끝 -->
 			</div>
 
 		</section>
@@ -99,7 +81,7 @@
 							<col width="10%">
 						</colgroup>
 						<thead>
-							<tr>
+							<tr class="fs-4">
 								<th class="cart-product-remove">image</th>
 								<th class="cart-product-thumbnail">title</th>
 								<th class="cart-product-thumbnail">creator</th>
@@ -110,7 +92,7 @@
 							<c:forEach var="result" items="${result}">
 								<tr class="cart_item">
 									<td class="cart-product-thumbnail">
-										<a href="/collaboration/art/${result.colArtworkId }">
+										<a href="${result.image }" data-lightbox="image">
 											<img width="240" height="128" src="${result.image }">
 										</a>
 									</td>
