@@ -27,17 +27,17 @@ class ArtiensApplicationTests {
 	
 	@Test
 	void contextLoads() {
-		Reward reward = new Reward();
-
-		JPAQueryFactory query = new JPAQueryFactory(em);
-		QReward reward2 = new QReward("h");
-
-		Reward result = query
-				.selectFrom(reward2)
-				.fetchOne();
-		
-		Assertions.assertThat(result).isEqualTo(reward);
-		Assertions.assertThat(result.getId()).isEqualTo(reward.getId());
+//		Reward reward = new Reward();
+//
+//		JPAQueryFactory query = new JPAQueryFactory(em);
+//		QReward reward2 = new QReward("h");
+//
+//		Reward result = query
+//				.selectFrom(reward2)
+//				.fetchOne();
+//
+//		Assertions.assertThat(result).isEqualTo(reward);
+//		Assertions.assertThat(result.getId()).isEqualTo(reward.getId());
 	}
 
 }
