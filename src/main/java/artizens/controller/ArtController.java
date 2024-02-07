@@ -59,13 +59,12 @@ public class ArtController {
 	@GetMapping("/blog/my/{creator}")
 	public String userBlog( @PathVariable Long creator, RedirectAttributes redirectAttribute,
 							@SessionAttribute(name = SessionConst.LOGIN_USER, required = false ) UserProfile user,
-							String createId,
 							Model model) throws Exception {
 		
 		if ( user == null ) return "redirect:/";
 		Long userid = artWorkService.findByUserId(user);
 		Long creator_id = artWorkService.findByCreator(userid);
-		if ( creator_id == creator ) {
+		if ( creator_id != 0L && userid == creator ) {
 			List<StoreFileDTO> store = artService.findByAll( creator );
 			model.addAttribute("store",store);
 			List<StoreFileDTO> profile = artService.findByProfile( creator );
@@ -81,12 +80,13 @@ public class ArtController {
 			LOGGER.info("content={}",bloginfoDTO.getContent());
 			model.addAttribute("profile",bloginfoDTO);
 			model.addAttribute("creator",creator);
+			model.addAttribute("userid",creator);
 			return "artWork/ArtWorkMyBlog";
 			
 		}else {
 			model.addAttribute("message","잘못된 접근입니다.");
+			return "include/Alert";
 		}
-		return "artWork/ArtWorkMyBlog";
 	}
 	
 	@GetMapping("/blog/{creatorid}")

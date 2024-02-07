@@ -55,12 +55,13 @@
 				
 				<!-- banner start -->
 				<div class="fslider" data-pagi="false" data-animation="fade">
-					<div class="flexslider">
-						<div class="slider-wrap">
-							<div style="background: url('<c:url value="/images/artwork/3.jpg"/>')no-repeat center center/cover; height: 500px;"></div>
-						</div>
-					</div>
-				</div>		
+					<h3>My Blog</h3>
+<%--					<div class="flexslider">--%>
+<%--						<div class="slider-wrap">--%>
+<%--							<div style="background: url('<c:url value="/images/artwork/3.jpg"/>')no-repeat center center/cover; height: 500px;"></div>--%>
+<%--						</div>--%>
+<%--					</div>--%>
+				</div>
 				<!-- banner end -->
 				
 			</div>
@@ -71,27 +72,6 @@
 		<section id="content">
 			<div class="content-wrap">
 				<div class="container clearfix">
-					
-					<!-- social icon -->
-					<div class="si-sticky si-sidebar">
-						<a href="#" class="social-icon si-colored si-facebook">
-							<span>Facebook</span>
-							<i class="icon-facebook"></i>
-						</a>
-						<a href="#" class="social-icon si-colored si-instagram">
-							<span>Instagram</span>
-							<i class="icon-instagram"></i>
-						</a>
-						<a href="#" class="social-icon si-colored si-youtube">
-							<span>Youtube</span>
-							<i class="icon-youtube"></i>
-						</a>
-					</div>
-										
-					<div class="row gutter-40 col-mb-80">
-					<!-- social icon end -->
-					
-					
 						<!-- Post Content
 						============================================= -->
 						<div class="postcontent col-lg-9 order-lg-last">
@@ -162,12 +142,6 @@
 									<script>
 									
 									</script>
-									<div class="text-center mt-2">
-										<a href="#" id="btn_follow" class="button button-xlarge button-circle button-dark button-reveal nott ls0 bg-dark text-start" style="padding: 0px 60px 0px 60px;">
-											<i class="icon-line-check" id="btn_followicon"></i>
-											<span>팔로우 하기</span>
-										</a>											
-									</div>
 									<div class="border m-3 p-3">
 										<c:choose>
 											<c:when test="${profile.content eq null }" >
