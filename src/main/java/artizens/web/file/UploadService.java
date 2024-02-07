@@ -1,4 +1,4 @@
-package artizens.web.aws;
+package artizens.web.file;
 
 import com.amazonaws.services.s3.model.ObjectMetadata;
 

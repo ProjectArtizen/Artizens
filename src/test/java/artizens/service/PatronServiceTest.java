@@ -15,8 +15,6 @@ import artizens.domain.Creator;
 import artizens.domain.UserProfile;
 import artizens.repository.querydsl.patron.PatronCreatorDto;
 import artizens.repository.querydsl.patron.PatronCreatorRewardDto;
-import artizens.repository.querydsl.patron.PatronImagesDto;
-
 @Transactional
 @SpringBootTest
 class PatronServiceTest {

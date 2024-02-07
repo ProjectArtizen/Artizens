@@ -1,26 +1,26 @@
+package artizens.web.file.aws;
 
-package artizens.web.aws;
-
+import artizens.web.file.UploadService;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
 
 @Component
-public class AwsS3UploadService implements UploadService{
+public class AwsS3UploadService implements UploadService {
 	
     private final AmazonS3 amazonS3;
 	private final S3Component s3Component;
 
-    public AwsS3UploadService(AmazonS3 amazonS3, S3Component s3Component) {
-		this.amazonS3 = amazonS3;
-		this.s3Component = s3Component;
-	}
+    public AwsS3UploadService() {
+        this.amazonS3 =  AmazonS3ClientBuilder.standard().withRegion(Regions.AP_NORTHEAST_2).build();
+        this.s3Component = new S3Component();
+    }
 
 	@Override
     public void uploadFile(InputStream inputStream, ObjectMetadata objectMetadata, String fileName) {

@@ -3,6 +3,7 @@ package artizens.service;
 import java.util.List;
 import java.util.Map;
 
+import artizens.web.file.FileUploadService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,6 @@ import artizens.controller.dto.artwork.UploadFileDTO;
 import artizens.domain.UploadFile;
 import artizens.mapper.ArtMapper;
 import artizens.mapper.ArtWorkImagesMapper;
-import artizens.web.aws.FileUploadService;
 
 @Service
 public class ArtService {

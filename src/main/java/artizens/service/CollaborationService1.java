@@ -2,19 +2,16 @@ package artizens.service;
 
 import java.util.List;
 
+import artizens.web.file.FileUploadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import artizens.domain.UploadFile;
-import artizens.domain.UserProfile;
-import artizens.mapper.CollaborationMapper;
 import artizens.mapper.CollaborationMapper1;
-import artizens.mapper.dto.collaboration.CollaborationDto;
 import artizens.mapper.dto.collaboration.CollaborationMainDto;
 import artizens.mapper.dto.collaboration.CollaborationPlanningDto;
 import artizens.repository.CollaborationRepository;
-import artizens.web.aws.FileUploadService;
 
 @Service
 @Transactional

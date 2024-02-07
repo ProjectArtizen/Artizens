@@ -13,12 +13,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import artizens.controller.UserProfileController;
 import artizens.domain.Patron;
 import artizens.domain.Reward;
 import artizens.domain.UploadFile;
 import artizens.repository.RewardRepository;
-import artizens.repository.querydsl.patron.PatronImagesDto;
 import artizens.repository.querydsl.reward.RewardCreatorDto;
 import artizens.repository.querydsl.reward.RewardImageDto;
 

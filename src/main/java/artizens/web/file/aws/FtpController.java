@@ -1,14 +1,14 @@
-package artizens.web.aws;
+package artizens.web.file.aws;
 
-import java.util.List;
-
+import artizens.domain.UploadFile;
+import artizens.web.file.FileUploadService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import artizens.domain.UploadFile;
+
+import java.util.List;
 
 @RestController
 public class FtpController {

@@ -1,5 +1,4 @@
-package artizens.web.aws;
-import org.springframework.beans.factory.annotation.Value;
+package artizens.web.file.aws;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;

@@ -72,8 +72,8 @@
                                      data-nav="true" data-autoplay="5000" data-animate-in="fadeIn"
                                      data-animate-out="fadeOut" data-speed="800">
 
-                                    <a href="${artwork.images }" data-lightbox="gallery-item">
-                                        <img class="img-fluid " src="${artwork.images }" alt="Slider">
+                                    <a href="${artwork.images}" data-lightbox="gallery-item">
+                                        <img class="img-fluid " src="${artwork.images}" alt="Slider">
                                     </a>
                                 </div>
                             </div>

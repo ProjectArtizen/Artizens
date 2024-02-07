@@ -6,18 +6,15 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import artizens.web.file.FileUploadService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
-
-import artizens.controller.PatronController;
 import artizens.controller.dto.patron.PatronRegisterDto;
 import artizens.domain.Creator;
 import artizens.domain.Patron;
@@ -33,7 +30,6 @@ import artizens.repository.querydsl.patron.PatronCreatorRewardDto;
 import artizens.repository.querydsl.patron.PatronImagesDto;
 import artizens.repository.querydsl.patron.RewardDto;
 import artizens.repository.querydsl.patron.RewardImagesDto;
-import artizens.web.aws.FileUploadService;
 
 @Service
 @Transactional(readOnly = true)
@@ -45,7 +41,6 @@ public class PatronService {
 	@Autowired CreatorRepository creatorRepository;
 	@Autowired RewardRepository rewardRepository;
 	@Autowired UserProfileRepository userProfileRepository;
-	
 	@Autowired FileUploadService fileUploadService;
 	@Autowired RewardService rewardService;
 	

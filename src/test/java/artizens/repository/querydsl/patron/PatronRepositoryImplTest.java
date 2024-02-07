@@ -4,28 +4,17 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
-import artizens.domain.Creator;
-import artizens.domain.Patron;
 import artizens.domain.UploadFile;
-import artizens.domain.UserProfile;
 import artizens.repository.PatronRepository;
-
-import static artizens.domain.QPatron.patron;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static artizens.domain.QCreator.creator;
 
 @Transactional
 @SpringBootTest
